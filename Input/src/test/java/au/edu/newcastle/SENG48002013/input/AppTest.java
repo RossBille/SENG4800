@@ -1,4 +1,4 @@
-package au.edu.newcastle.city.evolutions.camerainput;
+package au.edu.newcastle.SENG48002013.input;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
