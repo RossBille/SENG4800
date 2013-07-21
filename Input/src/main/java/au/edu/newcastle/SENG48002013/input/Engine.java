@@ -9,7 +9,7 @@ public class Engine
     /*
      * expose endpoint to accept all types of instructions
      *      OR
-     * open set up channels for users to stream to
+     * set up channels for users to stream to
      */
     
     /*
@@ -17,4 +17,5 @@ public class Engine
      *      OR
      * open stream to game engine
      */
+
 }
