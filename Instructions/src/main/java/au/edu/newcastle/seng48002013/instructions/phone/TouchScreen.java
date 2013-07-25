@@ -31,27 +31,24 @@ public class TouchScreen extends BasePhoneInstruction
 	}
 
 	@Override
-	public void setId(String id)
-	{
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}
-
-	@Override
 	public Vector3d getDirection()
 	{
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return new Vector3d(x1-x2, y1-y2, 0);
 	}
 
 	@Override
 	public float getMagnitude()
 	{
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return magnitude;
 	}
 
 	@Override
 	public long getUpdated()
 	{
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return updated;
 	}
-	
+	public void setMagnitude(float magnitude)
+    {
+        this.magnitude = magnitude;
+    }
 }

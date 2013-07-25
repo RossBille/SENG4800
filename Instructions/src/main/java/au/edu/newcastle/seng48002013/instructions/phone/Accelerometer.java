@@ -15,11 +15,6 @@ public class Accelerometer extends BasePhoneInstruction
 		throw new UnsupportedOperationException("Implement method to get direction");
 	}
 
-	@Override
-	public void setId(String id)
-	{
-		throw new UnsupportedOperationException("Not supported yet."); 
-	}
 
 	@Override
 	public float getMagnitude()

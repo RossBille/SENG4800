@@ -5,6 +5,43 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>WebSocket test</h1>
+        <div id="output"></div>
+        <button onclick="test();" >hi</button>
+        <script type="text/javascript" >
+
+            var wsUri = "ws://" + document.location.host + document.location.pathname + "endpoint";
+            var websocket = new WebSocket(wsUri);
+
+            websocket.onerror = function(evt) {
+                onError(evt)
+            };
+
+            function onError(evt) {
+                writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data);
+            }
+// For testing purposes
+            var output = document.getElementById("output");
+            websocket.onopen = function(evt) {
+                onOpen(evt)
+            };
+
+            var JSON = "{\"@class\" : \"au.edu.newcastle.seng48002013.instructions.phone.TouchScreen\",\"magnitude\":\"123\",\"phoneId\":\"phone\",\"os\":\"android\",\"x1\":1,\"y1\":4,\"x2\":990,\"y2\":9}";
+
+            function writeToScreen(message) {
+                output.innerHTML += message + "<br>";
+
+            }
+
+            function onOpen() {
+                writeToScreen("Connected to " + wsUri);
+            }
+            function test() {
+                websocket.send(JSON);
+            }
+            ;
+// End test functions
+
+        </script>
     </body>
 </html>

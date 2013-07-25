@@ -34,5 +34,5 @@ public abstract class BasePhoneInstruction extends BaseInstruction
 	{
 		this.os = os;
 	}
-	
+
 }
