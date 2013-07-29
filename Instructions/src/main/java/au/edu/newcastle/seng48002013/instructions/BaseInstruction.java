@@ -15,7 +15,6 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @JsonIgnoreProperties({"updated"})
 public abstract class BaseInstruction implements Serializable
 {
-	protected float magnitude;
 	protected long updated;
 	public BaseInstruction()
 	{
@@ -23,7 +22,6 @@ public abstract class BaseInstruction implements Serializable
 	}
     
 	public abstract Vector3d getDirection();
-	public abstract float getMagnitude();
 	public abstract String getId();
 	public abstract long getUpdated();
 }
