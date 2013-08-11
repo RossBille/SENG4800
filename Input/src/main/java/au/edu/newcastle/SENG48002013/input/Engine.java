@@ -55,4 +55,9 @@ public class Engine
 	{
 		peers.remove(peer);
 	}
+        
+        public int currentPeers()
+        {
+            return peers.size();
+        }
 }
