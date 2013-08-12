@@ -9,13 +9,14 @@ import javax.servlet.annotation.WebListener;
  * @author rowanburgess
  */
 @WebListener
-public class Listner implements ServletContextListener 
+public class Listener implements ServletContextListener 
 {
 
     @Override
     public void contextInitialized(ServletContextEvent event) 
     {
-        event.getServletContext().setAttribute("securityManager", new SecurityManager(10000, 5));
+        event.getServletContext().setAttribute("securityManager", 
+                new SecurityManager(10000, 5, "ws://localhost:8080/Input/endpoint"));
         System.out.println("Security Manager Created");
     }
 

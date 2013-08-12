@@ -15,20 +15,19 @@ import org.codehaus.jackson.map.ObjectMapper;
 @WebServlet("/connect")
 public class ConnectionBroker extends HttpServlet
 {
+    SecurityManager secMan = (SecurityManager) getServletContext().getAttribute("securityManager");
+
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException
 	{
-		// check for space in game, request token from security manager
-		resp.setContentType("application/JSON");
-		Result r = new Result();
-		r.setError(false);
-		//TODO: dynamically fetch url
-		r.setMessage("ws://localhost:8080/Input/endpoint");
-		r.setCode("super random code " + extractId(req));
+            if (secMan.checkRequest(req.getRemoteAddr())) //check for DOS
+            {
+                // check for space in game, request token from security manager
+		resp.setContentType("application/JSON");		
 		ObjectMapper mapper = new ObjectMapper();
-
-		resp.getWriter().write(mapper.writeValueAsString(r));
+		resp.getWriter().write(mapper.writeValueAsString(secMan.serviceRequest()));         
+            }              		
 	}
 
 	@Override

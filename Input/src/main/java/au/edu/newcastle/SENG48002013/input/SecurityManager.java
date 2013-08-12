@@ -17,23 +17,25 @@ public class SecurityManager
     private HashMap validTokens;
     private long timeout; //milliseconds a generated token is valid for
     private final int MAX_CLIENTS;
+    private String endpoint;
     
         
     
-    public SecurityManager(long time, int maxClients)
+    public SecurityManager(long time, int maxClients, String end)
     {
         validTokens = new HashMap();
         connectedClients = new HashMap();
         timeout = time;
         MAX_CLIENTS = maxClients;
+        endpoint = end;
     }
     
-    public String generateToken(String s)
+    public String generateToken()
     {
         random = new SecureRandom();
-        String token = new BigInteger(130, random).toString(32); //gen token
+        String token = new BigInteger(130, random).toString(32); //generate token
         Date temp = new Date();
-        Date validity = new Date(temp.getTime() + timeout); //set timeout
+        Date validity = new Date(temp.getTime() + timeout); //set its timeout
         
         validTokens.put(token, validity);
         return token;
@@ -84,6 +86,26 @@ public class SecurityManager
         {
             return false;
         }
+    }
+    
+    public Result serviceRequest()
+    {
+        Result r = new Result();
+        
+        if (spaceAvailable())
+        {
+            r.setError(false);
+            r.setMessage(endpoint);
+            r.setCode(generateToken());         
+        }
+        
+        else // cannot service request, no space available
+        {
+            r.setError(true);
+            r.setMessage("No spaces available");
+        }
+        
+        return r;       
     }
     
 
