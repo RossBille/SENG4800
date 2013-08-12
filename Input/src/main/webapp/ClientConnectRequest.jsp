@@ -13,14 +13,14 @@
     </head>
     <body>
         <div align="center">
-    <h1>Connection Parameters</h1>
-    <p>Please enter your login credentials below.<br>
+            <h1>Connection Parameters</h1>
+            <p>Please enter your request test parameters below<br>
 
-    <form method="POST" action="connect">
-    	<input type="text" name="mac"/> <br>
-    	<input type="text" name="type"/> <br>
-    	<input type="submit"/>
-    </form>
-    </div>
+            <form method="POST" action="connect">
+                <input type="text" name="mac" placeholder="MAC address" required="true"/> <br>
+                <input type="text" name="type" placeholder="Device Type" required="true"/> <br>
+                <input type="submit"/>
+            </form>
+        </div>
     </body>
 </html>
