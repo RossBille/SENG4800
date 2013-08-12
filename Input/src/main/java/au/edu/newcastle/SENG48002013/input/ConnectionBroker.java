@@ -5,7 +5,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import au.edu.newcastle.seng48002013.results.Result;
 import org.codehaus.jackson.map.ObjectMapper;
 
 /**
@@ -15,12 +14,13 @@ import org.codehaus.jackson.map.ObjectMapper;
 @WebServlet("/connect")
 public class ConnectionBroker extends HttpServlet
 {
-    SecurityManager secMan = (SecurityManager) getServletContext().getAttribute("securityManager");
 
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException
 	{
+            SecurityManager secMan = (SecurityManager) getServletContext().getAttribute("securityManager");
+
             if (secMan.checkRequest(req.getRemoteAddr())) //check for DOS
             {
                 // check for space in game, request token from security manager

@@ -1,5 +1,6 @@
 package au.edu.newcastle.SENG48002013.input;
 
+import au.edu.newcastle.seng48002013.results.Result;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.Date;
@@ -34,21 +35,20 @@ public class SecurityManager
     {
         random = new SecureRandom();
         String token = new BigInteger(130, random).toString(32); //generate token
-        Date temp = new Date();
-        Date validity = new Date(temp.getTime() + timeout); //set its timeout
-        
+        long validity = System.currentTimeMillis() + timeout;
+       
         validTokens.put(token, validity);
         return token;
     }
     
     public boolean checkToken(String token, String iD)
     {
-        Date current = new Date();
+        long current = System.currentTimeMillis();
  
         if (validTokens.containsKey(token)) //check we have that token
         {
-            Date expiry = (Date) validTokens.get(token);
-            if (current.before(expiry)) // if token has not yet expired
+            long expiry = (long) validTokens.get(token);
+            if ((current-expiry) > 0) // if token has not yet expired
             {
                 validTokens.remove(token); //token used, session now established
                 connectedClients.put(iD, token); //client is now in the system
@@ -103,6 +103,7 @@ public class SecurityManager
         {
             r.setError(true);
             r.setMessage("No spaces available");
+            r.setCode("404");
         }
         
         return r;       
