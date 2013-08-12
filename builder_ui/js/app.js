@@ -7,17 +7,23 @@ App.controller('dndCtrl', function ($scope) {
         {
             "name": 'Object 1',
             "xpos": -1,
-            "ypos": -1
+            "ypos": -1,
+            "width": 0,
+            "height": 0
         },
         {
             "name": 'Object 2',
             "xpos": -1,
-            "ypos": -1
+            "ypos": -1,
+            "width": 0,
+            "height": 0
         },
         {
             "name": 'Object 3',
             "xpos": -1,
-            "ypos": -1
+            "ypos": -1,
+            "width": 0,
+            "height": 0
         }
     ]
 });
@@ -43,6 +49,19 @@ App.directive('draggable', function () {
                     scope.$apply();
                 },
                 containment: ".list"
+            });
+
+            element.resizable({
+                stop: function(event, ui) {
+                    var width = $(this).width();
+                    var height = $(this).height();
+                    var dragIndex = element.data('index');
+
+                    scope.list[dragIndex].width = width;
+                    scope.list[dragIndex].height = height;
+
+                    scope.$apply();
+                }
             });
         }
     };
