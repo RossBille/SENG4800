@@ -1,7 +1,7 @@
-package au.edu.newcastle.seng48002013.result;
+package au.edu.newcastle.seng48002013.results;
 
 /**
- *
+ * 
  * @author rossbille
  */
 public class Result
@@ -9,7 +9,6 @@ public class Result
 	private String message;	
 	private String code;
 	private boolean error;
-
 	public Result()
 	{
 	}
