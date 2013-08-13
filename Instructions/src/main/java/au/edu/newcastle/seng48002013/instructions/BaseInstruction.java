@@ -1,4 +1,4 @@
-package au.edu.newcastle.seng48002013.instructions;
+package au.edu.newcastle.SENG48002013.instructions;
 
 import java.io.Serializable;
 import javax.vecmath.Vector3d;
