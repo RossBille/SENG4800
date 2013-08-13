@@ -1,4 +1,4 @@
-package au.edu.newcastle.seng48002013.instructions.phone;
+package au.edu.newcastle.SENG48002013.instructions.phone;
 
 import javax.vecmath.Vector3d;
 
