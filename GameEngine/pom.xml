@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>au.edu.newcastle.SENG48002013</groupId>
-    <artifactId>Engine</artifactId>
-    <version>1.0</version>
+    <artifactId>GameEngine</artifactId>
+    <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>Engine</name>
+    <name>GameEngine</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
