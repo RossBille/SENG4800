@@ -1,6 +1,6 @@
 package au.edu.newcastle.SENG48002013.input;
 
-import au.edu.newcastle.seng48002013.instructions.BaseInstruction;
+import au.edu.newcastle.SENG48002013.instructions.BaseInstruction;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashSet;
@@ -55,4 +55,9 @@ public class Engine
 	{
 		peers.remove(peer);
 	}
+        
+        public int currentPeers()
+        {
+            return peers.size();
+        }
 }

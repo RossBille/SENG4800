@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Start Page</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	</head>
+	<body>
+		<h1>WebSocket test</h1>
+		<div id="output"></div>
+		<button onclick="left();" >left</button>
+		<button onclick="right();" >right</button>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript">
+			var connectUrl = "http://localhost:8080/Input/connect";
+			$.ajax({
+				method: 'get',
+				data: {ID: 'superID'},
+				dataType: 'json',
+				url: connectUrl,
+				context: document.body
+			}).done(function(data) {
+				//load new page which will connect to websocket
+				window.location.href = "SampleClient2.html?url=" + data.message;
+			});
+
+		</script>
+
+	</body>
+</html>
