@@ -1,0 +1,97 @@
+/* LINKS */
+a {
+    color: $highlight-colour;
+    text-decoration: none;
+
+    border-width: 2px;
+    border-color: rgba(#000, .9);
+    border-bottom-style: dotted;
+
+    &:hover {
+        border-color: $highlight-colour;
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    &:active, &:focus {
+        border-bottom-style: solid;
+    }
+
+    &:visited {
+        border-bottom-style: solid;
+        border-color: rgba(#000, .5);
+    }
+}
+
+/* PARAGRAPHS */
+p {
+    margin: 0 0 24px;
+
+    &.no-margin {
+        margin: 0;
+    }
+
+    &.center {
+        text-align: center;
+    }
+
+    .text & {
+        margin: 0;
+    }
+}
+
+/* UNORDERED LISTS */
+ul {
+    margin: 0 0 24px;
+    padding: 0 0 0 30px;
+
+    li {
+        margin: 6px 0;
+    }
+}
+
+/* BOLD TEXT */
+strong {
+    @extend %normal-text-bold;
+}
+
+/* FONT-AWESOME ICONS */
+i {
+    margin-right: 6px;
+}
+
+/* HORIZONTAL RULES */
+hr {
+    margin: 24px 0;
+}
+
+/* HEADINGS */
+h1, h2, h3, h4, h5, h6 {
+    @extend %heading-text;
+}
+
+h1 {
+    @include adjust-font-size-to(28px);
+}
+
+h2 {
+    @include adjust-font-size-to(24px);
+}
+
+h3 {
+    @include adjust-font-size-to(18px);
+}
+
+h4 {
+    @include adjust-font-size-to(16px);
+}
+
+h5 {
+    @include adjust-font-size-to(13px);
+}
+
+h6 {
+    @include adjust-font-size-to(10px);
+}

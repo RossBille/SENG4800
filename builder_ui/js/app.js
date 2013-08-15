@@ -6,22 +6,22 @@ App.controller('dndCtrl', function ($scope) {
     $scope.list = [
         {
             "name": 'Object 1',
-            "xpos": -1,
-            "ypos": -1,
+            "xpos": 0,
+            "ypos": 0,
             "width": 0,
             "height": 0
         },
         {
             "name": 'Object 2',
-            "xpos": -1,
-            "ypos": -1,
+            "xpos": 0,
+            "ypos": 0,
             "width": 0,
             "height": 0
         },
         {
             "name": 'Object 3',
-            "xpos": -1,
-            "ypos": -1,
+            "xpos": 0,
+            "ypos": 0,
             "width": 0,
             "height": 0
         }
@@ -37,18 +37,7 @@ App.directive('draggable', function () {
         //The link function is responsible for registering DOM listeners as well as updating the DOM.
         link: function (scope, element, attrs) {
             element.draggable({
-                stop: function () {
-                    var offset = $(this).position();
-                    var xPos = offset.left;
-                    var yPos = offset.top;
-                    var dragIndex = element.data('index');
 
-                    scope.list[dragIndex].xpos = xPos;
-                    scope.list[dragIndex].ypos = yPos;
-
-                    scope.$apply();
-                },
-                containment: ".list"
             });
 
             element.resizable({
@@ -93,6 +82,9 @@ App.directive('droppable', function ($compile) {
 
                     //var position = dropEl.position();
                 }*/
+                drop: function (event, ui) {
+                    $(this).append(ui.draggable);
+                }
             });
         }
     };

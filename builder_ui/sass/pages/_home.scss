@@ -1,0 +1,45 @@
+.list {
+    background: $light-colour;
+    margin-bottom: $section-padding;
+    padding: 0;
+    height: 500px;
+    width: 10%;
+    float: left;
+
+    &.drop-hover {
+        background: $success-colour;
+    }
+}
+
+.scene {
+    @extend .list;
+
+    float: right;
+    position: relative;
+
+    width: 85%;
+    z-index: 1;
+}
+
+.object {
+    display: inline-block;
+    width: 100px;
+    margin: 0;
+    background: $text-colour-light;
+    color: $light-colour;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid #000;
+    z-index: 2;
+}
+
+.item-detail {
+    @include third(1);
+
+    background: #eee;
+    padding: 20px;
+
+    p:last-child {
+        margin: 0;
+    }
+}
