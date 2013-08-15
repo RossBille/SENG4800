@@ -37,11 +37,23 @@ App.directive('draggable', function () {
         //The link function is responsible for registering DOM listeners as well as updating the DOM.
         link: function (scope, element, attrs) {
             element.draggable({
+                stop: function () {
+                    var offset = $(this).position();
+                    var xPos = offset.left;
+                    var yPos = offset.top;
+                    var dragIndex = element.data('index');
 
+                    scope.list[dragIndex].xpos = xPos;
+                    scope.list[dragIndex].ypos = yPos;
+
+                    scope.$apply();
+                },
+                containment: ".scene"
             });
 
+
             element.resizable({
-                stop: function(event, ui) {
+                stop: function (event, ui) {
                     var width = $(this).width();
                     var height = $(this).height();
                     var dragIndex = element.data('index');
@@ -65,26 +77,75 @@ App.directive('droppable', function ($compile) {
             //This makes an element Droppable
             element.droppable({
                 /*hoverClass: 'drop-hover',
-                drop: function (event, ui) {
-                    var dragIndex = angular.element(ui.draggable).data('index'),
-                        reject = angular.element(ui.draggable).data('reject'),
-                        dragEl = angular.element(ui.draggable).parent(),
-                        dropEl = angular.element(this);
+                 drop: function (event, ui) {
+                 var dragIndex = angular.element(ui.draggable).data('index'),
+                 reject = angular.element(ui.draggable).data('reject'),
+                 dragEl = angular.element(ui.draggable).parent(),
+                 dropEl = angular.element(this);
 
-                    if (dragEl.hasClass('list1') && !dropEl.hasClass('list1') && reject !== true) {
-                     scope.list2.push(scope.list1[dragIndex]);
-                     scope.list1.splice(dragIndex, 1);
-                     } else if (dragEl.hasClass('list2') && !dropEl.hasClass('list2') && reject !== true) {
-                     scope.list1.push(scope.list2[dragIndex]);
-                     scope.list2.splice(dragIndex, 1);
-                     }
-                     scope.$apply();
+                 if (dragEl.hasClass('list1') && !dropEl.hasClass('list1') && reject !== true) {
+                 scope.list2.push(scope.list1[dragIndex]);
+                 scope.list1.splice(dragIndex, 1);
+                 } else if (dragEl.hasClass('list2') && !dropEl.hasClass('list2') && reject !== true) {
+                 scope.list1.push(scope.list2[dragIndex]);
+                 scope.list2.splice(dragIndex, 1);
+                 }
+                 scope.$apply();
 
-                    //var position = dropEl.position();
-                }*/
+                 //var position = dropEl.position();
+                 }
+
+                 */
                 drop: function (event, ui) {
-                    $(this).append(ui.draggable);
+                    if (ui.draggable.parent().hasClass('list')) {
+                        $(this).append(ui.draggable);
+                    }
                 }
+
+                /*drop: function (event, ui) {
+                 var targetDIV = document.getElementById('targetDIV');
+                 var dropTarget = $(this);
+
+                 //making sure the draggable div doesn't move on its own until we're finished moving it
+                 ui.draggable.draggable( "option", "revert", false );
+
+                 //getting current div old absolute position
+                 var oldPosition = ui.draggable.offset();
+
+                 //assigning div to new parent
+                 //ui.draggable.insertBefore(dropTarget);
+                 $(this).append(ui.draggable);
+
+                 //getting current div new absolute position
+                 var newPosition = ui.draggable.offset();
+
+                 //calculate correct position offset
+                 var leftOffset = null;
+                 var topOffset = null;
+
+                 if(oldPosition.left > newPosition.left) {
+                 leftOffset = (oldPosition.left - newPosition.left);
+                 } else {
+                 leftOffset = -(newPosition.left - oldPosition.left);
+                 }
+
+                 if(oldPosition.top > newPosition.top) {
+                 topOffset = (oldPosition.top - newPosition.top);
+                 } else {
+                 topOffset = -(newPosition.top - oldPosition.top);
+                 }
+
+                 //instantly offsetting the div to it current position
+                 ui.draggable.animate( {
+
+                 left: '+=' + leftOffset,
+                 top: '+=' + topOffset
+
+                 }, 0 )
+
+                 //allowing the draggable to revert to it's proper position in the new column
+                 ui.draggable.draggable( "option", "revert", true );
+                 }*/
             });
         }
     };
