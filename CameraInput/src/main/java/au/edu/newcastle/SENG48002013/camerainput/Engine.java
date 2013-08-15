@@ -1,6 +1,6 @@
 package au.edu.newcastle.SENG48002013.camerainput;
 
-import au.edu.newcastle.seng48002013.instructions.camera.IpCamera;
+import au.edu.newcastle.SENG48002013.instructions.camera.IpCamera;
 
 /**
  *

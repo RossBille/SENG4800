@@ -1,4 +1,4 @@
-package au.edu.newcastle.seng48002013.instructions.phone;
+package au.edu.newcastle.SENG48002013.instructions.phone;
 
 import javax.vecmath.Vector3d;
 
@@ -13,13 +13,6 @@ public class Accelerometer extends BasePhoneInstruction
 	public Vector3d getDirection()
 	{
 		throw new UnsupportedOperationException("Implement method to get direction");
-	}
-
-
-	@Override
-	public float getMagnitude()
-	{
-		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
 	@Override

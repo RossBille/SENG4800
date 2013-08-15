@@ -1,4 +1,4 @@
-package au.edu.newcastle.seng48002013.instructions.phone;
+package au.edu.newcastle.SENG48002013.instructions.phone;
 
 import javax.vecmath.Vector3d;
 
@@ -8,8 +8,9 @@ import javax.vecmath.Vector3d;
  */
 public class TouchScreen extends BasePhoneInstruction
 {
+
 	private float x1, x2, y1, y2;
-	
+
 	public void setX1(float x1)
 	{
 		this.x1 = x1;
@@ -33,13 +34,7 @@ public class TouchScreen extends BasePhoneInstruction
 	@Override
 	public Vector3d getDirection()
 	{
-		return new Vector3d(x1-x2, y1-y2, 0);
-	}
-
-	@Override
-	public float getMagnitude()
-	{
-		return magnitude;
+		return new Vector3d(x1 - x2, y1 - y2, 0);
 	}
 
 	@Override
@@ -47,8 +42,5 @@ public class TouchScreen extends BasePhoneInstruction
 	{
 		return updated;
 	}
-	public void setMagnitude(float magnitude)
-    {
-        this.magnitude = magnitude;
-    }
+
 }
