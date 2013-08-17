@@ -1,4 +1,4 @@
-package au.edu.newcastle.SENG48002013.game.engine.servlets;
+package au.edu.newcastle.SENG48002013.game.engine.connections;
 
 import java.io.IOException;
 import java.util.Collections;
