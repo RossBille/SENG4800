@@ -39,12 +39,12 @@ App.directive('draggable', function () {
             element.draggable({
                 stop: function () {
                     var offset = $(this).position();
-                    var xPos = offset.left;
-                    var yPos = offset.top;
-                    var dragIndex = element.data('index');
+                    var offset_left = Math.round(offset.left);
+                    var offset_top = Math.round(offset.top);
+                    var draggable_index = element.data('index');
 
-                    scope.list[dragIndex].xpos = xPos;
-                    scope.list[dragIndex].ypos = yPos;
+                    scope.list[draggable_index].xpos = offset_left;
+                    scope.list[draggable_index].ypos = offset_top;
 
                     scope.$apply();
                 },
@@ -56,13 +56,14 @@ App.directive('draggable', function () {
                 stop: function (event, ui) {
                     var width = $(this).width();
                     var height = $(this).height();
-                    var dragIndex = element.data('index');
+                    var draggable_index = element.data('index');
 
-                    scope.list[dragIndex].width = width;
-                    scope.list[dragIndex].height = height;
+                    scope.list[draggable_index].width = width;
+                    scope.list[draggable_index].height = height;
 
                     scope.$apply();
-                }
+                },
+                containment: '.scene'
             });
         }
     };
@@ -76,76 +77,50 @@ App.directive('droppable', function ($compile) {
         link: function (scope, element, attrs) {
             //This makes an element Droppable
             element.droppable({
-                /*hoverClass: 'drop-hover',
-                 drop: function (event, ui) {
-                 var dragIndex = angular.element(ui.draggable).data('index'),
-                 reject = angular.element(ui.draggable).data('reject'),
-                 dragEl = angular.element(ui.draggable).parent(),
-                 dropEl = angular.element(this);
-
-                 if (dragEl.hasClass('list1') && !dropEl.hasClass('list1') && reject !== true) {
-                 scope.list2.push(scope.list1[dragIndex]);
-                 scope.list1.splice(dragIndex, 1);
-                 } else if (dragEl.hasClass('list2') && !dropEl.hasClass('list2') && reject !== true) {
-                 scope.list1.push(scope.list2[dragIndex]);
-                 scope.list2.splice(dragIndex, 1);
-                 }
-                 scope.$apply();
-
-                 //var position = dropEl.position();
-                 }
-
-                 */
                 drop: function (event, ui) {
-                    if (ui.draggable.parent().hasClass('list')) {
-                        $(this).append(ui.draggable);
+                    var $drop_target = $(this);
+                    var $draggable = ui.draggable;
+                    var $draggable_parent = ui.draggable.parent();
+                    var $draggable_parent_parent = $draggable_parent.parent();
+
+                    if ($draggable_parent_parent.hasClass('list')) {
+                        //getting current div old absolute position
+                        var oldPosition = $draggable.offset();
+
+                        //assigning div to new parent
+                        $drop_target.append($draggable);
+
+                        //remove unneeded object container
+                        $draggable_parent.remove();
+
+                        //getting current div new absolute position
+                        var newPosition = $draggable.offset();
+
+                        //calculate correct position offset
+                        var leftOffset = null;
+                        var topOffset = null;
+
+                        if(oldPosition.left > newPosition.left) {
+                            leftOffset = (oldPosition.left - newPosition.left);
+                        } else {
+                            leftOffset = -(newPosition.left - oldPosition.left);
+                        }
+
+                        if(oldPosition.top > newPosition.top) {
+                            topOffset = (oldPosition.top - newPosition.top);
+                        } else {
+                            topOffset = -(newPosition.top - oldPosition.top);
+                        }
+
+                        //instantly offsetting the div to its current position
+                        $draggable.animate( {
+
+                            left: '+=' + leftOffset,
+                            top: '+=' + topOffset
+
+                        }, 0 )
                     }
                 }
-
-                /*drop: function (event, ui) {
-                 var targetDIV = document.getElementById('targetDIV');
-                 var dropTarget = $(this);
-
-                 //making sure the draggable div doesn't move on its own until we're finished moving it
-                 ui.draggable.draggable( "option", "revert", false );
-
-                 //getting current div old absolute position
-                 var oldPosition = ui.draggable.offset();
-
-                 //assigning div to new parent
-                 //ui.draggable.insertBefore(dropTarget);
-                 $(this).append(ui.draggable);
-
-                 //getting current div new absolute position
-                 var newPosition = ui.draggable.offset();
-
-                 //calculate correct position offset
-                 var leftOffset = null;
-                 var topOffset = null;
-
-                 if(oldPosition.left > newPosition.left) {
-                 leftOffset = (oldPosition.left - newPosition.left);
-                 } else {
-                 leftOffset = -(newPosition.left - oldPosition.left);
-                 }
-
-                 if(oldPosition.top > newPosition.top) {
-                 topOffset = (oldPosition.top - newPosition.top);
-                 } else {
-                 topOffset = -(newPosition.top - oldPosition.top);
-                 }
-
-                 //instantly offsetting the div to it current position
-                 ui.draggable.animate( {
-
-                 left: '+=' + leftOffset,
-                 top: '+=' + topOffset
-
-                 }, 0 )
-
-                 //allowing the draggable to revert to it's proper position in the new column
-                 ui.draggable.draggable( "option", "revert", true );
-                 }*/
             });
         }
     };

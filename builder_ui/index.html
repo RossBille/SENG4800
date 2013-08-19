@@ -16,9 +16,10 @@
 <div class="container">
     <div class="dragdrop" ng-app="App" ng-controller="dndCtrl" ng-cloak>
         <div class='list'>
-            <div class="object" ng-repeat="item in list" data-index="{{$index}}" data-reject="{{item.reject}}"
-                  draggable>
-                {{item.name}}
+            <div class="object-container" ng-repeat="item in list">
+                <div class="object" data-index="{{$index}}" data-reject="{{item.reject}}" draggable>
+                    {{item.name}}
+                </div>
             </div>
         </div>
 

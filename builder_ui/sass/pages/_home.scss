@@ -1,24 +1,35 @@
+.container {
+    margin: 20px auto;
+}
+
 .list {
+    @include columns(3);
+
     background: $light-colour;
     margin-bottom: $section-padding;
     padding: 0;
-    height: 500px;
-    width: 10%;
+    height: $scene-height;
     float: left;
-
-    &.drop-hover {
-        background: $success-colour;
-    }
 }
 
 .scene {
-    @extend .list;
+    @include columns(13);
+
+    background: $light-colour;
+    margin-bottom: $section-padding;
+    padding: 0;
+    height: $scene-height;
 
     float: right;
     position: relative;
 
-    width: 85%;
     z-index: 1;
+}
+
+.object-container {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
 }
 
 .object {
@@ -31,6 +42,7 @@
     cursor: pointer;
     border: 2px solid #000;
     z-index: 2;
+    cursor: move;
 }
 
 .item-detail {
