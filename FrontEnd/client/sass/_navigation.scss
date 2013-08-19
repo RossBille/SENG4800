@@ -1,0 +1,73 @@
+/* NAVIGATION */
+/** Menu - Tier 1 **/
+.menu {
+    @include column;
+
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding: 0;
+    list-style: none;
+
+    display: inline;
+    float: right;
+
+    /*> li {
+        &:first-child > a {
+            padding-left: 0;
+        }
+
+        &:last-child > a {
+            padding-right: 0;
+        }
+    }*/
+
+    li {
+        position: relative;
+        float: left;
+        margin: 0 0 0 12px;
+
+        a {
+            @extend %link-button;
+
+            position: relative;
+            z-index: 100;
+            border: none;
+        }
+
+        &:hover > a,
+        &.current > a {
+            @extend %link-button-hover;
+        }
+
+        /** Sub Menu - Tier 2 **/
+        .sub-menu {
+            overflow: hidden;
+            margin: 0 0 0 6px;
+            min-width: 100%;
+            background: $dark-colour;
+            display: none;
+
+            i {
+                margin-right: 10px;
+            }
+
+            li {
+                white-space: nowrap;
+
+                a {
+                    display: block;
+                    margin: 0;
+                    padding: 12px 15px;
+                }
+            }
+        }
+
+        //Display sub-menu
+        &:hover .sub-menu {
+            float: left;
+            position: absolute;
+            z-index: 200;
+            display: block;
+        }
+    }
+}

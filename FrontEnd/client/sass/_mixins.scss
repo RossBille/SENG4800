@@ -1,0 +1,162 @@
+/* MEDIA QUERIES */
+@mixin respond-to($media) {
+    @if $media == phone {
+    // All phones (includes phone-large and phone-small)
+        @media only screen and (max-width: $tablet-width - 1) {
+            @content;
+        }
+    } @else if $media == tablet {
+    // Tablets only
+        @media only screen and (min-width: $tablet-width) and (max-width: $base-width - 1) {
+            @content;
+        }
+    } @else if $media == desktop {
+    // Desktop size and up
+        @media only screen and (min-width: $base-width) {
+            @content;
+        }
+    } @else if $media == tablet-phone {
+    // Tablets and below (includes tablets, phone-large and phone-small)
+        @media only screen and (max-width: $base-width - 1) {
+            @content;
+        }
+    } @else if $media == phone-small {
+    // Small phones only
+        @media only screen and (max-width: $mobile-landscape-width - 1) {
+            @content;
+        }
+    } @else if $media == phone-large {
+    // Large phones only
+        @media only screen and (min-width: $mobile-landscape-width) and (max-width: $tablet-width - 1) {
+            @content;
+        }
+    }
+}
+
+/* FONT STYLES */
+// Headings
+%heading-text {
+    font-family: 'Abel', Helvetica, serif;
+    font-weight: 400;
+}
+
+// Body text
+%normal-text {
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-weight: 400;
+}
+
+// Bold body text
+%normal-text-bold {
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-weight: 700;
+}
+
+/* NAVIGATION LINK STYLING */
+%link-button {
+    @extend %normal-text-bold;
+    @include border-radius($default-border-radius / 2);
+    @include transition(background .2s, color .2s);
+
+    margin: 0;
+    padding: 10px 16px;
+    color: $light-colour;
+    text-decoration: none;
+
+    display: block;
+}
+
+%link-button-hover {
+    color: $base-colour;
+    background: $light-colour;
+}
+
+/* WEBSITE BUTTON STYLING */
+%button {
+    @include transition(background .2s, color .2s, border .1s);
+    @extend %normal-text-bold;
+    @include adjust-font-size-to(14px);
+    @include border-radius($default-border-radius / 2);
+
+    background: $dark-colour;
+
+    color: $light-colour;
+    text-align: left;
+    padding: 10px 16px 11px 16px;
+    border: 2px solid $dark-colour;
+
+    i {
+        @include transition(color .2s);
+
+        color: $light-colour;
+        float: right;
+        margin: 3px 0 0 16px;
+        font-size: 0.9em;
+    }
+
+    &:hover {
+        background: $light-colour;
+        color: $dark-colour;
+
+        i {
+            color: $dark-colour;
+        }
+    }
+
+    &:focus {
+        border: 2px solid $light-colour;
+    }
+}
+
+//Light version of button, for use on dark backgrounds
+%button-light {
+    @extend %button;
+
+    background: $light-colour;
+    color: $darker-colour;
+    text-transform: none;
+    border: 2px solid $light-colour;
+
+    i {
+        color: $darker-colour;
+    }
+
+    &:hover {
+        background: $darker-colour;
+        color: $light-colour;
+
+        i {
+            color: $light-colour;
+        }
+    }
+
+    &:focus {
+        border: 2px solid $darker-colour;
+    }
+}
+
+/* HIDE TEXT OF ELEMENT */
+%hide-text {
+    font: 0/0 a;
+    text-shadow: none;
+    color: transparent;
+}
+
+/* ELEMENT BORDER AND OUTLINE */
+%border-outline {
+    @include border-radius($default-border-radius / 2);
+
+    border: ($border-width + 1px) solid $dark-colour;
+    outline: 1px solid #000;
+    outline-offset: -7px;
+}
+
+/* HORIZONTAL RULE */
+%hr-gradient {
+    border: 0;
+    height: 1px;
+    margin: 0;
+
+    background-image: -ms-linear-gradient(left, rgba(#000, 0), rgba(#000, 0.75), rgba(#000, 0));
+    @include background-image(linear-gradient(left, rgba(#000, 0), rgba(#000, 0.75), rgba(#000, 0)));
+}

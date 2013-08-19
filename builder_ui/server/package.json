@@ -7,10 +7,6 @@
     "description": "Reads from a basic objects.json file and servers to client",
     "readme" : "## Reads from basic json file and serves to client",
     "version" : "0.1.0",
-    "repository" : {
-        "type" : "git",
-        "url" : "git://github.com/b1nd/basic_websocket_server.git"
-    },
     "dependencies" : { "ws" : "0.4.27" } 
 }
 

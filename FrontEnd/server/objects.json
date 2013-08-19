@@ -1,0 +1,26 @@
+{
+	"Objects" : [
+	{
+		"name": "Object 1",
+		"xpos": 0,
+		"ypos": 0,
+		"width": 0,
+		"height": 0
+	},
+	{
+		"name": "Object 2",
+		"xpos": 0,
+		"ypos": 0,
+		"width": 0,
+		"height": 0
+	},
+	{
+		"name": "Object 3",
+		"xpos": 0,
+		"ypos": 0,
+		"width": 0,
+		"height": 0
+	}
+]
+}
+
