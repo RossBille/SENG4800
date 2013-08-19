@@ -18,6 +18,8 @@ public class Game_Setup {
 	private int canvas_size_y;
 	private String border_state;
 	private String border_colour;
+        private int minPlayers;
+        private int maxPlayers;
 	private int border_size;
 	private int no_of_levels;
 	private ArrayList<Game_Object> gameObjects = new ArrayList<Game_Object>();
@@ -27,6 +29,22 @@ public class Game_Setup {
 	// Mutators
 	public String getGame_name() {
 		return game_name;
+	}
+             
+        public void setMin_players(int min) {
+		this.minPlayers = min;
+	}
+        
+        public int getMin_players() {
+		return minPlayers;
+	}
+        
+        public void setMax_players(int max) {
+		this.maxPlayers = max;
+	}
+        
+        public int getMax_players() {
+		return maxPlayers;
 	}
 
 	public void setGame_name(String gameName) {

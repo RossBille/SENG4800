@@ -19,6 +19,7 @@ public class Reader {
     public static ArrayList<Level> levels = new ArrayList<Level>();
     public static ArrayList<Action> actions = new ArrayList<Action>();
     public static int numLevels = 0;
+    public static Game_Setup gameSetup = new Game_Setup();
     
     public static void main(String[] args)
     {
@@ -27,7 +28,90 @@ public class Reader {
         parseLevelsXML(fileName);
         fileName = "Actions";
         parseActionsXML(fileName);
+        
+        fileName = "Game";
+        parseGameXML(fileName);
     }
+    
+    private static void parseGameXML(String loc)
+    {
+    	//DOM Object
+        Document dom;
+        
+        // Make an  instance of the DocumentBuilderFactory
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        try {
+            // use the factory to take an instance of the document builder
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            // parse using the builder to get the DOM mapping of the
+            // XML file
+            String location = loc + ".xml";
+            dom = db.parse(location);
+
+            Element docEle = dom.getDocumentElement();
+            
+            // get the setup
+            NodeList nl = docEle.getElementsByTagName("Setup");
+            
+            // build info
+            
+            //get the element
+            Element el = (Element)nl.item(0);
+			
+			//get the object
+			Game_Setup newSetup = getSetup(el);
+        	
+			// set Game_Setup object
+			gameSetup = newSetup;
+          
+        }
+		catch (ParserConfigurationException pce)
+		{}
+		catch (SAXException se)
+		{}
+		catch (IOException ioe)
+		{}   
+    }
+    
+//ADDED
+	private static Game_Setup getSetup(Element el)
+	{
+		Game_Setup newSetup = new Game_Setup();
+		
+		// Game Name
+		String gameName = getTextValue(el, "Game_name");
+		newSetup.setGame_name(gameName);
+		
+		// Canvas Size
+		NodeList nl = el.getElementsByTagName("Canvas_size");
+		Element el2 = (Element)nl.item(0);
+		int size_x = getIntValue(el2, "Width");
+		int size_y = getIntValue(el2, "Height");
+		newSetup.setCanvas_size_x(size_x);
+		newSetup.setCanvas_size_y(size_y);
+		
+		// Border
+		nl = el.getElementsByTagName("Border");
+		el2 = (Element)nl.item(0);
+		String state = getTextValue(el2, "State");
+		String colour = getTextValue(el2, "Colour");
+		int size = getIntValue(el2, "Size");
+		newSetup.setBorder_state(state);
+		newSetup.setBorder_colour(colour);
+		newSetup.setBorder_size(size);
+		
+		// Players
+		nl = el.getElementsByTagName("Players");
+		el2 = (Element)nl.item(0);
+		int min = getIntValue(el2, "Min");
+		int max = getIntValue(el2, "Max");
+		newSetup.setMin_players(min);
+		newSetup.setMax_players(max);
+		
+                System.out.println("GAME SETUP: "+gameName+", Canvas = "+size_x+" by "+size_y+", Border = "+state+","+colour+","+size+", Players = "+min+"(min)"+max+"(max)");
+                
+		return newSetup;
+	}
     
     private static void parseLevelsXML(String loc) //Reads in the blackboard users
     {
