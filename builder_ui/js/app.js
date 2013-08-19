@@ -108,9 +108,9 @@ App.directive('droppable', function ($compile) {
 
                     $draggable.resizable({
                         stop: function (event, ui) {
-                            var width = $(this).width();
-                            var height = $(this).height();
-                            var draggable_index = element.data('index');
+                            var width = $draggable.width();
+                            var height = $draggable.height();
+                            var draggable_index = $draggable.data('index');
 
                             scope.list[draggable_index].width = width;
                             scope.list[draggable_index].height = height;
