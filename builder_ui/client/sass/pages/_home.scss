@@ -34,15 +34,19 @@
 
 .object {
     display: inline-block;
-    width: 100px;
     margin: 0;
-    background: $text-colour-light;
-    color: $light-colour;
     text-align: center;
     cursor: pointer;
-    border: 2px solid #000;
     z-index: 2;
     cursor: move;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+
+    &.thumbnail {
+        height: 100px;
+        width: 100px;
+    }
 }
 
 .item-detail {

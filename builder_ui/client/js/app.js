@@ -11,7 +11,7 @@ App.factory('ListService', function ($timeout) {
 
     /* Our evented service call, this doesn't block on IO */
     service.getObjects = function (callback) {
-        var ws = new WebSocket("ws://localhost:8080");
+        var ws = new WebSocket("ws://localhost:8088");
         ws.onmessage = function (msg) {
             $timeout(function () {
                 json = JSON.parse(msg.data);
@@ -76,8 +76,13 @@ App.directive('droppable', function ($compile) {
                     var $draggable = ui.draggable;
                     var $draggable_parent = ui.draggable.parent();
                     var $draggable_parent_parent = $draggable_parent.parent();
+                    var draggable_index = $draggable.data('index');
 
                     if ($draggable_parent_parent.hasClass('list')) {
+                        $draggable.css('height', scope.list[draggable_index].image_height);
+                        $draggable.css('width', scope.list[draggable_index].image_width);
+                        $draggable.css('background-image', 'url(' + scope.list[draggable_index].image_path + ')');
+
                         //getting current div old absolute position
                         var oldPosition = $draggable.offset();
 
@@ -114,7 +119,7 @@ App.directive('droppable', function ($compile) {
                         }, 0);
                     }
 
-                    $draggable.resizable({
+                    /*$draggable.resizable({
                         stop: function (event, ui) {
                             var width = $draggable.width();
                             var height = $draggable.height();
@@ -126,7 +131,7 @@ App.directive('droppable', function ($compile) {
                             scope.$apply();
                         },
                         containment: '.scene'
-                    });
+                    });*/
                 }
             });
         }
