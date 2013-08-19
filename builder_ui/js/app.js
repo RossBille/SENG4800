@@ -50,21 +50,6 @@ App.directive('draggable', function () {
                 },
                 containment: ".scene"
             });
-
-
-            element.resizable({
-                stop: function (event, ui) {
-                    var width = $(this).width();
-                    var height = $(this).height();
-                    var draggable_index = element.data('index');
-
-                    scope.list[draggable_index].width = width;
-                    scope.list[draggable_index].height = height;
-
-                    scope.$apply();
-                },
-                containment: '.scene'
-            });
         }
     };
 });
@@ -120,6 +105,20 @@ App.directive('droppable', function ($compile) {
 
                         }, 0 )
                     }
+
+                    $draggable.resizable({
+                        stop: function (event, ui) {
+                            var width = $(this).width();
+                            var height = $(this).height();
+                            var draggable_index = element.data('index');
+
+                            scope.list[draggable_index].width = width;
+                            scope.list[draggable_index].height = height;
+
+                            scope.$apply();
+                        },
+                        containment: '.scene'
+                    });
                 }
             });
         }
