@@ -1,5 +1,5 @@
 var WebSocketServer = require('ws').Server
-var wss = new WebSocketServer({port: 8080});
+var wss = new WebSocketServer({port: 8088});
 
 wss.on ('connection', function(socket) {
     console.log("Opened");

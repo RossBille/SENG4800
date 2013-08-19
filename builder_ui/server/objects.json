@@ -1,26 +1,38 @@
 {
-	"Objects" : [
-	{
-		"name": "Object 1",
-		"xpos": 0,
-		"ypos": 0,
-		"width": 0,
-		"height": 0
-	},
-	{
-		"name": "Object 2",
-		"xpos": 0,
-		"ypos": 0,
-		"width": 0,
-		"height": 0
-	},
-	{
-		"name": "Object 3",
-		"xpos": 0,
-		"ypos": 0,
-		"width": 0,
-		"height": 0
-	}
-]
+    "Objects": [
+        {
+            "name": "Object 1",
+            "xpos": 0,
+            "ypos": 0,
+            "image_path": "/img/ball.png",
+            "image_height": 200,
+            "image_width": 200,
+            "image_thumbnail": "/img/ball_thumbnail.png",
+            "width": 0,
+            "height": 0
+        },
+        {
+            "name": "Object 2",
+            "xpos": 0,
+            "ypos": 0,
+            "image_path": "/img/golf_ball.png",
+            "image_height": 150,
+            "image_width": 150,
+            "image_thumbnail": "/img/golf_ball_thumbnail.png",
+            "width": 0,
+            "height": 0
+        },
+        {
+            "name": "Object 3",
+            "xpos": 0,
+            "ypos": 0,
+            "image_path": "/img/tennis_ball.png",
+            "image_height": 175,
+            "image_width": 175,
+            "image_thumbnail": "/img/tennis_ball_thumbnail.png",
+            "width": 0,
+            "height": 0
+        }
+    ]
 }
 
