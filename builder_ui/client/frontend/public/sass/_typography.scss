@@ -1,0 +1,121 @@
+/* LINKS */
+a {
+    color: #000;
+    text-decoration: none;
+
+    border-bottom: 2px dotted rgba(#000, .9);
+
+    &:hover {
+        border-bottom-style: dashed;
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    &:active, &:focus {
+        border-bottom-style: solid;
+    }
+
+    &:visited {
+        border-bottom: 2px solid rgba(#000, .5);
+    }
+}
+
+/* PARAGRAPHS */
+p {
+    margin: 0 0 24px;
+
+    &.no-margin {
+        margin: 0;
+    }
+
+    &.center {
+        text-align: center;
+    }
+
+    .text & {
+        margin: 0;
+    }
+}
+
+/* UNORDERED LISTS */
+ul {
+    margin: 0 0 24px;
+    padding: 0 0 0 30px;
+
+    li {
+        margin: 6px 0;
+    }
+}
+
+/* BOLD TEXT */
+strong {
+    @extend %normal-text-bold;
+}
+
+/* FONT-AWESOME ICONS */
+i {
+    margin-right: 6px;
+}
+
+/* HORIZONTAL RULES */
+hr {
+    margin: 24px 0;
+}
+
+/* HEADINGS */
+h1, h2, h3, h4, h5, h6 {
+    @extend %heading-text;
+
+    &.highlight {
+        color: $highlight-colour;
+    }
+}
+
+// Remove margin above first headings for text content section
+.text {
+    > img + h1, > img + h2, > img + h3, > img + h4, > img + h5, > img + h6, h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child {
+        margin-top: 0;
+    }
+}
+
+// Page heading
+.page-heading {
+    margin-bottom: $section-padding + 10px;
+
+    hr {
+        @extend %hr-gradient;
+    }
+}
+
+h1 {
+    @include adjust-font-size-to(32px);
+
+    &.section-heading {
+        @include adjust-font-size-to(50px);
+
+        text-align: center;
+        margin: 0 0 ($section-padding / 2) 0;
+    }
+}
+
+h2 {
+    @include adjust-font-size-to(24px);
+}
+
+h3 {
+    @include adjust-font-size-to(18px);
+}
+
+h4 {
+    @include adjust-font-size-to(16px);
+}
+
+h5 {
+    @include adjust-font-size-to(13px);
+}
+
+h6 {
+    @include adjust-font-size-to(10px);
+}
