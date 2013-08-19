@@ -21,8 +21,12 @@
 				<Max_speed>5</Max_speed>
 				<Position>1</Position>
 				<Direction>23</Direction>
-				<Sprite>
+				<Sprite_speed>2</Sprite_speed>
+				<Sprite>	
 					<Image>ball.jpg</Image>
+				</Sprite>
+				<Sprite>	
+					<Image>exploding_ball.jpg</Image>
 				</Sprite>
 			</Object>
 			<Object>
@@ -37,6 +41,7 @@
 				<Max_speed>5</Max_speed>
 				<Position>23</Position>
 				<Direction>12</Direction>
+				<Sprite_speed>2</Sprite_speed>
 				<Sprite>
 					<Image>paddle.jpg</Image>
 				</Sprite>

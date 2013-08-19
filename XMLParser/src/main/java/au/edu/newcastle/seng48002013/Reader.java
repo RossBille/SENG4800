@@ -212,8 +212,29 @@ public class Reader {
                                 tempObj.setDirection(tempObjDirection);
                                 System.out.println("object direction = "+tempObjDirection);
                                 
-                                //get object sprites
-                                // TO BE ADDED
+                                //GET SPRITE
+                                
+                                //get the object sprite speed
+                                int tempSprSpeed = getIntValue(elEl, "Sprite_speed");
+                                // store it in tempObj
+                                tempObj.setSprite_speed(tempSprSpeed);
+                                System.out.println("Sprite speed = "+tempSprSpeed);
+                                
+                                NodeList images = elEl.getElementsByTagName("Sprite");
+                                if(nl != null && nl.getLength() > 0)
+                                {
+                                        for(int b = 0; b < images.getLength(); b++)
+                                        {                                       
+                                            //get element
+                                            Element elImage = (Element)images.item(b);
+                                            
+                                            //get the sprite image
+                                            String tempSprite = getTextValue(elImage, "Image");
+                                            // store it in tempObj
+                                            tempObj.addSprite(tempSprite);
+                                            System.out.println("Sprite "+(b+1)+" = "+tempSprite);
+                                        }
+                                }
                                 
 				//add to object list
 				objects.add(tempObj);
