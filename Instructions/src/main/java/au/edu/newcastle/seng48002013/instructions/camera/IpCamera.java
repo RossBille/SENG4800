@@ -1,4 +1,4 @@
-package au.edu.newcastle.seng48002013.instructions.camera;
+package au.edu.newcastle.SENG48002013.instructions.camera;
 
 import javax.vecmath.Vector3d;
 
@@ -9,34 +9,27 @@ import javax.vecmath.Vector3d;
 public class IpCamera extends BaseCameraInstruction
 {
 
-
 	@Override
 	public Vector3d getDirection()
 	{
-		throw new UnsupportedOperationException("Not supported yet."); 
-	}
-
-	@Override
-	public float getMagnitude()
-	{
-		throw new UnsupportedOperationException("Not supported yet."); 
+		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
 	@Override
 	public String getId()
 	{
-		throw new UnsupportedOperationException("Not supported yet."); 
+		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
 	@Override
 	public long getUpdated()
 	{
-		throw new UnsupportedOperationException("Not supported yet."); 
+		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
-    @Override
-    public void setId(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); 
-    }
-	
+	@Override
+	public void setId(String id)
+	{
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
 }
