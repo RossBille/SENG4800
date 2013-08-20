@@ -51,10 +51,11 @@ public class Input implements IInput{
 	@Override
 	public void setPosition(boolean position)
 	{
-		
+		this.position = position;	
 	}
+	@Override
 	public Vector2d getPos()
 	{
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return getValue();
 	}
 }

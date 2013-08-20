@@ -19,4 +19,6 @@ public interface IInput {
 	public void setPosition(boolean position);
 	public Vector2d getValue();
 	public void setValue(Vector2d pos);
+
+	public Vector2d getPos();
 }
