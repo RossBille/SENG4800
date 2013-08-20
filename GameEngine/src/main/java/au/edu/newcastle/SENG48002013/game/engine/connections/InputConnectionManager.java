@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import au.edu.newcastle.SENG48002013.messages.PlayerNumberMessage;
 import au.edu.newcastle.SENG48002013.messages.responses.Response;
 import org.codehaus.jackson.map.ObjectMapper;
+
 /**
  * Servlet class to access when adding or removing players from the game
  *
@@ -15,6 +16,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 @WebServlet("/PlayerManager")
 public class InputConnectionManager extends BaseServlet
 {
+
 	private Processor processor = null;
 
 	@Override
@@ -24,26 +26,27 @@ public class InputConnectionManager extends BaseServlet
 		ObjectMapper mapper = new ObjectMapper();
 		PlayerNumberMessage pnm;
 		pnm = mapper.readValue(extractJson(), PlayerNumberMessage.class);
+		System.out.println(pnm.toString());
 		//check if adding or removing
 		if (pnm.isConnecting())
 		{
 			setProcessor();
 			//check if there is room
-			if(processor.isRoom())
+			if (processor.isRoom())
 			{
 				//add new player to the game
 				Player tempPlayer = new Player();
 				//set all variables extracted from the new player message
-				processor.addPlayer(tempPlayer);				
-			}else{
+				processor.addPlayer(tempPlayer);
+			} else
+			{
 				//send error mesage
-				response.setContentType("text/JSON");
+				
 				//construct response to send
 				Response r = new Response();
-				
-				response.getWriter().write(r.toString());
+
 			}
-			
+
 			throw new UnsupportedOperationException("Not supported yet.");
 		} else
 		{
@@ -55,14 +58,22 @@ public class InputConnectionManager extends BaseServlet
 
 	private void setProcessor()
 	{
-		if(processor == null)
+		if (processor == null)
 		{
-			processor = (Processor) request.getServletContext().getAttribute("processor");
+			processor = (Processor) getServletContext().getAttribute("processor");
 		}
 	}
 
 	private String extractJson()
 	{
-		throw new UnsupportedOperationException("Not supported yet.");
+		System.out.println(request.getParameter("data"));
+		return "{\"@class\": \"au.edu.newcastle.SENG48002013.messages.PlayerNumberMessage\", \"player\":1, \"connecting\":true}";
+	}
+
+	private void respond(Response r) throws IOException
+	{
+		response.setContentType("text/JSON");
+		response.getWriter().write(r.toString());
+
 	}
 }

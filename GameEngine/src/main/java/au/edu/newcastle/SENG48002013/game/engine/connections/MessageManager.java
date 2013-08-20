@@ -44,14 +44,14 @@ public class MessageManager
         //alert front end that all input has been lost
     }
 
-    @OnError
+    /*@OnError
     public void onError()
     {
         //log error
         
         //try to handle
     }
-
+*/
     @OnMessage
     public void onMessage(String Message)
     {

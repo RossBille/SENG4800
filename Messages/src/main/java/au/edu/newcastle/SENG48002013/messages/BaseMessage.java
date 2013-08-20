@@ -11,31 +11,33 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
 	use = JsonTypeInfo.Id.CLASS,
 	include = JsonTypeInfo.As.PROPERTY,
 	property = "@class")
-@JsonIgnoreProperties({"updated"})
+@JsonIgnoreProperties(
+{
+	"timeStamp"
+})
 public abstract class BaseMessage
 {
 
-		protected int player;
-		protected float timeStamp;
-		
-		public BaseMessage()
-		{
-				timeStamp = System.currentTimeMillis();
-		}
+	protected int player;
+	protected float timeStamp;
 
-		public float getTimeStamp()
-		{
-				return timeStamp;
-		}
+	public BaseMessage()
+	{
+		timeStamp = System.currentTimeMillis();
+	}
 
-		public int getPlayer()
-		{
-				return player;
-		}
+	public float getTimeStamp()
+	{
+		return timeStamp;
+	}
 
-		public void setPlayer(int player)
-		{
-				this.player = player;
-		}
-		
+	public int getPlayer()
+	{
+		return player;
+	}
+
+	public void setPlayer(int player)
+	{
+		this.player = player;
+	}
 }

@@ -2,9 +2,7 @@ package au.edu.newcastle.SENG48002013.game.engine;
 
 import au.edu.newcastle.SENG48002013.game.engine.objects.Player;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 /**
  * Class to control all game logic
  * @author rossbille
@@ -34,6 +32,7 @@ public class Processor
 
 	public void addPlayer(Player tempPlayer)
 	{
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		System.out.println("added player " + tempPlayer.toString());
+	//	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 }

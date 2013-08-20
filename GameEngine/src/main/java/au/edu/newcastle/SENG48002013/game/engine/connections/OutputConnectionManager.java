@@ -63,13 +63,14 @@ public class OutputConnectionManager
         }
     }
 
+    /*
     @OnError
     public void onError()
     {
         //log the error
         //try and handle
     }
-
+	*/
     @OnMessage
     public void onMessage(String message)
     {
