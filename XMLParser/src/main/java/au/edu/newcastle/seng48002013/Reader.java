@@ -80,15 +80,15 @@ public class Reader {
 		
 		// Game Name
 		String gameName = getTextValue(el, "Game_name");
-		newSetup.setGame_name(gameName);
+		newSetup.setGameName(gameName);
 		
 		// Canvas Size
 		NodeList nl = el.getElementsByTagName("Canvas_size");
 		Element el2 = (Element)nl.item(0);
 		int size_x = getIntValue(el2, "Width");
 		int size_y = getIntValue(el2, "Height");
-		newSetup.setCanvas_size_x(size_x);
-		newSetup.setCanvas_size_y(size_y);
+		newSetup.setCanvasSizeX(size_x);
+		newSetup.setCanvasSizeY(size_y);
 		
 		// Border
 		nl = el.getElementsByTagName("Border");
@@ -96,17 +96,17 @@ public class Reader {
 		String state = getTextValue(el2, "State");
 		String colour = getTextValue(el2, "Colour");
 		int size = getIntValue(el2, "Size");
-		newSetup.setBorder_state(state);
-		newSetup.setBorder_colour(colour);
-		newSetup.setBorder_size(size);
+		newSetup.setBorderState(state);
+		newSetup.setBorderColour(colour);
+		newSetup.setBorderSize(size);
 		
 		// Players
 		nl = el.getElementsByTagName("Players");
 		el2 = (Element)nl.item(0);
 		int min = getIntValue(el2, "Min");
 		int max = getIntValue(el2, "Max");
-		newSetup.setMin_players(min);
-		newSetup.setMax_players(max);
+		newSetup.setMinPlayers(min);
+		newSetup.setMaxPlayers(max);
 		
                 //System.out.println("GAME SETUP: "+gameName+", Canvas = "+size_x+" by "+size_y+", Border = "+state+","+colour+","+size+", Players = "+min+"(min)"+max+"(max)");
                 
@@ -245,7 +245,7 @@ public class Reader {
                                 //get the object type
                                 String tempObjType = getTextValue(elEl, "Object_type");
                                 // store it in tempObj
-                                tempObj.setObject_type(tempObjType);
+                                tempObj.setObjectType(tempObjType);
                                 //System.out.println("object type = "+tempObjType);
                                 
                                 //get the object shape
@@ -275,13 +275,13 @@ public class Reader {
                                 //get the object init speed
                                 int tempObjInitSpeed = getIntValue(elEl, "Initial_speed");
                                 // store it in tempObj
-                                tempObj.setInit_speed(tempObjInitSpeed);
+                                tempObj.setInitSpeed(tempObjInitSpeed);
                                 //System.out.println("object initial speed = "+tempObjInitSpeed);
                                 
                                 //get the object max speed
                                 int tempObjMaxSpeed = getIntValue(elEl, "Max_speed");
                                 // store it in tempObj
-                                tempObj.setMax_speed(tempObjMaxSpeed);
+                                tempObj.setMaxSpeed(tempObjMaxSpeed);
                                 //System.out.println("object maximum speed = "+tempObjMaxSpeed);
                                 
                                 //get the object position
@@ -301,7 +301,7 @@ public class Reader {
                                 //get the object sprite speed
                                 int tempSprSpeed = getIntValue(elEl, "Sprite_speed");
                                 // store it in tempObj
-                                tempObj.setSprite_speed(tempSprSpeed);
+                                tempObj.setSpriteSpeed(tempSprSpeed);
                                 //System.out.println("Sprite speed = "+tempSprSpeed);
                                 
                                 NodeList images = elEl.getElementsByTagName("Sprite");
@@ -338,13 +338,13 @@ public class Reader {
 				//get the event id
 				int tempEveID = getIntValue(elEl, "Event_id");
                                 // store it in tempObj
-                                tempEve.setEvent_id(tempEveID);
+                                tempEve.setEventId(tempEveID);
                                 //System.out.println("event ID = "+tempEveID);
                                 
                                 //get the event type
 				String tempEveType = getTextValue(elEl, "Event_type");
                                 // store it in tempObj
-                                tempEve.setEvent_type(tempEveType);
+                                tempEve.setEventType(tempEveType);
                                 //System.out.println("event type = "+tempEveType);
                                    
                                 // if it is a collision event, 
@@ -353,12 +353,12 @@ public class Reader {
                                     int tempOb = getIntValue(elEl, "Object_id1");
                                     //System.out.println("Object 1 = "+tempOb);
                                     //store tempOb
-                                    tempEve.setObject_id_1(tempOb);
+                                    tempEve.setObjectId1(tempOb);
                                     
                                     tempOb = getIntValue(elEl, "Object_id2");
                                     //System.out.println("Object 2 = "+tempOb);
                                     //store tempOb
-                                    tempEve.setObject_id_2(tempOb);
+                                    tempEve.setObjectId2(tempOb);
                                 }    
                                 else if (tempEveType.equalsIgnoreCase("Time")) // if it is a time event
                                 {
@@ -371,7 +371,7 @@ public class Reader {
                                                                
                                 int tempEveTrig = getIntValue(elEl, "Trigger_action_id");
                                 // store it in tempObj
-                                tempEve.setTrigger_action_id(tempEveTrig);
+                                tempEve.setTriggerActionId(tempEveTrig);
                                 //System.out.println("Trigger Action = "+tempEveTrig);
                                 
 				//add temp event to events
@@ -398,10 +398,10 @@ public class Reader {
                 Action newAction = new Action();
 		int actionID = getIntValue(el, "Action_id");
                 //System.out.println("ID = "+actionID);
-                newAction.setAction_id(actionID);
+                newAction.setActionId(actionID);
 		String Operation = getTextValue(el, "Operation");
                 //System.out.println("Operation = "+Operation);
-                newAction.setAction_id(actionID);
+                newAction.setActionId(actionID);
                 
                 String tempCommand = "";
                 

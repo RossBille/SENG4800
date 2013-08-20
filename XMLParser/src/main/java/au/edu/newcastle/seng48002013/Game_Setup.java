@@ -13,90 +13,90 @@ import java.util.ArrayList;
 public class Game_Setup {
 
 	// Config Variables
-	private String game_name;
-	private int canvas_size_x;
-	private int canvas_size_y;
-	private String border_state;
-	private String border_colour;
+	private String gameName;
+	private int canvasSizeX;
+	private int canvasSizeY;
+	private String borderState;
+	private String borderColour;
         private int minPlayers;
         private int maxPlayers;
-	private int border_size;
-	private int no_of_levels;
+	private int borderSize;
+	private int numLevels;
 	private ArrayList<Game_Object> gameObjects = new ArrayList<Game_Object>();
 	private ArrayList<Level> levels = new ArrayList<Level>();
 	
 	
 	// Mutators
-	public String getGame_name() {
-		return game_name;
+	public String getGameName() {
+		return gameName;
 	}
              
-        public void setMin_players(int min) {
+        public void setMinPlayers(int min) {
 		this.minPlayers = min;
 	}
         
-        public int getMin_players() {
+        public int getMinPlayers() {
 		return minPlayers;
 	}
         
-        public void setMax_players(int max) {
+        public void setMaxPlayers(int max) {
 		this.maxPlayers = max;
 	}
         
-        public int getMax_players() {
+        public int getMaxPlayers() {
 		return maxPlayers;
 	}
 
-	public void setGame_name(String gameName) {
-		this.game_name = gameName;
+	public void setGameName(String gameName) {
+		this.gameName = gameName;
 	}
 	
-	public int getCanvas_size_x() {
-		return canvas_size_x;
+	public int getCanvasSizeX() {
+		return canvasSizeX;
 	}
 
-	public void setCanvas_size_x(int canvas_size_x) {
-		this.canvas_size_x = canvas_size_x;
+	public void setCanvasSizeX(int canvasSizeX) {
+		this.canvasSizeX = canvasSizeX;
 	}
 
-	public int getCanvas_size_y() {
-		return canvas_size_y;
+	public int getCanvasSizeY() {
+		return canvasSizeY;
 	}
 
-	public void setCanvas_size_y(int canvas_size_y) {
-		this.canvas_size_y = canvas_size_y;
+	public void setCanvasSizeY(int canvasSizeY) {
+		this.canvasSizeY = canvasSizeY;
 	}
 
-	public String getBorder_state() {
-		return border_state;
+	public String getBorderState() {
+		return borderState;
 	}
 
-	public void setBorder_state(String borderState) {
-		this.border_state = borderState;
+	public void setBorderState(String borderState) {
+		this.borderState = borderState;
 	}
 
-	public String getBorder_colour() {
-		return border_colour;
+	public String getBorderColour() {
+		return borderColour;
 	}
 
-	public void setBorder_colour(String borderColour) {
-		this.border_colour = borderColour;
+	public void setBorderColour(String borderColour) {
+		this.borderColour = borderColour;
 	}
 
-	public int getBorder_size() {
-		return border_size;
+	public int getBorderSize() {
+		return borderSize;
 	}
 
-	public void setBorder_size(int borderSize) {
-		this.border_size = borderSize;
+	public void setBorderSize(int borderSize) {
+		this.borderSize = borderSize;
 	}
 
-	public int getNo_of_levels() {
-		return no_of_levels;
+	public int getNumLevels() {
+		return numLevels;
 	}
 
-	public void setNo_of_levels(int no_of_levels) {
-		this.no_of_levels = no_of_levels;
+	public void setNumLevels(int numLevels) {
+		this.numLevels = numLevels;
 	}
 
 	public ArrayList<Game_Object> getGameObjects() {

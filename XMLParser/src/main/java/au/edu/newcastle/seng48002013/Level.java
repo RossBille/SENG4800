@@ -13,16 +13,16 @@ import java.util.ArrayList;
 public class Level {
     
     private int ID;
-    private int level_no;
-    private int end_event_id;
-    private int next_level_id;
+    private int levelNo;
+    private int endEventId;
+    private int nextLevelId;
     ArrayList<Level_Event> levelEvents = new ArrayList<Level_Event>();     // will be <Event>   
     ArrayList<Level_Object> levelObjects = new ArrayList<Level_Object>();     // will be <Object>
     
     Level(String ID, String num)
     {
         this.ID = Integer.parseInt(ID);
-        this.level_no = Integer.parseInt(num);
+        this.levelNo = Integer.parseInt(num);
     }
     
     public void addEvent(Level_Event event)
@@ -44,27 +44,27 @@ public class Level {
 	this.ID = id;
     }
 	
-    public int getLevel_no() {
-	return level_no;
+    public int getLevelNo() {
+	return levelNo;
     }
 	
-    public void setLevel_no(int level_no) {
-	this.level_no = level_no;
+    public void setLevelNo(int levelNo) {
+	this.levelNo = levelNo;
     }
 	
-    public int getEnd_event_id() {
-	return end_event_id;
+    public int getEndEventId() {
+	return endEventId;
     }
 	
-    public void setEnd_event_id(int end_event_id) {
-	this.end_event_id = end_event_id;
+    public void setEndEventId(int endEventId) {
+	this.endEventId = endEventId;
     }
 	
-    public int getNext_level_id() {
-	return next_level_id;
+    public int getNextLevelId() {
+	return nextLevelId;
     }
-    public void setNext_level_id(int next_level_id) {
-	this.next_level_id = next_level_id;
+    public void setNextLevelId(int nextLevelId) {
+	this.nextLevelId = nextLevelId;
     }
 	
     public ArrayList<Level_Object> getLevelObjects() {

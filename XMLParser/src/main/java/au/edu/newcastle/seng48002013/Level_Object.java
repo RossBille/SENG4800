@@ -11,10 +11,10 @@ package au.edu.newcastle.seng48002013;
 public class Level_Object extends Game_Object {
 	
 	// Variables
-	private String object_type;
+	private String objectType;
         private String shape;
-	private int init_speed;
-	private int max_speed;
+	private int initSpeed;
+	private int maxSpeed;
 	private int position;
 	private int direction;
         private boolean solid;
@@ -47,28 +47,28 @@ public class Level_Object extends Game_Object {
                     this.solid = false;
 	}
         
-	public String getObject_type() {
-		return object_type;
+	public String getObjectType() {
+		return objectType;
 	}
 	
-	public void setObject_type(String object_type) {
-		this.object_type = object_type;
+	public void setObjectType(String objectType) {
+		this.objectType = objectType;
 	}
 	
-	public int getInit_speed() {
-		return init_speed;
+	public int getInitSpeed() {
+		return initSpeed;
 	}
 	
-	public void setInit_speed(int init_speed) {
-		this.init_speed = init_speed;
+	public void setInitSpeed(int initSpeed) {
+		this.initSpeed = initSpeed;
 	}
 	
-	public int getMax_speed() {
-		return max_speed;
+	public int getMaxSpeed() {
+		return maxSpeed;
 	}
 	
-	public void setMax_speed(int max_speed) {
-		this.max_speed = max_speed;
+	public void setMaxSpeed(int maxSpeed) {
+		this.maxSpeed = maxSpeed;
 	}
 	
         public String getShape() {

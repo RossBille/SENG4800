@@ -15,10 +15,10 @@ public class Game_Object {
 	// Variables
 	private String name;
 	private int id;
-	private int def_pos_x;
-	private int def_pos_y;
+	private int posX;
+	private int posY;
 	private String colour;
-	private int sprite_speed;
+	private int spriteSpeed;
 	private ArrayList<String> sprite = new ArrayList<String>();
 	
 	// Mutators
@@ -38,20 +38,20 @@ public class Game_Object {
 		this.id = id;
 	}
 	
-	public int getDef_pos_x() {
-		return def_pos_x;
+	public int getPosX() {
+		return posX;
 	}
 	
-	public void setDef_pos_x(int position_x) {
-		this.def_pos_x = position_x;
+	public void setPosX(int position_x) {
+		this.posX = position_x;
 	}
 	
-	public int getDef_pos_y() {
-		return def_pos_y;
+	public int getPosY() {
+		return posY;
 	}
 	
-	public void setDef_pos_y(int position_y) {
-		this.def_pos_y = position_y;
+	public void setPosY(int position_y) {
+		this.posY = position_y;
 	}
 	
 	public String getColour() {
@@ -62,12 +62,12 @@ public class Game_Object {
 		this.colour = colour;
 	}
 	
-	public int getSprite_speed() {
-		return sprite_speed;
+	public int getSpriteSpeed() {
+		return spriteSpeed;
 	}
 	
-	public void setSprite_speed(int sprite_speed) {
-		this.sprite_speed = sprite_speed;
+	public void setSpriteSpeed(int spriteSpeed) {
+		this.spriteSpeed = spriteSpeed;
 	}
 	
 	public ArrayList<String> getSprite() {

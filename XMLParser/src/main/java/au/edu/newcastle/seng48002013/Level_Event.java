@@ -15,31 +15,31 @@ public class Level_Event {
 
 	// Variables
 	
-        private int event_id;
-	private String event_type;
+        private int eventId;
+	private String eventType;
 	private String rule;
-	private int trigger_action_id;
+	private int triggerActionId;
 	private boolean collision;
-        private int object_id_1;
-	private int object_id_2;
+        private int objectId1;
+	private int objectId2;
 	
 	
 	        
         // Mutators
-	public int getEvent_id() {
-		return event_id;
+	public int getEventId() {
+		return eventId;
 	}
 	
-	public void setEvent_id(int event_id) {
-		this.event_id = event_id;
+	public void setEventId(int eventId) {
+		this.eventId = eventId;
 	}
 	
-	public String getEvent_type() {
-		return event_type;
+	public String getEventType() {
+		return eventType;
 	}
 	
-	public void setEvent_type(String event_type) {
-		this.event_type = event_type;
+	public void setEventType(String eventType) {
+		this.eventType = eventType;
 	}
 	
 	public String getRule() {
@@ -50,12 +50,12 @@ public class Level_Event {
 		this.rule = rule;
 	}
 	
-	public int getTrigger_action_id() {
-		return trigger_action_id;
+	public int getTriggerActionId() {
+		return triggerActionId;
 	}
 	
-	public void setTrigger_action_id(int trigger_action_id) {
-		this.trigger_action_id = trigger_action_id;
+	public void setTriggerActionId(int triggerActionId) {
+		this.triggerActionId = triggerActionId;
 	}
 	
 	public boolean isCollision() {
@@ -67,17 +67,17 @@ public class Level_Event {
 	}
         
         // Mutators
-	public int getObject_id_1() {
-		return object_id_1;
+	public int getObjectId1() {
+		return objectId1;
 	}
-	public void setObject_id_1(int object_id_1) {
-		this.object_id_1 = object_id_1;
+	public void setObjectId1(int objectId1) {
+		this.objectId1 = objectId1;
 	}
-	public int getObject_id_2() {
-		return object_id_2;
+	public int getObjectId2() {
+		return objectId2;
 	}
-	public void setObject_id_2(int object_id_2) {
-		this.object_id_2 = object_id_2;
+	public void setObjectId2(int objectId2) {
+		this.objectId2 = objectId2;
 	}
 	
 }
