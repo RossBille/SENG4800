@@ -5,7 +5,8 @@
  */
 package au.edu.newcastle.SENG48002013.game.engine.input;
 
-import javax.vecmath.Vector2d;
+import au.edu.newcastle.SENG48002013.game.engine.util.Vector2d;
+
 
 /**
  *

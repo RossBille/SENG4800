@@ -5,7 +5,8 @@
  */
 package au.edu.newcastle.SENG48002013.game.engine.input;
 
-import javax.vecmath.Vector2d;
+import au.edu.newcastle.SENG48002013.game.engine.util.Vector2d;
+
 
 /**
  *
@@ -51,5 +52,9 @@ public class Input implements IInput{
 	public void setPosition(boolean position)
 	{
 		
+	}
+	public Vector2d getPos()
+	{
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 }
