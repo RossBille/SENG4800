@@ -1,14 +1,19 @@
 package au.edu.newcastle.SENG48002013.game.engine.connections;
 
+import au.edu.newcastle.SENG48002013.game.engine.input.Input;
+import au.edu.newcastle.SENG48002013.game.engine.input.InputManager;
+import au.edu.newcastle.SENG48002013.game.engine.util.Vector2d;
+import au.edu.newcastle.SENG48002013.messages.PlayerControlMessage;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import javax.websocket.OnClose;
-import javax.websocket.OnError;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
+import org.codehaus.jackson.map.ObjectMapper;
 
 /**
  * Web socket endpoint Opens up a socket between input engine and game engine
@@ -41,8 +46,9 @@ public class MessageManager
     @OnClose
     public void onClose(Session peer)
     {
-        //alert front end that all input has been lost
-    }
+		//when the input drops out the whole game dies
+    	System.exit(0);
+	}
 
     /*@OnError
     public void onError()
@@ -53,10 +59,20 @@ public class MessageManager
     }
 */
     @OnMessage
-    public void onMessage(String Message)
+    public void onMessage(String Message) throws IOException
     {
         //process the input
-    }
+		ObjectMapper mapper = new ObjectMapper();
+		PlayerControlMessage pcm = mapper.readValue(Message, PlayerControlMessage.class);
+    	Input input = new Input(123456L);//TODO get actual ID
+		//convert 3d vector to 2d vector
+		Vector2d vector = new Vector2d(pcm.getDirection().x, pcm.getDirection().y);
+		input.setValue(vector);
+		//use the 3rd parameter to indicate position or vector
+		//1 means vector, 0 means position
+		input.setPosition(pcm.getDirection().z == 0);
+		InputManager.addInput(input);
+	}
     
     public int currentPeers()
     {

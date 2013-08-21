@@ -22,36 +22,38 @@ public class InputConnectionManager extends BaseServlet
 	@Override
 	protected void processRequest() throws IOException
 	{
+		Response r = new Response();
+
 		//parse instruction
 		ObjectMapper mapper = new ObjectMapper();
 		PlayerNumberMessage pnm;
 		pnm = mapper.readValue(extractJson(), PlayerNumberMessage.class);
 		System.out.println(pnm.toString());
 		//check if adding or removing
+		setProcessor();
 		if (pnm.isConnecting())
 		{
-			setProcessor();
-			//check if there is room
-			if (processor.isRoom())
+			Player player = new Player();
+			//construct the player
+			int addPlayer = processor.addPlayer(player);
+			if(addPlayer>=0)
 			{
-				//add new player to the game
-				Player tempPlayer = new Player();
-				//set all variables extracted from the new player message
-				processor.addPlayer(tempPlayer);
-			} else
-			{
-				//send error mesage
-				
-				//construct response to send
-				Response r = new Response();
-
+				r.setError(false);
+				r.setCode(addPlayer);
+				r.setMessage("Player has been added");	
+			}else{
+				r.setError(true);
+				r.setMessage("No Room");
+				r.setCode(-1);//TODO create error code list
 			}
-
-			throw new UnsupportedOperationException("Not supported yet.");
-		} else
-		{
+				
+			
+		}else{
 			//remove player from the game
-			throw new UnsupportedOperationException("Not supported yet.");
+			processor.removePlayer(pnm.getPlayer());
+			r.setError(false);
+			r.setMessage("Player was removed");
+			r.setCode(1);//TODO create error code list
 		}
 
 	}
@@ -67,7 +69,7 @@ public class InputConnectionManager extends BaseServlet
 	private String extractJson()
 	{
 		System.out.println(request.getParameter("data"));
-		return "{\"@class\": \"au.edu.newcastle.SENG48002013.messages.PlayerNumberMessage\", \"player\":1, \"connecting\":true}";
+		return request.getParameter("data");
 	}
 
 	private void respond(Response r) throws IOException

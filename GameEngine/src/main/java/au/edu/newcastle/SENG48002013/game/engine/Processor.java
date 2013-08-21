@@ -1,38 +1,52 @@
 package au.edu.newcastle.SENG48002013.game.engine;
 
 import au.edu.newcastle.SENG48002013.game.engine.objects.Player;
-import java.util.HashMap;
-import java.util.Map;
 /**
  * Class to control all game logic
  * @author rossbille
  */
 public class Processor
 {
-	private Map<String, Player> players;
-	private final int MAX_PLAYERS;
+	private Player[] players;
 	public Processor()
 	{
-		players = new HashMap<>();
-		MAX_PLAYERS = 10;//TODO: read from config
+		players = new Player[10];//TODO read from config
 	}
 	
-	public void newPlayer(Player p) 
+	/**
+	 *
+	 * @param tempPlayer the player to add
+	 * @return the players number if they were added, -1 if they were not added
+	 */
+	public int addPlayer(Player tempPlayer)
 	{
-			
+		int nextSpot = isRoom();
+		if(nextSpot >= 0)
+		{
+			//add player
+			players[nextSpot] = tempPlayer;
+		}
+		return nextSpot;
 	}
-	public int getEmptyPlayerSlots()
+	/**
+	 * 
+	 * @return the next available player slot or -1 if none;
+	 */
+	private int isRoom()
 	{
-		return MAX_PLAYERS - players.size();
-	}
-	public boolean isRoom()
-	{
-		return getEmptyPlayerSlots() > 0;
+		for(int i = 0; i<players.length;i++)
+		{
+			if(players[i] == null)
+			{
+				return i;
+			}
+		}
+		return -1;
 	}
 
-	public void addPlayer(Player tempPlayer)
+	public void removePlayer(int player)
 	{
-		System.out.println("added player " + tempPlayer.toString());
-	//	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		players[player] = null;
 	}
+	
 }
