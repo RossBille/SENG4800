@@ -1,7 +1,7 @@
 {
     "Objects": [
         {
-            "name": "Object 1",
+            "name": "Soccer Ball",
             "xpos": 0,
             "ypos": 0,
             "image_path": "/img/ball.png",
@@ -12,7 +12,7 @@
             "height": 0
         },
         {
-            "name": "Object 2",
+            "name": "Golf Ball",
             "xpos": 0,
             "ypos": 0,
             "image_path": "/img/golf_ball.png",
@@ -23,7 +23,7 @@
             "height": 0
         },
         {
-            "name": "Object 3",
+            "name": "Tennis Ball",
             "xpos": 0,
             "ypos": 0,
             "image_path": "/img/tennis_ball.png",
