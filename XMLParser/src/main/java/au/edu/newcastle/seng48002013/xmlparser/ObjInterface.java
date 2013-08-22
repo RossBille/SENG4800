@@ -2,13 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package au.edu.newcastle.seng48002013;
+package au.edu.newcastle.seng48002013.xmlparser;
 
 /**
  *
  * @author Bracks
  */
-public interface Obj_Interface {
+public interface ObjInterface {
 
-	String obj_toString (Level_Object obj);
+	String obj_toString (LevelObject obj);
 }

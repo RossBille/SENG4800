@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package au.edu.newcastle.seng48002013;
+package au.edu.newcastle.seng48002013.xmlparser;
 
 /**
  *
@@ -10,7 +10,7 @@ package au.edu.newcastle.seng48002013;
  */
 import java.util.ArrayList;
 
-public class Game_Object {
+public class GameObject {
 
 	// Variables
 	private String name;

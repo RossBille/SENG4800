@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package au.edu.newcastle.seng48002013;
+package au.edu.newcastle.seng48002013.xmlparser;
 
 import java.util.ArrayList;
 
@@ -16,8 +16,8 @@ public class Level {
     private int levelNo;
     private int endEventId;
     private int nextLevelId;
-    ArrayList<Level_Event> levelEvents = new ArrayList<Level_Event>();     // will be <Event>   
-    ArrayList<Level_Object> levelObjects = new ArrayList<Level_Object>();     // will be <Object>
+    ArrayList<LevelEvent> levelEvents = new ArrayList<LevelEvent>();     // will be <Event>   
+    ArrayList<LevelObject> levelObjects = new ArrayList<LevelObject>();     // will be <Object>
     
     Level(String ID, String num)
     {
@@ -25,12 +25,12 @@ public class Level {
         this.levelNo = Integer.parseInt(num);
     }
     
-    public void addEvent(Level_Event event)
+    public void addEvent(LevelEvent event)
     {
         levelEvents.add(event);
     }
     
-    public void addObject(Level_Object object)
+    public void addObject(LevelObject object)
     {
         levelObjects.add(object);
     }
@@ -67,27 +67,27 @@ public class Level {
 	this.nextLevelId = nextLevelId;
     }
 	
-    public ArrayList<Level_Object> getLevelObjects() {
+    public ArrayList<LevelObject> getLevelObjects() {
 	return levelObjects;
     }
 	
-    public void setLevelObjects(ArrayList<Level_Object> levelObjects) {
+    public void setLevelObjects(ArrayList<LevelObject> levelObjects) {
 	this.levelObjects = levelObjects;
     }
 	
-    public ArrayList<Level_Event> getLevelEvents() {
+    public ArrayList<LevelEvent> getLevelEvents() {
 	return levelEvents;
     }
 	
-    public void setLevelEvents(ArrayList<Level_Event> levelEvents) {
+    public void setLevelEvents(ArrayList<LevelEvent> levelEvents) {
 	this.levelEvents = levelEvents;
     }
 	
-    public void addLevelObject(Level_Object levelObj) {
+    public void addLevelObject(LevelObject levelObj) {
 	levelObjects.add(levelObj);
     }
 	
-    public void addLevelEvent(Level_Event levelEvent) {
+    public void addLevelEvent(LevelEvent levelEvent) {
 	levelEvents.add(levelEvent);
     }
 }

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package au.edu.newcastle.seng48002013;
+package au.edu.newcastle.seng48002013.xmlparser;
 import java.io.IOException;
 import java.util.*;
 import java.lang.*;
@@ -19,7 +19,7 @@ public class Reader {
     public static ArrayList<Level> levels = new ArrayList<Level>();
     public static ArrayList<Action> actions = new ArrayList<Action>();
     public static int numLevels = 0;
-    public static Game_Setup gameSetup = new Game_Setup();
+    public static GameSetup gameSetup = new GameSetup();
     
     public static void runReader()
     {
@@ -59,9 +59,9 @@ public class Reader {
             Element el = (Element)nl.item(0);
 			
 			//get the object
-			Game_Setup newSetup = getSetup(el);
+			GameSetup newSetup = getSetup(el);
         	
-			// set Game_Setup object
+			// set GameSetup object
 			gameSetup = newSetup;
           
         }
@@ -74,9 +74,9 @@ public class Reader {
     }
     
 //ADDED
-	private static Game_Setup getSetup(Element el)
+	private static GameSetup getSetup(Element el)
 	{
-		Game_Setup newSetup = new Game_Setup();
+		GameSetup newSetup = new GameSetup();
 		
 		// Game Name
 		String gameName = getTextValue(el, "Game_name");
@@ -216,10 +216,10 @@ public class Reader {
 		String levelNo = getTextValue(el, "Level_no");
                     //System.out.println("ID = "+levelID+", Num = "+levelNo); // Working.
                 
-		ArrayList<Level_Event> events = new ArrayList<Level_Event>(); // to be changed to event type
-                ArrayList<Level_Object> objects = new ArrayList<Level_Object>(); // to be changed to object type
-                Level_Event tempEve = new Level_Event();
-                Level_Object tempObj = new Level_Object(); 
+		ArrayList<LevelEvent> events = new ArrayList<LevelEvent>(); // to be changed to event type
+                ArrayList<LevelObject> objects = new ArrayList<LevelObject>(); // to be changed to object type
+                LevelEvent tempEve = new LevelEvent();
+                LevelObject tempObj = new LevelObject(); 
                  
                 //get list of objects
 		NodeList nl = el.getElementsByTagName("Object");

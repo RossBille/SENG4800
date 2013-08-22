@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package au.edu.newcastle.seng48002013;
+package au.edu.newcastle.seng48002013.xmlparser;
 
 /**
  *
@@ -10,7 +10,7 @@ package au.edu.newcastle.seng48002013;
  */
 import java.util.ArrayList;
 
-public class Game_Setup {
+public class GameSetup {
 
 	// Config Variables
 	private String gameName;
@@ -22,7 +22,7 @@ public class Game_Setup {
         private int maxPlayers;
 	private int borderSize;
 	private int numLevels;
-	private ArrayList<Game_Object> gameObjects = new ArrayList<Game_Object>();
+	private ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 	private ArrayList<Level> levels = new ArrayList<Level>();
 	
 	
@@ -99,11 +99,11 @@ public class Game_Setup {
 		this.numLevels = numLevels;
 	}
 
-	public ArrayList<Game_Object> getGameObjects() {
+	public ArrayList<GameObject> getGameObjects() {
 		return gameObjects;
 	}
 
-	public void setGameObjects(ArrayList<Game_Object> gameObjects) {
+	public void setGameObjects(ArrayList<GameObject> gameObjects) {
 		this.gameObjects = gameObjects;
 	}
 
@@ -115,7 +115,7 @@ public class Game_Setup {
 		this.levels = levels;
 	}
 	
-	public void addGameObject(Game_Object gameObj) {
+	public void addGameObject(GameObject gameObj) {
 		gameObjects.add(gameObj);
 	}
 	
