@@ -44,6 +44,10 @@ public class Processor
 		return -1;
 	}
 
+	/**
+	 * opens up the slot that was used by the player
+	 * @param player the player to remove
+	 */
 	public void removePlayer(int player)
 	{
 		players[player] = null;
