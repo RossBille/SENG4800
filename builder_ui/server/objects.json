@@ -1,6 +1,7 @@
 {
     "Objects": [
         {
+            "id": 0,
             "name": "Soccer Ball",
             "xpos": 0,
             "ypos": 0,
@@ -12,6 +13,7 @@
             "height": 0
         },
         {
+            "id": 1,
             "name": "Golf Ball",
             "xpos": 0,
             "ypos": 0,
@@ -23,6 +25,7 @@
             "height": 0
         },
         {
+            "id": 2,
             "name": "Tennis Ball",
             "xpos": 0,
             "ypos": 0,

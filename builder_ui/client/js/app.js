@@ -1,6 +1,9 @@
 // Bootstrap the Application
 var App = angular.module('App', []);
 
+// Instantiate global variables
+var scene_index = 0;
+
 /**
  * @author Clinton Ryan: University Of Newcastle
  * Asynchronous Factory for initialising web socket and receiving JSON
@@ -35,6 +38,8 @@ App.controller('dndCtrl', function dndCtrl($scope, ListService) {
     ListService.getObjects(function (objects) {
         $scope.list = objects;
     });
+
+    $scope.scene_objects = [];
 });
 
 // This makes any element draggable
@@ -46,18 +51,8 @@ App.directive('draggable', function () {
         //The link function is responsible for registering DOM listeners as well as updating the DOM.
         link: function (scope, element, attrs) {
             element.draggable({
-                stop: function () {
-                    var offset = $(this).position();
-                    var offset_left = Math.round(offset.left);
-                    var offset_top = Math.round(offset.top);
-                    var draggable_index = element.data('index');
 
-                    scope.list[draggable_index].xpos = offset_left;
-                    scope.list[draggable_index].ypos = offset_top;
-
-                    scope.$apply();
-                },
-                containment: ".scene"
+                revert: true
             });
         }
     };
@@ -73,50 +68,91 @@ App.directive('droppable', function ($compile) {
             element.droppable({
                 drop: function (event, ui) {
                     var $drop_target = $(this);
-                    var $draggable = ui.draggable;
-                    var $draggable_parent = ui.draggable.parent();
+                    var $draggable_original = ui.draggable;
+                    var $draggable = $draggable_original.clone();
+                    var $draggable_parent = $draggable_original.parent();
                     var $draggable_parent_parent = $draggable_parent.parent();
-                    var draggable_index = $draggable.data('index');
+                    var draggable_original_index = $draggable_original.data('index');
+                    var draggable_index = scene_index;
+
+
+                    console.log('draggable original index: ' + draggable_original_index)
+                    console.log('scene index: ' + scene_index)
 
                     if ($draggable_parent_parent.hasClass('list')) {
-                        $draggable.css('height', scope.list[draggable_index].image_height);
-                        $draggable.css('width', scope.list[draggable_index].image_width);
-                        $draggable.css('background-image', 'url(' + scope.list[draggable_index].image_path + ')');
-
                         //getting current div old absolute position
-                        var oldPosition = $draggable.offset();
+                        var old_position = $draggable_original.offset();
+
+                        $draggable.attr('data-index', scene_index);
+
+                        scene_index++;
 
                         //assigning div to new parent
                         $drop_target.append($draggable);
 
                         //remove unneeded object container
-                        $draggable_parent.remove();
+                        //$draggable_parent.remove();
 
                         //getting current div new absolute position
-                        var newPosition = $draggable.offset();
+                        var new_position = $draggable.offset();
 
                         //calculate correct position offset
-                        var leftOffset = null;
-                        var topOffset = null;
+                        var left_offset = null;
+                        var top_offset = null;
 
-                        if (oldPosition.left > newPosition.left) {
-                            leftOffset = (oldPosition.left - newPosition.left);
+                        if (old_position.left > new_position.left) {
+                            left_offset = (old_position.left - new_position.left);
                         } else {
-                            leftOffset = -(newPosition.left - oldPosition.left);
+                            left_offset = -(new_position.left - old_position.left);
                         }
 
-                        if (oldPosition.top > newPosition.top) {
-                            topOffset = (oldPosition.top - newPosition.top);
+                        if (old_position.top > new_position.top) {
+                            top_offset = (old_position.top - new_position.top);
                         } else {
-                            topOffset = -(newPosition.top - oldPosition.top);
+                            top_offset = -(new_position.top - old_position.top);
                         }
 
                         //instantly offsetting the div to it current position
                         $draggable.animate({
-                            left: '+=' + leftOffset,
-                            top: '+=' + topOffset
+                            left: '+=' + left_offset,
+                            top: '+=' + top_offset
 
                         }, 0);
+
+                        scope.scene_objects.push(scope.list[draggable_original_index]);
+
+                        var offset = $draggable.position();
+                        var offset_left = Math.round(offset.left);
+                        var offset_top = Math.round(offset.top);
+
+                        scope.scene_objects[draggable_index].xpos = offset_left;
+                        scope.scene_objects[draggable_index].ypos = offset_top;
+                        scope.scene_objects[draggable_index].id = draggable_index;
+
+                        $draggable.css('height', scope.scene_objects[draggable_index].image_height);
+                        $draggable.css('width',scope.scene_objects[draggable_index].image_width);
+                        $draggable.css('background-image', 'url(' + scope.scene_objects[draggable_index].image_path + ')');
+
+
+                        $draggable.draggable({
+                            stop: function () {
+                                var offset = $(this).position();
+                                var offset_left = Math.round(offset.left);
+                                var offset_top = Math.round(offset.top);
+
+                                var draggable_index = $(this).data('index');
+
+                                console.log('draggable index inside draggable: ' + draggable_index);
+
+                                scope.scene_objects[draggable_index].xpos = offset_left;
+                                scope.scene_objects[draggable_index].ypos = offset_top;
+
+                                scope.$apply();
+                            },
+                            containment: ".scene"
+                        });
+
+                        scope.$apply();
                     }
 
                     /*$draggable.resizable({
@@ -132,6 +168,8 @@ App.directive('droppable', function ($compile) {
                         },
                         containment: '.scene'
                     });*/
+
+                    console.log(scope.scene_objects);
                 }
             });
         }
