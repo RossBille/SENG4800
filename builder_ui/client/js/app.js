@@ -119,7 +119,11 @@ App.directive('droppable', function ($compile) {
 
                         }, 0);
 
-                        scope.scene_objects.push(scope.list[draggable_original_index]);
+                        //push new object
+                        var newObject = jQuery.extend(true,{},scope.list[draggable_original_index]);
+                        scope.scene_objects.push(newObject);
+                        console.log(scope.scene_objects);
+
 
                         var offset = $draggable.position();
                         var offset_left = Math.round(offset.left);
