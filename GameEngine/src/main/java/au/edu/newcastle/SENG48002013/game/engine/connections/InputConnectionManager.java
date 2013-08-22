@@ -75,7 +75,8 @@ public class InputConnectionManager extends BaseServlet
 	private void respond(Response r) throws IOException
 	{
 		response.setContentType("text/JSON");
-		response.getWriter().write(r.toString());
+		ObjectMapper mapper = new ObjectMapper();
+		response.getWriter().write(mapper.writeValueAsString(r));
 
 	}
 }

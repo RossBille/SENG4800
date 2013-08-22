@@ -39,7 +39,7 @@ public class OutputConnectionManager
         }
     }
     @OnOpen
-    public void onOpen(Session peer)
+    public void onOpen(Session peer) throws IOException
     {
         //check for correct key
         
