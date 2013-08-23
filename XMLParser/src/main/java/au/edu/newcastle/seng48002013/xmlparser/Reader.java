@@ -27,10 +27,24 @@ public class Reader {
         fileName = "Levels";
         parseLevelsXML(fileName);
         fileName = "Actions";
-        parseActionsXML(fileName);
-        
+        parseActionsXML(fileName);  
         fileName = "Game";
         parseGameXML(fileName);
+    }
+    
+    public static ArrayList<Level> getLevels()
+    {
+        return levels;
+    }
+    
+    public static GameSetup getGameSetup()
+    {
+        return gameSetup;
+    }
+    
+    public static ArrayList<Action> getActions()
+    {
+        return actions;
     }
     
     private static void parseGameXML(String loc)
