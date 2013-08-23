@@ -80,11 +80,17 @@ public class Reader {
           
         }
 		catch (ParserConfigurationException pce)
-		{}
+		{
+                    System.out.println(pce.getMessage());
+                }
 		catch (SAXException se)
-		{}
+		{
+                    System.out.println(se.getMessage());
+                }
 		catch (IOException ioe)
-		{}   
+		{
+                    System.out.println(ioe.getMessage());
+                }   
     }
     
 //ADDED
@@ -170,11 +176,17 @@ public class Reader {
 
         }
 		catch (ParserConfigurationException pce)
-		{}
+		{
+                    System.out.println(pce.getMessage());
+                }
 		catch (SAXException se)
-		{}
+		{
+                    System.out.println(se.getMessage());
+                }
 		catch (IOException ioe)
-		{}
+		{
+                    System.out.println(ioe.getMessage());
+                }
     }
     
     private static void parseActionsXML(String loc) //Reads in the blackboard users
@@ -215,11 +227,17 @@ public class Reader {
 
         }
 		catch (ParserConfigurationException pce)
-		{}
+		{
+                    System.out.println(pce.getMessage());
+                }
 		catch (SAXException se)
-		{}
+		{
+                    System.out.println(se.getMessage());
+                }
 		catch (IOException ioe)
-		{}
+		{
+                    System.out.println(ioe.getMessage());
+                }
     }
 
 	private static Level getLevel(Element el)
