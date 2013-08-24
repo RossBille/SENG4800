@@ -15,7 +15,7 @@ public class Listener implements ServletContextListener
     @Override
     public void contextInitialized(ServletContextEvent event) 
     {
-        event.getServletContext().setAttribute("securityManager", 
+                event.getServletContext().setAttribute("securityManager", 
                 new SecurityManager(10000, 5, "ws://localhost:8080/Input/endpoint"));
         System.out.println("Security Manager Created");
     }

@@ -3,7 +3,6 @@ package au.edu.newcastle.SENG48002013.input;
 import au.edu.newcastle.seng48002013.results.Result;
 import java.math.BigInteger;
 import java.security.SecureRandom;
-import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -41,7 +40,7 @@ public class SecurityManager
         return token;
     }
     
-    public boolean checkToken(String token, String iD)
+    public boolean checkToken(String token)
     {
         long current = System.currentTimeMillis();
  
@@ -51,7 +50,7 @@ public class SecurityManager
             if ((current-expiry) > 0) // if token has not yet expired
             {
                 validTokens.remove(token); //token used, session now established
-                connectedClients.put(iD, token); //client is now in the system
+                connectedClients.put(token, token); //client is now in the system
                 return true; 
             }
             
@@ -102,11 +101,16 @@ public class SecurityManager
         else // cannot service request, no space available
         {
             r.setError(true);
-            r.setMessage("No spaces available");
-            r.setCode("404");
+            r.setMessage("fail");
+            r.setCode("0");
         }
         
         return r;       
+    }
+    
+    public String sayHello()
+    {
+        return "Hello from Security Manager!";
     }
     
 
