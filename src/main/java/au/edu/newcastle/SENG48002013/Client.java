@@ -59,10 +59,7 @@ public class Client extends HttpServlet
             {
                 response.sendRedirect("welcome.jsp");
             }
-        }
-        
-        
-
+        }     
     }
     
     public Result requestConnection() throws IOException
