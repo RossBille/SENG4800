@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="description" content="SENG4800 Game Builder UI"/>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
+    <script type="text/javascript" src="js/app.js"></script>
+    <link href="css/styles.css" rel="stylesheet"/>
+
+    <meta charset=utf-8/>
+    <title>SENG4800 Game Builder UI</title>
+</head>
+<body>
+<div class="container">
+    <div class="dragdrop" ng-app="App" ng-controller="dndCtrl" ng-cloak>
+        <div class='list'>
+            <div class="object-container" ng-repeat="item in list">
+                <div class="object thumbnail" data-index="{{$index}}" ng-style="{'background-image': 'url(\'' + item.image_thumbnail + '\')'}" draggable></div>
+            </div>
+        </div>
+
+        <div class="scene" droppable>
+
+        </div>
+
+        <div class="info">
+            <div class="item-detail" ng-repeat="item in scene_objects">
+                <p>Name: {{item.name}}</p>
+
+                <p>X Position: {{item.xpos}}</p>
+
+                <p>Y Position: {{item.ypos}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
