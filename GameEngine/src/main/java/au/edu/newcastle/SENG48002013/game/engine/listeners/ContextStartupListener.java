@@ -1,6 +1,6 @@
 package au.edu.newcastle.SENG48002013.game.engine.listeners;
 
-import au.edu.newcastle.SENG48002013.game.engine.Processor;
+import au.edu.newcastle.SENG48002013.game.engine.processor.Boss;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -18,11 +18,11 @@ public class ContextStartupListener implements ServletContextListener
 	public void contextInitialized(ServletContextEvent sce)
 	{
 		//init game stuff here
-		Processor processor = new Processor();
+		Boss boss = new Boss();
 		//read in config
 		
 		//add to context
-		sce.getServletContext().setAttribute("processor", processor);
+		sce.getServletContext().setAttribute("boss",boss);
 		System.out.println("Context Set");
 	}
 
