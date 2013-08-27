@@ -11,12 +11,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 
 
-<<<<<<< HEAD
-public class GameObject implements IGameObject {
-=======
 public class GameObject implements IGameObject
 {
->>>>>>> fe3fba30dc61c67a4307e484bc16abde1fd3e415
 	private long id;
 	private String name;
 	private Sprite sprite;
@@ -67,7 +63,6 @@ public class GameObject implements IGameObject
 	{
 		this.sprite = sprite;
 	}
-<<<<<<< HEAD
 	@Override
 	public long getSpriteId()
 	{
@@ -80,9 +75,7 @@ public class GameObject implements IGameObject
 			return -1;
 		}
 	}
-=======
 	@JsonIgnore
->>>>>>> fe3fba30dc61c67a4307e484bc16abde1fd3e415
 	public Shape getShape()
 	{
 		return shape;
@@ -175,11 +168,5 @@ public class GameObject implements IGameObject
 	public boolean isCommitted()
 	{
 		return committed;
-	}
-
-	@Override
-	public long getSpriteId()
-	{
-		return sprite.getId();
 	}
 }
