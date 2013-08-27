@@ -15,6 +15,7 @@ public abstract class BaseEvent implements IEvent {
 	{
 		this.id = id;
 	}
+	@Override
 	public long getId()
 	{
 		return id;
@@ -23,12 +24,19 @@ public abstract class BaseEvent implements IEvent {
 	{
 		this.id = id;
 	}
-	protected void doActions(long dt)
+	protected int doActions(long dt)
 	{
+		int returnCode = -1;
 		for(int i = 0; i < actions.length; i++)
 		{
-			actions[i].doAction(dt);
+			int newReturnCode = actions[i].doAction(dt);
+			if(newReturnCode != -1)
+			{
+				returnCode = newReturnCode;
+			}
 		}
+		return returnCode;
 	}
-	public abstract void evaluate(long dt);
+	@Override
+	public abstract int evaluate(long dt);
 }

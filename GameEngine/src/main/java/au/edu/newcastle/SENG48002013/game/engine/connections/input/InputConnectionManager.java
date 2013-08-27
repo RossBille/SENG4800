@@ -34,9 +34,15 @@ public class InputConnectionManager extends BaseServlet
 		setProcessor();
 		if (pnm.isConnecting())
 		{
-			Player player = new Player();
+			//PETER O'LOUGHLIN
+			//Ross, instead of instantiating a player object, generate an id
+			//that will correspond to the source client and use that as
+			//the parameter to the boss.addPlayer method
+			//Player player = new Player();
 			//construct the player
-			boolean addPlayer = boss.addPlayer(player);
+			//boolean addPlayer = boss.addPlayer(player);
+			long generatedId = 1;
+			boolean addPlayer = boss.addPlayer(generatedId);
 			if(addPlayer)
 			{
 				r.setError(false);

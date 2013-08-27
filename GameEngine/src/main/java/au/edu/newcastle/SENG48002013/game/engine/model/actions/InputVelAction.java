@@ -22,11 +22,12 @@ public class InputVelAction extends BaseInputAction {
 	{
 		this.gameObject = gameObject;
 	}
-	public void doAction(long dt)
+	public int doAction(long dt)
 	{
 		if(getInput() != null)
 		{
 			gameObject.setNextVel(getInput().getPos());
 		}
+		return -1;
 	}
 }

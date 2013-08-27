@@ -18,6 +18,7 @@ public class Sprite {
 	public Sprite(long id)
 	{
 		this.id = id;
+		size = new Vector2d();
 		currentImage = 0;
 	}
 	public long getId()

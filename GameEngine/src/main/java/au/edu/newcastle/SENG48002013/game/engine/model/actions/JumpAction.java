@@ -15,11 +15,12 @@ public class JumpAction extends BaseAction {
 	public JumpAction(long id)
 	{
 		super(id);
+		jumpPos = new Vector2d();
 	}
-	public void doAction(long dt)
+	public int doAction(long dt)
 	{
 		gameObject.setPos(jumpPos);
 		gameObject.setNextPos(jumpPos);
+		return -1;
 	}
-
 }

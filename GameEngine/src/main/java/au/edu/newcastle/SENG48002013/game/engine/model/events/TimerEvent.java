@@ -37,16 +37,19 @@ public class TimerEvent extends BaseEvent {
 	{
 		this.repeat = repeat;
 	}
-	public void evaluate(long dt)
+	@Override
+	public int evaluate(long dt)
 	{
+		int returnCode = -1;
 		currentTime -= dt;
 		if(currentTime <= 0)
 		{
-			doActions(dt);
+			returnCode = doActions(dt);
 			if(repeat)
 			{
 				currentTime = totalTime;
 			}
 		}
+		return returnCode;
 	}
 }

@@ -15,6 +15,7 @@ public class Level {
 	public Level(long id)
 	{
 		this.id = id;
+		dimensions = new Vector2d();
 	}
 	public long getId()
 	{
@@ -36,6 +37,10 @@ public class Level {
 	{
 		return gameObjects[index];
 	}
+	public IGameObject[] getGameObjects()
+	{
+		return gameObjects;
+	}
 	public void setGameObject(int index, GameObject gameObject)
 	{
 		gameObjects[index] = gameObject;
@@ -48,11 +53,13 @@ public class Level {
 	{
 		events[index] = event;
 	}
-	public void step(long dt)
+	public int step(long dt)
 	{
+		int returnCode = -1;
 		stepNext(dt);
-		stepEvents(dt);
+		returnCode = stepEvents(dt);
 		stepCommit();
+		return returnCode;
 	}
 	private void stepNext(long dt)
 	{
@@ -61,12 +68,18 @@ public class Level {
 			gameObjects[i].stepNext(dt);
 		}
 	}
-	private void stepEvents(long dt)
+	private int stepEvents(long dt)
 	{
+		int returnCode = -1;
 		for(int i = 0; i < events.length; i++)
 		{
-			events[i].evaluate(dt);
+			int newReturnCode = events[i].evaluate(dt);
+			if(newReturnCode != -1)
+			{
+				returnCode = newReturnCode;
+			}
 		}
+		return returnCode;
 	}
 	private void stepCommit()
 	{

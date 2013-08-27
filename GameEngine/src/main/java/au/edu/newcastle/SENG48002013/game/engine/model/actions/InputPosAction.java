@@ -23,7 +23,7 @@ public class InputPosAction extends BaseInputAction {
 		this.gameObject = gameObject;
 	}
 
-	public void doAction(long dt)
+	public int doAction(long dt)
 	{
 		if(getInput() != null)
 		{
@@ -31,5 +31,6 @@ public class InputPosAction extends BaseInputAction {
 			gameObject.setPos(pos);
 			gameObject.setNextPos(pos);
 		}
+		return -1;
 	}
 }

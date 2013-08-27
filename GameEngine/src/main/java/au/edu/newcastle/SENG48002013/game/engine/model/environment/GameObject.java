@@ -10,7 +10,7 @@ import javax.vecmath.Vector2d;
 
 
 
-public class GameObject {
+public class GameObject implements IGameObject {
 	private long id;
 	private String name;
 	private Sprite sprite;
@@ -26,7 +26,15 @@ public class GameObject {
 	public GameObject(long id)
 	{
 		this.id = id;
+		size = new Vector2d();
+		pos = new Vector2d();
+		vel = new Vector2d();
+		acc = new Vector2d();
+		nextPos = new Vector2d();
+		nextVel = new Vector2d();
+		nextAcc = new Vector2d();
 	}
+	@Override
 	public long getId()
 	{
 		return id;
@@ -51,6 +59,18 @@ public class GameObject {
 	{
 		this.sprite = sprite;
 	}
+	@Override
+	public long getSpriteId()
+	{
+		if(sprite != null)
+		{
+			return sprite.getId();
+		}
+		else
+		{
+			return -1;
+		}
+	}
 	public Shape getShape()
 	{
 		return shape;
@@ -67,6 +87,7 @@ public class GameObject {
 	{
 		this.size.set(size);
 	}
+	@Override
 	public Vector2d getPos()
 	{
 		return pos;

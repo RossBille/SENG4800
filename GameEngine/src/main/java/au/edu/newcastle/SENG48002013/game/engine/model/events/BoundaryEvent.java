@@ -50,8 +50,10 @@ public class BoundaryEvent extends BaseEvent {
 	{
 		this.allowOverlap = allowOverlap; 
 	}
-	public void evaluate(long dt)
+	@Override
+	public int evaluate(long dt)
 	{
+		int returnCode = -1;
 		boolean intersects = false;
 		boolean undefined = false;
 		double gradient = 0;
@@ -179,6 +181,10 @@ public class BoundaryEvent extends BaseEvent {
 				}
 			}
 		}
-		if(intersects) doActions(dt);
+		if(intersects)
+		{
+			returnCode = doActions(dt);
+		}
+		return returnCode;
 	}
 }

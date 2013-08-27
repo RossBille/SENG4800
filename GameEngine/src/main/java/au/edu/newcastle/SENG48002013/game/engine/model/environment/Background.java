@@ -6,22 +6,24 @@
 package au.edu.newcastle.SENG48002013.game.engine.model.environment;
 
 public class Background extends Sprite {
-	public static final int TILED = 1;
-	public static final int STRETCH = 2;
-	public static final int FILL = 3;
-	public static final int CENTER = 4;
-	private int positionType;
+	private PositionType positionType;
 	public Background(long id)
 	{
 		super(id);
 	}
-	public int getPositionType()
+	public PositionType getPositionType()
 	{
 		return positionType;
 	}
-	public void setPositionType(int positionType)
+	public void setPositionType(PositionType positionType)
 	{
-		this.positionType = positionType;
+		this.positionType = positionType;	
+	}
+	public enum PositionType
+	{
+		TILED,
+		STRETCH,
+		FILL,
+		CENTER
 	}
 }
-

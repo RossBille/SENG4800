@@ -23,5 +23,5 @@ public abstract class BaseAction implements IAction {
 	{
 		this.id = id;
 	}
-	public abstract void doAction(long dt);
+	public abstract int doAction(long dt);
 }

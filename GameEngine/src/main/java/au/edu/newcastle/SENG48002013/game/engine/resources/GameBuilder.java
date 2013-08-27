@@ -5,7 +5,21 @@
  */
 package au.edu.newcastle.SENG48002013.game.engine.resources;
 
+import au.edu.newcastle.SENG48002013.game.engine.model.*;
+import au.edu.newcastle.SENG48002013.game.engine.model.actions.*;
+import au.edu.newcastle.SENG48002013.game.engine.model.events.*;
+import au.edu.newcastle.SENG48002013.game.engine.model.environment.*;
+
 
 public class GameBuilder {
-	//TO DO
+	public static IGame buildGame()
+	{
+		//TO DO
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+	public static Level loadLevel()
+	{
+		//TO DO
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
 }

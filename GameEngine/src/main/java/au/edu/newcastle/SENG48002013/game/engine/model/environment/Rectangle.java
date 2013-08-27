@@ -14,7 +14,7 @@ public class Rectangle extends Shape {
 	private Vector2d size;
 	public Rectangle(Vector2d size)
 	{
-		this.size.set(size);
+		this.size = new Vector2d(size);
 	}
 	public Vector2d getSize()
 	{

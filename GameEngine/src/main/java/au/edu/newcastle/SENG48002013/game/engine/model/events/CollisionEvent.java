@@ -49,8 +49,10 @@ public class CollisionEvent extends BaseEvent {
 	{
 		this.allowOverlap = allowOverlap; 
 	}
-	public void evaluate(long dt)
+	@Override
+	public int evaluate(long dt)
 	{
+		int returnCode = -1;
 		boolean intersects = false;
 		boolean undefined = false;
 		double gradient = 0;
@@ -181,7 +183,8 @@ public class CollisionEvent extends BaseEvent {
 		}
 		if(intersects)
 		{
-			doActions(dt);
+			returnCode = doActions(dt);
 		}
+		return returnCode;
 	}
 }

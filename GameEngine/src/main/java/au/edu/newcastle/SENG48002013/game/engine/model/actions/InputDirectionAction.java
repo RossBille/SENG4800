@@ -4,22 +4,18 @@ import au.edu.newcastle.SENG48002013.game.engine.model.environment.GameObject;
 import javax.vecmath.Vector2d;
 
 public class InputDirectionAction extends BaseInputAction {
-	public static final int UP = 1;
-	public static final int DOWN = 2;
-	public static final int LEFT = 3;
-	public static final int RIGHT = 4;
-	private int direction;
+	private Direction direction;
 	private double value;
 	private GameObject gameObject;
 	public InputDirectionAction(long id)
 	{
 		super(id);
 	}
-	public int getDirection()
+	public Direction getDirection()
 	{
 		return direction;
 	}
-	public void setDirection(int direction)
+	public void setDirection(Direction direction)
 	{
 		this.direction = direction;
 	}
@@ -40,13 +36,21 @@ public class InputDirectionAction extends BaseInputAction {
 		this.gameObject = gameObject;
 	}
 
-	public void doAction(long dt)
+	public int doAction(long dt)
 	{
 		if(getInput() != null)
 		{
 			Vector2d vel = getInput().getValue();
 			gameObject.setPos(getInput().getPos());
 		}
+		return -1;
+	}
+	public enum Direction
+	{
+		UP,
+		DOWN,
+		LEFT,
+		RIGHT
 	}
 }
 

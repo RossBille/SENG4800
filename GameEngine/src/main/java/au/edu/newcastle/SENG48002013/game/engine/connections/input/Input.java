@@ -18,6 +18,7 @@ public class Input implements IInput{
 	public Input(long id)
 	{
 		this.id = id;
+		value = new Vector2d();
 	}
 	@Override
 	public long getId()
