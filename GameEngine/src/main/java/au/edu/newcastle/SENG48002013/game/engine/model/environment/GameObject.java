@@ -6,11 +6,17 @@
 package au.edu.newcastle.SENG48002013.game.engine.model.environment;
 
 import javax.vecmath.Vector2d;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 
 
 
+<<<<<<< HEAD
 public class GameObject implements IGameObject {
+=======
+public class GameObject implements IGameObject
+{
+>>>>>>> fe3fba30dc61c67a4307e484bc16abde1fd3e415
 	private long id;
 	private String name;
 	private Sprite sprite;
@@ -43,6 +49,7 @@ public class GameObject implements IGameObject {
 	{
 		this.id = id;
 	}
+	@JsonIgnore
 	public String getName()
 	{
 		return name;
@@ -51,6 +58,7 @@ public class GameObject implements IGameObject {
 	{
 		this.name = name;
 	}
+	@JsonIgnore
 	public Sprite getSprite()
 	{
 		return sprite;
@@ -59,6 +67,7 @@ public class GameObject implements IGameObject {
 	{
 		this.sprite = sprite;
 	}
+<<<<<<< HEAD
 	@Override
 	public long getSpriteId()
 	{
@@ -71,6 +80,9 @@ public class GameObject implements IGameObject {
 			return -1;
 		}
 	}
+=======
+	@JsonIgnore
+>>>>>>> fe3fba30dc61c67a4307e484bc16abde1fd3e415
 	public Shape getShape()
 	{
 		return shape;
@@ -79,6 +91,7 @@ public class GameObject implements IGameObject {
 	{
 		this.shape = shape;
 	}
+	@JsonIgnore
 	public Vector2d getSize()
 	{
 		return this.size;
@@ -96,6 +109,7 @@ public class GameObject implements IGameObject {
 	{
 		this.pos.set(pos);
 	}
+	@JsonIgnore
 	public Vector2d getVel()
 	{
 		return vel;
@@ -104,6 +118,7 @@ public class GameObject implements IGameObject {
 	{
 		this.vel.set(vel);
 	}
+	@JsonIgnore
 	public Vector2d getAcc()
 	{
 		return acc;
@@ -112,6 +127,7 @@ public class GameObject implements IGameObject {
 	{
 		this.acc.set(acc);
 	}
+	@JsonIgnore
 	public Vector2d getNextPos()
 	{
 		return nextPos;
@@ -121,6 +137,7 @@ public class GameObject implements IGameObject {
 		committed = false;
 		this.nextPos.set(nextPos);
 	}
+	@JsonIgnore
 	public Vector2d getNextVel()
 	{
 		return nextVel;
@@ -130,6 +147,7 @@ public class GameObject implements IGameObject {
 		committed = false;
 		this.nextVel.set(nextVel);
 	}
+	@JsonIgnore
 	public Vector2d getNextAcc()
 	{
 		return nextAcc;
@@ -153,8 +171,15 @@ public class GameObject implements IGameObject {
 		pos.set(nextPos);
 		committed = true;
 	}
+	@JsonIgnore
 	public boolean isCommitted()
 	{
 		return committed;
+	}
+
+	@Override
+	public long getSpriteId()
+	{
+		return sprite.getId();
 	}
 }

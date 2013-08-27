@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import javax.websocket.CloseReason;
+import javax.websocket.CloseReason.CloseCodes;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
@@ -37,17 +39,16 @@ public class OutputConnectionManager
 	 */
 	public void sendOutput(IGameOutput gameOutput) throws IOException
 	{
-		//might want to do some securty checking
 		ObjectMapper mapper = new ObjectMapper();
 		String message = mapper.writeValueAsString(gameOutput.getOutputObjects());
 		for (Session peer : peers)
 		{
-
 			peer.getBasicRemote().sendText(message);
 		}
 
 		//alternate
 		//create objects to stream 
+		/*
 		String[] objects = new String[gameOutput.getOutputObjects().length];
 		for (int i = 0; i < objects.length; i++)
 		{
@@ -61,14 +62,13 @@ public class OutputConnectionManager
 				peer.getBasicRemote().sendText(str);
 			}
 		}
+		*/
 		//problem, unless threaded there will be a longer delay between updating peers
 	}
 
 	@OnOpen
 	public void onOpen(Session peer) throws IOException
 	{
-		//check for correct key
-
 		//check if we have reached the max number of connections
 		if (currentPeers() < getAllowedConnections())
 		{
@@ -76,6 +76,7 @@ public class OutputConnectionManager
 		} else
 		{
 			//cancel handshake
+			peer.close(new CloseReason(CloseCodes.VIOLATED_POLICY, "Too many output devices connected"));
 		}
 	}
 
