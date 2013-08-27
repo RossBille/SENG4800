@@ -5,16 +5,12 @@
  */
 package au.edu.newcastle.SENG48002013.game.engine.model;
 
+import au.edu.newcastle.SENG48002013.game.engine.model.environment.IGameObject;
 /**
  *
  * @author Ross
  */
-public class IGameOutput
+public interface IGameOutput 
 {
-
-	public Object[] getOutputObjects()
-	{
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}
-	
+	public IGameObject[] getOutputObjects();
 }

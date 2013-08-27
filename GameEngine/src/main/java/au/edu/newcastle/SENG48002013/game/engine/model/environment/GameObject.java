@@ -6,11 +6,13 @@
 package au.edu.newcastle.SENG48002013.game.engine.model.environment;
 
 import javax.vecmath.Vector2d;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 
 
 
-public class GameObject {
+public class GameObject implements IGameObject
+{
 	private long id;
 	private String name;
 	private Sprite sprite;
@@ -25,6 +27,7 @@ public class GameObject {
 	private boolean committed;
 	public GameObject(long id)
 	{
+		this.pos = new Vector2d(1, 2);
 		this.id = id;
 	}
 	public long getId()
@@ -35,6 +38,7 @@ public class GameObject {
 	{
 		this.id = id;
 	}
+	@JsonIgnore
 	public String getName()
 	{
 		return name;
@@ -43,6 +47,7 @@ public class GameObject {
 	{
 		this.name = name;
 	}
+	@JsonIgnore
 	public Sprite getSprite()
 	{
 		return sprite;
@@ -51,6 +56,7 @@ public class GameObject {
 	{
 		this.sprite = sprite;
 	}
+	@JsonIgnore
 	public Shape getShape()
 	{
 		return shape;
@@ -59,6 +65,7 @@ public class GameObject {
 	{
 		this.shape = shape;
 	}
+	@JsonIgnore
 	public Vector2d getSize()
 	{
 		return this.size;
@@ -75,6 +82,7 @@ public class GameObject {
 	{
 		this.pos.set(pos);
 	}
+	@JsonIgnore
 	public Vector2d getVel()
 	{
 		return vel;
@@ -83,6 +91,7 @@ public class GameObject {
 	{
 		this.vel.set(vel);
 	}
+	@JsonIgnore
 	public Vector2d getAcc()
 	{
 		return acc;
@@ -91,6 +100,7 @@ public class GameObject {
 	{
 		this.acc.set(acc);
 	}
+	@JsonIgnore
 	public Vector2d getNextPos()
 	{
 		return nextPos;
@@ -100,6 +110,7 @@ public class GameObject {
 		committed = false;
 		this.nextPos.set(nextPos);
 	}
+	@JsonIgnore
 	public Vector2d getNextVel()
 	{
 		return nextVel;
@@ -109,6 +120,7 @@ public class GameObject {
 		committed = false;
 		this.nextVel.set(nextVel);
 	}
+	@JsonIgnore
 	public Vector2d getNextAcc()
 	{
 		return nextAcc;
@@ -132,8 +144,15 @@ public class GameObject {
 		pos.set(nextPos);
 		committed = true;
 	}
+	@JsonIgnore
 	public boolean isCommitted()
 	{
 		return committed;
+	}
+
+	@Override
+	public long getSpriteId()
+	{
+		return sprite.getId();
 	}
 }
