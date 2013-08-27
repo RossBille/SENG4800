@@ -18,13 +18,6 @@
         <p>This is the entry point for a user with a web browser into the system.<br><br>
             Contact the Connection Broker to join a game below!<br>
        </p>
-       
-       <%
-          if (session.getAttribute("info") != null)
-          {
-              out.println("Sorry, but you were unable to join. Please try again soon");
-          }
-        %>
 
         <form method="POST" action="connect">
             <input type="hidden" name="type" value="connect"/>

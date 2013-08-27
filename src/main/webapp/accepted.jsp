@@ -23,20 +23,23 @@
 
             function onOpen(evt)
             {
-                alert("Connection Successful!");
-                var object = new Object();
-                object.player = token;
-                websocket.send(stringit(object, "clientHello"));
+                alert("Connection Successful!");              
             }
 
-            function onMessage(evt) {
+            function onMessage(evt) 
+            {
                 alert("Mesage From Server: " + evt.data);
+                var object = new Object();
+                object.message = "hello";
+                object.code = token;
+                object.error = false;
+                websocket.send(stringit(object, "au.edu.newcastle.seng48002013.results.Result"));
             }
             function right()
             {
                 //build the json
                 var object = new Object();
-                object.id = token;
+                object.phoneId = token;
                 object.x1 = 1;
                 object.x2 = 0;
                 object.y1 = 0;
@@ -49,7 +52,7 @@
             {
                 //build the json
                 var object = new Object();
-                object.id = token;
+                object.phoneId = token;
                 object.x1 = 0;
                 object.x2 = 1;
                 object.y1 = 0;
@@ -59,9 +62,7 @@
                 websocket.send(stringit(object, "au.edu.newcastle.seng48002013.instructions.phone.TouchScreen"));
             }
 
-// End test functions
 
-//write json object with class attribute
             function stringit(obj, cls)
             {
                 cls = "{\"@class\":\"" + cls + "\",";
