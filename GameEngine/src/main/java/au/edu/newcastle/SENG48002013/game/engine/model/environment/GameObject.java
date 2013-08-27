@@ -27,7 +27,6 @@ public class GameObject implements IGameObject
 	private boolean committed;
 	public GameObject(long id)
 	{
-		this.pos = new Vector2d(1, 2);
 		this.id = id;
 	}
 	public long getId()
