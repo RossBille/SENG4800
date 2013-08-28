@@ -1,10 +1,17 @@
 package au.edu.newcastle.seng48002013.results;
 
-/**
- * 
- * @author rossbille
- */
-public class Result
+import java.io.Serializable;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonTypeInfo;
+
+@JsonTypeInfo
+        (
+	use = JsonTypeInfo.Id.CLASS,
+	include = JsonTypeInfo.As.PROPERTY,
+	property = "@class"
+        )
+
+public class Result implements Serializable
 {
 	private String message;	
 	private String code;
