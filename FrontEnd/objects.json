@@ -1,0 +1,17 @@
+[
+    {
+        "id" : 0,
+        "sprite": "img/soccerball.png",
+        "visible": true,
+        "dx": 0,
+        "dy": 0
+    },
+    {
+        "id" : 1,
+        "sprite": "img/golfball.png",
+        "visible": true,
+        "dx": 400,
+        "dy": 400
+    }
+]
+
