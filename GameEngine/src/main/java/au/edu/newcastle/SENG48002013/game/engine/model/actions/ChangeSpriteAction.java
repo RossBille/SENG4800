@@ -32,7 +32,7 @@ public class ChangeSpriteAction extends BaseAction {
 	{
 		this.gameObject = gameObject;
 	}
-	public int doAction(long dt)
+	public int doAction(double dt)
 	{
 		gameObject.setSprite(newSprite);
 		return -1;

@@ -11,5 +11,5 @@ package au.edu.newcastle.SENG48002013.game.engine.model.actions;
  */
 public interface IAction {
 	public long getId();
-	public int doAction(long dt);
+	public int doAction(double dt);
 }

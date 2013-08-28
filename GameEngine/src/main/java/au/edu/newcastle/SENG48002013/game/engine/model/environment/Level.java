@@ -4,18 +4,24 @@
  * and open the template in the editor.
  */
 package au.edu.newcastle.SENG48002013.game.engine.model.environment;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
 import au.edu.newcastle.SENG48002013.game.engine.model.events.IEvent;
 import javax.vecmath.Vector2d;
 
 public class Level {
 	private long id;
 	private Vector2d dimensions;
-	private GameObject[] gameObjects;
-	private IEvent[] events;
+	private List<GameObject> gameObjects;
+	private List<IEvent> events;
 	public Level(long id)
 	{
 		this.id = id;
 		dimensions = new Vector2d();
+		gameObjects = new LinkedList<GameObject>();
+		events = new LinkedList<IEvent>();
 	}
 	public long getId()
 	{
@@ -35,25 +41,33 @@ public class Level {
 	}
 	public GameObject getGameObject(int index)
 	{
-		return gameObjects[index];
+		return gameObjects.get(index);
 	}
 	public IGameObject[] getGameObjects()
 	{
-		return gameObjects;
+		return gameObjects.toArray(new IGameObject[0]);
 	}
 	public void setGameObject(int index, GameObject gameObject)
 	{
-		gameObjects[index] = gameObject;
+		gameObjects.set(index, gameObject);
+	}
+	public void addGameObject(GameObject gameObject)
+	{
+		gameObjects.add(gameObject);
 	}
 	public IEvent getEvent(int index)
 	{
-		return events[index];
+		return events.get(index);
 	}
 	public void setEvent(int index, IEvent event)
 	{
-		events[index] = event;
+		events.set(index, event);
 	}
-	public int step(long dt)
+	public void addEvent(IEvent event)
+	{
+		events.add(event);
+	}
+	public int step(double dt)
 	{
 		int returnCode = -1;
 		stepNext(dt);
@@ -61,19 +75,21 @@ public class Level {
 		stepCommit();
 		return returnCode;
 	}
-	private void stepNext(long dt)
+	private void stepNext(double dt)
 	{
-		for(int i = 0; i < gameObjects.length; i++)
+		Iterator<GameObject> objectIter = gameObjects.iterator();
+		while(objectIter.hasNext())
 		{
-			gameObjects[i].stepNext(dt);
+			objectIter.next().stepNext(dt);
 		}
 	}
-	private int stepEvents(long dt)
+	private int stepEvents(double dt)
 	{
 		int returnCode = -1;
-		for(int i = 0; i < events.length; i++)
+		Iterator<IEvent> eventIter = events.iterator();
+		while(eventIter.hasNext())
 		{
-			int newReturnCode = events[i].evaluate(dt);
+			int newReturnCode = eventIter.next().evaluate(dt);
 			if(newReturnCode != -1)
 			{
 				returnCode = newReturnCode;
@@ -83,9 +99,10 @@ public class Level {
 	}
 	private void stepCommit()
 	{
-		for(int i = 0; i < gameObjects.length; i++)
+		Iterator<GameObject> objectIter = gameObjects.iterator();
+		while(objectIter.hasNext())
 		{
-			gameObjects[i].commit();
+			objectIter.next().commit();
 		}
 	}
 }

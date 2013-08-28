@@ -5,15 +5,20 @@
  */
 package au.edu.newcastle.SENG48002013.game.engine.model.events;
 
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
 import au.edu.newcastle.SENG48002013.game.engine.model.actions.IAction;
 
 
 public abstract class BaseEvent implements IEvent {
 	private long id;
-	private IAction[] actions;
+	private List<IAction> actions;
 	public BaseEvent(long id)
 	{
 		this.id = id;
+		actions = new LinkedList<IAction>();
 	}
 	@Override
 	public long getId()
@@ -24,12 +29,17 @@ public abstract class BaseEvent implements IEvent {
 	{
 		this.id = id;
 	}
-	protected int doActions(long dt)
+	public void addAction(IAction action)
+	{
+		actions.add(action);
+	}
+	protected int doActions(double dt)
 	{
 		int returnCode = -1;
-		for(int i = 0; i < actions.length; i++)
+		Iterator<IAction> actionIter = actions.iterator(); 
+		while(actionIter.hasNext())
 		{
-			int newReturnCode = actions[i].doAction(dt);
+			int newReturnCode = actionIter.next().doAction(dt);
 			if(newReturnCode != -1)
 			{
 				returnCode = newReturnCode;
@@ -38,5 +48,5 @@ public abstract class BaseEvent implements IEvent {
 		return returnCode;
 	}
 	@Override
-	public abstract int evaluate(long dt);
+	public abstract int evaluate(double dt);
 }

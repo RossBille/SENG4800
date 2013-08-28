@@ -150,12 +150,12 @@ public class GameObject implements IGameObject
 		committed = false;
 		this.nextAcc = nextAcc;
 	}
-	public void stepNext(long dt)
+	public void stepNext(double dt)
 	{
 		committed = false;
 		nextAcc.set(acc);
-		nextVel.scaleAdd((double)(dt/1000), nextAcc, nextVel);
-		nextPos.scaleAdd((double)(dt/1000), nextVel, nextPos);
+		nextVel.scaleAdd((double)(dt), nextAcc, vel);
+		nextPos.scaleAdd((double)(dt), nextVel, pos);
 	}
 	public void commit()
 	{

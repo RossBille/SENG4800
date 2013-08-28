@@ -31,10 +31,11 @@ public class Game implements IGame, IGameOutput
 	{
 		levels = null;
 		players = null;
-		currentLevel = -1;
+		currentLevel = 0;
 		size = new Vector2d();
 		activePlayers = 0;
 		addPlayerQueue = new LinkedList<Long>();
+		removePlayerQueue = new LinkedList<Long>();
 	}
 	public void setLevels(Level[] levels)
 	{
@@ -64,13 +65,12 @@ public class Game implements IGame, IGameOutput
 		return added;
 	}
 	@Override
-	public boolean removePlayer(long inputId)
+	public void removePlayer(long inputId)
 	{
 		removePlayerQueue.add(inputId);
-		return true;
 	}
 	@Override
-	public void step(long dt)
+	public void step(double dt)
 	{
 		deactivatePlayers();
 		activatePlayers();

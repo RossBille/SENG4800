@@ -34,7 +34,10 @@ public class GameResources {
 	{
 		levels.remove(id);
 	}
-
+	public static Level[] getAllLevels()
+	{
+		return (Level[]) levels.values().toArray(new Level[0]);
+	}
 	public static void addGameObject(GameObject gameObject)
 	{
 		gameObjects.put(gameObject.getId(), gameObject);

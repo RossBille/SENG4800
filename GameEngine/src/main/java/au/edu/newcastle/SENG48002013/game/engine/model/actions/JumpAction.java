@@ -17,7 +17,7 @@ public class JumpAction extends BaseAction {
 		super(id);
 		jumpPos = new Vector2d();
 	}
-	public int doAction(long dt)
+	public int doAction(double dt)
 	{
 		gameObject.setPos(jumpPos);
 		gameObject.setNextPos(jumpPos);

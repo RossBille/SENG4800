@@ -16,6 +16,7 @@ public class BoundaryEvent extends BaseEvent {
 	private GameObject gameObject;
 	private Level level;
 	private boolean allowOverlap;
+	private Edge edge;
 	public BoundaryEvent(long id)
 	{
 		super(id);
@@ -50,8 +51,16 @@ public class BoundaryEvent extends BaseEvent {
 	{
 		this.allowOverlap = allowOverlap; 
 	}
+	public Edge getEdge()
+	{
+		return edge;
+	}
+	public void setEdge(Edge edge)
+	{
+		this.edge = edge;
+	}
 	@Override
-	public int evaluate(long dt)
+	public int evaluate(double dt)
 	{
 		int returnCode = -1;
 		boolean intersects = false;
@@ -72,54 +81,66 @@ public class BoundaryEvent extends BaseEvent {
 		{
 			Vector2d objectSize = ((Rectangle)gameObject.getShape()).getSize();
 			//Intersect Top
-			if(gameObject.getPos().y < 0)
+			if(edge == Edge.TOP || edge == Edge.ALL)
 			{
-				intersects = true;
-				if(!allowOverlap)
+				if(gameObject.getPos().y < 0)
 				{
-					gameObject.getNextPos().y = 0;
-					if(gradient != 0)
+					intersects = true;
+					if(!allowOverlap)
 					{
-						gameObject.getNextPos().y = gameObject.getPos().x - (gameObject.getPos().y/gradient); 
+						gameObject.getNextPos().y = 0;
+						if(gradient != 0)
+						{
+							gameObject.getNextPos().x = gameObject.getPos().x - (gameObject.getPos().y/gradient); 
+						}
 					}
 				}
 			}
 			//Intersect Bottom
-			else if(gameObject.getPos().y + objectSize.y > levelDimensions.y)
+			if(edge == Edge.BOTTOM || edge == Edge.ALL)
 			{
-				intersects = true;
-				if(!allowOverlap)
+				if(gameObject.getPos().y + objectSize.y > levelDimensions.y)
 				{
-					gameObject.getNextPos().y = levelDimensions.y - objectSize.y;
-					if(gradient != 0)
+					intersects = true;
+					if(!allowOverlap)
 					{
-						gameObject.getNextPos().y = ((gameObject.getNextPos().y - gameObject.getPos().y)/gradient) + gameObject.getPos().x;
+						gameObject.getNextPos().y = levelDimensions.y - objectSize.y;
+						if(gradient != 0)
+						{
+							gameObject.getNextPos().x = ((gameObject.getNextPos().y - gameObject.getPos().y)/gradient) + gameObject.getPos().x;
+						}
 					}
 				}
 			}
 			//Intersect Left
-			if(gameObject.getPos().x < 0)
+			if(edge == Edge.LEFT || edge == Edge.ALL)
 			{
-				intersects = true;
-				if(!allowOverlap)
+				if(gameObject.getPos().x < 0)
 				{
-					gameObject.getNextPos().x = 0;
-					if(!undefined)
+					intersects = true;
+					if(!allowOverlap)
 					{
-						gameObject.getNextPos().y = gameObject.getPos().y - gradient*(gameObject.getPos().x);
+						gameObject.getNextPos().x = 0;
+						if(!undefined)
+						{
+							gameObject.getNextPos().y = gameObject.getPos().y - gradient*(gameObject.getPos().x);
+						}
 					}
 				}
 			}
 			//Intersect Right
-			else if(gameObject.getPos().x + objectSize.x > levelDimensions.x)
+			if(edge == Edge.RIGHT || edge == Edge.ALL)
 			{
-				intersects = true;
-				if(!allowOverlap)
+				if(gameObject.getPos().x + objectSize.x > levelDimensions.x)
 				{
-					gameObject.getNextPos().x = levelDimensions.x - objectSize.x;
-					if(!undefined)
+					intersects = true;
+					if(!allowOverlap)
 					{
-						gameObject.getNextPos().y = gradient*(gameObject.getNextPos().x - gameObject.getPos().x) + gameObject.getPos().y;
+						gameObject.getNextPos().x = levelDimensions.x - objectSize.x;
+						if(!undefined)
+						{
+							gameObject.getNextPos().y = gradient*(gameObject.getNextPos().x - gameObject.getPos().x) + gameObject.getPos().y;
+						}
 					}
 				}
 			}
@@ -129,54 +150,66 @@ public class BoundaryEvent extends BaseEvent {
 		{
 			double radius = ((Circle)gameObject.getShape()).getRadius();
 			//Intersect Top
-			if(gameObject.getPos().y - radius < 0)
+			if(edge == Edge.TOP || edge == Edge.ALL)
 			{
-				intersects = true;
-				if(!allowOverlap)
+				if(gameObject.getPos().y - radius < 0)
 				{
-					gameObject.getNextPos().y = radius;
-					if(gradient != 0)
+					intersects = true;
+					if(!allowOverlap)
 					{
-						gameObject.getNextPos().y = ((gameObject.getNextPos().y - gameObject.getPos().y)/gradient) + gameObject.getPos().x; 
+						gameObject.getNextPos().y = radius;
+						if(gradient != 0)
+						{
+							gameObject.getNextPos().y = ((gameObject.getNextPos().y - gameObject.getPos().y)/gradient) + gameObject.getPos().x; 
+						}
 					}
 				}
 			}
 			//Intersect Bottom
-			else if(gameObject.getPos().y + radius > levelDimensions.y)
+			if(edge == Edge.BOTTOM || edge == Edge.ALL)
 			{
-				intersects = true;
-				if(!allowOverlap)
+				if(gameObject.getPos().y + radius > levelDimensions.y)
 				{
-					gameObject.getNextPos().y = levelDimensions.y - radius;
-					if(gradient != 0)
+					intersects = true;
+					if(!allowOverlap)
 					{
-						gameObject.getNextPos().y = ((gameObject.getNextPos().y - gameObject.getPos().y)/gradient) + gameObject.getPos().x; 
+						gameObject.getNextPos().y = levelDimensions.y - radius;
+						if(gradient != 0)
+						{
+							gameObject.getNextPos().y = ((gameObject.getNextPos().y - gameObject.getPos().y)/gradient) + gameObject.getPos().x; 
+						}
 					}
 				}
 			}
 			//Intersect Left
-			if(gameObject.getPos().x - radius < 0)
+			if(edge == Edge.LEFT || edge == Edge.ALL)
 			{
-				intersects = true;
-				if(!allowOverlap)
+				if(gameObject.getPos().x - radius < 0)
 				{
-					gameObject.getNextPos().x = radius;
-					if(!undefined)
+					intersects = true;
+					if(!allowOverlap)
 					{
-						gameObject.getNextPos().y = gradient*(gameObject.getNextPos().x - gameObject.getPos().x) + gameObject.getPos().y;
+						gameObject.getNextPos().x = radius;
+						if(!undefined)
+						{
+							gameObject.getNextPos().y = gradient*(gameObject.getNextPos().x - gameObject.getPos().x) + gameObject.getPos().y;
+						}
 					}
 				}
 			}
 			//Intersect Right
-			else if(gameObject.getPos().x + radius > levelDimensions.x)
+			if(edge == Edge.RIGHT || edge == Edge.ALL)
 			{
-				intersects = true;
-				if(!allowOverlap)
+				if(gameObject.getPos().x + radius > levelDimensions.x)
 				{
-					gameObject.getNextPos().x = levelDimensions.x - radius;
-					if(!undefined)
+					intersects = true;
+					if(!allowOverlap)
 					{
-						gameObject.getNextPos().y = gradient*(gameObject.getNextPos().x - gameObject.getPos().x) + gameObject.getPos().y;
+						gameObject.getNextPos().x = levelDimensions.x - radius;
+						if(!undefined)
+						{
+							gameObject.getNextPos().y = gradient*(gameObject.getNextPos().x - gameObject.getPos().x) + gameObject.getPos().y;
+						}
 					}
 				}
 			}
@@ -186,5 +219,13 @@ public class BoundaryEvent extends BaseEvent {
 			returnCode = doActions(dt);
 		}
 		return returnCode;
+	}
+	public enum Edge
+	{
+		TOP,
+		BOTTOM,
+		LEFT,
+		RIGHT,
+		ALL
 	}
 }

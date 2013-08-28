@@ -9,7 +9,7 @@ package au.edu.newcastle.SENG48002013.game.engine.processor;
  *
  * @author Ross
  */
-public class IClock
+public interface IClock
 {
-	
+	public double rest();
 }

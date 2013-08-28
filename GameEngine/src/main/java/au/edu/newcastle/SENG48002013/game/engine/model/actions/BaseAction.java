@@ -23,5 +23,6 @@ public abstract class BaseAction implements IAction {
 	{
 		this.id = id;
 	}
-	public abstract int doAction(long dt);
+	@Override
+	public abstract int doAction(double dt);
 }

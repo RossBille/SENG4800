@@ -36,7 +36,7 @@ public class InputDirectionAction extends BaseInputAction {
 		this.gameObject = gameObject;
 	}
 
-	public int doAction(long dt)
+	public int doAction(double dt)
 	{
 		if(getInput() != null)
 		{

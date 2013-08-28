@@ -50,7 +50,7 @@ public class CollisionEvent extends BaseEvent {
 		this.allowOverlap = allowOverlap; 
 	}
 	@Override
-	public int evaluate(long dt)
+	public int evaluate(double dt)
 	{
 		int returnCode = -1;
 		boolean intersects = false;

@@ -1,2 +1,9 @@
 target/
 nb-configuration.xml
+GameEngine/.metadata
+GameEngine/bin/
+GameEngine/lib/
+Messages/.metadata
+Messages/bin/
+Messages/lib/
+.metadata/

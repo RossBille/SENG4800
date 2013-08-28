@@ -38,7 +38,7 @@ public class TimerEvent extends BaseEvent {
 		this.repeat = repeat;
 	}
 	@Override
-	public int evaluate(long dt)
+	public int evaluate(double dt)
 	{
 		int returnCode = -1;
 		currentTime -= dt;

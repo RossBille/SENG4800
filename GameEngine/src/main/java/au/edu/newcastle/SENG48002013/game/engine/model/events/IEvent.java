@@ -7,5 +7,5 @@ package au.edu.newcastle.SENG48002013.game.engine.model.events;
 
 public interface IEvent {
 	public long getId();
-	public int evaluate(long dt);
+	public int evaluate(double dt);
 }
