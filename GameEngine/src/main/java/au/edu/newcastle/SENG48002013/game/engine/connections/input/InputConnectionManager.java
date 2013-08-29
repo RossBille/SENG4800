@@ -34,14 +34,7 @@ public class InputConnectionManager extends BaseServlet
 		setProcessor();
 		if (pnm.isConnecting())
 		{
-			//PETER O'LOUGHLIN
-			//Ross, instead of instantiating a player object, generate an id
-			//that will correspond to the source client and use that as
-			//the parameter to the boss.addPlayer method
-			//Player player = new Player();
-			//construct the player
-			//boolean addPlayer = boss.addPlayer(player);
-			long generatedId = 1;
+			long generatedId = generateId(pnm);
 			boolean addPlayer = boss.addPlayer(generatedId);
 			if(addPlayer)
 			{
@@ -94,5 +87,10 @@ public class InputConnectionManager extends BaseServlet
 		}else{
 			return -1;
 		}
+	}
+	private long lastId = 0;
+	private long generateId(PlayerNumberMessage pnm)
+	{
+		return ++ lastId;
 	}
 }
