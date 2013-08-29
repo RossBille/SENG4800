@@ -1,7 +1,6 @@
 package au.edu.newcastle.SENG48002013.game.engine.connections.input;
 
 import au.edu.newcastle.SENG48002013.game.engine.connections.BaseServlet;
-import au.edu.newcastle.SENG48002013.game.engine.model.environment.Player;
 import au.edu.newcastle.SENG48002013.game.engine.processor.Boss;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +17,15 @@ import org.codehaus.jackson.map.ObjectMapper;
 public class InputConnectionManager extends BaseServlet
 {
 
-	private Boss boss= null;
+	private long lastId;
+
+	private Boss boss = null;
+
+	public InputConnectionManager()
+	{
+		boss = (Boss) getServletContext().getAttribute("boss");
+		lastId = 0;
+	}
 
 	@Override
 	protected void processRequest() throws IOException
@@ -31,24 +38,24 @@ public class InputConnectionManager extends BaseServlet
 		pnm = mapper.readValue(extractJson(), PlayerNumberMessage.class);
 		System.out.println(pnm.toString());
 		//check if adding or removing
-		setProcessor();
 		if (pnm.isConnecting())
 		{
 			long generatedId = generateId(pnm);
 			boolean addPlayer = boss.addPlayer(generatedId);
-			if(addPlayer)
+			if (addPlayer)
 			{
 				r.setError(false);
 				r.setCode(convert(addPlayer));
-				r.setMessage("Player has been added");	
-			}else{
+				r.setMessage("Player has been added");
+			} else
+			{
 				r.setError(true);
 				r.setMessage("No Room");
 				r.setCode(-1);//TODO create error code list
 			}
-				
-			
-		}else{
+
+		} else
+		{
 			//remove player from the game
 			boss.removePlayer(pnm.getPlayer());
 			r.setError(false);
@@ -56,14 +63,6 @@ public class InputConnectionManager extends BaseServlet
 			r.setCode(1);//TODO create error code list
 		}
 
-	}
-
-	private void setProcessor()
-	{
-		if (boss == null)
-		{
-			boss = (Boss) getServletContext().getAttribute("processor");
-		}
 	}
 
 	private String extractJson()
@@ -79,18 +78,20 @@ public class InputConnectionManager extends BaseServlet
 		response.getWriter().write(mapper.writeValueAsString(r));
 
 	}
-	private int convert (boolean result)
+
+	private int convert(boolean result)
 	{
-		if(result)
+		if (result)
 		{
 			return 1;
-		}else{
+		} else
+		{
 			return -1;
 		}
 	}
-	private long lastId = 0;
+
 	private long generateId(PlayerNumberMessage pnm)
 	{
-		return ++ lastId;
+		return ++lastId;
 	}
 }
