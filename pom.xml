@@ -14,5 +14,6 @@
 		<module>GameEngine</module>
 		<module>Input</module>
 		<module>SampleClient/SampleClient_JS</module>
-  </modules>
+	 <module>Util</module>
+	</modules>
 </project>
