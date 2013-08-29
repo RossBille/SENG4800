@@ -1,4 +1,5 @@
 var app = app || {};
+var list = app.list || [];
 
 /* Our callback to perform action on each object */
 app.action = function(objects) {
@@ -7,18 +8,26 @@ app.action = function(objects) {
 
     while(objects.length > 0) {
         var object = objects.pop();
-        var image = new Image();
-        image.src = object.sprite;
-        image.setAtX = object.dx;
-        image.setAtY = object.dy;
-        image.onload = function () {
+        console.log(object);
+        var img = getImage(object);
+        console.log(img);
+        img.onload = function () {
             context.drawImage(this, this.setAtX, this.setAtY);
         };
     }
-};
 
-app.Image = function(id, x, y) {
-    this.id = id;
-    this.x = x;
-    this.y = y;
+    function getImage(object) {
+
+        if (list[object.id] !== undefined) {
+            var image = list[object.id];
+        }
+        else {
+            var image = new Image();
+        }
+        image.src = object.sprite;
+        image.setAtX = object.dx;
+        image.setAtY = object.dy;
+        list[object.id] = image;
+        return image;
+    }
 };
