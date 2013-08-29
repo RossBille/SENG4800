@@ -160,7 +160,7 @@ public class BoundaryEvent extends BaseEvent {
 						gameObject.getNextPos().y = radius;
 						if(gradient != 0)
 						{
-							gameObject.getNextPos().y = ((gameObject.getNextPos().y - gameObject.getPos().y)/gradient) + gameObject.getPos().x; 
+							gameObject.getNextPos().x = ((gameObject.getNextPos().y - gameObject.getPos().y)/gradient) + gameObject.getPos().x; 
 						}
 					}
 				}
@@ -176,7 +176,7 @@ public class BoundaryEvent extends BaseEvent {
 						gameObject.getNextPos().y = levelDimensions.y - radius;
 						if(gradient != 0)
 						{
-							gameObject.getNextPos().y = ((gameObject.getNextPos().y - gameObject.getPos().y)/gradient) + gameObject.getPos().x; 
+							gameObject.getNextPos().x = ((gameObject.getNextPos().y - gameObject.getPos().y)/gradient) + gameObject.getPos().x; 
 						}
 					}
 				}
