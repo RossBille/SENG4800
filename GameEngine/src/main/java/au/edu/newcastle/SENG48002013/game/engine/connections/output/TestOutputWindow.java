@@ -43,13 +43,15 @@ public class TestOutputWindow extends JFrame
 	        brush.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 	                RenderingHints.VALUE_ANTIALIAS_ON);
 	        brush.setColor(Color.BLACK);
-	        brush.setStroke(new BasicStroke(10));
+	        brush.setStroke(new BasicStroke(1));
 	        Iterator<Vector2d> objectIter = objects.values().iterator();
 	        while(objectIter.hasNext())
 	        {
 	        	Vector2d pos = objectIter.next();
-	        	brush.drawRect((int)pos.x, (int)pos.y, 10, 10);
+	        	//brush.drawRect((int)pos.x, (int)pos.y, 10, 10);
+	        	brush.drawOval((int)pos.x - 20, (int)pos.y - 20, 40, 40);
 	        }
+	        
 		}
 	}
 	public void sendOutput(IGameOutput game)

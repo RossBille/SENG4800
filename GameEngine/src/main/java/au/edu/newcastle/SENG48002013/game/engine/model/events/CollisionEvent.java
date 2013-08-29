@@ -163,17 +163,20 @@ public class CollisionEvent extends BaseEvent {
 			//Check for intersection
 			double radius1 = ((Circle)object1.getShape()).getRadius();
 			double radius2 = ((Circle)object2.getShape()).getRadius();
-			if((object1.getNextPos().x - object2.getPos().x)*(object1.getNextPos().x - object2.getPos().x) +
-				(object1.getNextPos().y - object2.getPos().y)*(object1.getNextPos().y - object2.getPos().y) <
+			if((object1.getNextPos().x - object2.getNextPos().x)*(object1.getNextPos().x - object2.getNextPos().x) +
+				(object1.getNextPos().y - object2.getNextPos().y)*(object1.getNextPos().y - object2.getNextPos().y) <
 				(radius1 + radius2)*(radius1 + radius2))
 			{
 				intersects = true;
-				Vector2d lengthVec = new Vector2d();
-				lengthVec.sub(object2.getPos(), object1.getNextPos());
-				double length = lengthVec.length();
-				//double length = object2.getPos().difference(object1.getPos()).length();
-				object1.getNextPos().x = (object1.getNextPos().x - object2.getPos().x)/length*(radius1 + radius2) + object2.getPos().x;
-				object1.getNextPos().y = (object1.getNextPos().y - object2.getPos().y)/length*(radius1 + radius2) + object2.getPos().y;
+				if(!allowOverlap)
+				{
+					Vector2d lengthVec = new Vector2d();
+					lengthVec.sub(object2.getNextPos(), object1.getNextPos());
+					double length = lengthVec.length();
+					//double length = object2.getPos().difference(object1.getPos()).length();
+					object1.getNextPos().x = (object1.getNextPos().x - object2.getNextPos().x)/length*(radius1 + radius2) + object2.getNextPos().x;
+					object1.getNextPos().y = (object1.getNextPos().y - object2.getNextPos().y)/length*(radius1 + radius2) + object2.getNextPos().y;
+				}
 			}
 		}
 		//One Circle one Rectangle shape
