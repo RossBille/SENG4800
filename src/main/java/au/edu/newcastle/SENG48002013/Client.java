@@ -11,7 +11,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpException;
 import org.apache.http.HttpResponse;
@@ -21,43 +20,43 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.codehaus.jackson.map.ObjectMapper;
 
 /**
- *
  * @author rowanburgess
  *
- * This is an example implementation of a Client, catering for
- * web browsers. This servlet contacts the connection broker, and based on the
- * JSON that is returned, directs the end user accordingly.
+ * This is an example implementation of a Client, catering for web browsers.
+ * This servlet contacts the connection broker, and based on the JSON that is
+ * returned, directs the end user accordingly.
  */
-@WebServlet("/connect")
-public class Client extends HttpServlet 
+@WebServlet(name = "connect", urlPatterns ={"/connect"})
+public class Client extends HttpServlet
 {
-
     String connection = "http://localhost:8080/Input/connect";
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException 
+    /*
+     * Calls the connection broker to try and reserve a place in the game.
+     * If the request is successful, result mesage will contain a token for us
+     * to connect with, along with a URL for the web socket endpoint to connect to
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException
     {
-        String requestType = request.getParameter("type");
-        HttpSession session = request.getSession();
-        
-        if (requestType.equalsIgnoreCase("connect"))
-        {
-            Result res = requestConnection(); //from the Connection broker
-            session.setAttribute("url", res.getMessage());
-            session.setAttribute("token", res.getCode());
-            
-            if (!res.isError()) //if all goes well
-            {              
-               response.sendRedirect("accepted.jsp");
-            }
-            
-            else
-            {
-                response.sendRedirect("welcome.jsp");
-            }
-        }     
+        System.out.println("Inside doGet...");
+        Result res = requestConnection(); //from the Connection broker
+        request.setAttribute("result", res);
+        request.getRequestDispatcher("/WEB-INF/sampleClient.jsp").forward(request, response);     
     }
-    
+
+    /*
+     * Post method to fall back on, in the event that the client is not able
+     * to utilise web sockets, we can post requests to the game engine instead
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException
+    {
+        //fallback method in the event that client doesnt support web sockets
+    }
+
     public Result requestConnection() throws IOException
     {
         HttpClient httpclient = new DefaultHttpClient();
@@ -65,60 +64,43 @@ public class Client extends HttpServlet
         HttpGet httpget = null;
         HttpResponse res = null;
         Result r = null;
-        
-        try 
+
+        try
         {
             httpget = new HttpGet(connection);
-        } 
-        
-        catch (URISyntaxException ex) 
+        }
+        catch (URISyntaxException ex)
         {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        try 
+
+        try
         {
             res = httpclient.execute(httpget);
-        } 
-        
-        catch (HttpException ex) 
+        }
+        catch (HttpException ex)
         {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
-               
-        if (res.getEntity() != null) 
+
+        if (res.getEntity() != null)
         {
             InputStream stream = res.getEntity().getContent();
-            
-            try 
+
+            try
             {
-                 String myString = IOUtils.toString(stream, "UTF-8");
-                 System.out.println("Output: " + myString);
-                 
-                 r = mapper.readValue(myString, Result.class);
-                 System.out.println("Message: " + r.getMessage());
-            } 
-            
-            finally 
+                String myString = IOUtils.toString(stream, "UTF-8");
+                System.out.println("Output: " + myString);
+
+                r = mapper.readValue(myString, Result.class);
+                System.out.println("Message: " + r.getMessage());
+            }
+            finally
             {
                 stream.close();
             }
         }
-        
+
         return r;
     }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
- 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
 }
