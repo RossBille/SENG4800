@@ -48,40 +48,20 @@ public class Engine implements ServletContextListener
     @OnMessage
     public void onMessage(Session session, String message) throws IOException
     {
-        log.info(message);
+        log.log(Level.INFO, "Message Received:{0}", message);
 
         if (known.contains(session)) //instruction received from known connected client
         {
             log.info("*** Authenticated Session Found ***");
-            BaseInstruction instruction = parseInstruction(message);
-
-            if (instruction != null)
-            {
-                log.log(Level.INFO, "Instruction: {0}", instruction.getDirection());
-                /*
-                 * Action required here - send instruction up to game engine
-                 */
-            }
-            
-            else
-            {
-                log.severe("Instruction deserialize failed");
-            }
+            /*
+             * Make a new instruction object based on input, and send it up
+             * to the game engine
+             */
         }
         else if (unknown.contains(session)) //session alive, but unauthenticated at this point
         {
-            Result result = parseToken(message);
-
-            if (result != null)
-            {
-                processToken(result, session);
-            }
-            
-            else
-            {
-                log.severe("Token deserialize failed");
-            }
-
+            log.info("*** Checking token... ");
+            processToken(message, session);
         }
         else // catch all for any other random states we may end up in
         {
@@ -112,16 +92,14 @@ public class Engine implements ServletContextListener
         known.remove(peer);
         unknown.remove(peer);
     }
-    
-    // ********** Player Management Methods **********
 
+    // ********** Player Management Methods **********
     protected boolean spaceFree()
     {
         if (known.size() < MAX_CLIENTS)
         {
             return true;
         }
-        
         else
         {
             return false;
@@ -132,9 +110,23 @@ public class Engine implements ServletContextListener
     {
         return MAX_CLIENTS - known.size();
     }
-    
-    // ********** Servlet Context Methods **********
 
+    private void processToken(String token, Session session)
+    {
+        if (manager.checkToken(token)) //add player to game
+        {
+            log.info("Valid token received, adding player");
+            known.add(session);
+            unknown.remove(session);
+        }
+        else
+        {
+            log.info("Token check failed, removing player");
+            unknown.remove(session);
+        }
+    }
+
+    // ********** Servlet Context Methods **********
     @Override
     public void contextInitialized(ServletContextEvent sce)
     {
@@ -148,59 +140,5 @@ public class Engine implements ServletContextListener
     {
         sce.getServletContext().removeAttribute("securityManager");
         log.info("*** Servlet Context Destroyed ***");
-    }
-    
-    // ********** JSON Methods **********
-
-    private Result parseToken(String s)
-    {
-        ObjectMapper mapper = new ObjectMapper();
-        Result temp = null;
-
-        try
-        {
-            temp = mapper.readValue(s, Result.class);
-        }
-        
-        catch (IOException ex)
-        {
-            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return temp;
-    }
-
-    private void processToken(Result r, Session session)
-    {
-        if (manager.checkToken(r.getCode())) //add player to game
-        {
-            log.info("Valid token received, adding player");
-            known.add(session);
-            unknown.remove(session);
-        }
-        
-        else
-        {
-            log.info("Token check failed, removing player");
-            unknown.remove(session);
-        }
-    }
-
-    private BaseInstruction parseInstruction(String s)
-    {
-        ObjectMapper mapper = new ObjectMapper();
-        BaseInstruction temp = null;
-        
-        try
-        {
-            temp = mapper.readValue(s, BaseInstruction.class);
-        }
-        
-        catch (IOException ex)
-        {
-            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return temp;
     }
 }
