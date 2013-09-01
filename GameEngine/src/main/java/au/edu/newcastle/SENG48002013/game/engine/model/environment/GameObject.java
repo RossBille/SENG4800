@@ -25,16 +25,18 @@ public class GameObject implements IGameObject
 	private Vector2d nextVel;
 	private Vector2d nextAcc;
 	private boolean committed;
+	private boolean active;
 	public GameObject(long id)
 	{
 		this.id = id;
-		size = new Vector2d();
-		pos = new Vector2d();
-		vel = new Vector2d();
-		acc = new Vector2d();
-		nextPos = new Vector2d();
-		nextVel = new Vector2d();
-		nextAcc = new Vector2d();
+		size = new Vector2d(0, 0);
+		pos = new Vector2d(0, 0);
+		vel = new Vector2d(0, 0);
+		acc = new Vector2d(0, 0);
+		nextPos = new Vector2d(0, 0);
+		nextVel = new Vector2d(0, 0);
+		nextAcc = new Vector2d(0, 0);
+		active = true;
 	}
 	@Override
 	public long getId()
@@ -149,6 +151,15 @@ public class GameObject implements IGameObject
 	{
 		committed = false;
 		this.nextAcc = nextAcc;
+	}
+	@JsonIgnore
+	public boolean isActive()
+	{
+		return active;
+	}
+	public void setActive(boolean active)
+	{
+		this.active = active;
 	}
 	public void stepNext(double dt)
 	{

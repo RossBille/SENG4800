@@ -97,6 +97,50 @@ public class ReflectAction extends BaseAction {
 					gameObject.setNextVel(reflectedVel);
 				}
 			}
+			//Both rectangles
+			if(gameObject.getShape() instanceof Rectangle && surfaceObject.getShape() instanceof Rectangle)
+			{
+				Vector2d objectSize = ((Rectangle)gameObject.getShape()).getSize();
+				Vector2d surfaceSize = ((Rectangle)surfaceObject.getShape()).getSize();
+				double xDistance;
+				double yDistance;
+				double left = Math.abs(gameObject.getNextPos().x - (surfaceObject.getNextPos().x + surfaceSize.x));
+				double right = Math.abs(gameObject.getNextPos().x + objectSize.x - surfaceObject.getNextPos().x);
+				double top = Math.abs(gameObject.getNextPos().y - (surfaceObject.getNextPos().y + surfaceSize.y));
+				double bottom = Math.abs(gameObject.getNextPos().y + objectSize.y - surfaceObject.getNextPos().y);
+				xDistance = Math.min(left, right);
+				yDistance = Math.min(top, bottom);
+				if(xDistance < yDistance)
+				{
+					
+					gameObject.getNextVel().x *= -1;
+				}
+				else
+				{
+					gameObject.getNextVel().y *= -1;
+				}
+			}
+			else
+			{
+				GameObject circleObj;
+				GameObject rectObj;
+				if(gameObject.getShape() instanceof Circle)
+				{
+					circleObj = gameObject;
+					rectObj = surfaceObject;
+				}
+				else
+				{
+					circleObj = surfaceObject;
+					rectObj = gameObject;
+				}
+				//Rectange -> Circle
+				//Circle -> Rectangle
+				surfaceObject.setNextVel(new Vector2d(0, 0));
+				gameObject.setNextVel(new Vector2d(0, 0));
+			}
+
+			
 		}
 		//Object -> Boundary
 		else

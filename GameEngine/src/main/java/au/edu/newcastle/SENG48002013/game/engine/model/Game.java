@@ -83,7 +83,7 @@ public class Game implements IGame, IGameOutput
 	@Override
 	public IGameObject[] getOutputObjects()
 	{
-		return levels[currentLevel].getGameObjects();
+		return levels[currentLevel].getOutputObjects();
 	}
 	
 	private void activatePlayers()
