@@ -4,6 +4,7 @@ import au.edu.newcastle.seng48002013.results.Result;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -26,9 +27,13 @@ import org.codehaus.jackson.map.ObjectMapper;
  * This servlet contacts the connection broker, and based on the JSON that is
  * returned, directs the end user accordingly.
  */
-@WebServlet(name = "connect", urlPatterns ={"/connect"})
+@WebServlet(name = "connect", urlPatterns =
+{
+    "/connect"
+})
 public class Client extends HttpServlet
 {
+
     String connection = "http://localhost:8080/Input/connect";
 
     /*
@@ -41,9 +46,8 @@ public class Client extends HttpServlet
             throws ServletException, IOException
     {
         System.out.println("Inside doGet...");
-        Result res = requestConnection(); //from the Connection broker
-        request.setAttribute("result", res);
-        request.getRequestDispatcher("/WEB-INF/sampleClient.jsp").forward(request, response);     
+        requestConnection(request); //from the Connection broker
+        request.getRequestDispatcher("/WEB-INF/sampleClient.jsp").forward(request, response);
     }
 
     /*
@@ -57,50 +61,54 @@ public class Client extends HttpServlet
         //fallback method in the event that client doesnt support web sockets
     }
 
-    public Result requestConnection() throws IOException
+    public void requestConnection(HttpServletRequest r) throws IOException
     {
         HttpClient httpclient = new DefaultHttpClient();
         ObjectMapper mapper = new ObjectMapper();
-        HttpGet httpget = null;
-        HttpResponse res = null;
-        Result r = null;
+        InputStream stream = null;
 
         try
         {
-            httpget = new HttpGet(connection);
-        }
-        catch (URISyntaxException ex)
-        {
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            HttpGet httpget = new HttpGet(connection);
+            HttpResponse res = httpclient.execute(httpget);
+            stream = res.getEntity().getContent();
+            
+            String clientHello = IOUtils.toString(stream, "UTF-8"); //send this back to the server to prove ID
+            Result result = mapper.readValue(clientHello, Result.class);
+            r.setAttribute("result", result);
 
-        try
-        {
-            res = httpclient.execute(httpget);
-        }
-        catch (HttpException ex)
-        {
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        if (res.getEntity() != null)
-        {
-            InputStream stream = res.getEntity().getContent();
-
-            try
+            if (!result.isError()) //game can accomodate request
             {
-                String myString = IOUtils.toString(stream, "UTF-8");
-                System.out.println("Output: " + myString);
-
-                r = mapper.readValue(myString, Result.class);
-                System.out.println("Message: " + r.getMessage());
+             
+                /*
+                 * Need to figure out where and when to get this from. Mock for now
+                 * 
+                 * - instruction type
+                 * - instructions
+                 */
+                ArrayList<String> instructions = new ArrayList<>();
+                ArrayList<String> values = new ArrayList<>();
+                instructions.add("Up");
+                instructions.add("Down");
+                instructions.add("Left");
+                instructions.add("Right");
+                r.setAttribute("instructions", instructions);
             }
-            finally
+           
+        }
+        
+        catch (URISyntaxException | HttpException ex)
+        {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        finally //ensure that the stream gets closed regardless of outcome
+        {
+            if (stream != null)
             {
                 stream.close();
             }
         }
 
-        return r;
     }
 }
