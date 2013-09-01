@@ -15,40 +15,19 @@
                     <script type="text/javascript">
                         if ("WebSocket" in window) //if web socket is supported in this browser
                         {
-                            alert("WebSockets are supported. (Yay!)");
-                            var url = "${result.message}";
-                            alert(url);
-                            var websocket = new WebSocket(url);
+                            //alert("WebSockets are supported. (Yay!)");
+                            var websocket = new WebSocket("${result.message}");
                             websocket.onmessage = onMessage;
-                            websocket.onopen = onOpen;
-
-                            function onOpen(evt)
-                            {
-                                alert("Connection Successful!");
-                            }
 
                             function onMessage(evt) //used to post registration token to server
                             {
-                                var token = new Object();
-                                token.message = "clientHello";
-                                token.code = "${result.code}";
-                                token.error = ${result.error};
-                                websocket.send(stringit(token, "au.edu.newcastle.seng48002013.results.Result"));
+                                var code = "${result.code}";
+                                sendInstruction(code);
                             }
-
 
                             function sendInstruction(instruction)
                             {
-
-                            }
-
-                            function stringit(obj, cls)
-                            {
-                                cls = "{\"@class\":\"" + cls + "\",";
-                                var js = JSON.stringify(obj);
-                                js = js.substr(1);
-                                js = cls + js;
-                                return js;
+                                websocket.send(instruction);
                             }
                         }
 
@@ -60,15 +39,15 @@
                     <h3>Connection Status: successful</h3>
 
                     <c:forEach items="${instructions}" var="i">
-                        <h4>${i}</h4>                         
+                        <button onclick="sendInstruction(&quot ${i} &quot)">${i}</button>                       
                     </c:forEach>
 
                 </c:when>
                 <c:otherwise> <!--   connection request failed -->
                     <h3>Connection Status: failed</h3>
                     <p>
-                        Unable to join the current game session, please try again
-                        later.
+                        Unable to join the current game session. <br>
+                        Message From Server: ${result.message}
                     </p>
 
                     <form method="get" action="connect"> <!-- hit servlet with another request -->

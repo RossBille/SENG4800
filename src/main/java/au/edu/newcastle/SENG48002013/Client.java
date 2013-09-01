@@ -24,13 +24,10 @@ import org.codehaus.jackson.map.ObjectMapper;
  * @author rowanburgess
  *
  * This is an example implementation of a Client, catering for web browsers.
- * This servlet contacts the connection broker, and based on the JSON that is
- * returned, directs the end user accordingly.
+ * This servlet contacts the connection broker, requesting a position in the
+ * game.
  */
-@WebServlet(name = "connect", urlPatterns =
-{
-    "/connect"
-})
+@WebServlet(name = "connect", urlPatterns = {"/connect"})
 public class Client extends HttpServlet
 {
 
@@ -72,29 +69,15 @@ public class Client extends HttpServlet
             HttpGet httpget = new HttpGet(connection);
             HttpResponse res = httpclient.execute(httpget);
             stream = res.getEntity().getContent();
-            
             String clientHello = IOUtils.toString(stream, "UTF-8"); //send this back to the server to prove ID
             Result result = mapper.readValue(clientHello, Result.class);
             r.setAttribute("result", result);
-
-            if (!result.isError()) //game can accomodate request
-            {
-             
-                /*
-                 * Need to figure out where and when to get this from. Mock for now
-                 * 
-                 * - instruction type
-                 * - instructions
-                 */
-                ArrayList<String> instructions = new ArrayList<>();
-                ArrayList<String> values = new ArrayList<>();
-                instructions.add("Up");
-                instructions.add("Down");
-                instructions.add("Left");
-                instructions.add("Right");
-                r.setAttribute("instructions", instructions);
-            }
-           
+            ArrayList<String> instructions = new ArrayList<>();
+            instructions.add("Up");
+            instructions.add("Down");
+            instructions.add("Left");
+            instructions.add("Right");
+            r.setAttribute("instructions", instructions);
         }
         
         catch (URISyntaxException | HttpException ex)
@@ -109,6 +92,5 @@ public class Client extends HttpServlet
                 stream.close();
             }
         }
-
     }
 }
