@@ -34,20 +34,35 @@
                         else //web sockets are not supported
                         {
                             alert("WebSockets are not supported, reverting to 'POST' for data trasmission");
+                            <c:set var="socketSupport" value="false"/>
                         }
                     </script>
-                    <h3>Connection Status: successful</h3>
+                    
+                    <h3>Connection Status: Success</h3>
 
-                    <c:forEach items="${instructions}" var="i">
-                        <button onclick="sendInstruction(&quot ${i} &quot)">${i}</button>                       
-                    </c:forEach>
+                    <c:choose>
 
+                        <c:when test="${socketSupport eq false}"> <!-- need to use POST to send instructions -->
+                            <c:forEach items="${instructions}" var="i">
+                                <button type="submit" value="${i}" formaction="need to offer a servlet to post to">${i}</button>
+                            </c:forEach>
+
+                        </c:when>
+                        
+                        <c:otherwise> <!-- send instructions using the websocket -->
+                            <c:forEach items="${instructions}" var="i">
+                                <button onclick="sendInstruction(&quot ${i} &quot)">${i}</button>                       
+                            </c:forEach>                
+                        </c:otherwise>
+
+                    </c:choose>
+   
                 </c:when>
                 <c:otherwise> <!--   connection request failed -->
-                    <h3>Connection Status: failed</h3>
+                    <h3>Connection Status: Fail</h3>
                     <p>
                         Unable to join the current game session. <br>
-                        Message From Server: ${result.message}
+                        Server Message: ${result.message}
                     </p>
 
                     <form method="get" action="connect"> <!-- hit servlet with another request -->
