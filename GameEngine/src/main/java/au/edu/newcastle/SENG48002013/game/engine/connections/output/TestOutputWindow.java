@@ -51,11 +51,11 @@ public class TestOutputWindow extends JFrame
 	        {
 	        	i++;
 	        	pos = objectIter.next();
-	        	if (i == 3) break;
-	        	brush.drawRect((int)pos.x, (int)pos.y, 40, 40);
-	        	//brush.drawOval((int)pos.x - 20, (int)pos.y - 20, 40, 40);
+	        	//if (i == 3) break;
+	        	//brush.drawRect((int)pos.x, (int)pos.y, 40, 40);
+	        	brush.drawOval((int)pos.x - 20, (int)pos.y - 20, 40, 40);
 	        }
-	        brush.drawOval((int)pos.x - 20, (int)pos.y - 20, 40, 40);
+	        //brush.drawOval((int)pos.x - 20, (int)pos.y - 20, 40, 40);
 	        
 		}
 	}

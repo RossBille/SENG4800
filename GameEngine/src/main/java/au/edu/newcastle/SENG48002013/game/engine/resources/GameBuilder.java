@@ -21,8 +21,8 @@ public class GameBuilder {
 		GameObject gameObject1 = new GameObject(1);
 		gameObject1.setSprite(sprite);
 		gameObject1.setPos(new Vector2d(100, 100));
-		//gameObject1.setVel(new Vector2d(3, 2));
 		gameObject1.setVel(new Vector2d(3, 2));
+		//gameObject1.setVel(new Vector2d(3, 0));
 		GameObject gameObject2 = new GameObject(2);
 		gameObject2.setSprite(sprite);
 		gameObject2.setPos(new Vector2d(400, 100));
@@ -32,13 +32,13 @@ public class GameBuilder {
 		gameObject3.setSprite(sprite);
 		gameObject3.setPos(new Vector2d(300, 300));
 		gameObject3.setVel(new Vector2d(+5, -7));
-		Rectangle rect = new Rectangle(new Vector2d(40, 40));
+//		Rectangle rect = new Rectangle(new Vector2d(40, 40));
 		Circle circle = new Circle(20);
-		gameObject1.setShape(rect);
-		gameObject2.setShape(rect);
+//		gameObject1.setShape(rect);
+//		gameObject2.setShape(rect);
 //		gameObject3.setShape(rect);
-//		gameObject1.setShape(circle);
-//		gameObject2.setShape(circle);
+		gameObject1.setShape(circle);
+		gameObject2.setShape(circle);
 		gameObject3.setShape(circle);
 		Level level = new Level(1);
 		level.setDimensions(new Vector2d(640, 480));
