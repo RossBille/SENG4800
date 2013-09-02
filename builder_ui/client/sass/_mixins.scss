@@ -84,9 +84,10 @@
     border: 2px solid $text-colour;
     border-bottom-width: 4px;
     display: inline-block;
+    text-decoration: none;
 
     &:hover {
-        color: $base-colour;
+        color: #000;
         background: scale-lightness($highlight-colour, 40%);
         border: 2px solid $text-colour;
         border-bottom-width: 4px;

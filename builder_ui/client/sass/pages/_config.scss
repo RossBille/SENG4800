@@ -1,0 +1,97 @@
+.heading {
+    @include columns(16);
+
+    margin-bottom: $section-padding;
+
+    h1 {
+        text-align: center;
+    }
+}
+
+#config {
+    form {
+        @include columns(16);
+
+        margin-bottom: $section-padding;
+    }
+
+    form {
+        label.input-label {
+            @include adjust-font-size-to(14px);
+            @extend %normal-text-bold;
+
+            width: 30%;
+            display: inline-block;
+            float: left;
+            margin: 0;
+            padding: 0 0 0 15px;
+            height: 50px;
+            line-height: 48px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+
+            background: $light-grey;
+            border: 1px solid $dark-grey;
+            border-right-style: none;
+        }
+
+        input {
+            height: 50px;
+            width: 70%;
+            padding: 0 15px;
+        }
+
+        input, textarea {
+            @include transition(background .2s, border .2s);
+            @include adjust-font-size-to(14px);
+
+            background: $light-colour;
+            border: 1px solid $dark-grey;
+            margin: 0;
+            color: $dark-colour;
+
+            &:focus {
+                outline: 0 none;
+                background: scale-lightness($light-colour, -5%);
+                border: 1px solid #000;
+            }
+
+            &.error {
+                background: scale-lightness($error-colour, 70%);
+            }
+        }
+
+        textarea {
+            height: 186px;
+            padding: 15px;
+            width: 100%;
+        }
+
+        span.error, label.error {
+            @extend %normal-text-bold;
+
+            float: left;
+            width: 100%;
+            margin: 5px 0 0 0;
+            display: block;
+
+            color: $error-colour;
+        }
+
+        button[type="submit"] {
+            @extend %button;
+        }
+    }
+}
+
+.controls  {
+    @include columns(16);
+
+    text-align: center;
+
+    a {
+        @extend %button;
+
+        margin: 0 auto;
+    }
+}

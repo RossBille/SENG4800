@@ -5,7 +5,7 @@
 .list {
     @include columns(3);
 
-    background: $light-colour;
+    background: $lighter-grey;
     padding: 20px 0 0 0;
     height: $scene-height;
     float: left;
@@ -16,7 +16,7 @@
 .scene {
     @include columns(13);
 
-    background: $light-colour;
+    background: $lighter-grey;
     padding: 0;
     height: $scene-height;
 
@@ -52,8 +52,8 @@
 .item-detail {
     @include third(1);
 
-    margin-top: $section-padding;
-    background: #eee;
+    margin-top: $section-padding / 3;
+    background: $lighter-grey;
     padding: 20px;
 
     p {
