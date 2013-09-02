@@ -14,7 +14,27 @@ import org.codehaus.jackson.map.ObjectMapper;
 @WebServlet("/objects")
 public class OutputSetup extends BaseServlet
 {
+	//need some structure to store all the game setup info here
 
+	
+	/**
+	 * sends all setup info in the form of 
+	 * 	[{  
+	 * 		"id":  ,
+	 * 		"pos": {"x":  , "y",  },
+	 * 		"spriteLocations": ["some/url/", ... , "some/other/url"],
+	 * 		"spriteId":  
+	 * 	},
+	 * 	... ,
+	 * 	{  
+	 * 		"id":  ,
+	 * 		"pos": {"x":  , "y",  },
+	 * 		"spriteLocations": ["some/url/", ... , "some/other/url"],
+	 * 		"spriteId":  
+	 * 	}]
+	 * whenever a new output client connects
+	 * @throws IOException
+	 */
 	@Override
 	protected void processRequest() throws IOException
 	{
