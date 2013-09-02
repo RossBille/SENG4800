@@ -19,11 +19,11 @@ app.action = function(objects) {
         }
         else {
             var image = new Image();
+            image.src = object.sprite;
+            list[object.id] = image;
         }
-        image.src = object.sprite;
         image.setAtX = object.dx;
         image.setAtY = object.dy;
-        list[object.id] = image;
         return image;
     }
 };

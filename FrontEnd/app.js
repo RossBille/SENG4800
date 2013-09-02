@@ -12,7 +12,7 @@ wss.on ('connection', function(socket) {
             file[i].dx = x;
         }
         socket.send(JSON.stringify(file));
-        x += 10;
+        x += 1;
         if (x >= 800) {
             x =  0;
         }
