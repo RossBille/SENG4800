@@ -23,13 +23,8 @@ import org.codehaus.jackson.map.ObjectMapper;
 public class OutputConnectionManager
 {
 
-	private final int ALLOWED_CONNECTIONS;
+	private static final int ALLOWED_CONNECTIONS = 1;
 	private static Set<Session> peers = Collections.synchronizedSet(new HashSet<Session>());
-
-	public OutputConnectionManager()
-	{
-		ALLOWED_CONNECTIONS = 1;//read from config on startup 
-	}
 
 	/**
 	 * Broadcast to everyone connected to this socket
@@ -37,7 +32,7 @@ public class OutputConnectionManager
 	 * @param gameOutput
 	 * @throws IOException
 	 */
-	public void sendOutput(IGameOutput gameOutput) throws IOException
+	public static void sendOutput(IGameOutput gameOutput) throws IOException
 	{
 		ObjectMapper mapper = new ObjectMapper();
 		String message = mapper.writeValueAsString(gameOutput.getOutputObjects());
