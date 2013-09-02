@@ -1,7 +1,7 @@
 [
     {
         "id" : 0,
-        "sprite": "img/soccerball.png",
+        "sprite": "img/golfball.png",
         "visible": true,
         "dx": 0,
         "dy": 0
@@ -10,8 +10,50 @@
         "id" : 1,
         "sprite": "img/golfball.png",
         "visible": true,
-        "dx": 400,
+        "dx": 0,
+        "dy": 100
+    },
+    {
+        "id" : 2,
+        "sprite": "img/golfball.png",
+        "visible": true,
+        "dx": 0,
+        "dy": 200
+    },
+    {
+        "id" : 3,
+        "sprite": "img/golfball.png",
+        "visible": true,
+        "dx": 0,
+        "dy": 300
+    },    
+    {
+        "id" : 4,
+        "sprite": "img/golfball.png",
+        "visible": true,
+        "dx": 0,
         "dy": 400
+    },
+    {
+        "id" : 5,
+        "sprite": "img/golfball.png",
+        "visible": true,
+        "dx": 0,
+        "dy": 500
+    },    
+    {
+        "id" : 6,
+        "sprite": "img/golfball.png",
+        "visible": true,
+        "dx": 0,
+        "dy": 600
+    },
+    {
+        "id" : 7,
+        "sprite": "img/golfball.png",
+        "visible": true,
+        "dx": 0,
+        "dy": 700
     }
 ]
 
