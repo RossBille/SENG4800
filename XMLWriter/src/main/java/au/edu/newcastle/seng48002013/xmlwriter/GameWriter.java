@@ -33,9 +33,7 @@ public class GameWriter extends HttpServlet {
 	private String gameName;
 	private String width;
 	private String height;
-	private String state;
-        private String colour;
-	private String size;
+	private String startLevel;
 	private String minPlayers;
 	private String maxPlayers;
         
@@ -52,9 +50,7 @@ public class GameWriter extends HttpServlet {
         gameName = request.getParameter("gameName");
 	width = request.getParameter("width");
 	height = request.getParameter("height");
-	state = request.getParameter("state");
-        colour = request.getParameter("colour");
-	size = request.getParameter("size");
+	startLevel = request.getParameter("startLevel");
 	minPlayers = request.getParameter("minPlayers");
         maxPlayers = request.getParameter("maxPlayers");
         
@@ -85,7 +81,7 @@ public class GameWriter extends HttpServlet {
                     e1.appendChild(dom.createTextNode(gameName));
                     e.appendChild(e1);        
 
-                    e1 = dom.createElement("Canvas");
+                    e1 = dom.createElement("Canvas_size");
                     e.appendChild(e1); 
                     
                         e2 = dom.createElement("Width");
@@ -96,20 +92,9 @@ public class GameWriter extends HttpServlet {
                         e2.appendChild(dom.createTextNode(height));
                         e1.appendChild(e2);
                         
-                    e1 = dom.createElement("Border");
+                    e1 = dom.createElement("Starting_level");
+                    e1.appendChild(dom.createTextNode(startLevel));
                     e.appendChild(e1); 
-                    
-                        e2 = dom.createElement("State");
-                        e2.appendChild(dom.createTextNode(state));
-                        e1.appendChild(e2);
-                        
-                        e2 = dom.createElement("Colour");
-                        e2.appendChild(dom.createTextNode(colour));
-                        e1.appendChild(e2);
-                        
-                        e2 = dom.createElement("Size");
-                        e2.appendChild(dom.createTextNode(size));
-                        e1.appendChild(e2);
                         
                     e1 = dom.createElement("Players");
                     e.appendChild(e1); 
