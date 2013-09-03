@@ -7,12 +7,12 @@ wss.on ('connection', function(socket) {
     socket.send(JSON.stringify(file));
 
     var x = 0; var y = 400;
-    setInterval(function() { 
+    var loop = setInterval(function() { 
         for (var i = 0; i < file.length; i++) {
-            file[i].dx = x;
+            file[i].pos.x = x;
         }
         socket.send(JSON.stringify(file));
-        x += 1;
+        x += 8;
         if (x >= 800) {
             x =  0;
         }
@@ -25,5 +25,6 @@ wss.on ('connection', function(socket) {
 
     socket.on('close', function() {
         console.log("Closed");
+        clearInterval(loop);
     });
 });
