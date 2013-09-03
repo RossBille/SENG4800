@@ -1,6 +1,8 @@
 package au.edu.newcastle.SENG48002013.game.engine.connections.output;
 
+import au.edu.newcastle.SENG20502013.output.SetupMessage;
 import au.edu.newcastle.SENG48002013.game.engine.connections.BaseServlet;
+import au.edu.newcastle.SENG48002013.game.engine.resources.GameResources;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletContext;
@@ -42,7 +44,8 @@ public class OutputSetup extends BaseServlet
 		response.setContentType("text/json");
 		ObjectMapper mapper = new ObjectMapper();
 		PrintWriter out = response.getWriter();
-		out.print(mapper.writeValueAsString("i have no values to send yet :)"));
+		SetupMessage[] setupMessages = GameResources.getResources();
+		out.print(mapper.writeValueAsString(setupMessages));
 	}
 	
 }
