@@ -106,8 +106,7 @@ public class Client extends HttpServlet
 
     public void setupInstructions(HttpServletRequest r) throws IOException
     {
-        ArrayList<String> key = new ArrayList<>();
-        ArrayList<String> value = new ArrayList<>();  
+        ArrayList<instructionSet> instructionList = new ArrayList<>(); 
         ObjectMapper mapper = new ObjectMapper();
         String OS = r.getHeader("User-Agent");
         String JSESSIONID = r.getSession().getId();
@@ -115,13 +114,43 @@ public class Client extends HttpServlet
         for (String temp : instructions)
         {
             TouchScreen t = new TouchScreen(temp, OS, JSESSIONID);
-            key.add(temp);
-            value.add(mapper.writeValueAsString(t));
-            System.out.println(mapper.writeValueAsString(t));
+            instructionSet i = new instructionSet(temp, mapper.writeValueAsString(t));
+            instructionList.add(i);
         }
 
-        r.setAttribute("key", key);
-        r.setAttribute("value", value);
+        r.setAttribute("instructions", instructionList);
+    }
+    
+    public class instructionSet
+    {
+        String key;
+        String value;
+
+        public instructionSet(String k, String v)
+        {
+            this.key = k;
+            this.value = v;
+        }
+
+        public String getKey()
+        {
+            return key;
+        }
+
+        public void setKey(String key)
+        {
+            this.key = key;
+        }
+
+        public String getValue()
+        {
+            return value;
+        }
+
+        public void setValue(String value)
+        {
+            this.value = value;
+        }   
     }
     
 }

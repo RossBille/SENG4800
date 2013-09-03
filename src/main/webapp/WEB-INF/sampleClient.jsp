@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -27,6 +28,7 @@
 
                             function sendInstruction(instruction)
                             {
+                                alert(instruction);
                                 websocket.send(instruction);
                             }
                         }
@@ -34,30 +36,23 @@
                         else //web sockets are not supported
                         {
                             alert("WebSockets are not supported, reverting to 'POST' for data trasmission");
-                            <c:set var="socketSupport" value="false"/>
+                            //var socketSupport = false;
                         }
                     </script>
-                    
+
                     <h3>Connection Status: Success</h3>
 
-                    <c:choose>
+                    <c:forEach items="${instructions}" var="temp">
 
-                        <c:when test="${socketSupport eq false}"> <!-- need to use POST to send instructions -->
-                            <c:forEach items="${instructions}" var="i">
-                                <button type="submit" value="${i}" formaction="need to offer a servlet to post to">${i}</button>
-                            </c:forEach>
-
-                        </c:when>
+                        <c:set var="myVar" value="${temp.value}" />
+                        <c:set var="search" value="\"" />
+                        <c:set var="replace" value="&quot" />
+                        <c:set var="escapedString" value="${fn:replace(myVar, search, replace)}"/>
+                        <button onclick="sendInstruction('${escapedString}');">${temp.key}</button>
                         
-                        <c:otherwise> <!-- send instructions using the websocket -->
-                            <c:forEach items="${instructions}" var="i">
-                                <button onclick="sendInstruction(&quot ${i} &quot)">${i}</button>                       
-                            </c:forEach>                
-                        </c:otherwise>
-
-                    </c:choose>
-   
+                    </c:forEach>
                 </c:when>
+
                 <c:otherwise> <!--   connection request failed -->
                     <h3>Connection Status: Fail</h3>
                     <p>
