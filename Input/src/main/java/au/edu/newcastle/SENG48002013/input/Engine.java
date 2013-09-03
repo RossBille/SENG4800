@@ -18,6 +18,8 @@ import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
 @ServerEndpoint("/endpoint")
@@ -31,10 +33,12 @@ public class Engine implements ServletContextListener
     private HttpSession httpSession;
     private final int MAX_CLIENTS;
     private static SecurityManager manager;
+    private ObjectMapper mapper;
 
     public Engine()
     {
         this.MAX_CLIENTS = 5;
+        this.mapper = new ObjectMapper();
         log.info("*** Engine Instantiated ***");
     }
 
@@ -49,20 +53,35 @@ public class Engine implements ServletContextListener
     public void onMessage(Session session, String message) throws IOException
     {
         log.log(Level.INFO, "Message Received:{0}", message);
+        
+        
 
         if (known.contains(session)) //instruction received from known connected client
         {
             log.info("*** Authenticated Session Found ***");
-            /*
-             * Make a new instruction object based on input, and send it up
-             * to the game engine
-             */
+            System.out.println(message);
+            message = message.replace("&quot", "\"");
+            BaseInstruction b;
+            try
+            {
+                System.out.println("Successful decode!");
+                b = mapper.readValue(message, BaseInstruction.class);
+            }
+            catch (IOException ex)
+            {
+                System.out.println("Error with decode");
+                Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
         }
+        
         else if (unknown.contains(session)) //session alive, but unauthenticated at this point
         {
             log.info("*** Checking token... ");
             processToken(message, session);
         }
+        
         else // catch all for any other random states we may end up in
         {
             log.warning("Unknown session found. Closing connection...");
