@@ -1,5 +1,6 @@
 package au.edu.newcastle.SENG48002013;
 
+import au.edu.newcastle.seng48002013.instructions.phone.TouchScreen;
 import au.edu.newcastle.seng48002013.results.Result;
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,11 +28,25 @@ import org.codehaus.jackson.map.ObjectMapper;
  * This servlet contacts the connection broker, requesting a position in the
  * game.
  */
-@WebServlet(name = "connect", urlPatterns = {"/connect"})
+@WebServlet(name = "connect", urlPatterns =
+{
+    "/connect"
+})
 public class Client extends HttpServlet
 {
 
-    String connection = "http://localhost:8080/Input/connect";
+    String connection;
+    ArrayList<String> instructions;
+
+    public Client()
+    {
+        this.connection= "http://localhost:8080/Input/connect";
+        this.instructions = new ArrayList<>();
+        this.instructions.add("left");
+        this.instructions.add("right");
+        this.instructions.add("up");
+        this.instructions.add("down");
+    }
 
     /*
      * Calls the connection broker to try and reserve a place in the game.
@@ -44,6 +59,7 @@ public class Client extends HttpServlet
     {
         System.out.println("Inside doGet...");
         requestConnection(request); //from the Connection broker
+        setupInstructions(request);
         request.getRequestDispatcher("/WEB-INF/sampleClient.jsp").forward(request, response);
     }
 
@@ -72,12 +88,6 @@ public class Client extends HttpServlet
             String clientHello = IOUtils.toString(stream, "UTF-8"); //send this back to the server to prove ID
             Result result = mapper.readValue(clientHello, Result.class);
             r.setAttribute("result", result);
-            ArrayList<String> instructions = new ArrayList<>();
-            instructions.add("Up");
-            instructions.add("Down");
-            instructions.add("Left");
-            instructions.add("Right");
-            r.setAttribute("instructions", instructions);
         }
         
         catch (URISyntaxException | HttpException ex)
@@ -93,4 +103,25 @@ public class Client extends HttpServlet
             }
         }
     }
+
+    public void setupInstructions(HttpServletRequest r) throws IOException
+    {
+        ArrayList<String> key = new ArrayList<>();
+        ArrayList<String> value = new ArrayList<>();  
+        ObjectMapper mapper = new ObjectMapper();
+        String OS = r.getHeader("User-Agent");
+        String JSESSIONID = r.getSession().getId();
+        
+        for (String temp : instructions)
+        {
+            TouchScreen t = new TouchScreen(temp, OS, JSESSIONID);
+            key.add(temp);
+            value.add(mapper.writeValueAsString(t));
+            System.out.println(mapper.writeValueAsString(t));
+        }
+
+        r.setAttribute("key", key);
+        r.setAttribute("value", value);
+    }
+    
 }
