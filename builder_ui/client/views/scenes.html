@@ -1,0 +1,26 @@
+<section id="scenes">
+    <div class="container">
+        <div class="dragdrop">
+            <div class='list'>
+                <div class="object-container" ng-repeat="item in list">
+                    <div class="object thumbnail" data-index="{{$index}}"
+                         ng-style="{'background-image': 'url(\'' + item.image_thumbnail + '\')'}" draggable></div>
+                </div>
+            </div>
+
+            <div class="scene" droppable>
+
+            </div>
+
+            <div class="info">
+                <div class="item-detail" ng-repeat="item in scene_objects">
+                    <p>Name: {{item.name}}</p>
+
+                    <p>X Position: {{item.xpos}}</p>
+
+                    <p>Y Position: {{item.ypos}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
