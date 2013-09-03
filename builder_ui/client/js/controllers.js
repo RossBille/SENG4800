@@ -50,7 +50,7 @@ function ConfigController($scope, $http, $location, GameService) {
         $http({
             method: 'POST',
             url: '/GameConfigServlet',
-            data: $scope.game
+            data: $scope.game.setup
         });
 
         $location.path('levels');
