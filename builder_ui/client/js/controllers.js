@@ -47,10 +47,14 @@ function ConfigController($scope, $http, $location, GameService) {
         console.log('game after form submit:');
         console.log($scope.game);
 
+        var form_data = {
+            setup: $scope.game.setup
+        }
+
         $http({
             method: 'POST',
             url: '/GameConfigServlet',
-            data: $scope.game.setup
+            data: form_data
         });
 
         $location.path('levels');
