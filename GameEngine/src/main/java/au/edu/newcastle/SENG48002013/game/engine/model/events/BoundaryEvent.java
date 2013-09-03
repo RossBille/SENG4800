@@ -83,7 +83,7 @@ public class BoundaryEvent extends BaseEvent {
 			//Intersect Top
 			if(edge == Edge.TOP || edge == Edge.ALL)
 			{
-				if(gameObject.getPos().y < 0)
+				if(gameObject.getNextPos().y < 0)
 				{
 					intersects = true;
 					if(!allowOverlap)
@@ -99,12 +99,12 @@ public class BoundaryEvent extends BaseEvent {
 			//Intersect Bottom
 			if(edge == Edge.BOTTOM || edge == Edge.ALL)
 			{
-				if(gameObject.getPos().y + objectSize.y > levelDimensions.y)
+				if(gameObject.getNextPos().y + objectSize.y >= levelDimensions.y)
 				{
 					intersects = true;
 					if(!allowOverlap)
 					{
-						gameObject.getNextPos().y = levelDimensions.y - objectSize.y;
+						gameObject.getNextPos().y = levelDimensions.y - 1 - objectSize.y;
 						if(gradient != 0)
 						{
 							gameObject.getNextPos().x = ((gameObject.getNextPos().y - gameObject.getPos().y)/gradient) + gameObject.getPos().x;
@@ -115,7 +115,7 @@ public class BoundaryEvent extends BaseEvent {
 			//Intersect Left
 			if(edge == Edge.LEFT || edge == Edge.ALL)
 			{
-				if(gameObject.getPos().x < 0)
+				if(gameObject.getNextPos().x < 0)
 				{
 					intersects = true;
 					if(!allowOverlap)
@@ -131,12 +131,12 @@ public class BoundaryEvent extends BaseEvent {
 			//Intersect Right
 			if(edge == Edge.RIGHT || edge == Edge.ALL)
 			{
-				if(gameObject.getPos().x + objectSize.x > levelDimensions.x)
+				if(gameObject.getNextPos().x + objectSize.x >= levelDimensions.x)
 				{
 					intersects = true;
 					if(!allowOverlap)
 					{
-						gameObject.getNextPos().x = levelDimensions.x - objectSize.x;
+						gameObject.getNextPos().x = levelDimensions.x - 1 - objectSize.x;
 						if(!undefined)
 						{
 							gameObject.getNextPos().y = gradient*(gameObject.getNextPos().x - gameObject.getPos().x) + gameObject.getPos().y;
@@ -152,7 +152,7 @@ public class BoundaryEvent extends BaseEvent {
 			//Intersect Top
 			if(edge == Edge.TOP || edge == Edge.ALL)
 			{
-				if(gameObject.getPos().y - radius < 0)
+				if(gameObject.getNextPos().y - radius < 0)
 				{
 					intersects = true;
 					if(!allowOverlap)
@@ -168,12 +168,12 @@ public class BoundaryEvent extends BaseEvent {
 			//Intersect Bottom
 			if(edge == Edge.BOTTOM || edge == Edge.ALL)
 			{
-				if(gameObject.getPos().y + radius > levelDimensions.y)
+				if(gameObject.getNextPos().y + radius >= levelDimensions.y)
 				{
 					intersects = true;
 					if(!allowOverlap)
 					{
-						gameObject.getNextPos().y = levelDimensions.y - radius;
+						gameObject.getNextPos().y = levelDimensions.y - 1 - radius;
 						if(gradient != 0)
 						{
 							gameObject.getNextPos().x = ((gameObject.getNextPos().y - gameObject.getPos().y)/gradient) + gameObject.getPos().x; 
@@ -184,7 +184,7 @@ public class BoundaryEvent extends BaseEvent {
 			//Intersect Left
 			if(edge == Edge.LEFT || edge == Edge.ALL)
 			{
-				if(gameObject.getPos().x - radius < 0)
+				if(gameObject.getNextPos().x - radius < 0)
 				{
 					intersects = true;
 					if(!allowOverlap)
@@ -200,12 +200,12 @@ public class BoundaryEvent extends BaseEvent {
 			//Intersect Right
 			if(edge == Edge.RIGHT || edge == Edge.ALL)
 			{
-				if(gameObject.getPos().x + radius > levelDimensions.x)
+				if(gameObject.getNextPos().x + radius >= levelDimensions.x)
 				{
 					intersects = true;
 					if(!allowOverlap)
 					{
-						gameObject.getNextPos().x = levelDimensions.x - radius;
+						gameObject.getNextPos().x = levelDimensions.x - 1 - radius;
 						if(!undefined)
 						{
 							gameObject.getNextPos().y = gradient*(gameObject.getNextPos().x - gameObject.getPos().x) + gameObject.getPos().y;

@@ -34,6 +34,12 @@
             <type>jar</type>
         </dependency>
         <dependency>
+            <groupId>au.edu.newcastle.SENG20502013</groupId>
+            <artifactId>Output</artifactId>
+            <version>1.0</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>

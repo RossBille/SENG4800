@@ -23,7 +23,7 @@ public class TestOutputWindow extends JFrame
 
 	private void InitializeComponents(Dimension size)
 	{
-		//setUndecorated(true);
+		setUndecorated(true);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 		
 		Container content = getContentPane(); 
@@ -45,12 +45,17 @@ public class TestOutputWindow extends JFrame
 	        brush.setColor(Color.BLACK);
 	        brush.setStroke(new BasicStroke(1));
 	        Iterator<Vector2d> objectIter = objects.values().iterator();
+	        Vector2d pos = null;
+	        int i = 0;
 	        while(objectIter.hasNext())
 	        {
-	        	Vector2d pos = objectIter.next();
-	        	//brush.drawRect((int)pos.x, (int)pos.y, 10, 10);
-	        	brush.drawOval((int)pos.x - 20, (int)pos.y - 20, 40, 40);
+	        	i++;
+	        	pos = objectIter.next();
+	        	if (i == 3) break;
+	        	brush.drawRect((int)pos.x, (int)pos.y, 40, 40);
+	        	//brush.drawOval((int)pos.x - 20, (int)pos.y - 20, 40, 40);
 	        }
+	        brush.drawOval((int)pos.x - 20, (int)pos.y - 20, 40, 40);
 	        
 		}
 	}

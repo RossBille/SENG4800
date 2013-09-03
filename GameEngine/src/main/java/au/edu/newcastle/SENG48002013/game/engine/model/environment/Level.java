@@ -43,9 +43,19 @@ public class Level {
 	{
 		return gameObjects.get(index);
 	}
-	public IGameObject[] getGameObjects()
+	public IGameObject[] getOutputObjects()
 	{
-		return gameObjects.toArray(new IGameObject[0]);
+		List<GameObject> outputObjects = new LinkedList<GameObject>();
+		Iterator<GameObject> objectIter = gameObjects.iterator();
+		while(objectIter.hasNext())
+		{
+			GameObject currentObject = objectIter.next();
+			if(currentObject.isActive())
+			{
+				outputObjects.add(currentObject);
+			}
+		}
+		return outputObjects.toArray(new IGameObject[0]);
 	}
 	public void setGameObject(int index, GameObject gameObject)
 	{
@@ -80,7 +90,11 @@ public class Level {
 		Iterator<GameObject> objectIter = gameObjects.iterator();
 		while(objectIter.hasNext())
 		{
-			objectIter.next().stepNext(dt);
+			GameObject currentObject = objectIter.next();
+			if(currentObject.isActive())
+			{
+				currentObject.stepNext(dt);
+			}
 		}
 	}
 	private int stepEvents(double dt)
@@ -102,7 +116,11 @@ public class Level {
 		Iterator<GameObject> objectIter = gameObjects.iterator();
 		while(objectIter.hasNext())
 		{
-			objectIter.next().commit();
+			GameObject currentObject = objectIter.next();
+			if(currentObject.isActive())
+			{
+				currentObject.commit();
+			}
 		}
 	}
 }

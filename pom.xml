@@ -7,6 +7,8 @@
 	<packaging>pom</packaging>
 	<name>SENG4800</name>
 	<modules>
+		<module>Util</module>
+		<module>Output</module>
 		<module>Instructions</module>
 		<module>Messages</module>
 		<module>Results</module>
@@ -14,6 +16,5 @@
 		<module>GameEngine</module>
 		<module>Input</module>
 		<module>SampleClient/SampleClient_JS</module>
-	 <module>Util</module>
 	</modules>
 </project>
