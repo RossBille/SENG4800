@@ -1,2 +1,5 @@
 target/
 nb-configuration.xml
+
+builder_ui/server/node_modules
+builder_ui/server/node_modules/*
