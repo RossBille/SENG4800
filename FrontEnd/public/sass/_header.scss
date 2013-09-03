@@ -1,0 +1,43 @@
+/* HEADER */
+header {
+    height: 185px;
+    width: 100%;
+    background: $base-colour;
+    margin-bottom: $section-padding;
+
+    .logo {
+        display:inline;
+        float:left;
+        margin-left:10px;
+        background-image: url('../images/logo-uon.png');
+        height:185px;
+        width:185px; 
+    }
+    .content {
+        @include adjust-font-size-to(20px);
+        margin-right:10px;
+        display:inline;
+        float:right;
+    }
+}
+
+/* LOGO */
+#logo {
+    @include column;
+
+    h1 {
+        margin: 0;
+        padding: 0;
+
+        a {
+            @extend %hide-text;
+
+            background: image-url("logo.png") no-repeat center;
+            width: image-width("logo.png");
+            height: image-height("logo.png");
+
+            display: block;
+            border: none;
+        }
+    }
+}
