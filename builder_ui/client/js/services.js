@@ -21,3 +21,12 @@ App.factory('ListService', function ($timeout) {
 
     return service;
 });
+
+App.factory('GameService', function () {
+    return {
+        game: {
+            setup: {},
+            levels: []
+        }
+    }
+});
