@@ -1,37 +1,37 @@
 [
     {
         "id" : 0,
-        "sprite": "img/golfball.png",
+        "sprite": "images/golfball.png",
         "pos": {"x" : 0, "y" : 0}
     },
     {
         "id" : 1,
-        "sprite": "img/golfball.png",
+        "sprite": "images/golfball.png",
         "pos": {"x" : 0, "y" : 100}
     },
     {
         "id" : 2,
-        "sprite": "img/golfball.png",
+        "sprite": "images/golfball.png",
         "pos": {"x" : 0, "y" : 200}
     },
     {
         "id" : 3,
-        "sprite": "img/golfball.png",
+        "sprite": "images/golfball.png",
         "pos": {"x" : 0, "y" : 300}
     },    
     {
         "id" : 4,
-        "sprite": "img/golfball.png",
+        "sprite": "images/golfball.png",
         "pos": {"x" : 0, "y" : 400}
     },
     {
         "id" : 5,
-        "sprite": "img/golfball.png",
+        "sprite": "images/golfball.png",
         "pos": {"x" : 0, "y" : 500}
     },    
     {
         "id" : 6,
-        "sprite": "img/golfball.png",
+        "sprite": "images/golfball.png",
         "pos": {"x" : 0, "y" : 600}
     }
 ]

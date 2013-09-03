@@ -1,9 +1,9 @@
-.container {
-    @include container;
-}
-
-#game {
-    margin: 50px 0px;
-    border-style:solid;
-    border-width:2px;
+.game {
+	margin-bottom: $section-padding;
+	.container {
+		canvas {
+			border: 2px solid black;
+			@include columns(16);
+		}	
+	}
 }
