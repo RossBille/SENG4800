@@ -1,9 +1,8 @@
 .game {
-	margin-bottom: $section-padding;
 	.container {
 		canvas {
 			border: 2px solid black;
-			@include columns(16);
+			margin-bottom:$section-padding;
 		}	
 	}
 }

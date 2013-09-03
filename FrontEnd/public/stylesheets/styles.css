@@ -3248,30 +3248,7 @@ header .content {
   line-height: 80px;
 }
 
-.game {
-  margin-bottom: 40px;
-}
 .game .container canvas {
   border: 2px solid black;
-  float: left;
-  display: inline;
-  margin-left: 10px;
-  margin-right: 10px;
-  /*@media only screen and (max-width: $tablet-width - 1) {
-      margin-left: 0;
-      margin-right: 0;
-      margin-bottom: $margin;
-  }*/
-  width: 1120px;
-    /*@media only screen and (min-width: $tablet-width) and (max-width: $base-width - 1) {
-        width: skeleton-column-width($num, $tablet-width);
-    }
-
-    @media only screen and (max-width: $tablet-width - 1) {
-        width: $mobile-portrait-width;
-    }
-
-    @media only screen and (min-width: $mobile-landscape-width) and (max-width: $tablet-width - 1) {
-        width: $mobile-landscape-width;
-    }*/
+  margin-bottom: 40px;
 }
