@@ -13,18 +13,59 @@
         @include columns(16);
 
         margin-bottom: $section-padding;
-    }
 
-    form {
-        label.input-label {
+        p {
+            width: 50%;
+            float: left;
+
+            &.full {
+                width: 100%;
+                padding: 0 !important;
+                text-align: center;
+            }
+
+            &:nth-of-type(odd) {
+                padding-right: 10px;
+            }
+
+            &:nth-of-type(even) {
+                padding-left: 10px;
+            }
+        }
+
+        .input-container {
+            width: 50%;
+            float: left;
+            margin-bottom: 24px;
+
+            &.full {
+                width: 100%;
+                padding: 0 !important;
+                text-align: center;
+            }
+
+            &:nth-of-type(odd) {
+                padding-right: 10px;
+            }
+
+            &:nth-of-type(even) {
+                padding-left: 10px;
+            }
+        }
+
+        .input {
+            overflow: hidden;
+        }
+
+        .input-label {
             @include adjust-font-size-to(14px);
             @extend %normal-text-bold;
 
-            width: 30%;
+            //width: 30%;
             display: inline-block;
             float: left;
             margin: 0;
-            padding: 0 0 0 15px;
+            padding: 0 15px;
             height: 50px;
             line-height: 48px;
             text-transform: uppercase;
@@ -37,7 +78,7 @@
 
         input {
             height: 50px;
-            width: 70%;
+            width: 100%;
             padding: 0 15px;
         }
 
@@ -81,17 +122,5 @@
         button[type="submit"] {
             @extend %button;
         }
-    }
-}
-
-.controls  {
-    @include columns(16);
-
-    text-align: center;
-
-    a {
-        @extend %button;
-
-        margin: 0 auto;
     }
 }

@@ -9,3 +9,17 @@ function SceneController($scope, ListService) {
 
     $scope.scene_objects = [];
 }
+
+function ConfigController($scope, $http) {
+    $scope.game_config = {};
+
+    $scope.sendConfig = function () {
+        console.log($scope.game_config);
+
+        $http({
+            method: 'POST',
+            url: '/GameConfigServlet',
+            data: $scope.game_config
+        })
+    }
+}
