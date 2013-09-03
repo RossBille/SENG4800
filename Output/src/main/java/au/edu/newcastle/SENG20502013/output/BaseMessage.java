@@ -1,5 +1,7 @@
 package au.edu.newcastle.SENG20502013.output;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 /**
  *
  * @author rossbille
@@ -7,6 +9,7 @@ package au.edu.newcastle.SENG20502013.output;
 public abstract class BaseMessage 
 {
 	protected long timeStamp;
+	@JsonIgnore
 	public long getTimeStamp()
 	{
 			return timeStamp;

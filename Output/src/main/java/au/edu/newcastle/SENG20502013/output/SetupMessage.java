@@ -8,11 +8,13 @@ import javax.vecmath.Vector2d;
  */
 public class SetupMessage extends BaseMessage
 {
+
 		private long id;
 		private Vector2d pos;
-		private String[] spriteLocations;
-		private long[] spriteId;
-		private int rotation;
+		//private String[] spriteLocations;
+		//private long[] spriteId;
+		//private int rotation;
+		private String sprite;
 
 		public SetupMessage()
 		{
@@ -39,34 +41,13 @@ public class SetupMessage extends BaseMessage
 				this.pos = pos;
 		}
 
-		public String[] getSpriteLocations()
+		public String getSprite()
 		{
-				return spriteLocations;
+				return sprite;
 		}
 
-		public void setSpriteLocations(String[] spriteLocations)
+		public void setSprite(String sprite)
 		{
-				this.spriteLocations = spriteLocations;
+				this.sprite = sprite;
 		}
-
-		public long[] getSpriteId()
-		{
-				return spriteId;
-		}
-
-		public void setSpriteId(long[] spriteId)
-		{
-				this.spriteId = spriteId;
-		}
-
-		public int getRotation()
-		{
-				return rotation;
-		}
-
-		public void setRotation(int rotation)
-		{
-				this.rotation = rotation;
-		}
-		
 }
