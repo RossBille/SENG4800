@@ -9,7 +9,7 @@ var App = angular.module('App', []).
     config(['$routeProvider', function($routeProvider) {
         $routeProvider.
             when('/config', {templateUrl: 'views/config.html', controller: ConfigController}).
-            when('/scenes', {templateUrl: 'views/scenes.html', controller: SceneController}).
+            when('/levels', {templateUrl: 'views/levels.html', controller: LevelsController}).
             otherwise({redirectTo: '/config'});
     }]);
 

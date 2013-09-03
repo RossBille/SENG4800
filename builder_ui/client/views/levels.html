@@ -4,7 +4,7 @@
             <div class='list'>
                 <div class="object-container" ng-repeat="item in list">
                     <div class="object thumbnail" data-index="{{$index}}"
-                         ng-style="{'background-image': 'url(\'' + item.image_thumbnail + '\')'}" draggable></div>
+                         ng-style="{'background-image': 'url(\'' + item.image_thumbnail + '\')'}" draggable ng-click="objectClicked()"></div>
                 </div>
             </div>
 
