@@ -33,13 +33,17 @@ function LevelsController($scope, $http, ListService, GameService) {
         level.objects.object.push($scope.scene_objects);
         $scope.game.levels.push(level);
 
-        var levels = {};
-        levels.levels = $scope.game.levels;
-        var form_data_xml = json2xml(levels);
+        var game_levels = {
+            levels: {
+                level: []
+            }
+        };
+        game_levels.levels.level = $scope.game.levels;
+        var form_data_xml = json2xml(game_levels);
 
         $http({
             method: 'POST',
-            url: '/GameConfigServlet',
+            url: '/LevelsServlet',
             data: form_data_xml
         });
     };
