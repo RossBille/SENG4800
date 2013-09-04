@@ -88,16 +88,18 @@ App.directive('droppable', function ($compile) {
                         //push new object
                         var new_scene_object = jQuery.extend(true, {}, scope.list[draggable_original_index]);
 
-                        var offset = $new_object_container.position();
+                        /*var offset = $new_object_container.position();
                         console.log(offset);
                         var offset_left = Math.round(offset.left);
                         var offset_top = Math.round(offset.top);
 
-                        console.log('left offset of the scene object: ' + left_offset);
-                        console.log('top offset of the scene object: ' + top_offset);
+                        console.log('left offset of the scene object: ' + offset_left);
+                        console.log('top offset of the scene object: ' + offset_top);*/
 
-                        new_scene_object.xpos = offset_left;
-                        new_scene_object.ypos = offset_top;
+                        new_scene_object.xpos = Math.round(left_offset);
+                        new_scene_object.ypos = Math.round(top_offset);
+                        new_scene_object.height = scope.list[draggable_original_index].image_height;
+                        new_scene_object.width = scope.list[draggable_original_index].image_width;
                         new_scene_object.id = draggable_index;
 
                         console.log('new scene object:');
