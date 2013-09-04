@@ -58,7 +58,7 @@ App.directive('droppable', function ($compile) {
                         //$drop_target.append($draggable);
 
                         //getting current div new absolute position
-                        var new_position = $new_object.offset();
+                        var new_position = element.offset();
                         console.log('new position:');
                         console.log(new_position);
 
