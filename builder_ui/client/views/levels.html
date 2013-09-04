@@ -3,8 +3,7 @@
         <div class="dragdrop">
             <div class='list'>
                 <div class="object-container" ng-repeat="item in list">
-                    <div class="object thumbnail" data-index="{{$index}}"
-                         ng-style="{'background-image': 'url(\'' + item.image_thumbnail + '\')'}" draggable ng-click="objectClicked()"></div>
+                    <img src="{{item.image_path}}" class="object" data-index="{{$index}}" draggable ng-click="objectClicked()"/>
                 </div>
             </div>
 

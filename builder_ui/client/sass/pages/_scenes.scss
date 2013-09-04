@@ -30,27 +30,24 @@
     display: inline-block;
 }
 
+.scene-object {
+    cursor: pointer;
+    vertical-align: bottom;
+}
+
 .object-container {
     width: 100%;
     text-align: center;
-    padding: 10px;
+    padding: 10px 30px;
 }
 
 .object {
-    display: inline-block;
-    margin: 0;
-    text-align: center;
-    cursor: pointer;
-    z-index: 2;
     cursor: move;
-    background-position: center center;
-    background-repeat: no-repeat;
+    vertical-align: bottom;
+    max-width: 100%;
+    height: auto;
     position: relative;
-
-    &.thumbnail {
-        height: 100px;
-        width: 100px;
-    }
+    z-index: 2;
 }
 
 .item-detail {

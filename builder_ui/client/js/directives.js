@@ -38,12 +38,12 @@ App.directive('droppable', function ($compile) {
                         //getting current div old absolute position
                         var old_position = $draggable_original.offset();
 
-                        var new_object = '<div class="scene-object-container"><img src="' + scope.list[draggable_original_index].image_path + '" data-index="' + scene_index + '" ng-click="clicked()" class="object"></div>';
+                        var new_object = '<div class="scene-object-container"><img src="' + scope.list[draggable_original_index].image_path + '" data-index="' + scene_index + '" ng-click="clicked()" class="scene-object"></div>';
                         console.log(new_object);
 
                         $drop_target.append($compile(new_object)(scope));
 
-                        var $new_object = $('img[data-index="' + scene_index + '"]');
+                        var $new_object = $('.scene img[data-index="' + scene_index + '"]');
                         var $new_object_container = $new_object.parent();
 
                         scene_index++;
@@ -129,7 +129,7 @@ App.directive('droppable', function ($compile) {
                         });
 
                         $new_object.resizable({
-                            stop: function (event, ui) {
+                            stop: function () {
                                 console.log('scene object resized');
                                 var width = $(this).width();
                                 var height = $(this).height();
