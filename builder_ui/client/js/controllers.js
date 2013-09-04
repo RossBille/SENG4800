@@ -2,33 +2,53 @@
 
 /* Controllers */
 
-function LevelsController($scope, ListService, GameService) {
+function LevelsController($scope, $http, ListService, GameService) {
     $scope.game = GameService.game;
 
     $scope.scene_objects = [];
 
     $scope.clicked = function () {
         console.log('scene item clicked');
-    }
+    };
 
     $scope.objectClicked = function () {
         console.log('object clicked');
-    }
-
-    var level = {
-        id: 0,
-        name: "Level One",
-        background_id: 1,
-        objectList: {objects: []},
-        events: []
     };
+
+    $scope.saveLevel = function () {
+        console.log('now saving level');
+
+        var level = {
+            level_id: 0,
+            level_name: "Level One",
+            background_id: 0,
+            objects: {
+                object: []
+            },
+            events: {
+                event: []
+            }
+        };
+
+        level.objects.object.push($scope.scene_objects);
+        $scope.game.levels.push(level);
+
+        var levels = {};
+        levels.levels = $scope.game.levels;
+        var form_data_xml = json2xml(levels);
+
+        $http({
+            method: 'POST',
+            url: '/GameConfigServlet',
+            data: form_data_xml
+        });
+    };
+
+
 
     ListService.getObjects(function (objects) {
         $scope.list = objects;
-        level.objectList.objects = objects;
     });
-
-    $scope.game.levels.push(level);
 
     console.log('game at end of levels controller:');
     console.log($scope.game);
@@ -76,7 +96,6 @@ function ConfigController($scope, $http, $location, GameService, ListService) {
         
         var setup = {};
         setup.setup = $scope.game.setup;
-
         var form_data_xml = json2xml(setup);
 
         /*var form_data_json = {

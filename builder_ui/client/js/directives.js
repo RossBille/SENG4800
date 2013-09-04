@@ -38,7 +38,7 @@ App.directive('droppable', function ($compile) {
                         //getting current div old absolute position
                         var old_position = $draggable_original.offset();
 
-                        var new_object = '<div class="scene-object-container"><img src="' + scope.list[draggable_original_index].image_path + '" data-index="' + scene_index + '" ng-click="clicked()" class="scene-object"></div>';
+                        var new_object = '<div class="scene-object-container"><img src="' + scope.list[draggable_original_index].image + '" data-index="' + scene_index + '" ng-click="clicked()" class="scene-object"></div>';
                         console.log(new_object);
 
                         $drop_target.append($compile(new_object)(scope));
@@ -86,21 +86,54 @@ App.directive('droppable', function ($compile) {
                         }, 0);
 
                         //push new object
-                        var new_scene_object = jQuery.extend(true, {}, scope.list[draggable_original_index]);
+                        //var new_scene_object = jQuery.extend(true, {}, scope.list[draggable_original_index]);
+                        var new_scene_object = {
+                            object_id: draggable_index,
+                            object_name: scope.list[draggable_original_index].sprite_name,
+                            sprite_id: scope.list[draggable_original_index].sprite_id,
+                            object_shape: {
+                                circle: {
+                                    radius: scope.list[draggable_original_index].height / 2
+                                }
+                            },
+                            object_visible: "yes",
+                            start_pos: {
+                                x: Math.round(left_offset),
+                                y: Math.round(top_offset)
+                            },
+                            start_vel: {
+                                x: 1,
+                                y: 1
+                            },
+                            start_acc: {
+                                x: 1,
+                                y: 1
+                            }
+                        };
 
                         /*var offset = $new_object_container.position();
-                        console.log(offset);
-                        var offset_left = Math.round(offset.left);
-                        var offset_top = Math.round(offset.top);
+                         console.log(offset);
+                         var offset_left = Math.round(offset.left);
+                         var offset_top = Math.round(offset.top);
 
-                        console.log('left offset of the scene object: ' + offset_left);
-                        console.log('top offset of the scene object: ' + offset_top);*/
+                         console.log('left offset of the scene object: ' + offset_left);
+                         console.log('top offset of the scene object: ' + offset_top);*/
+
+                        /*new_scene_object.object_id = draggable_index;
+                        new_scene_object.object_name = scope.list[draggable_original_index].sprite_name;
+                        new_scene_object.sprite_id = scope.list[draggable_original_index].sprite_id;
+                        new_scene_object.object_shape = {
+                            circle: {
+                                radius: scope.list[draggable_original_index].height
+                            }
+                        };
+                        new_scene_object.object_visible = "yes";
+
 
                         new_scene_object.xpos = Math.round(left_offset);
                         new_scene_object.ypos = Math.round(top_offset);
                         new_scene_object.height = scope.list[draggable_original_index].image_height;
-                        new_scene_object.width = scope.list[draggable_original_index].image_width;
-                        new_scene_object.id = draggable_index;
+                        new_scene_object.width = scope.list[draggable_original_index].image_width; */
 
                         console.log('new scene object:');
                         console.log(new_scene_object);
@@ -120,8 +153,8 @@ App.directive('droppable', function ($compile) {
                                 var offset_top = Math.round(offset.top);
                                 var draggable_index = $(this).find('img').data('index');
 
-                                scope.scene_objects[draggable_index].xpos = offset_left;
-                                scope.scene_objects[draggable_index].ypos = offset_top;
+                                scope.scene_objects[draggable_index].start_pos.x = offset_left;
+                                scope.scene_objects[draggable_index].start_pos.y = offset_top;
 
                                 scope.$apply();
                             },
@@ -135,8 +168,7 @@ App.directive('droppable', function ($compile) {
                                 var height = $(this).height();
                                 var draggable_index = $(this).find('img').data('index');
 
-                                scope.scene_objects[draggable_index].width = width;
-                                scope.scene_objects[draggable_index].height = height;
+                                scope.scene_objects[draggable_index].object_shape.circle.radius = width;
 
                                 scope.$apply();
                             },

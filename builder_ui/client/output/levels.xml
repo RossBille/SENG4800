@@ -14,8 +14,8 @@
             </object_shape>
             <object_visible>yes</object_visible>
             <start_pos>
-                <x>1</x>
-                <y>1</y>
+                <x>240</x>
+                <y>57</y>
             </start_pos>
             <start_vel>
                 <x>1</x>
@@ -25,20 +25,21 @@
                 <x>1</x>
                 <y>1</y>
             </start_acc>
+            <$$hashKey>00A</$$hashKey>
         </object>
         <object>
             <object_id>1</object_id>
-            <object_name>Soccer Ball</object_name>
-            <sprite_id>0</sprite_id>
+            <object_name>Golf Ball</object_name>
+            <sprite_id>1</sprite_id>
             <object_shape>
                 <circle>
-                    <radius>100</radius>
+                    <radius>75</radius>
                 </circle>
             </object_shape>
             <object_visible>yes</object_visible>
             <start_pos>
-                <x>292</x>
-                <y>120</y>
+                <x>-105</x>
+                <y>109</y>
             </start_pos>
             <start_vel>
                 <x>1</x>
@@ -48,6 +49,7 @@
                 <x>1</x>
                 <y>1</y>
             </start_acc>
+            <$$hashKey>00C</$$hashKey>
         </object>
     </objects>
     <events></events>

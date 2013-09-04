@@ -61,3 +61,15 @@
         margin: 0;
     }
 }
+
+.level-controls {
+    @include columns(16);
+
+    background: $lighter-grey;
+    margin-bottom: $section-padding / 3;
+    padding: 20px;
+
+    button {
+        @extend %button;
+    }
+}

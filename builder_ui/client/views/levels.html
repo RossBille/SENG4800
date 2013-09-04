@@ -1,27 +1,28 @@
 <section id="scenes">
     <div class="container">
+
+        <div class="level-controls">
+            <button ng-click="saveLevel()">Save Level</button>
+        </div>
+
         <div class="dragdrop">
             <div class='list'>
                 <div class="object-container" ng-repeat="item in list">
-                    <img src="{{item.image_path}}" class="object" data-index="{{$index}}" draggable ng-click="objectClicked()"/>
+                    <img src="{{item.image}}" class="object" data-index="{{$index}}" draggable ng-click="objectClicked()"/>
                 </div>
             </div>
 
-            <div class="scene" droppable>
-
-            </div>
+            <div class="scene" droppable></div>
 
             <div class="info">
                 <div class="item-detail" ng-repeat="item in scene_objects">
-                    <p>Name: {{item.name}}</p>
+                    <p>Name: {{item.object_name}}</p>
 
-                    <p>X Position: {{item.xpos}}</p>
+                    <p>X Position: {{item.start_pos.x}}</p>
 
-                    <p>Y Position: {{item.ypos}}</p>
+                    <p>Y Position: {{item.start_pos.y}}</p>
 
-                    <p>Width: {{item.width}}</p>
-
-                    <p>Height: {{item.height}}</p>
+                    <p>Radius: {{item.object_shape.circle.radius}}</p>
                 </div>
             </div>
         </div>
