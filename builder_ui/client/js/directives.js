@@ -34,39 +34,30 @@ App.directive('droppable', function ($compile) {
                     var draggable_original_index = $draggable_original.data('index');
                     var draggable_index = scene_index;
 
-                    //console.log('draggable original index: ' + draggable_original_index)
-                    //console.log('scene index: ' + scene_index)
-
                     if ($draggable_parent_parent.hasClass('list')) {
                         //getting current div old absolute position
                         var old_position = $draggable_original.offset();
 
-                        $draggable.attr('data-index', scene_index);
-                        $draggable.attr('ng-click', 'clicked()');
+                        var new_object = '<div class="scene-object-container"><img src="' + scope.list[draggable_original_index].image_path + '" data-index="' + scene_index + '" ng-click="clicked()" class="object"></div>';
+                        console.log(new_object);
+
+                        $drop_target.append($compile(new_object)(scope));
+
+                        var $new_object = $('img[data-index="' + scene_index + '"]');
+                        var $new_object_container = $new_object.parent();
 
                         scene_index++;
 
-                        //$("#dynamicContent").html("<button ng-click='count = count + 1' ng-init='count=0'>Increment</button><span>count: {{count}} </span>");
+                        console.log($new_object);
+                        console.log($new_object_container);
 
-
-                        //console.log(scope.list[draggable_original_index].image_path);
-                        //$draggable.append('<img src="' + scope.list[draggable_original_index].image_path + '"/>');
-
-                        //$compile($draggable)(scope);
-                        //scope.$apply();
-
-                        //$drop_target.append($compile($draggable)(scope));
+                        console.log('new jQuery object has been created');
 
                         //assigning div to new parent
-                        $drop_target.append($draggable);
-
-
-
-                        //remove unneeded object container
-                        //$draggable_parent.remove();
+                        //$drop_target.append($draggable);
 
                         //getting current div new absolute position
-                        var new_position = $draggable.offset();
+                        var new_position = $new_object_container.offset();
 
                         //calculate correct position offset
                         var left_offset = null;
@@ -84,41 +75,48 @@ App.directive('droppable', function ($compile) {
                             top_offset = -(new_position.top - old_position.top);
                         }
 
+                        console.log('left offset: ' + left_offset);
+                        console.log('top offset: ' + top_offset);
+
                         //instantly offsetting the div to it current position
-                        $draggable.animate({
+                        $new_object_container.animate({
                             left: '+=' + left_offset,
                             top: '+=' + top_offset
 
                         }, 0);
 
                         //push new object
-                        var new_object = jQuery.extend(true, {}, scope.list[draggable_original_index]);
-                        scope.scene_objects.push(new_object);
-                        console.log(scope.scene_objects);
+                        var new_scene_object = jQuery.extend(true, {}, scope.list[draggable_original_index]);
 
-                        var offset = $draggable.position();
+                        var offset = $new_object_container.position();
+                        console.log(offset);
                         var offset_left = Math.round(offset.left);
                         var offset_top = Math.round(offset.top);
 
-                        scope.scene_objects[draggable_index].xpos = offset_left;
-                        scope.scene_objects[draggable_index].ypos = offset_top;
-                        scope.scene_objects[draggable_index].id = draggable_index;
+                        console.log('left offset of the scene object: ' + left_offset);
+                        console.log('top offset of the scene object: ' + top_offset);
 
-                        $draggable.css('height', scope.scene_objects[draggable_index].image_height);
-                        $draggable.css('width', scope.scene_objects[draggable_index].image_width);
-                        //console.log(scope.scene_objects[draggable_index].image_path);
-                        $draggable.css('background-image', 'url("' + scope.scene_objects[draggable_index].image_path + '")');
+                        new_scene_object.xpos = offset_left;
+                        new_scene_object.ypos = offset_top;
+                        new_scene_object.id = draggable_index;
 
+                        console.log('new scene object:');
+                        console.log(new_scene_object);
 
-                        $draggable.draggable({
+                        //console.log('saved scene object xpos: ' + scope.scene_objects[draggable_index].xpos);
+                        //console.log('saved scene object ypos: ' + scope.scene_objects[draggable_index].ypos);
+
+                        scope.scene_objects.push(new_scene_object);
+                        console.log('scene objects after push:');
+                        console.log(scope.scene_objects);
+
+                        $new_object_container.draggable({
                             stop: function () {
+                                console.log('scene object dragged');
                                 var offset = $(this).position();
                                 var offset_left = Math.round(offset.left);
                                 var offset_top = Math.round(offset.top);
-
-                                var draggable_index = $(this).data('index');
-
-                                //console.log('draggable index inside draggable: ' + draggable_index);
+                                var draggable_index = $(this).find('img').data('index');
 
                                 scope.scene_objects[draggable_index].xpos = offset_left;
                                 scope.scene_objects[draggable_index].ypos = offset_top;
@@ -128,23 +126,25 @@ App.directive('droppable', function ($compile) {
                             containment: ".scene"
                         });
 
+                        $new_object.resizable({
+                            stop: function (event, ui) {
+                                console.log('scene object resized');
+                                var width = $(this).width();
+                                var height = $(this).height();
+                                var draggable_index = $(this).find('img').data('index');
+
+                                scope.scene_objects[draggable_index].width = width;
+                                scope.scene_objects[draggable_index].height = height;
+
+                                scope.$apply();
+                            },
+                            containment: '.scene'
+                        });
+
                         scope.$apply();
                     }
 
-                    /*$draggable.resizable({
-                     stop: function (event, ui) {
-                     var width = $draggable.width();
-                     var height = $draggable.height();
-                     var draggable_index = $draggable.data('index');
-
-                     scope.list[draggable_index].width = width;
-                     scope.list[draggable_index].height = height;
-
-                     scope.$apply();
-                     },
-                     containment: '.scene'
-                     });*/
-
+                    console.log('scene objects final:');
                     console.log(scope.scene_objects);
                 }
             });
