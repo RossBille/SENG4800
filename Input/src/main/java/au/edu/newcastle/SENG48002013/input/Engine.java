@@ -1,5 +1,6 @@
 package au.edu.newcastle.SENG48002013.input;
 
+import au.edu.newcastle.SENG48002013.input.websocket.WebSocketClient;
 import au.edu.newcastle.seng48002013.instructions.BaseInstruction;
 import java.io.IOException;
 import java.util.Collections;
@@ -30,10 +31,11 @@ public class Engine implements ServletContextListener
     private HttpSession httpSession;
     private final int MAX_CLIENTS;
     private static SecurityManager manager;
+    private static WebSocketClient engineChannel;
 
     public Engine()
     {
-        this.MAX_CLIENTS = 5;
+       this.MAX_CLIENTS = 5;
         log.info("*** Engine Instantiated ***");
     }
 
@@ -58,6 +60,7 @@ public class Engine implements ServletContextListener
             {
                 BaseInstruction b = mapper.readValue(message, BaseInstruction.class);
                 System.out.println("Vector from Instruction: " + b.getDirection());
+                engineChannel.getSession().getBasicRemote().sendText("Hello from the Input engine");
             }
             catch (IOException e)
             {
@@ -141,6 +144,8 @@ public class Engine implements ServletContextListener
     {
         Engine.manager = new SecurityManager(10000, "ws://localhost:8080/Input/endpoint", this);
         sce.getServletContext().setAttribute("securityManager", Engine.manager);
+        Engine.engineChannel = new WebSocketClient();
+        engineChannel.start("ws://localhost:8080/GameEngine/MessageManager");
         log.info("*** Servlet Context Initialized ***");
     }
 
