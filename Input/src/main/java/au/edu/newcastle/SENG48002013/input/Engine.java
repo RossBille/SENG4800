@@ -1,7 +1,7 @@
 package au.edu.newcastle.SENG48002013.input;
 
+import au.edu.newcastle.SENG48002013.input.websocket.WebSocketClient;
 import au.edu.newcastle.seng48002013.instructions.BaseInstruction;
-import au.edu.newcastle.seng48002013.results.Result;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashSet;
@@ -31,10 +31,11 @@ public class Engine implements ServletContextListener
     private HttpSession httpSession;
     private final int MAX_CLIENTS;
     private static SecurityManager manager;
+    private static WebSocketClient engineChannel;
 
     public Engine()
     {
-        this.MAX_CLIENTS = 5;
+       this.MAX_CLIENTS = 5;
         log.info("*** Engine Instantiated ***");
     }
 
@@ -47,45 +48,36 @@ public class Engine implements ServletContextListener
      */
     @OnMessage
     public void onMessage(Session session, String message) throws IOException
-    {
-        log.info(message);
+    {      
+        ObjectMapper mapper = new ObjectMapper();
 
         if (known.contains(session)) //instruction received from known connected client
         {
-            log.info("*** Authenticated Session Found ***");
-            BaseInstruction instruction = parseInstruction(message);
-
-            if (instruction != null)
+            message = message.replace("&quot", "\"");
+            log.log(Level.INFO, "Client: {0}  Message: {1}", new Object[]{session.getId(), message});
+            
+            try
             {
-                log.log(Level.INFO, "Instruction: {0}", instruction.getDirection());
-                /*
-                 * Action required here - send instruction up to game engine
-                 */
+                BaseInstruction b = mapper.readValue(message, BaseInstruction.class);
+                System.out.println("Vector from Instruction: " + b.getDirection());
+                engineChannel.getSession().getBasicRemote().sendText("Hello from the Input engine");
+            }
+            catch (IOException e)
+            {
+                log.log(Level.WARNING, "Error decoding instruction:{0}", e.getMessage());
             }
             
-            else
-            {
-                log.severe("Instruction deserialize failed");
-            }
+            
+
         }
         else if (unknown.contains(session)) //session alive, but unauthenticated at this point
         {
-            Result result = parseToken(message);
-
-            if (result != null)
-            {
-                processToken(result, session);
-            }
-            
-            else
-            {
-                log.severe("Token deserialize failed");
-            }
-
+            log.log(Level.INFO, "Token Received: {0}", message);
+            processToken(message, session);
         }
         else // catch all for any other random states we may end up in
         {
-            log.warning("Unknown session found. Closing connection...");
+            log.warning("Unknown session found. Closing connection.");
             session.close();
         }
     }
@@ -112,16 +104,14 @@ public class Engine implements ServletContextListener
         known.remove(peer);
         unknown.remove(peer);
     }
-    
-    // ********** Player Management Methods **********
 
+    // ********** Player Management Methods **********
     protected boolean spaceFree()
     {
         if (known.size() < MAX_CLIENTS)
         {
             return true;
         }
-        
         else
         {
             return false;
@@ -132,14 +122,30 @@ public class Engine implements ServletContextListener
     {
         return MAX_CLIENTS - known.size();
     }
-    
-    // ********** Servlet Context Methods **********
 
+    private void processToken(String token, Session session)
+    {
+        if (manager.checkToken(token)) //add player to game
+        {
+            log.info("Valid token received, adding player");
+            known.add(session);
+            unknown.remove(session);
+        }
+        else
+        {
+            log.info("Token check failed, removing player");
+            unknown.remove(session);
+        }
+    }
+
+    // ********** Servlet Context Methods **********
     @Override
     public void contextInitialized(ServletContextEvent sce)
     {
         Engine.manager = new SecurityManager(10000, "ws://localhost:8080/Input/endpoint", this);
         sce.getServletContext().setAttribute("securityManager", Engine.manager);
+        Engine.engineChannel = new WebSocketClient();
+        engineChannel.start("ws://localhost:8080/GameEngine/MessageManager");
         log.info("*** Servlet Context Initialized ***");
     }
 
@@ -148,59 +154,5 @@ public class Engine implements ServletContextListener
     {
         sce.getServletContext().removeAttribute("securityManager");
         log.info("*** Servlet Context Destroyed ***");
-    }
-    
-    // ********** JSON Methods **********
-
-    private Result parseToken(String s)
-    {
-        ObjectMapper mapper = new ObjectMapper();
-        Result temp = null;
-
-        try
-        {
-            temp = mapper.readValue(s, Result.class);
-        }
-        
-        catch (IOException ex)
-        {
-            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return temp;
-    }
-
-    private void processToken(Result r, Session session)
-    {
-        if (manager.checkToken(r.getCode())) //add player to game
-        {
-            log.info("Valid token received, adding player");
-            known.add(session);
-            unknown.remove(session);
-        }
-        
-        else
-        {
-            log.info("Token check failed, removing player");
-            unknown.remove(session);
-        }
-    }
-
-    private BaseInstruction parseInstruction(String s)
-    {
-        ObjectMapper mapper = new ObjectMapper();
-        BaseInstruction temp = null;
-        
-        try
-        {
-            temp = mapper.readValue(s, BaseInstruction.class);
-        }
-        
-        catch (IOException ex)
-        {
-            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return temp;
     }
 }
