@@ -44,19 +44,19 @@ function ConfigController($scope, $http, $location, GameService) {
     $scope.sendConfig = function () {
         $scope.game.setup = $scope.game_config;
         
-        // var setup = {};
-        // setup.setup = $scope.game.setup; 
-        // var xml = json2xml(setup);
+        var setup = {};
+        setup.setup = $scope.game.setup;
+        var form_data_xml = json2xml(setup);
 
-        var form_data = {
+        /*var form_data_json = {
             setup: $scope.game.setup
-        }
+        }*/
 
         $http({
             method: 'POST',
             url: '/GameConfigServlet',
-            data: form_data
-            // data: setup
+            //data: form_data_json
+            data: form_data_xml
         });
 
         $location.path('levels');
