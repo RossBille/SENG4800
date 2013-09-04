@@ -28,12 +28,13 @@
 
 .scene-object-container {
     display: inline-block;
+    position: absolute;
 }
 
 .scene-object {
     cursor: pointer;
     vertical-align: bottom;
-    position: absolute;
+    position: relative;
 }
 
 .object-container {

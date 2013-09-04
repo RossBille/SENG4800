@@ -164,7 +164,7 @@ App.directive('droppable', function ($compile) {
                             containment: ".scene"
                         });
 
-                        /*$new_object.resizable({
+                        $new_object.resizable({
                             stop: function () {
                                 console.log('scene object resized');
                                 var width = $(this).width();
@@ -176,7 +176,7 @@ App.directive('droppable', function ($compile) {
                                 scope.$apply();
                             },
                             containment: '.scene'
-                        });*/
+                        });
 
                         scope.$apply();
                     }
