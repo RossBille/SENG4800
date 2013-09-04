@@ -14,8 +14,8 @@
             </object_shape>
             <object_visible>yes</object_visible>
             <start_pos>
-                <x>240</x>
-                <y>57</y>
+                <x>194</x>
+                <y>61</y>
             </start_pos>
             <start_vel>
                 <x>1</x>
@@ -25,7 +25,6 @@
                 <x>1</x>
                 <y>1</y>
             </start_acc>
-            <$$hashKey>00A</$$hashKey>
         </object>
         <object>
             <object_id>1</object_id>
@@ -38,8 +37,8 @@
             </object_shape>
             <object_visible>yes</object_visible>
             <start_pos>
-                <x>-105</x>
-                <y>109</y>
+                <x>-35</x>
+                <y>212</y>
             </start_pos>
             <start_vel>
                 <x>1</x>
@@ -49,7 +48,6 @@
                 <x>1</x>
                 <y>1</y>
             </start_acc>
-            <$$hashKey>00C</$$hashKey>
         </object>
     </objects>
     <events></events>

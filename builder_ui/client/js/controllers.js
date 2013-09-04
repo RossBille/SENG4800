@@ -44,8 +44,6 @@ function LevelsController($scope, $http, ListService, GameService) {
         });
     };
 
-
-
     ListService.getObjects(function (objects) {
         $scope.list = objects;
     });
