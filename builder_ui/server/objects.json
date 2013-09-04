@@ -13,26 +13,28 @@
             "width": 200
         },
         {
-            "id": 1,
-            "name": "Golf Ball",
-            "xpos": 0,
-            "ypos": 0,
-            "image_path": "/img/golf_ball.png",
-            "image_height": 150,
-            "image_width": 150,
-            "width": 0,
-            "height": 0
+            "sprite_id": 1,
+            "sprite_name": "Golf Ball",
+            "image": "/img/golf_ball.png",
+            "speed": 1,
+            "offset": {
+                "x": 0,
+                "y": 0
+            },
+            "height": 150,
+            "width": 150
         },
         {
-            "id": 2,
-            "name": "Tennis Ball",
-            "xpos": 0,
-            "ypos": 0,
-            "image_path": "/img/tennis_ball.png",
-            "image_height": 175,
-            "image_width": 175,
-            "width": 0,
-            "height": 0
+            "sprite_id": 2,
+            "sprite_name": "Tennis Ball",
+            "image": "/img/tennis_ball.png",
+            "speed": 1,
+            "offset": {
+                "x": 0,
+                "y": 0
+            },
+            "height": 175,
+            "width": 175
         }
     ]
 }

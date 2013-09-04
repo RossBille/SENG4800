@@ -36,7 +36,14 @@ function LevelsController($scope, ListService, GameService) {
 
 function ConfigController($scope, $http, $location, GameService, ListService) {
     $scope.game = GameService.game;
-    $scope.game_config = {};
+    $scope.game_config = {
+        game_name: "My Game",
+        starting_level: 1,
+        canvas_width: 1920,
+        canvas_height: 1080,
+        min_players: 1,
+        max_players: 4
+    };
 
     ListService.getObjects(function (objects) {
         $scope.sprites = objects;
@@ -56,8 +63,9 @@ function ConfigController($scope, $http, $location, GameService, ListService) {
             min: $scope.game_config.min_players,
             max: $scope.game_config.max_players
         }
-        $scope.game.setup.sprites = [];
-        $scope.game.setup.sprites.push($scope.sprites);
+        $scope.game.setup.sprites = {};
+        $scope.game.setup.sprites.sprite = [];
+        $scope.game.setup.sprites.sprite.push($scope.sprites);
         $scope.game.setup.background = {
             background_id: 0,
             background_name: "Grey Background",

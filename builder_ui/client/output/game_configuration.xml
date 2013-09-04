@@ -1,0 +1,57 @@
+<setup>
+    <game_name>My Game</game_name>
+    <canvas_size>
+        <width>1920</width>
+        <height>1080</height>
+    </canvas_size>
+    <starting_level>1</starting_level>
+    <players>
+        <min>1</min>
+        <max>4</max>
+    </players>
+    <sprites>
+        <sprite>
+            <id>0</id>
+            <name>Soccer Ball</name>
+            <xpos>0</xpos>
+            <ypos>0</ypos>
+            <image_path>/img/ball.png</image_path>
+            <image_height>200</image_height>
+            <image_width>200</image_width>
+            <image_thumbnail>/img/ball_thumbnail.png</image_thumbnail>
+            <width>0</width>
+            <height>0</height>
+        </sprite>
+        <sprite>
+            <id>1</id>
+            <name>Golf Ball</name>
+            <xpos>0</xpos>
+            <ypos>0</ypos>
+            <image_path>/img/golf_ball.png</image_path>
+            <image_height>150</image_height>
+            <image_width>150</image_width>
+            <image_thumbnail>/img/golf_ball_thumbnail.png</image_thumbnail>
+            <width>0</width>
+            <height>0</height>
+        </sprite>
+        <sprite>
+            <id>2</id>
+            <name>Tennis Ball</name>
+            <xpos>0</xpos>
+            <ypos>0</ypos>
+            <image_path>/img/tennis_ball.png</image_path>
+            <image_height>175</image_height>
+            <image_width>175</image_width>
+            <image_thumbnail>/img/tennis_ball_thumbnail.png</image_thumbnail>
+            <width>0</width>
+            <height>0</height>
+        </sprite>
+    </sprites>
+    <background>
+        <background_id>0</background_id>
+        <background_name>Grey Background</background_name>
+        <image>/img/game_background.jpg</image>
+        <speed>1</speed>
+        <position_type>tiled</position_type>
+    </background>
+</setup>
