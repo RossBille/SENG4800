@@ -1,7 +1,6 @@
 package au.edu.newcastle.SENG48002013.input;
 
 import au.edu.newcastle.seng48002013.instructions.BaseInstruction;
-import au.edu.newcastle.seng48002013.results.Result;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashSet;
@@ -47,25 +46,35 @@ public class Engine implements ServletContextListener
      */
     @OnMessage
     public void onMessage(Session session, String message) throws IOException
-    {
-        log.log(Level.INFO, "Message Received:{0}", message);
+    {      
+        ObjectMapper mapper = new ObjectMapper();
 
         if (known.contains(session)) //instruction received from known connected client
         {
-            log.info("*** Authenticated Session Found ***");
-            /*
-             * Make a new instruction object based on input, and send it up
-             * to the game engine
-             */
+            message = message.replace("&quot", "\"");
+            log.log(Level.INFO, "Client: {0}  Message: {1}", new Object[]{session.getId(), message});
+            
+            try
+            {
+                BaseInstruction b = mapper.readValue(message, BaseInstruction.class);
+                System.out.println("Vector from Instruction: " + b.getDirection());
+            }
+            catch (IOException e)
+            {
+                log.log(Level.WARNING, "Error decoding instruction:{0}", e.getMessage());
+            }
+            
+            
+
         }
         else if (unknown.contains(session)) //session alive, but unauthenticated at this point
         {
-            log.info("*** Checking token... ");
+            log.log(Level.INFO, "Token Received: {0}", message);
             processToken(message, session);
         }
         else // catch all for any other random states we may end up in
         {
-            log.warning("Unknown session found. Closing connection...");
+            log.warning("Unknown session found. Closing connection.");
             session.close();
         }
     }
