@@ -28,7 +28,6 @@ App.directive('droppable', function ($compile) {
                 drop: function (event, ui) {
                     var $drop_target = $(this);
                     var $draggable_original = ui.draggable;
-                    var $draggable = $draggable_original.clone();
                     var $draggable_parent = $draggable_original.parent();
                     var $draggable_parent_parent = $draggable_parent.parent();
                     var draggable_original_index = $draggable_original.data('index');
@@ -37,6 +36,8 @@ App.directive('droppable', function ($compile) {
                     if ($draggable_parent_parent.hasClass('list')) {
                         //getting current div old absolute position
                         var old_position = $draggable_original.offset();
+                        console.log('old position:');
+                        console.log(old_position);
 
                         var new_object = '<div class="scene-object-container"><img src="' + scope.list[draggable_original_index].image + '" data-index="' + scene_index + '" ng-click="clicked()" class="scene-object"></div>';
                         console.log(new_object);
@@ -58,6 +59,8 @@ App.directive('droppable', function ($compile) {
 
                         //getting current div new absolute position
                         var new_position = $new_object_container.offset();
+                        console.log('new position:');
+                        console.log(new_position);
 
                         //calculate correct position offset
                         var left_offset = null;
@@ -75,8 +78,8 @@ App.directive('droppable', function ($compile) {
                             top_offset = -(new_position.top - old_position.top);
                         }
 
-                        console.log('left offset: ' + left_offset);
                         console.log('top offset: ' + top_offset);
+                        console.log('left offset: ' + left_offset);
 
                         //instantly offsetting the div to it current position
                         $new_object_container.animate({
