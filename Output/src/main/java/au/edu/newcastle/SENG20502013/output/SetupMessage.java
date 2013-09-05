@@ -8,46 +8,30 @@ import javax.vecmath.Vector2d;
  */
 public class SetupMessage extends BaseMessage
 {
-
-	private long id;
-	private Vector2d pos;
-	//private String[] spriteLocations;
-	//private long[] spriteId;
-	//private int rotation;
-	private String sprite;
-
-	public SetupMessage()
+	private String[] imageUrls;
+	private long[] objectIds;
+	public SetupMessage(long[] objectIds, String[] imageUrls)
 	{
-		super();
+		this.imageUrls = imageUrls;
+		this.objectIds = objectIds;
+	}
+	public String[] getImageUrls()
+	{
+		return imageUrls;
 	}
 
-	public long getId()
+	public void setImageUrls(String[] imageUrls)
 	{
-		return id;
+		this.imageUrls = imageUrls;
 	}
 
-	public void setId(long id)
+	public long[] getObjectIds()
 	{
-		this.id = id;
+		return objectIds;
 	}
 
-	public Vector2d getPos()
+	public void setObjectIds(long[] objectIds)
 	{
-		return pos;
-	}
-
-	public void setPos(Vector2d pos)
-	{
-		this.pos = pos;
-	}
-
-	public String getSprite()
-	{
-		return sprite;
-	}
-
-	public void setSprite(String sprite)
-	{
-		this.sprite = sprite;
+		this.objectIds = objectIds;
 	}
 }

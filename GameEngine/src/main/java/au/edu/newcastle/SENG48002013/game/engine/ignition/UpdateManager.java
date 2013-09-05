@@ -1,6 +1,7 @@
 package au.edu.newcastle.SENG48002013.game.engine.ignition;
 
 import au.edu.newcastle.SENG48002013.game.engine.processor.Boss;
+import java.io.IOException;
 import javax.servlet.ServletContext;
 
 /**
@@ -11,18 +12,22 @@ import javax.servlet.ServletContext;
 public class UpdateManager
 {
 
-	public static void start(ServletContext sc)
+	public static void start() throws IOException
 	{
+		Boss.start();
 		System.out.println("Game is starting...");
 	}
 
-	public static void stop(ServletContext sc)
+	public static void stop()
 	{
+		Boss.stop();
 		System.out.println("Game is stopping...");
 	}
 
-	public static void restart(ServletContext sc)
+	public static void restart() throws IOException
 	{
+		Boss.stop();
+		Boss.start();
 		System.out.println("Game is restarting...");
 	}
 }

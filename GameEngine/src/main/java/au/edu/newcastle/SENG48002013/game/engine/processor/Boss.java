@@ -5,6 +5,7 @@
  */
 package au.edu.newcastle.SENG48002013.game.engine.processor;
 
+import au.edu.newcastle.SENG48002013.game.engine.connections.output.OutputConnectionManager;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import au.edu.newcastle.SENG48002013.game.engine.model.IGameOutput;
 import au.edu.newcastle.SENG48002013.game.engine.model.environment.IGameObject;
 import au.edu.newcastle.SENG48002013.game.engine.model.environment.Player;
 import au.edu.newcastle.SENG48002013.game.engine.resources.GameBuilder;
+import java.io.IOException;
 
 /**
  *
@@ -21,13 +23,10 @@ import au.edu.newcastle.SENG48002013.game.engine.resources.GameBuilder;
  */
 public class Boss
 {
-	private boolean running;
-	private IGame game;
-	public Boss()
-	{
-		running = false;
-	}
-	public boolean addPlayer(long inputId)
+	private static boolean running = false;
+	private static IGame game;
+	
+	public static boolean addPlayer(long inputId)
 	{
 		boolean added = false;
 		if(game != null)
@@ -37,7 +36,7 @@ public class Boss
 		return added;
 	}
 
-	public void removePlayer(long inputId)
+	public static void removePlayer(long inputId)
 	{
 		if(game != null)
 		{
@@ -45,16 +44,17 @@ public class Boss
 		}
 	}
 	
-	public void start()
+	public static void start() throws IOException
 	{
 		game = GameBuilder.buildGame();
-		TestOutputWindow output = new TestOutputWindow();
+		//TestOutputWindow output = new TestOutputWindow();
 		IClock clock = new Clock();
 		running = true;
 		while(running)
 		{
 			double dt = clock.rest();
-			output.sendOutput((IGameOutput)game);
+			//output.sendOutput((IGameOutput)game);
+			OutputConnectionManager.sendOutput((IGameOutput)game);
 			/*for(int i = 0; i < objects.length; i++)
 			{
 				System.out.println("X:" + objects[i].getPos().x + " Y:" + objects[i].getPos().y);
@@ -63,12 +63,12 @@ public class Boss
 		}
 	}
 	
-	public void stop()
+	public static void stop()
 	{
 		running = false;
 	}
 	
-	public boolean isRunning()
+	public static boolean isRunning()
 	{
 		return running;
 	}
