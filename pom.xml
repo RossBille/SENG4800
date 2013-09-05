@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>au.edu.newcastle.SENG48002013</groupId>
-	<artifactId>SENG4800</artifactId>
-	<version>1.0</version>
-	<packaging>pom</packaging>
-	<name>SENG4800</name>
-	<modules>
-		<module>Util</module>
-		<module>Output</module>
-		<module>Instructions</module>
-		<module>Messages</module>
-		<module>Results</module>
-		<module>XMLParser</module>
-		<module>GameEngine</module>
-		<module>Input</module>
-		<module>SampleClient/SampleClient_JS</module>
-	</modules>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>au.edu.newcastle.SENG48002013</groupId>
+    <artifactId>SENG4800</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+    <name>SENG4800</name>
+    <modules>
+        <module>Util</module>
+        <module>Output</module>
+        <module>Instructions</module>
+        <module>Messages</module>
+        <module>Results</module>
+        <module>XMLParser</module>
+        <module>GameEngine</module>
+        <module>Input</module>
+        <module>BrowserClient</module>
+    </modules>
 </project>

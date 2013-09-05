@@ -24,47 +24,49 @@ import org.codehaus.jackson.map.ObjectMapper;
 public class MessageManager
 {
 
-    private static Set<Session> peers = Collections.synchronizedSet(new HashSet<Session>());
-    private final int ALLOWED_CONNECTIONS = 1;
-    
-    @OnOpen
-    public void onOpen(Session peer)
-    {
-        //check that they have a correct key to act as input to the engine
-        
-        //check the current number of connections
-        if(currentPeers() < ALLOWED_CONNECTIONS)
-        {
-            peers.add(peer);
-        }else{
-            //log the access
-            //throw error
-            throw new IllegalAccessError(String.format("Only %d connection(s) at a time", ALLOWED_CONNECTIONS));
-        }
-    }
+	private static Set<Session> peers = Collections.synchronizedSet(new HashSet<Session>());
+	private final int ALLOWED_CONNECTIONS = 1;
 
-    @OnClose
-    public void onClose(Session peer)
-    {
-		//when the input drops out the whole game dies
-    	System.exit(0);
+	@OnOpen
+	public void onOpen(Session peer)
+	{
+		//check that they have a correct key to act as input to the engine
+
+		//check the current number of connections
+		if (currentPeers() < ALLOWED_CONNECTIONS)
+		{
+			peers.add(peer);
+		} else
+		{
+			//log the access
+			//throw error
+			throw new IllegalAccessError(String.format("Only %d connection(s) at a time", ALLOWED_CONNECTIONS));
+		}
 	}
 
-    /*@OnError
-    public void onError()
-    {
-        //log error
+	@OnClose
+	public void onClose(Session peer)
+	{
+		//when the input drops out the whole game dies
+		System.exit(0);
+	}
+
+	/*@OnError
+	 public void onError()
+	 {
+	 //log error
         
-        //try to handle
-    }
-*/
-    @OnMessage
-    public void onMessage(String Message) throws IOException
-    {
-        //process the input
+	 //try to handle
+	 }
+	 */
+	@OnMessage
+	public void onMessage(String Message) throws IOException
+	{
+		//process the input
+		System.out.println("GAME ENGINE" + Message);
 		ObjectMapper mapper = new ObjectMapper();
 		PlayerControlMessage pcm = mapper.readValue(Message, PlayerControlMessage.class);
-    	Input input = new Input(123456L);//TODO get actual ID
+		Input input = new Input(123456L);//TODO get actual ID
 		//convert 3d vector to 2d vector
 		Vector2d vector = new Vector2d(pcm.getDirection().x, pcm.getDirection().y);
 		input.setValue(vector);
@@ -73,9 +75,9 @@ public class MessageManager
 		input.setPosition(pcm.getDirection().z == 0);
 		InputManager.addInput(input);
 	}
-    
-    public int currentPeers()
-    {
-        return peers.size();
-    }
+
+	public int currentPeers()
+	{
+		return peers.size();
+	}
 }

@@ -14,15 +14,11 @@ public class UpdateManager
 	public static void start(ServletContext sc)
 	{
 		System.out.println("Game is starting...");
-		Boss boss = (Boss) sc.getAttribute("boss");
-		boss.start();
 	}
 
 	public static void stop(ServletContext sc)
 	{
 		System.out.println("Game is stopping...");
-		Boss boss = (Boss) sc.getAttribute("boss");
-		boss.stop();
 	}
 
 	public static void restart(ServletContext sc)

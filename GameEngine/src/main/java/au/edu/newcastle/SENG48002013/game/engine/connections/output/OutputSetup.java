@@ -44,8 +44,8 @@ public class OutputSetup extends BaseServlet
 		response.setContentType("text/json");
 		ObjectMapper mapper = new ObjectMapper();
 		PrintWriter out = response.getWriter();
-		SetupMessage[] setupMessages = GameResources.getResources();
-		out.print(mapper.writeValueAsString(setupMessages));
+		//SetupMessage[] setupMessages = GameResources.getResources();
+		//out.print(mapper.writeValueAsString(setupMessages));
 	}
 	
 }

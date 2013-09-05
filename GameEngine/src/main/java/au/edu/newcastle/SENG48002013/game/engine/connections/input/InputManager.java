@@ -22,6 +22,7 @@ public class InputManager
 		if(!(inputs.containsKey(input.getId()) && inputs.get(input.getId()).isAccessed()))
 		{
 			inputs.put(input.getId(), input);
+			System.out.println("INPUT MANAGER:i" + input.getValue());
 		}
 	}
 
