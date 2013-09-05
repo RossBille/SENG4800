@@ -1,6 +1,7 @@
 package au.edu.newcastle.SENG48002013.input;
 
 import au.edu.newcastle.SENG48002013.input.websocket.WebSocketClient;
+import au.edu.newcastle.SENG48002013.messages.PlayerControlMessage;
 import au.edu.newcastle.seng48002013.instructions.BaseInstruction;
 import java.io.IOException;
 import java.util.Collections;
@@ -59,22 +60,25 @@ public class Engine implements ServletContextListener
             try
             {
                 BaseInstruction b = mapper.readValue(message, BaseInstruction.class);
-                System.out.println("Vector from Instruction: " + b.getDirection());
-                engineChannel.getSession().getBasicRemote().sendText("Hello from the Input engine");
+                System.out.println("Vector from Instruction: " + b.getDirection());              
+                PlayerControlMessage pcm = new PlayerControlMessage();
+                pcm.setCode(session.getId()); // player ID
+                pcm.setDirection(b.getDirection());               
+                engineChannel.getSession().getBasicRemote().sendText(mapper.writeValueAsString(pcm));
             }
+            
             catch (IOException e)
             {
                 log.log(Level.WARNING, "Error decoding instruction:{0}", e.getMessage());
             }
-            
-            
-
         }
+        
         else if (unknown.contains(session)) //session alive, but unauthenticated at this point
         {
             log.log(Level.INFO, "Token Received: {0}", message);
             processToken(message, session);
         }
+        
         else // catch all for any other random states we may end up in
         {
             log.warning("Unknown session found. Closing connection.");
