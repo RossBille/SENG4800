@@ -13,30 +13,9 @@ import org.codehaus.jackson.map.ObjectMapper;
  *
  * @author rossbille
  */
-@WebServlet("/objects")
+@WebServlet("/setup")
 public class OutputSetup extends BaseServlet
 {
-	//need some structure to store all the game setup info here
-
-	
-	/**
-	 * sends all setup info in the form of 
-	 * 	[{  
-	 * 		"id":  ,
-	 * 		"pos": {"x":  , "y",  },
-	 * 		"spriteLocations": ["some/url/", ... , "some/other/url"],
-	 * 		"spriteId":  
-	 * 	},
-	 * 	... ,
-	 * 	{  
-	 * 		"id":  ,
-	 * 		"pos": {"x":  , "y",  },
-	 * 		"spriteLocations": ["some/url/", ... , "some/other/url"],
-	 * 		"spriteId":  
-	 * 	}]
-	 * whenever a new output client connects
-	 * @throws IOException
-	 */
 	@Override
 	protected void processRequest() throws IOException
 	{
@@ -44,8 +23,8 @@ public class OutputSetup extends BaseServlet
 		response.setContentType("text/json");
 		ObjectMapper mapper = new ObjectMapper();
 		PrintWriter out = response.getWriter();
-		//SetupMessage[] setupMessages = GameResources.getResources();
-		//out.print(mapper.writeValueAsString(setupMessages));
+		SetupMessage[] setupMessages = GameResources.getResources();
+		out.print(mapper.writeValueAsString(setupMessages));
 	}
 	
 }

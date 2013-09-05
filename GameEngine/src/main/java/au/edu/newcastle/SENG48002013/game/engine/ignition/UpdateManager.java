@@ -24,7 +24,5 @@ public class UpdateManager
 	public static void restart(ServletContext sc)
 	{
 		System.out.println("Game is restarting...");
-		stop(sc);
-		start(sc);
 	}
 }
