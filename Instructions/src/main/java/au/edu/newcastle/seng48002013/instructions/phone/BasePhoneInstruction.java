@@ -8,31 +8,46 @@ import au.edu.newcastle.seng48002013.instructions.BaseInstruction;
  */
 public abstract class BasePhoneInstruction extends BaseInstruction
 {
-	protected String phoneId;
-	protected String os;
-	public String getId()
-	{
-		return os+","+phoneId+","+updated;
-	}
 
-	public String getPhoneId()
-	{
-		return phoneId;
-	}
+    protected String phoneId;
+    protected String os;
+    protected String iD;
+    
+    public BasePhoneInstruction(String id, String os)
+    {
+        this.phoneId = id;
+        this.os = os;
+        this.iD = os + "," + phoneId + "," + updated;       
+    }
 
-	public String getOs()
-	{
-		return os;
-	}
+    public void setId(String s)
+    {
+        this.iD = s;
+    }
 
-	public void setPhoneId(String phoneId)
-	{
-		this.phoneId = phoneId;
-	}
+    @Override
+    public String getId()
+    {
+        return this.iD;
+    }
 
-	public void setOs(String os)
-	{
-		this.os = os;
-	}
+    public String getPhoneId()
+    {
+        return phoneId;
+    }
 
+    public String getOs()
+    {
+        return os;
+    }
+
+    public void setPhoneId(String phoneId)
+    {
+        this.phoneId = phoneId;
+    }
+
+    public void setOs(String os)
+    {
+        this.os = os;
+    }
 }

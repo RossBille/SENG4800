@@ -99,9 +99,9 @@ public class SecurityManager
         else // cannot service request, no space available
         {
             r.setError(true);
-            r.setMessage("fail");
+            r.setMessage("Too many players, please try again later.");
             r.setCode("0");
-            log.info("oken request failed");
+            log.info("Token request failed");
         }
 
         return r;

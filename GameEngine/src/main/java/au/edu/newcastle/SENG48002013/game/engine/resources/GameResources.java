@@ -5,12 +5,12 @@
  */
 package au.edu.newcastle.SENG48002013.game.engine.resources;
 
-import au.edu.newcastle.SENG48002013.game.engine.resources.actions.IAction;
-import au.edu.newcastle.SENG48002013.game.engine.resources.environment.Background;
-import au.edu.newcastle.SENG48002013.game.engine.resources.environment.GameObject;
-import au.edu.newcastle.SENG48002013.game.engine.resources.environment.Level;
-import au.edu.newcastle.SENG48002013.game.engine.resources.environment.Sprite;
-import au.edu.newcastle.SENG48002013.game.engine.resources.events.IEvent;
+import au.edu.newcastle.SENG48002013.game.engine.model.actions.IAction;
+import au.edu.newcastle.SENG48002013.game.engine.model.environment.Background;
+import au.edu.newcastle.SENG48002013.game.engine.model.environment.GameObject;
+import au.edu.newcastle.SENG48002013.game.engine.model.environment.Level;
+import au.edu.newcastle.SENG48002013.game.engine.model.environment.Sprite;
+import au.edu.newcastle.SENG48002013.game.engine.model.events.IEvent;
 import java.util.HashMap;
 
 
@@ -34,7 +34,10 @@ public class GameResources {
 	{
 		levels.remove(id);
 	}
-
+	public static Level[] getAllLevels()
+	{
+		return (Level[]) levels.values().toArray(new Level[0]);
+	}
 	public static void addGameObject(GameObject gameObject)
 	{
 		gameObjects.put(gameObject.getId(), gameObject);
