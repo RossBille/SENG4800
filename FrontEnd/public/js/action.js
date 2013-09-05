@@ -22,8 +22,6 @@ app.action = function(objects) {
             image.src = object.sprite;
             list[object.id] = image;
         }
-        console.log(image);
-        console.log(object);
         image.setAtX = object.pos.x;
         image.setAtY = object.pos.y;
         return image;

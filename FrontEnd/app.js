@@ -12,11 +12,11 @@ wss.on ('connection', function(socket) {
             file[i].pos.x = x;
         }
         socket.send(JSON.stringify(file));
-        x += 8;
+        x += 2;
         if (x >= 1280) {
             x =  0;
         }
-    }, 1);
+    }, 4);
 
     socket.on('message', function(message) {
         console.log("received %s", message);
