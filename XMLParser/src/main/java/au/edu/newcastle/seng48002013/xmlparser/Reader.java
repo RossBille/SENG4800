@@ -5,7 +5,6 @@
 package au.edu.newcastle.seng48002013.xmlparser;
 import java.io.IOException;
 import java.util.*;
-import java.lang.*;
 import javax.xml.parsers.*;
 import org.xml.sax.*;
 import org.w3c.dom.*;
@@ -14,20 +13,20 @@ import org.w3c.dom.*;
  * @author Josh Brackenbury
  */
 public class Reader {
-    
+
+	// TO DO:
+	//			ADD ACTION TYPE?
+	//			SUPPORT FOR MULTIPLE ACTION TYPES? OR ONLY ONE
+	
     // levels storage object
     public static ArrayList<Level> levels = new ArrayList<Level>();
-    public static ArrayList<Action> actions = new ArrayList<Action>();
-    public static int numLevels = 0;
     public static GameSetup gameSetup = new GameSetup();
     
     public static void runReader()
     {
         String fileName;        
         fileName = "Levels";
-        parseLevelsXML(fileName);
-        fileName = "Actions";
-        parseActionsXML(fileName);  
+        parseLevelsXML(fileName);  
         fileName = "Game";
         parseGameXML(fileName);
     }
@@ -40,11 +39,6 @@ public class Reader {
     public static GameSetup getGameSetup()
     {
         return gameSetup;
-    }
-    
-    public static ArrayList<Action> getActions()
-    {
-        return actions;
     }
     
     private static void parseGameXML(String loc)
@@ -93,10 +87,59 @@ public class Reader {
                 }   
     }
     
-//ADDED
-	private static GameSetup getSetup(Element el)
+    private static void parseLevelsXML(String loc) //Reads in the blackboard users
+    {
+          //DOM Object
+        Document dom;
+        
+        // Make an  instance of the DocumentBuilderFactory
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        try {
+            // use the factory to take an instance of the document builder
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            // parse using the builder to get the DOM mapping of the
+            // XML file
+            String location = loc + ".xml";
+            dom = db.parse(location);
+
+            Element docEle = dom.getDocumentElement();
+
+            // get a list of the levels
+            NodeList nl = docEle.getElementsByTagName("Level");
+            
+            // for each level, build info
+            if(nl != null && nl.getLength() > 0)
+            {
+				for(int a = 0; a < nl.getLength(); a++)
+				{          
+					//get the element
+		            Element el = (Element)nl.item(a);
+					//get the object
+					Level e = getLevel(el);
+		        	//add to users
+					levels.add(e);
+				}
+            }
+        }
+		catch (ParserConfigurationException pce)
+		{
+                    System.out.println(pce.getMessage());
+                }
+		catch (SAXException se)
+		{
+                    System.out.println(se.getMessage());
+                }
+		catch (IOException ioe)
+		{
+                    System.out.println(ioe.getMessage());
+                }
+    }
+    
+    private static GameSetup getSetup(Element el)
 	{
 		GameSetup newSetup = new GameSetup();
+		ArrayList<Sprite> sprites = new ArrayList<Sprite>();
+		ArrayList<Background> backgrounds = new ArrayList<Background>();
 		
 		// Game Name
 		String gameName = getTextValue(el, "Game_name");
@@ -105,20 +148,14 @@ public class Reader {
 		// Canvas Size
 		NodeList nl = el.getElementsByTagName("Canvas_size");
 		Element el2 = (Element)nl.item(0);
-		int size_x = getIntValue(el2, "Width");
-		int size_y = getIntValue(el2, "Height");
-		newSetup.setCanvasSizeX(size_x);
-		newSetup.setCanvasSizeY(size_y);
+		int width = getIntValue(el2, "Width");
+		int height = getIntValue(el2, "Height");
+		newSetup.setCanvasWidth(width);
+		newSetup.setCanvasHeight(height);
 		
-		// Border
-		nl = el.getElementsByTagName("Border");
-		el2 = (Element)nl.item(0);
-		String state = getTextValue(el2, "State");
-		String colour = getTextValue(el2, "Colour");
-		int size = getIntValue(el2, "Size");
-		newSetup.setBorderState(state);
-		newSetup.setBorderColour(colour);
-		newSetup.setBorderSize(size);
+		// Starting Level
+		int startLevel = getIntValue(el, "Starting_level");
+		newSetup.setStartLevel(startLevel);
 		
 		// Players
 		nl = el.getElementsByTagName("Players");
@@ -128,118 +165,227 @@ public class Reader {
 		newSetup.setMinPlayers(min);
 		newSetup.setMaxPlayers(max);
 		
-                //System.out.println("GAME SETUP: "+gameName+", Canvas = "+size_x+" by "+size_y+", Border = "+state+","+colour+","+size+", Players = "+min+"(min)"+max+"(max)");
-                
+		// Sprites
+    	NodeList nodeList = el.getElementsByTagName("Sprites");
+    	Element elem = (Element)nodeList.item(0);
+		nl = elem.getElementsByTagName("Sprite");
+		if (nl != null && nl.getLength() > 0) {
+			for (int i = 0; i < nl.getLength(); i++) {
+				Element e2 = (Element)nl.item(i);
+				Sprite newSprite = getSprite(e2);
+				sprites.add(newSprite);
+			}
+		}
+		newSetup.setSprites(sprites);
+				
+		// Backgrounds
+		nodeList = el.getElementsByTagName("Backgrounds");
+		elem = (Element)nodeList.item(0);
+		nl = elem.getElementsByTagName("Background");
+		if (nl != null && nl.getLength() > 0) {
+			for (int i = 0; i <nl.getLength(); i++) {
+				Element e2 = (Element)nl.item(i);
+				Background newBackground = getBackground(e2);
+				backgrounds.add(newBackground);
+			}
+		}
+		newSetup.setBackgrounds(backgrounds);
+		
 		return newSetup;
 	}
     
-    private static void parseLevelsXML(String loc) //Reads in the blackboard users
+    private static Sprite getSprite(Element el)
     {
-          //DOM Object
-        Document dom;
-        
-        
-        // Make an  instance of the DocumentBuilderFactory
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        try {
-            // use the factory to take an instance of the document builder
-            DocumentBuilder db = dbf.newDocumentBuilder();
-            // parse using the builder to get the DOM mapping of the
-            // XML file
-            String location = loc + ".xml";
-            dom = db.parse(location);
-
-            Element docEle = dom.getDocumentElement();
-            
-            // get number of levels
-            String levs = getTextValue(docEle, "No_of_levels");
-            //System.out.println("Total Levels = "+levs);
-//            numLevels = Integer.parseInt(levs);
-
-            // get a list of the levels
-            NodeList nl = docEle.getElementsByTagName("Level");
-            
-            // for each level, build info
-            if(nl != null && nl.getLength() > 0)
-            {
-		for(int a = 0; a < nl.getLength(); a++)
-		{
-                        //System.out.println("LEVEL "+(a+1));
-			//get the element
-                	Element el = (Element)nl.item(a);
-			//get the object
-			Level e = getLevel(el);
-        		//add to users
-			levels.add(e);
-		}
-            }
-
-        }
-		catch (ParserConfigurationException pce)
-		{
-                    System.out.println(pce.getMessage());
-                }
-		catch (SAXException se)
-		{
-                    System.out.println(se.getMessage());
-                }
-		catch (IOException ioe)
-		{
-                    System.out.println(ioe.getMessage());
-                }
+    	Sprite newSprite = new Sprite();
+    	newSprite.setId(getIntValue(el, "Sprite_ID"));
+    	newSprite.setName(getTextValue(el, "Sprite_Name"));
+    	newSprite.setImage(getTextValue(el, "Image"));
+    	newSprite.setSpeed(getIntValue(el, "Speed"));
+    	NodeList nl = el.getElementsByTagName("Offset");
+    	Element el2 = (Element)nl.item(0);
+		newSprite.setOffsetX(getIntValue(el2, "X"));
+		newSprite.setOffsetY(getIntValue(el2, "Y"));
+		return newSprite;
     }
     
-    private static void parseActionsXML(String loc) //Reads in the blackboard users
+    private static Background getBackground(Element el)
     {
-          //DOM Object
-        Document dom;
-        
-        
-        // Make an  instance of the DocumentBuilderFactory
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        try {
-            // use the factory to take an instance of the document builder
-            DocumentBuilder db = dbf.newDocumentBuilder();
-            // parse using the builder to get the DOM mapping of the
-            // XML file
-            String location = loc + ".xml";
-            dom = db.parse(location);
-
-            Element docEle = dom.getDocumentElement();
-
-            // get a list of the actions
-            NodeList nl = docEle.getElementsByTagName("Action");
-            
-            // for each level, build info
-            if(nl != null && nl.getLength() > 0)
-            {
-		for(int a = 0; a < nl.getLength(); a++)
-		{
-                        //System.out.println("ACTION "+(a+1));
-			//get the element
-                	Element el = (Element)nl.item(a);
-			//get the object
-			Action e = getAction(el);
-        		//add to users
-			actions.add(e);
-		}
-            }
-
-        }
-		catch (ParserConfigurationException pce)
-		{
-                    System.out.println(pce.getMessage());
-                }
-		catch (SAXException se)
-		{
-                    System.out.println(se.getMessage());
-                }
-		catch (IOException ioe)
-		{
-                    System.out.println(ioe.getMessage());
-                }
+    	Background newBackground = new Background();
+    	newBackground.setId(getIntValue(el, "Background_Id"));
+    	newBackground.setName(getTextValue(el, "Background_Name"));
+    	newBackground.setImage(getTextValue(el, "Image"));
+    	newBackground.setSpeed(getIntValue(el, "Speed"));
+    	newBackground.setPositionType(getTextValue(el, "Position_Type"));
+    	return newBackground;
     }
-
+    
+    private static Level getLevel(Element el)
+    {
+    	Level newLevel = new Level();
+    	newLevel.setId(getIntValue(el, "Level_Id"));
+    	newLevel.setName(getTextValue(el, "Level_Name"));
+    	newLevel.setBackgroundId(getIntValue(el, "Background_Id"));
+    	
+    	// objects
+    	ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
+    	NodeList nodeList = el.getElementsByTagName("Objects");
+    	Element elem = (Element)nodeList.item(0);
+    	NodeList nl = elem.getElementsByTagName("Object");
+		if (nl != null && nl.getLength() > 0) {
+			for (int i = 0; i < nl.getLength(); i++) {
+				Element e2 = (Element)nl.item(i);
+				GameObject newGameObject = getGameObject(e2);
+				gameObjects.add(newGameObject);
+			}
+		}
+		newLevel.setGameObjects(gameObjects);
+    	
+    	// events
+    	ArrayList<Event> events = new ArrayList<Event>();
+    	nodeList = el.getElementsByTagName("Events");
+    	elem = (Element)nodeList.item(0);
+    	nl = elem.getElementsByTagName("Event");
+    	if (nl != null && nl.getLength() > 0) {
+    		for (int i = 0; i < nl.getLength(); i++) {
+    			Element e2 = (Element)nl.item(i);
+    			Event newEvent = getEvent(e2);
+    			events.add(newEvent);
+    		}
+    	}
+    	newLevel.setEvents(events);
+    	
+    	return newLevel;
+    }
+    
+    private static GameObject getGameObject(Element el)
+    {
+    	GameObject newGameObject = new GameObject();
+    	
+    	
+    	return newGameObject;
+    }
+    
+    private static Event getEvent(Element el)
+    {
+    	Event newEvent = new Event();
+    	newEvent.setEventId(getIntValue(el, "Event_Id"));
+    	
+    	// Event Type
+    	NodeList nl = el.getElementsByTagName("Event_Type");
+    	Element el2 = (Element)nl.item(0);						// set element within event type
+    	String eventType = getTextValue(el, "Event_Type");		// set event type
+		newEvent.setEventType(eventType);
+		if (eventType.equals("Collision")) {
+			// Collision
+			newEvent.setObjectId1(getIntValue(el2, "Object_Id1"));
+			newEvent.setObjectId2(getIntValue(el2, "Object_Id2"));
+			newEvent.setAllowOverlap(getTextValue(el2, "Allow_Overlap"));
+		} else {
+			if (eventType.equals("Boundary")) {
+				// Boundary
+				newEvent.setObjectId(getIntValue(el2, "Object_Id"));
+				newEvent.setLevelId(getIntValue(el2, "Level_Id"));
+				newEvent.setEdges(getTextValue(el2, "Edges"));
+			} else {
+				if (eventType.equals("Timer")) {
+					// Timer
+					newEvent.setLength(getIntValue(el2, "Length"));
+					newEvent.setValue(getIntValue(el2, "Value"));
+				} else {
+					if (eventType.equals("Input")) {
+						// Input
+						newEvent.setLength(getIntValue(el2, "Length"));
+						NodeList nl2 = el2.getElementsByTagName("Value");
+						Element el3 = (Element)nl2.item(0);	
+						newEvent.setInputValueX(getIntValue(el3, "X"));
+						newEvent.setInputValueY(getIntValue(el3, "Y"));
+						newEvent.setInputType(getTextValue(el2, "Type"));
+					} else {
+							// Step
+							newEvent.setStep(getIntValue(el2, "Step"));
+					}
+				}
+			}
+		}
+		
+		// Actions
+		ArrayList<Action> actions = new ArrayList<Action>();
+    	NodeList nodeList = el.getElementsByTagName("Actions");
+    	Element elem = (Element)nodeList.item(0);
+    	nl = elem.getElementsByTagName("Action");
+    	if (nl != null && nl.getLength() > 0) {
+    		for (int i = 0; i < nl.getLength(); i++) {
+    			Element e2 = (Element)nl.item(i);
+    			Action newAction = getAction(e2);
+    			actions.add(newAction);
+    		}
+    	}
+    	newEvent.setActions(actions);
+    	
+    	return newEvent;
+    }
+    
+    private static Action getAction(Element el)
+    {
+    	Action newAction = new Action();
+    	newAction.setActionId(getIntValue(el, "Action_Id"));
+    	NodeList nl = el.getElementsByTagName("Type");
+    	Element el2 = (Element)nl.item(0);
+    	
+    	// Change Sprite
+    	NodeList nl2 = el2.getElementsByTagName("Change_Sprite");
+    	Integer objId = getIntValue(el2, "Object_Id");
+    	if (objId != null) {
+    		newAction.setChangeSprite(true);
+    		newAction.setObjectId(getIntValue(el2, "Object_Id"));
+    		newAction.setSpriteId(getTextValue(el2, "Sprite_Id"));
+    	}
+    	
+    	// Change Score
+    	nl2 = el2.getElementsByTagName("Change_Score");
+    	objId = getIntValue(el2, "Object_Id");
+    	if (objId != null) {
+    		newAction.setChangeScore(true);
+    		newAction.setObjectId(getIntValue(el2, "Object_Id"));
+    		newAction.setPlayerId(getIntValue(el2, "Player_Id"));
+    		newAction.setValue(getIntValue(el2, "Value"));
+    		newAction.setScoreType(getTextValue(el2, "Type"));
+    	}
+    	
+    	// Change Component
+    	nl2 = el2.getElementsByTagName("Change_Component");
+    	objId = getIntValue(el2, "Object_Id");
+    	if (objId != null) {
+    		newAction.setChangeComponent(true);
+    		newAction.setObjectId(getIntValue(el2, "Object_Id"));
+    		newAction.setPlayerId(getIntValue(el2, "Player_Id"));
+    		newAction.setValue(getIntValue(el2, "Value"));
+    		newAction.setComponent(getTextValue(el2, "Component"));
+    		newAction.setComponentType(getTextValue(el2, "Type"));
+    	}
+    	
+    	// Reflect
+    	nl2 = el2.getElementsByTagName("Reflect");
+    	objId = getIntValue(el2, "Object_Id");
+    	if (objId != null) {
+    		newAction.setReflect(true);
+    		newAction.setObjectId(getIntValue(el2, "Object_Id"));
+    		newAction.setSurfaceObjectId(getIntValue(el2, "Surface_Object_Id"));
+    	}
+    	
+    	// Input
+    	nl2 = el2.getElementsByTagName("Input");
+    	objId = getIntValue(el2, "Object_Id");
+    	if (objId != null) {
+    		newAction.setInput(true);
+    		newAction.setObjectId(getIntValue(el2, "Object_Id"));
+    		newAction.setPlayerId(getIntValue(el2, "Player_Id"));
+    		newAction.setInputType(getTextValue(el2, "Type"));
+    	}
+    	
+    	return newAction;
+    }
+/*    
 	private static Level getLevel(Element el)
 	{
 		//for each <Level> element get text values of
@@ -421,56 +567,9 @@ public class Reader {
 		}
 		return newLevel;
 	}
-    
+*/  
         
-        private static Action getAction(Element el)
-	{
-            //for each <Action> element get text values of
-		//actionID, Operation etc. and store commands
-                Action newAction = new Action();
-		int actionID = getIntValue(el, "Action_id");
-                //System.out.println("ID = "+actionID);
-                newAction.setActionId(actionID);
-		String Operation = getTextValue(el, "Operation");
-                //System.out.println("Operation = "+Operation);
-                newAction.setActionId(actionID);
-                
-                String tempCommand = "";
-                
-                NodeList nl = el.getElementsByTagName("Command");
-		if(nl != null && nl.getLength() > 0)
-		{
-			for(int a = 0; a < nl.getLength(); a++)
-			{
-				//get element
-				Element elEl = (Element)nl.item(a);
-
-				//get the command
-				String Create = getTextValue(elEl, "Create");
-                                String Change = getTextValue(elEl, "Change");
-                                String Colour = getTextValue(elEl, "Colour");
-                                String Destroy = getTextValue(elEl, "Destroy");
-                                
-                                if (!Create.equals(""))
-                                    tempCommand = "CREATE "+Create;
-                                else if (!Colour.equals(""))
-                                    tempCommand = "COLOUR "+Colour;
-                                else if (!Change.equals(""))
-                                    tempCommand = "CHANGE "+Change;
-                                else if (!Destroy.equals(""))
-                                    tempCommand = "DESTROY "+Destroy;
-                                else
-                                    break;
-                                
-                                //System.out.println("Command = "+tempCommand);
-
-				newAction.addCommand(tempCommand);
-			}
-		}
-                return newAction;
-        }
-        
-        private static String getTextValue(Element doc, String tag)
+    private static String getTextValue(Element doc, String tag)
 	{
 		String value = "";
 		NodeList nl = doc.getElementsByTagName(tag);
