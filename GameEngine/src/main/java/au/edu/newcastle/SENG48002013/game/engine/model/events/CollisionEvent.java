@@ -90,7 +90,6 @@ public class CollisionEvent extends BaseEvent {
 			{
 				Vector2d lengthVec = new Vector2d();
 				lengthVec.sub(object2.getNextPos(), object1.getNextPos());
-				double length = lengthVec.length();
 				double velLength1 = object1.getVel().length();
 				double velLength2 = object2.getVel().length();
 				double scale1 = velLength1/(velLength1 + velLength2);
@@ -103,7 +102,6 @@ public class CollisionEvent extends BaseEvent {
 				double v2x = object2.getNextVel().x;
 				double v1y = object1.getNextVel().y;
 				double v2y = object2.getNextVel().y;
-				double radLength = radius1 + radius2;
 				if(velLength1 > 0)
 				{
 				  v1x /= -velLength1;
@@ -166,7 +164,6 @@ public class CollisionEvent extends BaseEvent {
 			intersects = true;
 			if(!allowOverlap)
 			{
-				double xDir, yDir, xCover, yCover;
 				Vector2d v1 = new Vector2d();
 				v1.sub(object1.getNextPos(), object1.getPos());
 				Vector2d v2 = new Vector2d();
@@ -283,17 +280,6 @@ public class CollisionEvent extends BaseEvent {
 			circleObj = object2;
 			rectObj = object1;
 		}
-		boolean undefined = false;
-		double gradient = 0;
-		//Calculate gradient/undefined
-		if(circleObj.getNextPos().x - circleObj.getPos().x == 0)
-		{
-			undefined = true;
-		}
-		else
-		{
-			gradient = (circleObj.getNextPos().y - circleObj.getPos().y)/(circleObj.getNextPos().x - circleObj.getPos().x);
-		}
 		double radius = ((Circle)circleObj.getShape()).getRadius();
 		Vector2d rectSize = ((Rectangle)rectObj.getShape()).getSize();
 		double p1x = circleObj.getNextPos().x;
@@ -373,70 +359,10 @@ public class CollisionEvent extends BaseEvent {
 						(circleObj.getPos().y + radius < rectObj.getPos().y &&
 						circleObj.getNextPos().y + radius > rectObj.getNextPos().y));
 				double w = -1;
-				boolean crossCorner = false;
-				double inverse;
-				double a, b, c;
-				double root1 = 0, root2 = 0;
-				if(gradient != 0 && !undefined)
-				{
-					crossCorner = true;
-					inverse = -1/gradient;
-					a = inverse*inverse + 1;
-					b = 2*p1x*(inverse*inverse + 1);
-					c = p1x*p1x*(inverse*inverse + 1) - radius*radius;
-					root1 = (-b + Math.sqrt(b*b - 4*a*c))/(2*a);
-					root2 = (-b - Math.sqrt(b*b - 4*a*c))/(2*a);
-				}
 				//crossCorner = false;
 				if(crossLeft)
 				{
 					w = (p2x + rectSize.x - (p1x - radius))/(v1x*scale1 - v2x*scale2);
-					if(crossCorner)
-					{
-						double temp = -1;
-						//Top Right corner of Rectangle
-						if((gradient*(p2x + rectSize.x) + root1 > p2y &&
-								gradient*(p2x + rectSize.x) + root2 < p2y) ||
-								(gradient*(p2x + rectSize.x) + root1 < p2y &&
-								gradient*(p2x + rectSize.x) + root2 > p2y))
-						{
-							double a2 = (v1x*scale1 - v2x*scale2)*(v1x*scale1 - v2x*scale2) + (v1y*scale1 - v2y*scale2)*(v1y*scale1 - v2y*scale2);
-							double b2 = 2*(p1x - (p2x + rectSize.x))*(v1x*scale1 - v2x*scale2) + 2*(p1y - p2y)*(v1y*scale1 - v2y*scale2);
-							double c2 = (p1x - (p2x + rectSize.x))*(p1x - (p2x + rectSize.x)) + (p1y - p2y)*(p1y - p2y) - (radius)*(radius);
-							double root = Math.sqrt(b2*b2 - 4*a2*c2);
-							if((-b2 - root)/(2*a2) >= 0)
-							{
-								temp = (-b2 - root)/(2*a2);
-							}
-							else
-							{
-								temp = (root - b2)/(2*a2);
-							}
-						}
-						//Bottom Right corner of Rectangle
-						else if((gradient*(p2x + rectSize.x) + root1 > p2y + rectSize.y &&
-							gradient*(p2x + rectSize.x) + root2 < p2y + rectSize.y) ||
-							(gradient*(p2x + rectSize.x) + root1 < p2y + rectSize.y &&
-							gradient*(p2x + rectSize.x) + root2 > p2y + rectSize.y))
-						{
-							double a2 = (v1x*scale1 - v2x*scale2)*(v1x*scale1 - v2x*scale2) + (v1y*scale1 - v2y*scale2)*(v1y*scale1 - v2y*scale2);
-							double b2 = 2*(p1x - (p2x + rectSize.x))*(v1x*scale1 - v2x*scale2) + 2*(p1y - (p2y + rectSize.y))*(v1y*scale1 - v2y*scale2);
-							double c2 = (p1x - (p2x + rectSize.x))*(p1x - (p2x + rectSize.x)) + (p1y - (p2y + rectSize.y))*(p1y - (p2y + rectSize.y)) - (radius)*(radius);
-							double root = Math.sqrt(b2*b2 - 4*a2*c2);
-							if((-b2 - root)/(2*a2) >= 0)
-							{
-								temp = (-b2 - root)/(2*a2);
-							}
-							else
-							{
-								temp = (root - b2)/(2*a2);
-							}
-						}
-						if(temp != -1 && temp < w)
-						{
-							w = temp;
-						}
-					}
 				}
 				if(crossRight)
 				{
@@ -448,52 +374,6 @@ public class CollisionEvent extends BaseEvent {
 					else if(temp < w)
 					{
 						w = temp;
-					}
-					if(crossCorner)
-					{
-						double temp2 = -1;
-						//Top Left corner of rectangle
-						if((gradient*p2x + root1 > p2y &&
-								gradient*p2x + root2 < p2y) ||
-								(gradient*p2x + root1 < p2y &&
-								gradient*p2x + root2 > p2y))
-						{
-							double a2 = (v1x*scale1 - v2x*scale2)*(v1x*scale1 - v2x*scale2) + (v1y*scale1 - v2y*scale2)*(v1y*scale1 - v2y*scale2);
-							double b2 = 2*(p1x - p2x)*(v1x*scale1 - v2x*scale2) + 2*(p1y - p2y)*(v1y*scale1 - v2y*scale2);
-							double c2 = (p1x - p2x)*(p1x - p2x) + (p1y - p2y)*(p1y - p2y) - (radius)*(radius);
-							double root = Math.sqrt(b2*b2 - 4*a2*c2);
-							if((-b2 - root)/(2*a2) >= 0)
-							{
-								temp2 = (-b2 - root)/(2*a2);
-							}
-							else
-							{
-								temp2 = (root - b2)/(2*a2);
-							}
-						}
-						//Bottom Left corner of rectangle
-						else if((gradient*p2x + root1 > p2y + rectSize.y &&
-								gradient*p2x + root2 < p2y + rectSize.y) ||
-								(gradient*p2x + root1 < p2y + rectSize.y &&
-								gradient*p2x + root2 > p2y + rectSize.y))
-						{
-							double a2 = (v1x*scale1 - v2x*scale2)*(v1x*scale1 - v2x*scale2) + (v1y*scale1 - v2y*scale2)*(v1y*scale1 - v2y*scale2);
-							double b2 = 2*(p1x - p2x)*(v1x*scale1 - v2x*scale2) + 2*(p1y - (p2y + rectSize.y))*(v1y*scale1 - v2y*scale2);
-							double c2 = (p1x - p2x)*(p1x - p2x) + (p1y - (p2y + rectSize.y))*(p1y - (p2y + rectSize.y)) - (radius)*(radius);
-							double root = Math.sqrt(b2*b2 - 4*a2*c2);
-							if((-b2 - root)/(2*a2) >= 0)
-							{
-								temp2 = (-b2 - root)/(2*a2);
-							}
-							else
-							{
-								temp2 = (root - b2)/(2*a2);
-							}
-						}
-						if(temp2 != -1 && temp2 < w)
-						{
-							w = temp2;
-						}
 					}
 				}
 				if(crossTop)
@@ -507,53 +387,6 @@ public class CollisionEvent extends BaseEvent {
 					{
 						w = temp;
 					}
-					if(crossCorner)
-					{
-						double temp2 = -1;
-						//Bottom left corner of Rectangle
-						if((gradient*p2x + root1 > p2y + rectSize.y &&
-								gradient*p2x + root2 < p2y + rectSize.y) ||
-								(gradient*p2x + root1 < p2y + rectSize.y &&
-								gradient*p2x + root2 > p2y + rectSize.y))
-						{
-							double a2 = (v1x*scale1 - v2x*scale2)*(v1x*scale1 - v2x*scale2) + (v1y*scale1 - v2y*scale2)*(v1y*scale1 - v2y*scale2);
-							double b2 = 2*(p1x - p2x)*(v1x*scale1 - v2x*scale2) + 2*(p1y - (p2y + rectSize.y))*(v1y*scale1 - v2y*scale2);
-							double c2 = (p1x - p2x)*(p1x - p2x) + (p1y - (p2y + rectSize.y))*(p1y - (p2y + rectSize.y)) - (radius)*(radius);
-							double root = Math.sqrt(b2*b2 - 4*a2*c2);
-							if((-b2 - root)/(2*a2) >= 0)
-							{
-								temp2 = (-b2 - root)/(2*a2);
-							}
-							else
-							{
-								temp2 = (root - b2)/(2*a2);
-							}
-						}
-						//Bottom right corner of Rectangle
-						else if((gradient*(p2x + rectSize.x) + root1 > p2y + rectSize.y &&
-								gradient*(p2x + rectSize.x) + root2 < p2y + rectSize.y) ||
-								(gradient*(p2x + rectSize.x) + root1 < p2y + rectSize.y &&
-								gradient*(p2x + rectSize.x) + root2 > p2y + rectSize.y))
-						{
-							double a2 = (v1x*scale1 - v2x*scale2)*(v1x*scale1 - v2x*scale2) + (v1y*scale1 - v2y*scale2)*(v1y*scale1 - v2y*scale2);
-							double b2 = 2*(p1x - (p2x + rectSize.x))*(v1x*scale1 - v2x*scale2) + 2*(p1y - (p2y + rectSize.y))*(v1y*scale1 - v2y*scale2);
-							double c2 = (p1x - (p2x + rectSize.x))*(p1x - (p2x + rectSize.x)) + (p1y - (p2y + rectSize.y))*(p1y - (p2y + rectSize.y)) - (radius)*(radius);
-							double root = Math.sqrt(b2*b2 - 4*a2*c2);
-							if((-b2 - root)/(2*a2) >= 0)
-							{
-								temp2 = (-b2 - root)/(2*a2);
-							}
-							else
-							{
-								temp2 = (root - b2)/(2*a2);
-							}
-						}
-						if(temp2 != -1 && temp2 < w)
-						{
-							w = temp2;
-						}
-					}
-					
 				}
 				if(crossBottom)
 				{
@@ -566,53 +399,94 @@ public class CollisionEvent extends BaseEvent {
 					{
 						w = temp;
 					}
-					if(crossCorner)
+				}
+				//Top Right corner of Rectangle
+				if((p1x - (p2x + rectSize.x))*(p1x - (p2x + rectSize.x)) + (p1y - p2y)*(p1y - p2y) < (radius)*(radius))
+				{
+					double temp = -1;
+					double a2 = (v1x*scale1 - v2x*scale2)*(v1x*scale1 - v2x*scale2) + (v1y*scale1 - v2y*scale2)*(v1y*scale1 - v2y*scale2);
+					double b2 = 2*(p1x - (p2x + rectSize.x))*(v1x*scale1 - v2x*scale2) + 2*(p1y - p2y)*(v1y*scale1 - v2y*scale2);
+					double c2 = (p1x - (p2x + rectSize.x))*(p1x - (p2x + rectSize.x)) + (p1y - p2y)*(p1y - p2y) - (radius)*(radius);
+					double root = Math.sqrt(b2*b2 - 4*a2*c2);
+					if((-b2 - root)/(2*a2) >= 0)
 					{
-						double temp2 = -1;
-						//Top Left corner of rectangle
-						if((gradient*p2x + root1 > p2y &&
-								gradient*p2x + root2 < p2y) ||
-								(gradient*p2x + root1 < p2y &&
-								gradient*p2x + root2 > p2y))
-						{
-							double a2 = (v1x*scale1 - v2x*scale2)*(v1x*scale1 - v2x*scale2) + (v1y*scale1 - v2y*scale2)*(v1y*scale1 - v2y*scale2);
-							double b2 = 2*(p1x - p2x)*(v1x*scale1 - v2x*scale2) + 2*(p1y - p2y)*(v1y*scale1 - v2y*scale2);
-							double c2 = (p1x - p2x)*(p1x - p2x) + (p1y - p2y)*(p1y - p2y) - (radius)*(radius);
-							double root = Math.sqrt(b2*b2 - 4*a2*c2);
-							if((-b2 - root)/(2*a2) >= 0)
-							{
-								temp2 = (-b2 - root)/(2*a2);
-							}
-							else
-							{
-								temp2 = (root - b2)/(2*a2);
-							}
-						}
-						//Top Right corner of rectangle
-						else if((gradient*(p2x + rectSize.x) + root1 > p2y &&
-								gradient*(p2x + rectSize.x) + root2 < p2y) ||
-								(gradient*(p2x + rectSize.x) + root1 < p2y &&
-								gradient*(p2x + rectSize.x) + root2 > p2y))
-						{
-							double a2 = (v1x*scale1 - v2x*scale2)*(v1x*scale1 - v2x*scale2) + (v1y*scale1 - v2y*scale2)*(v1y*scale1 - v2y*scale2);
-							double b2 = 2*(p1x - (p2x + rectSize.x))*(v1x*scale1 - v2x*scale2) + 2*(p1y - p2y)*(v1y*scale1 - v2y*scale2);
-							double c2 = (p1x - (p2x + rectSize.x))*(p1x - (p2x + rectSize.x)) + (p1y - p2y)*(p1y - p2y) - (radius)*(radius);
-							double root = Math.sqrt(b2*b2 - 4*a2*c2);
-							if((-b2 - root)/(2*a2) >= 0)
-							{
-								temp2 = (-b2 - root)/(2*a2);
-							}
-							else
-							{
-								temp2 = (root - b2)/(2*a2);
-							}
-						}
-						if(temp2 != -1 && temp2 < w)
-						{
-							w = temp2;
-						}
+						temp = (-b2 - root)/(2*a2);
+					}
+					else
+					{
+						temp = (root - b2)/(2*a2);
+					}
+					if(temp != -1 && temp < w)
+					{
+						w = temp;
 					}
 				}
+				//Bottom Right corner of Rectangle
+				if((p1x - (p2x + rectSize.x))*(p1x - (p2x + rectSize.x)) + 
+						(p1y - (p2y + rectSize.y))*(p1y - (p2y + rectSize.y)) < (radius)*(radius))
+				{
+					double temp = -1;
+					double a2 = (v1x*scale1 - v2x*scale2)*(v1x*scale1 - v2x*scale2) + (v1y*scale1 - v2y*scale2)*(v1y*scale1 - v2y*scale2);
+					double b2 = 2*(p1x - (p2x + rectSize.x))*(v1x*scale1 - v2x*scale2) + 2*(p1y - (p2y + rectSize.y))*(v1y*scale1 - v2y*scale2);
+					double c2 = (p1x - (p2x + rectSize.x))*(p1x - (p2x + rectSize.x)) + (p1y - (p2y + rectSize.y))*(p1y - (p2y + rectSize.y)) - (radius)*(radius);
+					double root = Math.sqrt(b2*b2 - 4*a2*c2);
+					if((-b2 - root)/(2*a2) >= 0)
+					{
+						temp = (-b2 - root)/(2*a2);
+					}
+					else
+					{
+						temp = (root - b2)/(2*a2);
+					}
+					if(temp != -1 && temp < w)
+					{
+						w = temp;
+					}
+				}
+				//Top Left corner of rectangle
+				if((p1x - p2x)*(p1x - p2x) + (p1y - p2y)*(p1y - p2y) < (radius)*(radius))
+				{
+					double temp = -1;
+					double a2 = (v1x*scale1 - v2x*scale2)*(v1x*scale1 - v2x*scale2) + (v1y*scale1 - v2y*scale2)*(v1y*scale1 - v2y*scale2);
+					double b2 = 2*(p1x - p2x)*(v1x*scale1 - v2x*scale2) + 2*(p1y - p2y)*(v1y*scale1 - v2y*scale2);
+					double c2 = (p1x - p2x)*(p1x - p2x) + (p1y - p2y)*(p1y - p2y) - (radius)*(radius);
+					double root = Math.sqrt(b2*b2 - 4*a2*c2);
+					if((-b2 - root)/(2*a2) >= 0)
+					{
+						temp = (-b2 - root)/(2*a2);
+					}
+					else
+					{
+						temp = (root - b2)/(2*a2);
+					}
+					if(temp != -1 && temp < w)
+					{
+						w = temp;
+					}
+				}
+				//Bottom left corner of Rectangle
+				if((p1x - p2x)*(p1x - p2x) + (p1y - (p2y + rectSize.y))*(p1y - (p2y + rectSize.y)) < (radius)*(radius))
+				{
+					double temp = -1;
+					double a2 = (v1x*scale1 - v2x*scale2)*(v1x*scale1 - v2x*scale2) + (v1y*scale1 - v2y*scale2)*(v1y*scale1 - v2y*scale2);
+					double b2 = 2*(p1x - p2x)*(v1x*scale1 - v2x*scale2) + 2*(p1y - (p2y + rectSize.y))*(v1y*scale1 - v2y*scale2);
+					double c2 = (p1x - p2x)*(p1x - p2x) + (p1y - (p2y + rectSize.y))*(p1y - (p2y + rectSize.y)) - (radius)*(radius);
+					double root = Math.sqrt(b2*b2 - 4*a2*c2);
+					if((-b2 - root)/(2*a2) >= 0)
+					{
+						temp = (-b2 - root)/(2*a2);
+					}
+					else
+					{
+						temp = (root - b2)/(2*a2);
+					}
+					if(temp != -1 && temp < w)
+					{
+						w = temp;
+					}
+				}
+				
+				System.out.println("W:" + w);
 				circleObj.getNextPos().x += (v1x)*scale1*w;
 				circleObj.getNextPos().y += (v1y)*scale1*w;
 				rectObj.getNextPos().x += (v2x)*scale2*w;

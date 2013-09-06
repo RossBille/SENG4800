@@ -11,7 +11,6 @@ public class TestMain {
 	 * @param args
 	 */
 	public static void main(String[] args) throws IOException {
-		Boss myBoss = new Boss();
-		myBoss.start();
+		Boss.start();
 	}
 }

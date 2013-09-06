@@ -13,7 +13,7 @@ import javax.vecmath.Vector2d;
  */
 public interface IGameObject
 {
-	public Vector2d getPos();
+	public Vector2d getOutputPos();
 	public long getId();
 	public String getImageUrl();
 	

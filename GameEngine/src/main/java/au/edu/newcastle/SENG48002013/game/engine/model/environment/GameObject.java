@@ -27,6 +27,7 @@ public class GameObject implements IGameObject
 	private boolean committed;
 	private boolean active;
 	private String imageUrl;
+	private Vector2d outputPos;
 	private int currentFrame;
 	private double currentTime;
 	private final long TARGET_FPS = 60;
@@ -43,6 +44,7 @@ public class GameObject implements IGameObject
 		active = true;
 		currentFrame = 0;
 		currentTime = 0;
+		imageUrl = null;
 	}
 	@Override
 	public long getId()
@@ -70,11 +72,20 @@ public class GameObject implements IGameObject
 	public void setSprite(Sprite sprite)
 	{
 		this.sprite = sprite;
+		this.currentFrame = 0;
+		this.currentTime = 0;
 	}
 	@Override
 	public String getImageUrl()
 	{
-		return sprite.getImageUrl(currentFrame);
+		if(sprite != null)
+		{
+			return sprite.getImageUrl(currentFrame);
+		}
+		else
+		{
+			return "";
+		}
 	}
 	@JsonIgnore
 	public Shape getShape()
@@ -94,7 +105,7 @@ public class GameObject implements IGameObject
 	{
 		this.size.set(size);
 	}
-	@Override
+	@JsonIgnore
 	public Vector2d getPos()
 	{
 		return pos;
@@ -177,17 +188,33 @@ public class GameObject implements IGameObject
 	}
 	private void stepAnimation(double dt)
 	{
-		currentTime += dt/TARGET_FPS;
-		currentFrame = (int)Math.floor(currentTime*sprite.getSpeed());
-		if(currentFrame == sprite.length())
+		if(sprite != null)
 		{
-			currentTime = 0;
-			currentFrame = 0;
+			currentTime += dt/TARGET_FPS;
+			currentFrame = (int)Math.floor(currentTime*sprite.getSpeed());
+			if(currentFrame == sprite.length())
+			{
+				currentTime = 0;
+				currentFrame = 0;
+			}
 		}
 	}
 	@JsonIgnore
 	public boolean isCommitted()
 	{
 		return committed;
+	}
+	@Override
+	public Vector2d getOutputPos()
+	{
+		Vector2d outputPos = new Vector2d();
+		outputPos.add(pos, sprite.getOffset());
+		if(shape instanceof Circle)
+		{
+			double radius = ((Circle)shape).getRadius();
+			outputPos.x -= radius;
+			outputPos.y -= radius;
+		}
+		return outputPos;
 	}
 }

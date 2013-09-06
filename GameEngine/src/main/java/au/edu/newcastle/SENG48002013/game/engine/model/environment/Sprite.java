@@ -5,20 +5,19 @@
  */
 package au.edu.newcastle.SENG48002013.game.engine.model.environment;
 
-import java.awt.image.BufferedImage;
 import javax.vecmath.Vector2d;
 
 
 public class Sprite {
 	private long id;
 	private String[] imageUrls;
-	private Vector2d size;
 	private long speed;
+	private Vector2d offset;
 	public Sprite(long id)
 	{
 		this.id = id;
-		size = new Vector2d();
 		speed = 40;
+		offset = new Vector2d(0,0);
 	}
 	public long getId()
 	{
@@ -48,8 +47,23 @@ public class Sprite {
 	{
 		this.speed = speed;
 	}
+	public Vector2d getOffset()
+	{
+		return offset;
+	}
+	public void setOffset(Vector2d offset)
+	{
+		this.offset.set(offset);
+	}
 	public int length()
 	{
-		return imageUrls.length; 
+		if(imageUrls != null)
+		{
+			return imageUrls.length;
+		}
+		else
+		{
+			return 0;
+		}
 	}
 }

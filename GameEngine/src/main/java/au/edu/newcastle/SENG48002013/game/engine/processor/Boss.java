@@ -6,14 +6,10 @@
 package au.edu.newcastle.SENG48002013.game.engine.processor;
 
 import au.edu.newcastle.SENG48002013.game.engine.connections.output.OutputConnectionManager;
-import java.util.LinkedList;
-import java.util.List;
 
 import au.edu.newcastle.SENG48002013.game.engine.connections.output.TestOutputWindow;
 import au.edu.newcastle.SENG48002013.game.engine.model.IGame;
 import au.edu.newcastle.SENG48002013.game.engine.model.IGameOutput;
-import au.edu.newcastle.SENG48002013.game.engine.model.environment.IGameObject;
-import au.edu.newcastle.SENG48002013.game.engine.model.environment.Player;
 import au.edu.newcastle.SENG48002013.game.engine.resources.GameBuilder;
 import java.io.IOException;
 
