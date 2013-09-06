@@ -26,6 +26,10 @@ public class GameObject implements IGameObject
 	private Vector2d nextAcc;
 	private boolean committed;
 	private boolean active;
+	private String imageUrl;
+	private int currentFrame;
+	private double currentTime;
+	private final long TARGET_FPS = 60;
 	public GameObject(long id)
 	{
 		this.id = id;
@@ -37,6 +41,8 @@ public class GameObject implements IGameObject
 		nextVel = new Vector2d(0, 0);
 		nextAcc = new Vector2d(0, 0);
 		active = true;
+		currentFrame = 0;
+		currentTime = 0;
 	}
 	@Override
 	public long getId()
@@ -66,16 +72,9 @@ public class GameObject implements IGameObject
 		this.sprite = sprite;
 	}
 	@Override
-	public long getSpriteId()
+	public String getImageUrl()
 	{
-		if(sprite != null)
-		{
-			return sprite.getId();
-		}
-		else
-		{
-			return -1;
-		}
+		return sprite.getImageUrl(currentFrame);
 	}
 	@JsonIgnore
 	public Shape getShape()
@@ -167,6 +166,7 @@ public class GameObject implements IGameObject
 		nextAcc.set(acc);
 		nextVel.scaleAdd((double)(dt), nextAcc, vel);
 		nextPos.scaleAdd((double)(dt), nextVel, pos);
+		stepAnimation(dt);
 	}
 	public void commit()
 	{
@@ -174,6 +174,16 @@ public class GameObject implements IGameObject
 		vel.set(nextVel);
 		pos.set(nextPos);
 		committed = true;
+	}
+	private void stepAnimation(double dt)
+	{
+		currentTime += dt/TARGET_FPS;
+		currentFrame = (int)Math.floor(currentTime*sprite.getSpeed());
+		if(currentFrame == sprite.length())
+		{
+			currentTime = 0;
+			currentFrame = 0;
+		}
 	}
 	@JsonIgnore
 	public boolean isCommitted()

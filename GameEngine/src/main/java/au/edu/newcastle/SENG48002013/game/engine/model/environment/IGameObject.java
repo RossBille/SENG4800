@@ -15,6 +15,6 @@ public interface IGameObject
 {
 	public Vector2d getPos();
 	public long getId();
-	public long getSpriteId();
+	public String getImageUrl();
 	
 }
