@@ -6,10 +6,12 @@
 package au.edu.newcastle.SENG48002013.game.engine.resources;
 
 import au.edu.newcastle.SENG20502013.output.SetupMessage;
+import au.edu.newcastle.SENG48002013.game.engine.model.IGame;
 import au.edu.newcastle.SENG48002013.game.engine.model.actions.IAction;
 import au.edu.newcastle.SENG48002013.game.engine.model.environment.Background;
 import au.edu.newcastle.SENG48002013.game.engine.model.environment.GameObject;
 import au.edu.newcastle.SENG48002013.game.engine.model.environment.Level;
+import au.edu.newcastle.SENG48002013.game.engine.model.environment.Player;
 import au.edu.newcastle.SENG48002013.game.engine.model.environment.Sprite;
 import au.edu.newcastle.SENG48002013.game.engine.model.events.IEvent;
 import java.util.Arrays;
@@ -26,7 +28,8 @@ public class GameResources {
 	private static HashMap<Long, Background> backgrounds = new HashMap<Long, Background>();
 	private static HashMap<Long, IAction> actions = new HashMap<Long, IAction>();
 	private static HashMap<Long, IEvent> events = new HashMap<Long, IEvent>();
-	
+	private static HashMap<Long, Player> players = new HashMap<Long, Player>();
+	private static IGame game;
 	public static void addLevel(Level level)
 	{
 		levels.put(level.getId(), level);
@@ -107,7 +110,22 @@ public class GameResources {
 	{
 		events.remove(id);
 	}
-
+	public static Player getPlayer(long id)
+	{
+		return players.get(id);
+	}
+	public static void addPlayer(Player player)
+	{
+		players.put(player.getId(), player);
+	}
+	public static IGame getGame()
+	{
+		return game;
+	}
+	public static void setGame(IGame game)
+	{
+		GameResources.game = game;
+	}
 	public static SetupMessage getResources()
 	{
 		int objSize = gameObjects.values().size();
