@@ -6,7 +6,9 @@
 package au.edu.newcastle.SENG48002013.game.engine.model.environment;
 
 import javax.vecmath.Vector2d;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 
 public class Sprite {
 	private long id;
