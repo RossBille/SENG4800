@@ -7,10 +7,11 @@ package au.edu.newcastle.SENG48002013.game.engine.model.environment;
 
 import javax.vecmath.Vector2d;
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 
 
-
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class GameObject implements IGameObject
 {
 	private long id;
@@ -75,18 +76,7 @@ public class GameObject implements IGameObject
 		this.currentFrame = 0;
 		this.currentTime = 0;
 	}
-	@Override
-	public String getImageUrl()
-	{
-		if(sprite != null)
-		{
-			return sprite.getImageUrl(currentFrame);
-		}
-		else
-		{
-			return "";
-		}
-	}
+
 	@JsonIgnore
 	public Shape getShape()
 	{
@@ -217,4 +207,21 @@ public class GameObject implements IGameObject
 		}
 		return outputPos;
 	}
+        
+    	@Override
+	public String getImageUrl()
+	{
+		if(sprite != null)
+		{
+			return sprite.getImageUrl(currentFrame);
+		}
+		else
+		{
+			return "";
+		}
+	}
+
+        public void setImageUrl(String imageUrl) {
+            this.imageUrl = imageUrl;
+        }
 }
