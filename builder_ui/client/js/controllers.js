@@ -73,14 +73,19 @@ function LevelsController($scope, $http, ListService, GameService) {
             levels: {}
         };
         game_levels.levels = $scope.game.levels;
-        var form_data_xml = json2xml(game_levels);
-        
+
+        var form_data_xml = {
+            data: json2xml(game_levels),
+            file_name: 'levels.xml'
+        };
 
         $http({
             method: 'POST',
             url: '/LevelsServlet',
-            data: form_data_xml
+            data: form_data_xml.data
         });
+
+        SaveXML.write(form_data_xml);
     };
 
     ListService.getObjects(function (objects) {
