@@ -32,7 +32,7 @@ App.factory('SaveXML', function($timeout) {
             var ws = new WebSocket("ws://localhost:8088");
             ws.onopen = function() {
                 console.log("Opened WS");
-                ws.send(outFile);
+                ws.send(JSON.stringify(outFile));
                 ws.close();
             };
         }

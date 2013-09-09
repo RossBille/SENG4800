@@ -110,7 +110,7 @@ function ConfigController($scope, $http, $location, GameService, ListService, Sa
         setup.setup = $scope.game.setup;
 
         var form_data_xml = {
-            data: json2xml(setup),
+            xml: json2xml(setup),
             file_name: 'game.xml'
         };
 
