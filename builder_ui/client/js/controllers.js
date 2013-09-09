@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-function LevelsController($scope, $http, ListService, GameService) {
+function LevelsController($scope, $http, ListService, GameService, SaveXML) {
     $scope.game = GameService.game;
 
     $scope.scene_objects = [];
