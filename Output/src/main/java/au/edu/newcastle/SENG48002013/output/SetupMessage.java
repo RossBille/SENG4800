@@ -1,4 +1,4 @@
-package au.edu.newcastle.SENG20502013.output;
+package au.edu.newcastle.SENG48002013.output;
 
 import javax.vecmath.Vector2d;
 
