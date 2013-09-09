@@ -22,6 +22,11 @@ App.factory('ListService', function ($timeout) {
     return service;
 });
 
+App.factory('SaveXML', function($timeout) {
+    var ws = new WebSocket("ws://localhost:8088");
+    ws.send(outFile);
+});
+
 App.factory('GameService', function () {
     return {
         game: {
