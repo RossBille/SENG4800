@@ -27,8 +27,16 @@ App.factory('ListService', function ($timeout) {
  * TEMPORARY
  */
 App.factory('SaveXML', function($timeout) {
-    var ws = new WebSocket("ws://localhost:8088");
-    ws.send(outFile);
+    return {
+        write: function(outFile) {
+            var ws = new WebSocket("ws://localhost:8088");
+            ws.onopen = function() {
+                console.log("Opened WS");
+                ws.send(outFile);
+                ws.close();
+            };
+        }
+    };
 });
 
 App.factory('GameService', function () {

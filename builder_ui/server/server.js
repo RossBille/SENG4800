@@ -1,4 +1,6 @@
 var fs = require('fs');
+var pd = require('pretty-data').pd;
+
 var WebSocketServer = require('ws').Server;
 var wss = new WebSocketServer({port: 8088});
 
@@ -9,14 +11,15 @@ wss.on ('connection', function(socket) {
 
     socket.on('message', function(message) {
         console.log("received %s", message);
-        fs.writeFile("/out.xml", message, function(err) {
+        var out = pd.xml(message);
+        fs.writeFile("out.xml", out, function(err) {
             if(err) {
                 console.log(err);
             }
             else {
                 console.log("Saved file");
             }
-        }
+        });
     });
 
     socket.on('close', function() {
