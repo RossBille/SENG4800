@@ -3,17 +3,23 @@
 
         <div class="level-controls">
             <button ng-click="saveLevel()">Save Level</button>
+            <button ng-click="newLevel()">New Level</button>
+            <a href="#" id="save-game" ng-click="saveGame()">Save Game</a>
         </div>
 
-        <div class="dragdrop">
-            <div class='list'>
-                <div class="object-container" ng-repeat="item in list">
-                    <img ng-src="{{item.image}}" class="object" data-index="{{$index}}" draggable ng-click="objectClicked()"/>
-                </div>
-            </div>
+        <div id="level-detail" ng-include src="'views/level_detail.html'">
+        </div>
 
-            <div class="scene" droppable></div>
+        <div class='list'>
+            <div class="object-container" ng-repeat="item in list">
+                <img ng-src="{{item.image}}" class="object" data-index="{{$index}}" draggable />
             </div>
         </div>
+
+        <div class="scene" droppable></div>
+
+        <div id="item-detail" ng-include src="view_URL">
+        </div>
+
     </div>
 </section>

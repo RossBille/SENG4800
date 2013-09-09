@@ -7,21 +7,13 @@ function LevelsController($scope, $http, ListService, GameService) {
 
     $scope.scene_objects = [];
 
-    $scope.clicked = function () {
-        console.log('scene item clicked');
-    };
+    $scope.current_level = null;
 
-    $scope.objectClicked = function () {
-        console.log('object clicked');
-    };
-
-    $scope.saveLevel = function () {
-        console.log('now saving level');
-
-        var level = {
-            level_id: 0,
-            level_name: "Level One",
-            background_id: 0,
+    $scope.createNewLevel = function () {
+        var new_level = {
+            level_id: level_index,
+            level_name: "Level " + level_index,
+            background_id: '',
             objects: {
                 object: []
             },
@@ -30,15 +22,57 @@ function LevelsController($scope, $http, ListService, GameService) {
             }
         };
 
-        level.objects.object.push($scope.scene_objects);
-        $scope.game.levels.push(level);
+        $scope.game.levels.level.push(new_level);
+
+        $scope.current_level = $scope.game.levels.level[level_index];
+
+        level_index++;
+    };
+
+    $scope.view_URL = '';
+
+    $scope.selected_item = null;
+
+    $scope.setSelectedItem = function (index) {
+        $scope.selected_item = $scope.scene_objects[index];
+    };
+
+    $scope.clicked = function(index){
+        console.log('scene item clicked');
+        console.log(index);
+
+        $scope.setSelectedItem(index);
+        $scope.view_URL = 'views/ball_detail.html';
+
+        console.log('game:');
+        console.log($scope.game);
+    };
+
+    $scope.saveLevel = function () {
+        console.log('now saving current level');
+
+        $scope.current_level.objects.object = $scope.scene_objects;
+    };
+
+    $scope.newLevel = function () {
+        console.log('now creating new level');
+
+        $scope.scene_objects = [];
+        scene_index = 0;
+
+        $('.scene').empty();
+        $scope.view_URL = '';
+
+        $scope.createNewLevel();
+    };
+
+    $scope.saveGame = function() {
+        console.log('now saving and POSTing game');
 
         var game_levels = {
-            levels: {
-                level: []
-            }
+            levels: {}
         };
-        game_levels.levels.level = $scope.game.levels;
+        game_levels.levels = $scope.game.levels;
         var form_data_xml = json2xml(game_levels);
 
         $http({
@@ -52,20 +86,14 @@ function LevelsController($scope, $http, ListService, GameService) {
         $scope.list = objects;
     });
 
+    $scope.createNewLevel();
+
     console.log('game at end of levels controller:');
     console.log($scope.game);
 }
 
 function ConfigController($scope, $http, $location, GameService, ListService) {
     $scope.game = GameService.game;
-    $scope.game_config = {
-        game_name: "My Game",
-        starting_level: 1,
-        canvas_width: 1920,
-        canvas_height: 1080,
-        min_players: 1,
-        max_players: 4
-    };
 
     ListService.getObjects(function (objects) {
         $scope.sprites = objects;
@@ -75,34 +103,15 @@ function ConfigController($scope, $http, $location, GameService, ListService) {
     console.log($scope.game);
 
     $scope.sendConfig = function () {
-        $scope.game.setup.game_name = $scope.game_config.game_name;
-        $scope.game.setup.canvas_size = {
-            width: $scope.game_config.canvas_width,
-            height: $scope.game_config.canvas_height
-        }
-        $scope.game.setup.starting_level = $scope.game_config.starting_level;
-        $scope.game.setup.players = {
-            min: $scope.game_config.min_players,
-            max: $scope.game_config.max_players
-        }
-        $scope.game.setup.sprites = {};
-        $scope.game.setup.sprites.sprite = [];
         $scope.game.setup.sprites.sprite.push($scope.sprites);
-        $scope.game.setup.background = {
-            background_id: 0,
-            background_name: "Grey Background",
-            image: "/img/game_background.jpg",
-            speed: 1,
-            position_type: "tiled"
-        }
-        
+
         var setup = {};
         setup.setup = $scope.game.setup;
         var form_data_xml = json2xml(setup);
 
         /*var form_data_json = {
-            setup: $scope.game.setup
-        }*/
+         setup: $scope.game.setup
+         }*/
 
         $http({
             method: 'POST',

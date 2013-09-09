@@ -39,7 +39,7 @@ App.directive('droppable', function ($compile) {
                         console.log('old position:');
                         console.log(old_position);
 
-                        var new_object = '<div class="scene-object-container"><img src="' + scope.list[draggable_original_index].image + '" data-index="' + scene_index + '" ng-click="clicked()" class="scene-object"></div>';
+                        var new_object = '<div class="scene-object-container"><img src="' + scope.list[draggable_original_index].image + '" data-index="' + scene_index + '" ng-click="clicked(' + scene_index + ')" class="scene-object"></div>';
                         console.log(new_object);
 
                         $drop_target.append($compile(new_object)(scope));
@@ -171,7 +171,7 @@ App.directive('droppable', function ($compile) {
                                 var height = $(this).height();
                                 var draggable_index = $(this).find('img').data('index');
 
-                                scope.scene_objects[draggable_index].object_shape.circle.radius = width;
+                                scope.scene_objects[draggable_index].object_shape.circle.radius = width / 2;
 
                                 scope.$apply();
                             },
