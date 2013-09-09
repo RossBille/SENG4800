@@ -15,3 +15,4 @@ var App = angular.module('App', []).
 
 // Instantiate global variables
 var scene_index = 0;
+var level_index = 0;

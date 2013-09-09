@@ -1,54 +1,59 @@
-<levels>
-    <level_id>0</level_id>
-    <level_name>Level One</level_name>
-    <background_id>0</background_id>
-    <objects>
-        <object>
-            <object_id>0</object_id>
-            <object_name>Soccer Ball</object_name>
+<setup>
+    <game_name>My Game</game_name>
+    <canvas_size>
+        <width>1920</width>
+        <height>1080</height>
+    </canvas_size>
+    <starting_level>1</starting_level>
+    <players>
+        <min>1</min>
+        <max>5</max>
+    </players>
+    <sprites>
+        <sprite>
             <sprite_id>0</sprite_id>
-            <object_shape>
-                <circle>
-                    <radius>100</radius>
-                </circle>
-            </object_shape>
-            <object_visible>yes</object_visible>
-            <start_pos>
-                <x>1</x>
-                <y>1</y>
-            </start_pos>
-            <start_vel>
-                <x>1</x>
-                <y>1</y>
-            </start_vel>
-            <start_acc>
-                <x>1</x>
-                <y>1</y>
-            </start_acc>
-        </object>
-        <object>
-            <object_id>1</object_id>
-            <object_name>Soccer Ball</object_name>
-            <sprite_id>0</sprite_id>
-            <object_shape>
-                <circle>
-                    <radius>100</radius>
-                </circle>
-            </object_shape>
-            <object_visible>yes</object_visible>
-            <start_pos>
-                <x>292</x>
-                <y>120</y>
-            </start_pos>
-            <start_vel>
-                <x>1</x>
-                <y>1</y>
-            </start_vel>
-            <start_acc>
-                <x>1</x>
-                <y>1</y>
-            </start_acc>
-        </object>
-    </objects>
-    <events></events>
-</levels>
+            <sprite_name>Soccer Ball</sprite_name>
+            <image>/img/ball.png</image>
+            <speed>1</speed>
+            <offset>
+                <x>0</x>
+                <y>0</y>
+            </offset>
+            <height>200</height>
+            <width>200</width>
+        </sprite>
+        <sprite>
+            <sprite_id>1</sprite_id>
+            <sprite_name>Golf Ball</sprite_name>
+            <image>/img/golf_ball.png</image>
+            <speed>1</speed>
+            <offset>
+                <x>0</x>
+                <y>0</y>
+            </offset>
+            <height>150</height>
+            <width>150</width>
+        </sprite>
+        <sprite>
+            <sprite_id>2</sprite_id>
+            <sprite_name>Tennis Ball</sprite_name>
+            <image>/img/tennis_ball.png</image>
+            <speed>1</speed>
+            <offset>
+                <x>0</x>
+                <y>0</y>
+            </offset>
+            <height>175</height>
+            <width>175</width>
+        </sprite>
+    </sprites>
+    <backgrounds>
+        <background>
+            <background_id>0</background_id>
+            <background_name>Grey Background</background_name>
+            <image>/img/game_background.jpg</image>
+            <speed>1</speed>
+            <position_type>tiled</position_type>
+        </background>
+    </backgrounds>
+</setup>
