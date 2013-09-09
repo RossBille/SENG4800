@@ -5,9 +5,7 @@ app.main = (function() {
     $.get('http://localhost/objects', function(response) {
         console.log(response);
         app.list = JSON.parse(response);
-
         /* Once loaded load the websocket and begin */
-
     });
 
     /* Our websocket */
