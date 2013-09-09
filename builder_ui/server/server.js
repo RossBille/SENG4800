@@ -10,9 +10,9 @@ wss.on ('connection', function(socket) {
     socket.send(JSON.stringify(file));
 
     socket.on('message', function(message) {
-        console.log("received %s", message);
+        console.log("received %s", message.data);
         var out = pd.xml(message);
-        fs.writeFile("out.xml", out, function(err) {
+        fs.writeFile(message.file_name, out, function(err) {
             if(err) {
                 console.log(err);
             }

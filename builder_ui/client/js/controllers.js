@@ -108,7 +108,11 @@ function ConfigController($scope, $http, $location, GameService, ListService, Sa
 
         var setup = {};
         setup.setup = $scope.game.setup;
-        var form_data_xml = json2xml(setup);
+
+        var form_data_xml = {
+            data: json2xml(setup),
+            file_name: 'game.xml'
+        };
 
         /*var form_data_json = {
          setup: $scope.game.setup
@@ -118,7 +122,7 @@ function ConfigController($scope, $http, $location, GameService, ListService, Sa
             method: 'POST',
             url: '/GameConfigServlet',
             //data: form_data_json
-            data: form_data_xml
+            data: form_data_xml.data
         });
 
         SaveXML.write(form_data_xml);
