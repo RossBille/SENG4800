@@ -22,6 +22,10 @@ App.factory('ListService', function ($timeout) {
     return service;
 });
 
+/* @author b1nd 
+ * Save file using stub server 
+ * TEMPORARY
+ */
 App.factory('SaveXML', function($timeout) {
     var ws = new WebSocket("ws://localhost:8088");
     ws.send(outFile);
