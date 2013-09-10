@@ -1,0 +1,117 @@
+.container {
+    margin: 20px auto;
+}
+
+.list {
+    @include columns(3);
+
+    background: $lighter-grey;
+    padding: 20px 0 0 0;
+    height: $scene-height;
+    float: left;
+
+    //overflow-y: auto;
+}
+
+.scene {
+    @include columns(13);
+
+    background: $lighter-grey;
+    padding: 0;
+    height: $scene-height;
+
+    float: right;
+    position: relative;
+    margin-bottom: $section-padding / 3;
+
+    z-index: 1;
+}
+
+.scene-object-container {
+    display: inline-block;
+    position: absolute;
+}
+
+.scene-object {
+    cursor: pointer;
+    vertical-align: bottom;
+    position: relative;
+}
+
+.object-container {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+}
+
+.object {
+    cursor: move;
+    vertical-align: bottom;
+    width: 100px;
+    height: auto;
+    position: relative;
+    z-index: 2;
+}
+
+.item-detail {
+    @include columns(16);
+
+    margin-bottom: $section-padding / 3;
+    background: $lighter-grey;
+
+    .item-detail-section {
+        @include third(1);
+
+        padding: 0 20px 20px 20px;
+
+        &:first-of-type {
+            @include alpha;
+        }
+
+        &:last-of-type {
+            @include omega;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        p:last-child, input:last-child {
+            margin: 0;
+        }
+    }
+
+    label {
+        @extend %normal-text-bold;
+
+        width: 100%;
+        display: block;
+        margin-top: 20px;
+    }
+
+    input {
+        width: 100%;
+
+        &.small {
+            width: 40%;
+        }
+
+        &[type='checkbox'] {
+            width: auto;
+        }
+    }
+}
+
+.level-controls {
+    @include columns(16);
+
+    background: $lighter-grey;
+    margin-bottom: $section-padding / 3;
+    padding: 20px;
+
+    button, a {
+        @extend %button;
+
+        margin-right: 10px;
+    }
+}

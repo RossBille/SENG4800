@@ -6,7 +6,7 @@
 body {
     @extend %normal-text;
 
-    background: $base-colour;
+    background: $light-colour;
     color: $text-colour;
 
     //Set page width when responsiveness is disabled
