@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.vecmath.Vector2d;
 
-import au.edu.newcastle.SENG20502013.output.SetupMessage;
+import au.edu.newcastle.SENG48002013.output.SetupMessage;
 import au.edu.newcastle.SENG48002013.game.engine.model.IGameOutput;
 import au.edu.newcastle.SENG48002013.game.engine.model.environment.IGameObject;
 import au.edu.newcastle.SENG48002013.game.engine.resources.GameResources;

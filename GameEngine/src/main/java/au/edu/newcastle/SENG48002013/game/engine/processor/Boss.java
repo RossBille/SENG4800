@@ -43,14 +43,14 @@ public class Boss
 	public static void start() throws IOException
 	{
 		game = GameBuilder.buildGame();
-		//TestOutputWindow output = new TestOutputWindow();
+		TestOutputWindow output = new TestOutputWindow();
 		IClock clock = new Clock();
 		running = true;
 		while(running)
 		{
 			double dt = clock.rest();
-			//output.sendOutput((IGameOutput)game);
-			OutputConnectionManager.sendOutput((IGameOutput)game);
+			output.sendOutput((IGameOutput)game);
+			//OutputConnectionManager.sendOutput((IGameOutput)game);
 			/*for(int i = 0; i < objects.length; i++)
 			{
 				System.out.println("X:" + objects[i].getPos().x + " Y:" + objects[i].getPos().y);

@@ -5,7 +5,7 @@
  */
 package au.edu.newcastle.SENG48002013.game.engine.resources;
 
-import au.edu.newcastle.SENG20502013.output.SetupMessage;
+import au.edu.newcastle.SENG48002013.output.SetupMessage;
 import au.edu.newcastle.SENG48002013.game.engine.model.IGame;
 import au.edu.newcastle.SENG48002013.game.engine.model.actions.IAction;
 import au.edu.newcastle.SENG48002013.game.engine.model.environment.Background;
