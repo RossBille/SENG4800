@@ -1,6 +1,9 @@
 package au.edu.newcastle.SENG48002013.game.engine.ignition;
 
 import au.edu.newcastle.SENG48002013.game.engine.ignition.UpdateManager;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -13,20 +16,33 @@ import javax.servlet.annotation.WebListener;
 @WebListener
 public class ContextStartupListener implements ServletContextListener
 {
+
 	@Override
 	public void contextInitialized(ServletContextEvent sce)
 	{
-		//init game stuff here
-		//read in config
+		try
+		{
+			//init game stuff here
+			//read in config
 
-		//start the game
-		UpdateManager.start(sce.getServletContext());
+			//start the game
+			UpdateManager.start();
+		} catch (IOException ex)
+		{
+			Logger.getLogger(ContextStartupListener.class.getName()).log(Level.SEVERE, null, ex);
+		}
 		System.out.println("Context Set");
 	}
 
 	@Override
 	public void contextDestroyed(ServletContextEvent sce)
 	{
-		UpdateManager.stop(sce.getServletContext());
+		try
+		{
+			UpdateManager.start();
+		} catch (IOException ex)
+		{
+			Logger.getLogger(ContextStartupListener.class.getName()).log(Level.SEVERE, null, ex);
+		}
 	}
 }

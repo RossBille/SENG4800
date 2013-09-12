@@ -5,121 +5,244 @@
  */
 package au.edu.newcastle.SENG48002013.game.engine.resources;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.vecmath.Vector2d;
+import javax.xml.parsers.*;
+import org.xml.sax.*;
+import org.w3c.dom.*;
 
 import au.edu.newcastle.SENG48002013.game.engine.model.*;
 import au.edu.newcastle.SENG48002013.game.engine.model.actions.*;
 import au.edu.newcastle.SENG48002013.game.engine.model.events.*;
 import au.edu.newcastle.SENG48002013.game.engine.model.environment.*;
 
-
 public class GameBuilder {
 	public static IGame buildGame()
 	{
-		Game game = new Game();
-		Sprite sprite = new Sprite(1);
-		GameObject gameObject1 = new GameObject(1);
-		gameObject1.setSprite(sprite);
-		gameObject1.setPos(new Vector2d(100, 100));
-		//gameObject1.setVel(new Vector2d(3, 2));
-		gameObject1.setVel(new Vector2d(3, 2));
-		GameObject gameObject2 = new GameObject(2);
-		gameObject2.setSprite(sprite);
-		gameObject2.setPos(new Vector2d(400, 100));
-		//gameObject2.setVel(new Vector2d(-3, 2));
-		gameObject2.setVel(new Vector2d(6, 6));
-		GameObject gameObject3 = new GameObject(3);
-		gameObject3.setSprite(sprite);
-		gameObject3.setPos(new Vector2d(300, 300));
-		gameObject3.setVel(new Vector2d(+5, -7));
-		Rectangle rect = new Rectangle(new Vector2d(40, 40));
-		Circle circle = new Circle(20);
-		gameObject1.setShape(rect);
-		gameObject2.setShape(rect);
-//		gameObject3.setShape(rect);
-//		gameObject1.setShape(circle);
-//		gameObject2.setShape(circle);
-		gameObject3.setShape(circle);
-		Level level = new Level(1);
-		level.setDimensions(new Vector2d(640, 480));
-		level.addGameObject(gameObject1);
-		level.addGameObject(gameObject2);
-		level.addGameObject(gameObject3);
-		ReflectAction reflectAction1 = new ReflectAction(1);
-		reflectAction1.setGameObject(gameObject1);
-		reflectAction1.setLevel(level);
-		ReflectAction reflectAction2 = new ReflectAction(2);
-		reflectAction2.setGameObject(gameObject2);
-		reflectAction2.setLevel(level);
-		ReflectAction reflectAction3 = new ReflectAction(3);
-		reflectAction3.setGameObject(gameObject1);
-		reflectAction3.setSurfaceObject(gameObject2);
-		ReflectAction reflectAction4 = new ReflectAction(4);
-		reflectAction4.setGameObject(gameObject2);
-		reflectAction4.setSurfaceObject(gameObject1);
-		ReflectAction reflectAction5 = new ReflectAction(5);
-		reflectAction5.setGameObject(gameObject3);
-		reflectAction5.setLevel(level);
-		ReflectAction reflectAction6 = new ReflectAction(6);
-		reflectAction6.setGameObject(gameObject3);
-		reflectAction6.setSurfaceObject(gameObject1);
-		ReflectAction reflectAction7 = new ReflectAction(7);
-		reflectAction7.setGameObject(gameObject3);
-		reflectAction7.setSurfaceObject(gameObject2);
-		ReflectAction reflectAction8 = new ReflectAction(8);
-		reflectAction8.setGameObject(gameObject1);
-		reflectAction8.setSurfaceObject(gameObject3);
-		ReflectAction reflectAction9 = new ReflectAction(9);
-		reflectAction9.setGameObject(gameObject2);
-		reflectAction9.setSurfaceObject(gameObject3);
-		BoundaryEvent boundaryEvent1 = new BoundaryEvent(1);
-		boundaryEvent1.setGameObject(gameObject1);
-		boundaryEvent1.setEdge(BoundaryEvent.Edge.ALL);
-		boundaryEvent1.setLevel(level);
-		boundaryEvent1.addAction(reflectAction1);
-		BoundaryEvent boundaryEvent2 = new BoundaryEvent(2);
-		boundaryEvent2.setGameObject(gameObject2);
-		boundaryEvent2.setEdge(BoundaryEvent.Edge.ALL);
-		boundaryEvent2.setLevel(level);
-		boundaryEvent2.addAction(reflectAction2);
-		BoundaryEvent boundaryEvent3 = new BoundaryEvent(3);
-		boundaryEvent3.setGameObject(gameObject3);
-		boundaryEvent3.setEdge(BoundaryEvent.Edge.ALL);
-		boundaryEvent3.setLevel(level);
-		boundaryEvent3.addAction(reflectAction5);	
-		CollisionEvent collisionEvent1 = new CollisionEvent(4);
-		collisionEvent1.setObject1(gameObject1);
-		collisionEvent1.setObject2(gameObject2);
-		collisionEvent1.setAllowOverlap(false);
-		collisionEvent1.addAction(reflectAction3);
-		collisionEvent1.addAction(reflectAction4);
-		CollisionEvent collisionEvent2 = new CollisionEvent(5);
-		collisionEvent2.setObject1(gameObject1);
-		collisionEvent2.setObject2(gameObject3);
-		collisionEvent2.setAllowOverlap(false);
-		collisionEvent2.addAction(reflectAction6);
-		collisionEvent2.addAction(reflectAction8);
-		CollisionEvent collisionEvent3 = new CollisionEvent(6);
-		collisionEvent3.setObject1(gameObject2);
-		collisionEvent3.setObject2(gameObject3);
-		collisionEvent3.setAllowOverlap(false);
-		collisionEvent3.addAction(reflectAction9);
-		collisionEvent3.addAction(reflectAction7);
-		level.addEvent(boundaryEvent1);
-		level.addEvent(boundaryEvent2);
-		level.addEvent(boundaryEvent3);
-		level.addEvent(collisionEvent1);
-		level.addEvent(collisionEvent2);
-		level.addEvent(collisionEvent3);
-		GameResources.addLevel(level);
-		game.setLevels(GameResources.getAllLevels());
-		return game;
-		//TO DO
-		//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		buildGame(ConfigReader.readGame());
+		return GameResources.getGame();
 	}
 	public static Level loadLevel()
 	{
 		//TO DO
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+	
+	private static void buildGame(Element gameElement)
+	{
+		Game game = new Game();
+		//Set canvas size
+		Vector2d size = XmlUtils.getVectorValue(gameElement, "CANVAS_SIZE");
+		game.setSize(size);
+		//Create players
+		Vector2d maxMinPlayers = XmlUtils.getVectorValue(gameElement, "PLAYERS");
+		int maxPlayers = (int)maxMinPlayers.x;
+		int minPlayers = (int)maxMinPlayers.y;
+		Player[] players = new Player[maxPlayers];
+		for(int i = 0; i < maxPlayers; i++)
+		{
+			Player player = new Player(i);
+			player.setScore(0);
+			players[i] = player;
+			GameResources.addPlayer(player);
+		}
+		game.setMaxPlayers(maxPlayers);
+		game.setMinPlayers(minPlayers);
+		game.setPlayers(players);
+		//Build sprites
+		NodeList spriteNodes = gameElement.getElementsByTagName("SPRITES");
+		buildSprites(spriteNodes);
+		//Build backgrounds
+		NodeList backgroundNodes = gameElement.getElementsByTagName("BACKGROUNDS");
+		buildBackgrounds(backgroundNodes);
+		//Add to game resources
+		GameResources.setGame(game);
+		//Build levels
+		buildLevels(ConfigReader.readLevels());
+		//Set levels
+		game.setLevels(GameResources.getAllLevels());
+		//Set starting level
+		long startingLevel = (long)XmlUtils.getNumericValue(gameElement, "STARTING_LEVEL");
+		game.setCurrentLevel(startingLevel);
+	}
+	private static void buildLevels(NodeList levelNodes)
+	{
+		if(levelNodes != null && levelNodes.getLength() > 0)
+		{
+			//Build Levels
+			for(int i = 0; i < levelNodes.getLength(); i++)
+			{
+				Element levelElement = (Element)levelNodes.item(i);
+				buildLevel(levelElement);
+			}
+			//Build events for each level
+			for(int i = 0; i < levelNodes.getLength(); i++)
+			{
+				Element levelElement = (Element)levelNodes.item(i);
+				NodeList eventNodes = levelElement.getElementsByTagName("EVENTS");
+				long id = (long)XmlUtils.getNumericValue(levelElement, "LEVEL_ID");
+				Level level = GameResources.getLevel(id);
+				buildEvents(eventNodes, level);
+			}
+		}
+	}
+	private static void buildLevel(Element levelElement)
+	{
+		if(levelElement != null)
+		{
+			long id = (long)XmlUtils.getNumericValue(levelElement, "LEVEL_ID");
+			Level level = new Level(id);
+			long backgroundId = (long)XmlUtils.getNumericValue(levelElement, "BACKGROUND_ID");
+			level.setBackground(GameResources.getBackground(backgroundId));
+			level.setDimensions(((Game)GameResources.getGame()).getSize());
+			NodeList objectNodes = levelElement.getElementsByTagName("OBJECTS");
+			buildGameObjects(objectNodes, level);
+			GameResources.addLevel(level);
+		}
+	}
+	private static void buildEvents(NodeList eventNodes, Level parentLevel)
+	{
+		if(eventNodes != null && eventNodes.getLength() > 0)
+		{
+			for(int i = 0; i < eventNodes.getLength(); i++)
+			{
+				Element eventElement = (Element)eventNodes.item(i);
+				IEvent event = (EventFactory.buildEvent(eventElement));
+				parentLevel.addEvent(event);
+			}
+		}
+	}
+	
+	private static void buildGameObjects(NodeList objectNodes, Level parentLevel)
+	{
+		if(objectNodes != null && objectNodes.getLength() > 0)
+		{
+			for(int i = 0; i < objectNodes.getLength(); i++)
+			{
+				Element objectElement = (Element)objectNodes.item(i);
+				//Instantiate object
+				long id = (long)XmlUtils.getNumericValue(objectElement, "OBJECT_ID");
+				GameObject gameObject = new GameObject(id);
+				//Set Sprite
+				long spriteId = (long)XmlUtils.getNumericValue(objectElement, "SPRITE_ID");
+				gameObject.setSprite(GameResources.getSprite(spriteId));
+				//Set Shape
+				Element shapeElement = (Element)objectElement.getElementsByTagName("OBJECT_SHAPE").item(0);
+				Shape shape = null;
+				//If circle shape
+				if(shapeElement.getElementsByTagName("CIRCLE").getLength() > 0)
+				{
+					Element circleElement = (Element)shapeElement.getElementsByTagName("CIRCLE").item(0);
+					double radius = XmlUtils.getNumericValue(circleElement, "RADIUS");
+					shape = new Circle(radius);
+				}
+				//If rectangle shape
+				else if(shapeElement.getElementsByTagName("RECTANGLE").getLength() > 0)
+				{
+					Element rectangleElement = (Element)shapeElement.getElementsByTagName("RECTANGLE").item(0);
+					Vector2d size = XmlUtils.getVectorValue(rectangleElement, "SIZE");
+					shape = new Rectangle(size);
+				}
+				gameObject.setShape(shape);
+				//Set Visible
+				boolean visible;
+				String strVisible = XmlUtils.getTextValue(objectElement, "OBJECT_VISIBLE");
+				if(strVisible.toUpperCase().equals("YES"))
+				{
+					visible = true;
+				}
+				else
+				{
+					visible = false;
+				}
+				gameObject.setActive(visible);
+				//Set Start Position
+				Vector2d startPos = XmlUtils.getVectorValue(objectElement, "START_POS");
+				gameObject.setPos(startPos);
+				//Set Start Velocity
+				Vector2d startVel = XmlUtils.getVectorValue(objectElement, "START_VEL");
+				gameObject.setVel(startVel);
+				//Set Start Acceleration
+				Vector2d startAcc = XmlUtils.getVectorValue(objectElement, "START_ACC");
+				gameObject.setAcc(startAcc);
+				//Add game object to level
+				parentLevel.addGameObject(gameObject);
+				//Add game object to game resources
+				GameResources.addGameObject(gameObject);
+			}
+		}
+	}
+	
+	private static void buildSprites(NodeList spriteNodes)
+	{
+		if(spriteNodes != null && spriteNodes.getLength() > 0)
+		{
+			for(int i = 0; i < spriteNodes.getLength(); i++)
+			{
+				Element spriteElement = (Element)spriteNodes.item(i);
+				buildSprite(spriteElement);
+			}
+		}
+	}
+	private static void buildSprite(Element spriteElement)
+	{
+		long spriteId = (long)XmlUtils.getNumericValue(spriteElement, "SPRITE_ID");
+		Sprite sprite = new Sprite(spriteId);
+		//Set the image urls
+		NodeList imageNodes = spriteElement.getElementsByTagName("IMAGE");
+		String[] imageUrls = new String[imageNodes.getLength()];
+		for(int i = 0; i < imageNodes.getLength(); i++)
+		{
+			Element imageElement = (Element)imageNodes.item(i);
+			String imageUrl = imageElement.getTextContent();
+			imageUrls[i] = imageUrl;
+		}
+		sprite.setImageUrls(imageUrls);
+		//Set the speed
+		long speed = (long)XmlUtils.getNumericValue(spriteElement, "SPEED");
+		sprite.setSpeed(speed);
+		//Set the offset
+		Vector2d offset = XmlUtils.getVectorValue(spriteElement, "OFFSET");
+		sprite.setOffset(offset);
+		//Add to game resources
+		GameResources.addSprite(sprite);
+	}
+	private static void buildBackgrounds(NodeList backgroundNodes)
+	{
+		if(backgroundNodes != null && backgroundNodes.getLength() > 0)
+		{
+			for(int i = 0; i < backgroundNodes.getLength(); i++)
+			{
+				Element backgroundElement = (Element)backgroundNodes.item(i);
+				buildBackground(backgroundElement);
+			}
+		}
+	}
+	private static void buildBackground(Element backgroundElement)
+	{
+		long backgroundId = (long)XmlUtils.getNumericValue(backgroundElement, "BACKGROUND_ID");
+		Background background = new Background(backgroundId);
+		//Set the image url
+		String imageUrl = XmlUtils.getTextValue(backgroundElement, "IMAGE");
+		background.setImageUrls(new String[] {imageUrl});
+		//Set a default speed (since we inherit from sprite)
+		background.setSpeed(24);
+		//Set the position type
+		String strPositionType = XmlUtils.getTextValue(backgroundElement, "POSITION_TYPE");
+		switch(strPositionType.toUpperCase())
+		{
+			case "TILED": background.setPositionType(Background.PositionType.TILED);
+			break;
+			case "STRETCH": background.setPositionType(Background.PositionType.STRETCH);
+			break;
+			case "FILL": background.setPositionType(Background.PositionType.FILL);
+			break;
+			case "CENTRE": background.setPositionType(Background.PositionType.CENTER);
+			break;
+		}
+		//Add to game resources
+		GameResources.addBackground(background);
 	}
 }

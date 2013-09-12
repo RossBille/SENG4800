@@ -1,0 +1,76 @@
+[
+{
+	"id":0,
+	"name":"Level One",
+	"background_id":1,
+	"objectList":
+	{
+		"objects": [
+		{
+			"id":"0",
+			"name":"Object 0",
+			"sprite_id":"101",
+			"shape":"circle",
+			"visible":true,
+			"start_pos":{"x":0, "y":0},
+			"start_vel":"100",
+			"start_acc":"200"
+		},
+		{
+			"id":"1",
+			"name":"Object 1",
+			"sprite_id":"101",
+			"shape":"circle",
+			"visible":true,
+			"start_pos":{"x":0,
+			"y":0},
+			"start_vel":"100",
+			"start_acc":"200"
+		},
+		{
+			"id":"2",
+			"name":"Object 2",
+			"sprite_id":"101",
+			"shape":"circle",
+			"visible":true,
+			"start_pos":{"x":0,
+			"y":0},
+			"start_vel":"100",
+			"start_acc":"200"
+		},
+		{
+			"id":"3",
+			"name":"Object 3",
+			"sprite_id":"101",
+			"shape":"circle",
+			"visible":true,
+			"start_pos":{"x":0,
+			"y":0},
+			"start_vel":"100",
+			"start_acc":"200"
+		}
+		]
+	},
+	"events":[
+	{
+		"id":0,
+		"type":"collision",
+		"actions":[
+		{
+			"id":0,
+			"type":"collision"
+		},
+		{
+			"id":1,
+			"type":"collision"
+		},
+		{
+			"id":2,
+			"type":"collision"
+			}
+		]
+	}
+	]	
+}
+]
+					
