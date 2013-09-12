@@ -2,6 +2,23 @@
 
 /* Directives */
 
+App.directive('selectable', function() {
+    return {
+        // A = attribute, E = Element, C = Class and M = HTML Comment
+        restrict: 'A',
+        //The link function is responsible for registering DOM listeners as well as updating the DOM.
+        link: function (scope, element, attrs) {
+            element.selectable({
+                filter: 'img',
+                selected: function( event, ui ) {
+                    console.log('selected item:');
+                    console.log(ui.selected);
+                }
+            });
+        }
+    };
+});
+
 // This makes any element draggable
 // Usage: <div draggable>Foobar</div>
 App.directive('draggable', function () {
@@ -33,7 +50,7 @@ App.directive('droppable', function ($compile) {
                     var draggable_original_index = $draggable_original.data('index');
                     var draggable_index = scene_index;
 
-                    if ($draggable_parent_parent.hasClass('list')) {
+                    if ($draggable_parent_parent.hasClass('object-list')) {
                         //getting current div old absolute position
                         var old_position = $draggable_original.offset();
                         console.log('old position:');
