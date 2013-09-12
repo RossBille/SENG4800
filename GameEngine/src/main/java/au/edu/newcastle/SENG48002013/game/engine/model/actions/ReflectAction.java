@@ -5,7 +5,6 @@ package au.edu.newcastle.SENG48002013.game.engine.model.actions;
 
 import javax.vecmath.Vector2d;
 
-import au.edu.newcastle.SENG48002013.game.engine.model.actions.ChangeVelAction.Type;
 import au.edu.newcastle.SENG48002013.game.engine.model.environment.Circle;
 import au.edu.newcastle.SENG48002013.game.engine.model.environment.GameObject;
 import au.edu.newcastle.SENG48002013.game.engine.model.environment.Level;
@@ -98,7 +97,7 @@ public class ReflectAction extends BaseAction {
 				}
 			}
 			//Both rectangles
-			if(gameObject.getShape() instanceof Rectangle && surfaceObject.getShape() instanceof Rectangle)
+			else if(gameObject.getShape() instanceof Rectangle && surfaceObject.getShape() instanceof Rectangle)
 			{
 				Vector2d objectSize = ((Rectangle)gameObject.getShape()).getSize();
 				Vector2d surfaceSize = ((Rectangle)surfaceObject.getShape()).getSize();
@@ -112,32 +111,99 @@ public class ReflectAction extends BaseAction {
 				yDistance = Math.min(top, bottom);
 				if(xDistance < yDistance)
 				{
-					
 					gameObject.getNextVel().x *= -1;
+					gameObject.getNextAcc().x *= -1;
+					//gameObject.setNextVel(new Vector2d(0,0));
 				}
 				else
 				{
 					gameObject.getNextVel().y *= -1;
+					gameObject.getNextAcc().y *= -1;
+					//gameObject.setNextVel(new Vector2d(0,0));
 				}
 			}
+			//Rectangle and Circle
 			else
 			{
 				GameObject circleObj;
 				GameObject rectObj;
+				//Reflect circle off rectangle
 				if(gameObject.getShape() instanceof Circle)
 				{
 					circleObj = gameObject;
 					rectObj = surfaceObject;
 				}
+				//Reflect rectangle off circle
 				else
 				{
 					circleObj = surfaceObject;
 					rectObj = gameObject;
 				}
+				Vector2d rectSize = ((Rectangle)rectObj.getShape()).getSize();
+				if(circleObj.getNextPos().x > rectObj.getNextPos().x &&
+						circleObj.getNextPos().x < rectObj.getNextPos().x + rectSize.x)
+				{
+					gameObject.getNextVel().y *= -1;
+					gameObject.getNextAcc().y *= -1;
+				}
+				else if(circleObj.getNextPos().y > rectObj.getNextPos().y &&
+						circleObj.getNextPos().y < rectObj.getNextPos().y + rectSize.y)
+				{
+					gameObject.getNextVel().x *= -1;
+					gameObject.getNextAcc().x *= -1;
+				}
+				else
+				{
+					double p1x = rectObj.getNextPos().x;
+					double p1y = rectObj.getNextPos().y;
+					double p2x = circleObj.getNextPos().x;
+					double p2y = circleObj.getNextPos().y;
+					double tl = (p1x - p2x)*(p1x - p2x) + (p1y - p2y)*(p1y - p2y);
+					double tr = (p1x + rectSize.x - p2x)*(p1x + rectSize.x - p2x) + (p1y - p2y)*(p1y - p2y);
+					double bl = (p1x - p2x)*(p1x - p2x) + (p1y + rectSize.y - p2y)*(p1y + rectSize.y - p2y);
+					double br = (p1x + rectSize.x - p2x)*(p1x + rectSize.x - p2x) + (p1y + rectSize.y - p2y)*(p1y + rectSize.y - p2y);
+					double[] corners = new double[] {tl, tr, bl, br};
+					Vector2d normal = new Vector2d();
+					double min = tl;
+					int minIndex = 0;
+					for(int i = 1; i < corners.length; i++)
+					{
+						if(corners[i] < min)
+						{
+							min = corners[i];
+							minIndex = i;
+						}
+					}
+					switch(minIndex)
+					{
+					case 0: normal.set(p2x - p1x, p2y - p1y);
+					break;
+					case 1: normal.set(p2x - (p1x + rectSize.x), p2y - p1y); 
+					break;
+					case 2: normal.set(p2x - p1x, p2y - (p1y + rectSize.y));
+					break;
+					case 3: normal.set(p2x - (p1x + rectSize.x), p2y - (p1y + rectSize.y));
+					}
+					double normalLength = normal.lengthSquared();
+					if(gameObject == circleObj)
+					{
+						normal.scale(-1);
+					}
+					double velScale = -(2*gameObject.getNextVel().dot(normal))/normalLength;
+					double accScale = -(2*gameObject.getNextAcc().dot(normal))/normalLength;
+					Vector2d reflectedVel = new Vector2d();
+					Vector2d reflectedAcc = new Vector2d();
+					reflectedVel.scaleAdd(velScale, normal, gameObject.getNextVel());
+					reflectedAcc.scaleAdd(accScale, normal, gameObject.getNextAcc());
+					gameObject.setNextAcc(reflectedAcc);
+					gameObject.setNextVel(reflectedVel);
+					//gameObject.setNextVel(new Vector2d(0,0));
+				}
 				//Rectange -> Circle
 				//Circle -> Rectangle
-				surfaceObject.setNextVel(new Vector2d(0, 0));
-				gameObject.setNextVel(new Vector2d(0, 0));
+				//try{System.in.read();}catch(Exception e){}
+				//surfaceObject.setNextVel(new Vector2d(0, 0));
+				//gameObject.setNextVel(new Vector2d(0, 0));
 			}
 
 			

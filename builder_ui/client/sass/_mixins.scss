@@ -74,26 +74,26 @@
 /* WEBSITE BUTTON STYLING */
 %button {
     @include border-radius($default-border-radius / 2);
-    @include transition(background .2s, color .2s);
+    @include transition(background .2s);
     @extend %normal-text-bold;
 
     border: none;
     padding: 8px 12px 10px 12px;
-    background: $highlight-colour;
-    color: $darker-colour;
+    background: $base-colour;
+    color: $light-colour;
     border: 2px solid $text-colour;
     border-bottom-width: 4px;
     display: inline-block;
+    text-decoration: none;
 
     &:hover {
-        color: $base-colour;
-        background: scale-lightness($highlight-colour, 40%);
+        background: scale-lightness($base-colour, 15%);
         border: 2px solid $text-colour;
         border-bottom-width: 4px;
     }
 
     &:active {
-        background: scale-lightness($highlight-colour, -10%);
+        background: scale-lightness($base-colour, -10%);
         border: 2px solid $text-colour;
         margin-top: 2px;
     }

@@ -1,6 +1,6 @@
 package au.edu.newcastle.SENG48002013.game.engine.connections.output;
 
-import au.edu.newcastle.SENG20502013.output.SetupMessage;
+import au.edu.newcastle.SENG48002013.output.SetupMessage;
 import au.edu.newcastle.SENG48002013.game.engine.connections.BaseServlet;
 import au.edu.newcastle.SENG48002013.game.engine.resources.GameResources;
 import java.io.IOException;
@@ -23,7 +23,8 @@ public class OutputSetup extends BaseServlet
 		response.setContentType("text/json");
 		ObjectMapper mapper = new ObjectMapper();
 		PrintWriter out = response.getWriter();
-		SetupMessage[] setupMessages = GameResources.getResources();
+		SetupMessage setupMessages = GameResources.getResources();
+		System.out.println(mapper.writeValueAsString(setupMessages));
 		out.print(mapper.writeValueAsString(setupMessages));
 	}
 	

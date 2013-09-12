@@ -13,38 +13,39 @@ app.Object = (function() {
     }
 
     /* Getters */
-    Constructor.prototype.getID = function() {
-        return this.id;
-    }
-    Constructor.prototype.getSprite = function () {
-        return this.sprite;
-    }
-    Constructor.prototype.isVisible = function() {
-        return this.visible;
-    }
-    Constructor.prototype.getX = function() {
-        return this.x;
-    }
-    Constructor.prototype.getY = function() {
-        return this.y;
-    }
-    /* Setters */
-    Constructor.prototype.setID = function(id) {
-        this.id = id;
-    }
-    Constructor.prototype.setSprite = function (sprite) {
-        this.sprite = sprite;
-    }
-    Constructor.prototype.isVisible = function(visible) {
-        this.visible = visible;
-    }
-    Constructor.prototype.setX = function(x) {
-        this.x = x;
-    }
-    Constructor.prototype.setY = function(y) {
-        this.y = y;
+    Constructor.prototype = {
+        getID: function() {
+            return this.id;
+        },
+        getSprite: function () {
+            return this.sprite;
+        },
+        isVisible: function() {
+            return this.visible;
+        },
+        getX: function() {
+            return this.x;
+        },
+        getY: function() {
+            return this.y;
+        },
+        /* Setters */
+        setID: function(id) {
+            this.id = id;
+        },
+        setSprite: function (sprite) {
+            this.sprite = sprite;
+        },
+        isVisible: function(visible) {
+            this.visible = visible;
+        },
+        setX: function(x) {
+            this.x = x;
+        },
+        setY: function(y) {
+            this.y = y;
+        },
     } 
-
     return Constructor;
 
 })();

@@ -15,9 +15,14 @@
 @import "global-styles";
 @import "typography";
 @import "standard-elements";
+@import "includes/_slider-container";
+
+//Partials
+@import "header";
+@import "navigation";
+@import "footer";
 
 //Page styles
-@import "pages/home";
-
+@import "pages/home"
 
 

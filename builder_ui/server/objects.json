@@ -1,40 +1,40 @@
 {
     "Objects": [
         {
-            "id": 0,
-            "name": "Soccer Ball",
-            "xpos": 0,
-            "ypos": 0,
-            "image_path": "/img/ball.png",
-            "image_height": 200,
-            "image_width": 200,
-            "image_thumbnail": "/img/ball_thumbnail.png",
-            "width": 0,
-            "height": 0
+            "sprite_id": 0,
+            "sprite_name": "Soccer Ball",
+            "image": "/img/ball.png",
+            "speed": 1,
+            "offset": {
+                "x": 0,
+                "y": 0
+            },
+            "height": 200,
+            "width": 200
         },
         {
-            "id": 1,
-            "name": "Golf Ball",
-            "xpos": 0,
-            "ypos": 0,
-            "image_path": "/img/golf_ball.png",
-            "image_height": 150,
-            "image_width": 150,
-            "image_thumbnail": "/img/golf_ball_thumbnail.png",
-            "width": 0,
-            "height": 0
+            "sprite_id": 1,
+            "sprite_name": "Golf Ball",
+            "image": "/img/golf_ball.png",
+            "speed": 1,
+            "offset": {
+                "x": 0,
+                "y": 0
+            },
+            "height": 150,
+            "width": 150
         },
         {
-            "id": 2,
-            "name": "Tennis Ball",
-            "xpos": 0,
-            "ypos": 0,
-            "image_path": "/img/tennis_ball.png",
-            "image_height": 175,
-            "image_width": 175,
-            "image_thumbnail": "/img/tennis_ball_thumbnail.png",
-            "width": 0,
-            "height": 0
+            "sprite_id": 2,
+            "sprite_name": "Tennis Ball",
+            "image": "/img/tennis_ball.png",
+            "speed": 1,
+            "offset": {
+                "x": 0,
+                "y": 0
+            },
+            "height": 175,
+            "width": 175
         }
     ]
 }

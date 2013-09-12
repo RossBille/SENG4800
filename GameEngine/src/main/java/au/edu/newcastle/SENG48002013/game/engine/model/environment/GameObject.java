@@ -7,10 +7,11 @@ package au.edu.newcastle.SENG48002013.game.engine.model.environment;
 
 import javax.vecmath.Vector2d;
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 
 
-
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class GameObject implements IGameObject
 {
 	private long id;
@@ -26,6 +27,11 @@ public class GameObject implements IGameObject
 	private Vector2d nextAcc;
 	private boolean committed;
 	private boolean active;
+	private String imageUrl;
+	private Vector2d outputPos;
+	private int currentFrame;
+	private double currentTime;
+	private final long TARGET_FPS = 60;
 	public GameObject(long id)
 	{
 		this.id = id;
@@ -37,6 +43,9 @@ public class GameObject implements IGameObject
 		nextVel = new Vector2d(0, 0);
 		nextAcc = new Vector2d(0, 0);
 		active = true;
+		currentFrame = 0;
+		currentTime = 0;
+		imageUrl = null;
 	}
 	@Override
 	public long getId()
@@ -64,19 +73,10 @@ public class GameObject implements IGameObject
 	public void setSprite(Sprite sprite)
 	{
 		this.sprite = sprite;
+		this.currentFrame = 0;
+		this.currentTime = 0;
 	}
-	@Override
-	public long getSpriteId()
-	{
-		if(sprite != null)
-		{
-			return sprite.getId();
-		}
-		else
-		{
-			return -1;
-		}
-	}
+
 	@JsonIgnore
 	public Shape getShape()
 	{
@@ -95,7 +95,7 @@ public class GameObject implements IGameObject
 	{
 		this.size.set(size);
 	}
-	@Override
+	@JsonIgnore
 	public Vector2d getPos()
 	{
 		return pos;
@@ -167,6 +167,7 @@ public class GameObject implements IGameObject
 		nextAcc.set(acc);
 		nextVel.scaleAdd((double)(dt), nextAcc, vel);
 		nextPos.scaleAdd((double)(dt), nextVel, pos);
+		stepAnimation(dt);
 	}
 	public void commit()
 	{
@@ -175,9 +176,52 @@ public class GameObject implements IGameObject
 		pos.set(nextPos);
 		committed = true;
 	}
+	private void stepAnimation(double dt)
+	{
+		if(sprite != null)
+		{
+			currentTime += dt/TARGET_FPS;
+			currentFrame = (int)Math.floor(currentTime*sprite.getSpeed());
+			if(currentFrame == sprite.length())
+			{
+				currentTime = 0;
+				currentFrame = 0;
+			}
+		}
+	}
 	@JsonIgnore
 	public boolean isCommitted()
 	{
 		return committed;
 	}
+	@Override
+	public Vector2d getOutputPos()
+	{
+		Vector2d outputPos = new Vector2d();
+		outputPos.add(pos, sprite.getOffset());
+		if(shape instanceof Circle)
+		{
+			double radius = ((Circle)shape).getRadius();
+			outputPos.x -= radius;
+			outputPos.y -= radius;
+		}
+		return outputPos;
+	}
+        
+    	@Override
+	public String getImageUrl()
+	{
+		if(sprite != null)
+		{
+			return sprite.getImageUrl(currentFrame);
+		}
+		else
+		{
+			return "";
+		}
+	}
+
+        public void setImageUrl(String imageUrl) {
+            this.imageUrl = imageUrl;
+        }
 }
