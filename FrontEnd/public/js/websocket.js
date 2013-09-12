@@ -17,6 +17,8 @@ app.websocket = (function() {
         };
     };
 
+    /* Our web socket function */
+
     function onMessage(msg) {
         var objects = [];
         var instruction = JSON.parse(msg.data);

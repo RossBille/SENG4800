@@ -1,3 +1,4 @@
+/* Output WebSocket */
 [
     {
         "id" : 0,
@@ -36,3 +37,26 @@
     }
 ]
 
+/* Setup WebSocket */
+{
+    "sprites": 
+    [
+        {
+            "sprite": "/images/golfball.png"
+        },
+        {
+            "sprite": "/images/golfball.png"
+        }
+    ],
+    "init":
+    [
+        {
+            "id": 0,
+            "sprite": "/images/golfball.png"
+        },
+        {
+            "id": 1,
+            "sprite": "/images/golfball.png"
+        }
+    ]
+}
