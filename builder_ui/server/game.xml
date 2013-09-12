@@ -1,0 +1,22 @@
+<setup>
+  <game_name>My game</game_name>
+  <canvas_size>
+    <width>1920</width>
+    <height>1080</height>
+  </canvas_size>
+  <starting_level>1</starting_level>
+  <players>
+    <min>1</min>
+    <max>4</max>
+  </players>
+  <sprites></sprites>
+  <backgrounds>
+    <background>
+      <background_id>0</background_id>
+      <background_name>Grey Background</background_name>
+      <image>/img/game_background.jpg</image>
+      <speed>1</speed>
+      <position_type>tiled</position_type>
+    </background>
+  </backgrounds>
+</setup>
