@@ -14,24 +14,36 @@ public class GameSetup {
 
 	// Config Variables
 	private String gameName;
-	private int canvasSizeX;
-	private int canvasSizeY;
-	private String borderState;
-	private String borderColour;
-        private int minPlayers;
-        private int maxPlayers;
-	private int borderSize;
-	private int numLevels;
-	private ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
-	private ArrayList<Level> levels = new ArrayList<Level>();
-	
+	private int canvasWidth;
+	private int canvasHeight;
+	private int startLevel;
+	private int minPlayers;
+	private int maxPlayers;
+	private ArrayList<Sprite> sprites;
+	private ArrayList<Background> backgrounds;
 	
 	// Mutators
 	public String getGameName() {
 		return gameName;
 	}
-             
-        public void setMinPlayers(int min) {
+	
+	public int getCanvasWidth() {
+		return canvasWidth;
+	}
+
+	public void setCanvasWidth(int canvasWidth) {
+		this.canvasWidth = canvasWidth;
+	}
+
+	public int getCanvasHeight() {
+		return canvasHeight;
+	}
+
+	public void setCanvasHeight(int canvasHeight) {
+		this.canvasHeight = canvasHeight;
+	}
+    
+	public void setMinPlayers(int min) {
 		this.minPlayers = min;
 	}
         
@@ -50,76 +62,28 @@ public class GameSetup {
 	public void setGameName(String gameName) {
 		this.gameName = gameName;
 	}
-	
-	public int getCanvasSizeX() {
-		return canvasSizeX;
+
+	public ArrayList<Sprite> getSprites() {
+		return sprites;
 	}
 
-	public void setCanvasSizeX(int canvasSizeX) {
-		this.canvasSizeX = canvasSizeX;
+	public void setSprites(ArrayList<Sprite> sprites) {
+		this.sprites = sprites;
 	}
 
-	public int getCanvasSizeY() {
-		return canvasSizeY;
+	public ArrayList<Background> getBackgrounds() {
+		return backgrounds;
 	}
 
-	public void setCanvasSizeY(int canvasSizeY) {
-		this.canvasSizeY = canvasSizeY;
+	public void setBackgrounds(ArrayList<Background> backgrounds) {
+		this.backgrounds = backgrounds;
 	}
 
-	public String getBorderState() {
-		return borderState;
+	public int getStartLevel() {
+		return startLevel;
 	}
 
-	public void setBorderState(String borderState) {
-		this.borderState = borderState;
-	}
-
-	public String getBorderColour() {
-		return borderColour;
-	}
-
-	public void setBorderColour(String borderColour) {
-		this.borderColour = borderColour;
-	}
-
-	public int getBorderSize() {
-		return borderSize;
-	}
-
-	public void setBorderSize(int borderSize) {
-		this.borderSize = borderSize;
-	}
-
-	public int getNumLevels() {
-		return numLevels;
-	}
-
-	public void setNumLevels(int numLevels) {
-		this.numLevels = numLevels;
-	}
-
-	public ArrayList<GameObject> getGameObjects() {
-		return gameObjects;
-	}
-
-	public void setGameObjects(ArrayList<GameObject> gameObjects) {
-		this.gameObjects = gameObjects;
-	}
-
-	public ArrayList<Level> getLevels() {
-		return levels;
-	}
-
-	public void setLevels(ArrayList<Level> levels) {
-		this.levels = levels;
-	}
-	
-	public void addGameObject(GameObject gameObj) {
-		gameObjects.add(gameObj);
-	}
-	
-	public void addLevel(Level newLevel) {
-		levels.add(newLevel);
+	public void setStartLevel(int startLevel) {
+		this.startLevel = startLevel;
 	}
 }
