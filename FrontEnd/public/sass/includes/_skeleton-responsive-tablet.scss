@@ -44,16 +44,8 @@ $margin: 10px;
         visibility: hidden;
     }
 
-    @media only screen and (min-width: $tablet-width) and (max-width: $base-width - 1) {
+    @media only screen and (max-width: $base-width - 1) {
         width: $tablet-width;
-    }
-
-    @media only screen and (max-width: $tablet-width - 1) {
-        width: $mobile-portrait-width;
-    }
-
-    @media only screen and (min-width: $mobile-landscape-width) and (max-width: $tablet-width - 1) {
-        width: $mobile-landscape-width;
     }
 }
 
@@ -62,12 +54,6 @@ $margin: 10px;
     display: inline;
     margin-left: $margin;
     margin-right: $margin;
-
-    @media only screen and (max-width: $tablet-width - 1) {
-        margin-left: 0;
-        margin-right: 0;
-        margin-bottom: $margin;
-    }
 }
 
 @mixin row {
@@ -87,16 +73,8 @@ $margin: 10px;
     @include column;
     width: skeleton-column-width($num, $base-width);
 
-    @media only screen and (min-width: $tablet-width) and (max-width: $base-width - 1) {
+    @media only screen and (max-width: $base-width - 1) {
         width: skeleton-column-width($num, $tablet-width);
-    }
-
-    @media only screen and (max-width: $tablet-width - 1) {
-        width: $mobile-portrait-width;
-    }
-
-    @media only screen and (min-width: $mobile-landscape-width) and (max-width: $tablet-width - 1) {
-        width: $mobile-landscape-width;
     }
 }
 
@@ -104,16 +82,8 @@ $margin: 10px;
     @include column;
     width: skeleton-third-width($num, $base-width);
 
-    @media only screen and (min-width: $tablet-width) and (max-width: $base-width - 1) {
+    @media only screen and (max-width: $base-width - 1) {
         width: skeleton-third-width($num, $tablet-width);
-    }
-
-    @media only screen and (max-width: $tablet-width - 1) {
-        width: $mobile-portrait-width;
-    }
-
-    @media only screen and (min-width: $mobile-landscape-width) and (max-width: $tablet-width - 1) {
-        width: $mobile-landscape-width;
     }
 }
 
@@ -121,12 +91,8 @@ $margin: 10px;
     $offset: 2 * $margin;
     padding-left: skeleton-column-width($num, $base-width) + $offset;
 
-    @media only screen and (min-width: $tablet-width) and (max-width: $base-width - 1) {
+    @media only screen and (max-width: $base-width - 1) {
         padding-left: skeleton-column-width($num, $tablet-width) + $offset;
-    }
-
-    @media only screen and (max-width: $tablet-width - 1) {
-        padding-left: 0;
     }
 }
 
