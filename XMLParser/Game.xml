@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<Game>
+	<Setup>
+		<Game_name>tester</Game_name>
+		<Canvas_size>
+			<Width>360</Width>
+			<Height>360</Height>
+		</Canvas_size>
+		<Border>
+			<State>Visible</State>
+			<Colour>Red</Colour>
+			<Size>1</Size>
+		</Border>
+		<Players>
+			<Min>1</Min>
+			<Max>10</Max>
+		</Players>
+	</Setup>
+</Game>
+
