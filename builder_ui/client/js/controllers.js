@@ -82,6 +82,9 @@ function LevelsController($scope, ListService, GameService, SaveXML) {
                 }
             }
         }
+        else {
+            $scope.new_action_control_URL = '';
+        }
     };
 
 
@@ -182,6 +185,9 @@ function LevelsController($scope, ListService, GameService, SaveXML) {
                     change_sprite: $scope.actions.action_types.change_sprite
                 }
             }
+        }
+        else {
+            $scope.action_controls_URL = '';
         }
     };
 
