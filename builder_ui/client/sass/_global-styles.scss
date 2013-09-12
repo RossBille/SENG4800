@@ -58,3 +58,46 @@ body {
 }
 
 /* OTHER STYLES USED THROUGHOUT THE WEBSITE */
+.container {
+    margin: 20px auto;
+}
+
+.object {
+    cursor: move;
+    vertical-align: bottom;
+    width: 100px;
+    height: auto;
+    position: relative;
+    z-index: 2;
+}
+
+.controls-container {
+    @include columns(16);
+
+    background: $lighter-grey;
+    margin-bottom: $section-padding;
+}
+
+.controls {
+    padding: 20px;
+
+    button {
+        @extend %button;
+
+        margin-right: 10px;
+    }
+}
+
+.heading {
+    @include columns(16);
+
+    margin-bottom: $section-padding / 2;
+}
+
+.ui-selected, .selected {
+    @include box-shadow(0 0 5px 5px $success-colour);
+}
+
+.src-container {
+    display: inline;
+}

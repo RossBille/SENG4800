@@ -13,6 +13,14 @@ var App = angular.module('App', []).
             otherwise({redirectTo: '/config'});
     }]);
 
+App.run(function($rootScope, $templateCache) {
+    $rootScope.$on('$viewContentLoaded', function() {
+        $templateCache.removeAll();
+    });
+});
+
 // Instantiate global variables
 var scene_index = 0;
-var level_index = 0;
+var level_index = -1;
+var event_index = -1;
+var action_index = -1;

@@ -1,7 +1,11 @@
 <div class="item-detail">
+    <h2>Object Settings</h2>
     <div class="item-detail-section">
         <label for="object_name">Object Name:</label>
         <input type="text" id="object_name" ng-model="selected_item.object_name" />
+
+        <label>Object ID:</label>
+        <p>{{selected_item.object_id}}</p>
 
         <label>Object Shape:</label>
         <p>{{selected_item.object_shape}}</p>

@@ -1,0 +1,16 @@
+<div class="item-detail-section">
+    <label>Object:</label>
+    <select ng-model="current_event.event_type.boundary.object_id" ng-options="scene_object.object_id as scene_object.object_name + ' (ID: ' + scene_object.object_id + ')' for scene_object in scene_objects">
+        <option value="">-- Choose object --</option>
+    </select>
+
+    <label>Edges:</label>
+    <select ng-model="current_event.event_type.boundary.edges" ng-options="edges_option for edges_option in events.event_type_options.edges_options">
+        <option value="">-- Choose edge --</option>
+    </select>
+</div>
+<div class="item-detail-section">
+    <label>Allow overlap:</label>
+    <input type="checkbox" ng-model="current_event.event_type.boundary.allow_overlap" ng-true-value="yes" ng-false-value="no">
+    {{current_event.event_type.boundary.allow_overlap}}
+</div>

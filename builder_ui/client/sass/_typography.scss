@@ -57,6 +57,10 @@ hr {
 /* HEADINGS */
 h1, h2, h3, h4, h5, h6 {
     @extend %heading-text;
+
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 2px solid $text-colour;
 }
 
 h1 {

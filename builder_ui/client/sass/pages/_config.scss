@@ -1,18 +1,10 @@
-.heading {
-    @include columns(16);
 
-    margin-bottom: $section-padding;
-
-    h1 {
-        text-align: center;
-    }
-}
 
 #config {
-    form {
+    .settings {
         @include columns(16);
 
-        margin-bottom: $section-padding;
+        margin-bottom: $section-padding - 24px;
 
         p {
             width: 50%;
@@ -122,5 +114,18 @@
         button[type="submit"] {
             @extend %button;
         }
+    }
+}
+
+.object-list {
+    @include columns(16);
+
+    background: $lighter-grey;
+    padding: 0;
+
+    .object-container {
+        text-align: center;
+        padding: 20px;
+        display: inline-block;
     }
 }

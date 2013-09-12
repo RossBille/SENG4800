@@ -1,7 +1,3 @@
-.container {
-    margin: 20px auto;
-}
-
 .list {
     @include columns(3);
 
@@ -14,14 +10,13 @@
 }
 
 .scene {
-    @include columns(13);
+    @include columns(16);
 
     background: $lighter-grey;
     padding: 0;
     height: $scene-height;
-
-    float: right;
     position: relative;
+    margin-top: $section-padding / 3;
     margin-bottom: $section-padding / 3;
 
     z-index: 1;
@@ -38,23 +33,9 @@
     position: relative;
 }
 
-.object-container {
-    width: 100%;
-    text-align: center;
-    padding: 10px;
-}
-
-.object {
-    cursor: move;
-    vertical-align: bottom;
-    width: 100px;
-    height: auto;
-    position: relative;
-    z-index: 2;
-}
-
 .item-detail {
     @include columns(16);
+    @include clearfix;
 
     margin-bottom: $section-padding / 3;
     background: $lighter-grey;
@@ -87,9 +68,10 @@
         width: 100%;
         display: block;
         margin-top: 20px;
+        margin-bottom: 5px;
     }
 
-    input {
+    input, select {
         width: 100%;
 
         &.small {
@@ -99,19 +81,5 @@
         &[type='checkbox'] {
             width: auto;
         }
-    }
-}
-
-.level-controls {
-    @include columns(16);
-
-    background: $lighter-grey;
-    margin-bottom: $section-padding / 3;
-    padding: 20px;
-
-    button, a {
-        @extend %button;
-
-        margin-right: 10px;
     }
 }

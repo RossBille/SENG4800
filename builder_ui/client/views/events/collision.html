@@ -1,0 +1,16 @@
+<div class="item-detail-section">
+    <label>Object 1:</label>
+    <select ng-model="current_event.event_type.collision.object_id1" ng-options="scene_object.object_id as scene_object.object_name + ' (ID: ' + scene_object.object_id + ')' for scene_object in scene_objects">
+        <option value="">-- Choose object --</option>
+    </select>
+
+    <label>Object 2:</label>
+    <select ng-model="current_event.event_type.collision.object_id2" ng-options="scene_object.object_id as scene_object.object_name + ' (ID: ' + scene_object.object_id + ')' for scene_object in scene_objects">
+        <option value="">-- Choose object --</option>
+    </select>
+</div>
+<div class="item-detail-section">
+    <label>Allow overlap:</label>
+    <input type="checkbox" ng-model="current_event.event_type.collision.allow_overlap" ng-true-value="yes" ng-false-value="no">
+    {{current_event.event_type.collision.allow_overlap}}
+</div>
