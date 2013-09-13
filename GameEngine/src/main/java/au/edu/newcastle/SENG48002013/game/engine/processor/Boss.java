@@ -20,48 +20,27 @@ import java.io.IOException;
 public class Boss
 {
 	private static boolean running = false;
-	private static IGame game;
+	private static Runner runner = null;
 	
 	public static boolean addPlayer(long inputId)
 	{
-		boolean added = false;
-		if(game != null)
-		{
-			added = game.addPlayer(inputId);
-		}
-		return added;
+            return runner.addPlayer(inputId);
 	}
 
 	public static void removePlayer(long inputId)
 	{
-		if(game != null)
-		{
-			game.removePlayer(inputId);
-		}
+            runner.removePlayer(inputId);
 	}
 	
 	public static void start() throws IOException
 	{
-		game = GameBuilder.buildGame();
-		//TestOutputWindow output = new TestOutputWindow();
-		IClock clock = new Clock();
-		running = true;
-		while(running)
-		{
-			double dt = clock.rest();
-			//output.sendOutput((IGameOutput)game);
-			OutputConnectionManager.sendOutput((IGameOutput)game);
-			/*for(int i = 0; i < objects.length; i++)
-			{
-				System.out.println("X:" + objects[i].getPos().x + " Y:" + objects[i].getPos().y);
-			}*/
-			game.step(dt);
-		}
+            runner = new Runner();
+            runner.start();
 	}
 	
 	public static void stop()
 	{
-		running = false;
+            runner.stopRunning();
 	}
 	
 	public static boolean isRunning()
