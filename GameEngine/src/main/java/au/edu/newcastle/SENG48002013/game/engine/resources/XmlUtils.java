@@ -48,7 +48,6 @@ public class XmlUtils {
 		if(nl != null && nl.getLength() > 0)
 		{
 			Element el = (Element)nl.item(0);
-			System.out.println(el.getNodeName());
 			if(el != null && el.getElementsByTagName("*").getLength() >= 2)
 			{
 				NodeList children = el.getElementsByTagName("*");

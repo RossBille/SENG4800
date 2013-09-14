@@ -182,7 +182,7 @@ public class GameObject implements IGameObject
 		{
 			currentTime += dt/TARGET_FPS;
 			currentFrame = (int)Math.floor(currentTime*sprite.getSpeed());
-			if(currentFrame == sprite.length())
+			if(currentFrame >= sprite.length())
 			{
 				currentTime = 0;
 				currentFrame = 0;

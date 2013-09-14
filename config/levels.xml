@@ -9,12 +9,9 @@
 				<OBJECT_NAME>Test Object</OBJECT_NAME>
 				<SPRITE_ID>0</SPRITE_ID>
 				<OBJECT_SHAPE>
-					<RECTANGLE>
-						<SIZE>
-							<WIDTH>40</WIDTH>
-							<HEIGHT>40</HEIGHT>
-						</SIZE>
-					</RECTANGLE>
+					<CIRCLE>
+						<RADIUS>100</RADIUS>
+					</CIRCLE>
 				</OBJECT_SHAPE>
 				<OBJECT_VISIBLE>YES</OBJECT_VISIBLE>
 				<START_POS>
