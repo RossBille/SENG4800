@@ -14,55 +14,63 @@ import java.io.IOException;
  *
  * @author Pete
  */
-public class Runner extends Thread {
-    private IGame game;
-    boolean running;
-    public Runner()
-    {
-        running = false;
-    }
-    @Override
-    public void run()
-    {
-        game = GameBuilder.buildGame();
-	//TestOutputWindow output = new TestOutputWindow();
-	IClock clock = new Clock();
-	running = true;
-	while(running)
+public class Runner extends Thread
+{
+
+	private IGame game;
+	boolean running;
+
+	public Runner()
 	{
-            double dt = clock.rest();
-            //output.sendOutput((IGameOutput)game);
-            try
-            {
-                OutputConnectionManager.sendOutput((IGameOutput)game);
-            }
-            catch(Exception e){}
-            /*for(int i = 0; i < objects.length; i++)
-            {
-                System.out.println("X:" + objects[i].getPos().x + " Y:" + objects[i].getPos().y);
-            }*/
-            game.step(dt);
+		running = false;
 	}
-    }
-    public boolean addPlayer(long inputId)
-    {
-        boolean added = false;
-	if(game != null)
+
+	@Override
+	public void run()
 	{
-            added = game.addPlayer(inputId);
+		System.out.println("STARTING GAME");
+		game = GameBuilder.buildGame();
+		//TestOutputWindow output = new TestOutputWindow();
+		IClock clock = new Clock();
+		running = true;
+		while (running)
+		{
+			double dt = clock.rest();
+			//output.sendOutput((IGameOutput)game);
+			try
+			{
+				OutputConnectionManager.sendOutput((IGameOutput) game);
+			} catch (Exception e)
+			{
+			}
+			/*for(int i = 0; i < objects.length; i++)
+			 {
+			 System.out.println("X:" + objects[i].getPos().x + " Y:" + objects[i].getPos().y);
+			 }*/
+			game.step(dt);
+		}
 	}
-	return added;
-    }
-    public void removePlayer(long inputId)
-    {
-        if(game != null)
+
+	public boolean addPlayer(long inputId)
 	{
-            game.removePlayer(inputId);
+		boolean added = false;
+		if (game != null)
+		{
+			added = game.addPlayer(inputId);
+		}
+		return added;
 	}
-    }
-    
-    public void stopRunning()
-    {
-        running = false;
-    }
+
+	public void removePlayer(long inputId)
+	{
+		if (game != null)
+		{
+			game.removePlayer(inputId);
+		}
+	}
+
+	public void stopRunning()
+	{
+		running = false;
+	}
 }

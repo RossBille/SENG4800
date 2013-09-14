@@ -27,11 +27,12 @@ public class ContextStartupListener implements ServletContextListener
 
 			//start the game
 			UpdateManager.start();
+			System.out.println("Context Set");
+
 		} catch (IOException ex)
 		{
 			Logger.getLogger(ContextStartupListener.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		System.out.println("Context Set");
 	}
 
 	@Override
