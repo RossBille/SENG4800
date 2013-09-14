@@ -1,27 +1,14 @@
 /* LINKS */
 a {
     color: $highlight-colour;
-    text-decoration: none;
-
-    border-width: 2px;
-    border-color: rgba(#000, .9);
-    border-bottom-style: dotted;
+    text-decoration: underline;
 
     &:hover {
-        border-color: $highlight-colour;
+        text-decoration: none;
     }
 
     &:focus {
         outline: none;
-    }
-
-    &:active, &:focus {
-        border-bottom-style: solid;
-    }
-
-    &:visited {
-        border-bottom-style: solid;
-        border-color: rgba(#000, .5);
     }
 }
 
@@ -70,6 +57,10 @@ hr {
 /* HEADINGS */
 h1, h2, h3, h4, h5, h6 {
     @extend %heading-text;
+
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 2px solid $text-colour;
 }
 
 h1 {

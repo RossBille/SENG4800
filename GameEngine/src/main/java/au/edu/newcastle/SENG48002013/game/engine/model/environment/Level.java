@@ -13,6 +13,7 @@ import javax.vecmath.Vector2d;
 
 public class Level {
 	private long id;
+	private Background background;
 	private Vector2d dimensions;
 	private List<GameObject> gameObjects;
 	private List<IEvent> events;
@@ -30,6 +31,14 @@ public class Level {
 	public void setId(long id)
 	{
 		this.id = id;
+	}
+	public Background getBackground()
+	{
+		return background;
+	}
+	public void setBackground(Background background)
+	{
+		this.background = background;
 	}
 	public Vector2d getDimensions()
 	{

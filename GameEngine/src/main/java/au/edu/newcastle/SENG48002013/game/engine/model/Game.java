@@ -22,6 +22,8 @@ public class Game implements IGame, IGameOutput
 {
 	Level[] levels;
 	Player[] players;
+	int minPlayers;
+	int maxPlayers;
 	int currentLevel;
 	Vector2d size;
 	int activePlayers;
@@ -41,9 +43,36 @@ public class Game implements IGame, IGameOutput
 	{
 		this.levels = levels;
 	}
+	public void setCurrentLevel(long levelId)
+	{
+		for(int i = 0; i < levels.length; i++)
+		{
+			if(levels[i].getId() == levelId)
+			{
+				currentLevel = i;
+				break;
+			}
+		}
+	}
 	public void setPlayers(Player[] players)
 	{
 		this.players = players;
+	}
+	public int getMaxPlayers()
+	{
+		return maxPlayers;
+	}
+	public void setMaxPlayers(int maxPlayers)
+	{
+		this.maxPlayers = maxPlayers;
+	}
+	public int getMinPlayers()
+	{
+		return minPlayers;
+	}
+	public void setMinPlayers(int minPlayers)
+	{
+		this.minPlayers = minPlayers;
 	}
 	public Vector2d getSize()
 	{
@@ -77,7 +106,8 @@ public class Game implements IGame, IGameOutput
 		int returnCode = levels[currentLevel].step(dt);
 		if(returnCode != -1)
 		{
-			currentLevel = returnCode;
+			setCurrentLevel(returnCode);
+			//currentLevel = returnCode;
 		}
 	}
 	@Override

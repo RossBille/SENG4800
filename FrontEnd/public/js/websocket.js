@@ -5,7 +5,7 @@ app.websocket = (function() {
     var Constructor;
 
     Constructor = function() {
-        this.ws = new WebSocket("ws://localhost:8080");
+        this.ws = new WebSocket("ws://localhost:8088");
         this.ws.onopen = onOpen;
         this.ws.onclose = onClose;
         this.ws.onmessage = onMessage;
@@ -16,6 +16,8 @@ app.websocket = (function() {
             this.ws.close();
         };
     };
+
+    /* Our web socket function */
 
     function onMessage(msg) {
         var objects = [];

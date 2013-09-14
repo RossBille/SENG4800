@@ -21,11 +21,11 @@ public class UpdateManagerServlet extends BaseServlet
 			switch(action)
 			{
 				case "start":
-					UpdateManager.start(getServletContext());
+					UpdateManager.start();
 				case "stop":
-					UpdateManager.stop(getServletContext());
+					UpdateManager.stop();
 				case "restart":
-					UpdateManager.restart(getServletContext());
+					UpdateManager.restart();
 			}
 		}
 	}

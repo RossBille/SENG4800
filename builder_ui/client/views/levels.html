@@ -1,0 +1,37 @@
+<section id="levels">
+    <div class="container">
+
+        <div class="heading">
+            <h1>Levels Configuration</h1>
+        </div>
+
+        <div class="controls-container">
+            <div class="controls">
+                <button ng-click="newEvent()">New Event</button>
+                <button ng-click="newLevel()">New Level</button>
+                <button ng-click="saveLevel()">Save Current Level</button>
+                <button ng-click="saveGame()">Save Game Levels to File</button>
+            </div>
+        </div>
+
+        <div id="event-detail" ng-include src="event_view_URL">
+        </div>
+
+        <div id="level-detail" ng-include src="'views/level_detail.html'">
+        </div>
+
+        <div class='object-list'>
+            <h2>Objects</h2>
+
+            <div class="object-container" ng-repeat="item in list">
+                <img ng-src="{{item.image}}" class="object" data-index="{{$index}}" draggable />
+            </div>
+        </div>
+
+        <div class="scene" droppable></div>
+
+        <div id="item-detail" ng-include src="view_URL">
+        </div>
+
+    </div>
+</section>

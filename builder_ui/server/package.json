@@ -7,6 +7,10 @@
     "description": "Reads from a basic objects.json file and servers to client",
     "readme" : "## Reads from basic json file and serves to client",
     "version" : "0.1.0",
-    "dependencies" : { "ws" : "0.4.27" } 
+    "dependencies" : 
+    { 
+        "ws" : "0.4.27",
+        "pretty-data": "0.40.0"
+    }
 }
 

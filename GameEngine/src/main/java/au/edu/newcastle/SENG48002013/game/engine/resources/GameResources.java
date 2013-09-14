@@ -5,13 +5,20 @@
  */
 package au.edu.newcastle.SENG48002013.game.engine.resources;
 
+import au.edu.newcastle.SENG48002013.output.SetupMessage;
+import au.edu.newcastle.SENG48002013.game.engine.model.IGame;
 import au.edu.newcastle.SENG48002013.game.engine.model.actions.IAction;
 import au.edu.newcastle.SENG48002013.game.engine.model.environment.Background;
 import au.edu.newcastle.SENG48002013.game.engine.model.environment.GameObject;
 import au.edu.newcastle.SENG48002013.game.engine.model.environment.Level;
+import au.edu.newcastle.SENG48002013.game.engine.model.environment.Player;
 import au.edu.newcastle.SENG48002013.game.engine.model.environment.Sprite;
 import au.edu.newcastle.SENG48002013.game.engine.model.events.IEvent;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class GameResources {
@@ -21,7 +28,8 @@ public class GameResources {
 	private static HashMap<Long, Background> backgrounds = new HashMap<Long, Background>();
 	private static HashMap<Long, IAction> actions = new HashMap<Long, IAction>();
 	private static HashMap<Long, IEvent> events = new HashMap<Long, IEvent>();
-	
+	private static HashMap<Long, Player> players = new HashMap<Long, Player>();
+	private static IGame game;
 	public static void addLevel(Level level)
 	{
 		levels.put(level.getId(), level);
@@ -101,5 +109,42 @@ public class GameResources {
 	public static void removeEvent(long id)
 	{
 		events.remove(id);
+	}
+	public static Player getPlayer(long id)
+	{
+		return players.get(id);
+	}
+	public static void addPlayer(Player player)
+	{
+		players.put(player.getId(), player);
+	}
+	public static IGame getGame()
+	{
+		return game;
+	}
+	public static void setGame(IGame game)
+	{
+		GameResources.game = game;
+	}
+	public static SetupMessage getResources()
+	{
+		int objSize = gameObjects.values().size();
+		Iterator<Sprite> spriteIter = sprites.values().iterator();
+		List<String> imageUrls = new LinkedList<String>();
+		while(spriteIter.hasNext())
+		{
+			Sprite currentSprite = spriteIter.next();
+			String[] urls = currentSprite.getImageUrls();
+			imageUrls.addAll(Arrays.asList(urls));
+		}
+		long[] objectIds = new long[objSize];
+		Iterator<GameObject> objIter = gameObjects.values().iterator();
+		int i = 0;
+		while(objIter.hasNext())
+		{
+			objectIds[i] = objIter.next().getId();
+			i++;
+		}
+		return new SetupMessage(objectIds, imageUrls.toArray(new String[0]));
 	}
 }

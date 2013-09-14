@@ -11,6 +11,9 @@ html {
 /* BRAND COLOURS */
 $base-colour: #09c;
 $highlight-colour: #00ff01;
+$light-grey: #ddd;
+$lighter-grey: #eee;
+$dark-grey: #888;
 
 /* STANDARD COLOURS */
 $text-colour: #222;
@@ -24,10 +27,10 @@ $error-colour: #b00b13;
 $border-colour: $light-colour;
 
 /* SITE VARIABLES */
-$section-padding: 20px;
+$section-padding: 60px;
 $header-padding: 40px;
 $hero-height: 350px;
 $hero-width: 700px;
 $footer-height: 80px;
 $border-width: 6px;
-$scene-height: 500px;
+$scene-height: 540px;
