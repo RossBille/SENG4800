@@ -61,7 +61,9 @@
 								<!ELEMENT TYPE (add|sub|set)>
 							<!ELEMENT CHANGE_COMPONENT (OBJECT_ID, VALUE, COMPONENT, TYPE)>
 								<!ELEMENT OBJECT_ID (#PCDATA)>
-								<!ELEMENT VALUE (#PCDATA)>
+								<!ELEMENT VALUE (X, Y)>
+									<!ELEMENT X (#PCDATA)>
+									<!ELEMENT Y (#PCDATA)>
 								<!ELEMENT COMPONENT (pos|vel|acc)>
 								<!ELEMENT TYPE (add|sub|set)>
 							<!ELEMENT CHANGE_LEVEL (LEVEL_ID)>
