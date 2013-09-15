@@ -1,59 +1,57 @@
 package au.edu.newcastle.seng48002013.results;
 
 import java.io.Serializable;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
 
-@JsonTypeInfo
-        (
-	use = JsonTypeInfo.Id.CLASS,
-	include = JsonTypeInfo.As.PROPERTY,
-	property = "@class"
-        )
-
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.CLASS,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "@class")
 public class Result implements Serializable
 {
-	private String message;	
-	private String code;
-	private boolean error;
-	public Result()
-	{
-	}
 
-	public Result(String message, String code, boolean error)
-	{
-		this.message = message;
-		this.code = code;
-		this.error = error;
-	}
-	
-	public String getMessage()
-	{
-		return message;
-	}
+    private String message;
+    private String code;
+    private boolean error;
 
-	public void setMessage(String message)
-	{
-		this.message = message;
-	}
+    public Result()
+    {
+    }
 
-	public String getCode()
-	{
-		return code;
-	}
+    public Result(String message, String code, boolean error)
+    {
+        this.message = message;
+        this.code = code;
+        this.error = error;
+    }
 
-	public void setCode(String code)
-	{
-		this.code = code;
-	}
+    public String getMessage()
+    {
+        return message;
+    }
 
-	public boolean isError()
-	{
-		return error;
-	}
+    public void setMessage(String message)
+    {
+        this.message = message;
+    }
 
-	public void setError(boolean error)
-	{
-		this.error = error;
-	}
+    public String getCode()
+    {
+        return code;
+    }
+
+    public void setCode(String code)
+    {
+        this.code = code;
+    }
+
+    public boolean isError()
+    {
+        return error;
+    }
+
+    public void setError(boolean error)
+    {
+        this.error = error;
+    }
 }

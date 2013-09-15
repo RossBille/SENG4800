@@ -6,6 +6,8 @@ import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import au.edu.newcastle.SENG48002013.messages.PlayerNumberMessage;
 import au.edu.newcastle.SENG48002013.messages.responses.Response;
+import au.edu.newcastle.SENG48002013.util.ErrorCode;
+import au.edu.newcastle.SENG48002013.util.SuccessCode;
 import org.codehaus.jackson.map.ObjectMapper;
 
 /**
@@ -17,81 +19,77 @@ import org.codehaus.jackson.map.ObjectMapper;
 public class InputConnectionManager extends BaseServlet
 {
 
-	private long lastId;
+    private long lastId;
 
-	private Boss boss = null;
+    public InputConnectionManager()
+    {
+        lastId = 0;
+    }
 
-	public InputConnectionManager()
-	{
-		boss = (Boss) getServletContext().getAttribute("boss");
-		lastId = 0;
-	}
+    @Override
+    protected void processRequest() throws IOException
+    {
+        Response r = new Response();
 
-	@Override
-	protected void processRequest() throws IOException
-	{
-		Response r = new Response();
+        //parse instruction
+        ObjectMapper mapper = new ObjectMapper();
+        PlayerNumberMessage pnm;
+        pnm = mapper.readValue(extractJson(), PlayerNumberMessage.class);
+        System.out.println(pnm.toString());
+        //check if adding or removing
+        if (pnm.isConnecting())
+        {
+            long generatedId = generateId(pnm);
+            boolean addPlayer = Boss.addPlayer(generatedId);
+            if (addPlayer)
+            {
+                r.setError(false);
+                r.setCode(convert(addPlayer));
+                r.setMessage("Player has been added");
+            } else
+            {
+                r.setError(true);
+                r.setMessage("No Room");
+                r.setCode(ErrorCode.INSUFFICIENT_ROOM);
+            }
 
-		//parse instruction
-		ObjectMapper mapper = new ObjectMapper();
-		PlayerNumberMessage pnm;
-		pnm = mapper.readValue(extractJson(), PlayerNumberMessage.class);
-		System.out.println(pnm.toString());
-		//check if adding or removing
-		if (pnm.isConnecting())
-		{
-			long generatedId = generateId(pnm);
-			boolean addPlayer = boss.addPlayer(generatedId);
-			if (addPlayer)
-			{
-				r.setError(false);
-				r.setCode(convert(addPlayer));
-				r.setMessage("Player has been added");
-			} else
-			{
-				r.setError(true);
-				r.setMessage("No Room");
-				r.setCode(-1);//TODO create error code list
-			}
+        } else
+        {
+            //remove player from the game
+            Boss.removePlayer(pnm.getPlayer());
+            r.setError(false);
+            r.setMessage("Player was removed");
+            r.setCode(SuccessCode.SUCCESS);
+        }
 
-		} else
-		{
-			//remove player from the game
-			boss.removePlayer(pnm.getPlayer());
-			r.setError(false);
-			r.setMessage("Player was removed");
-			r.setCode(1);//TODO create error code list
-		}
+    }
 
-	}
+    private String extractJson()
+    {
+        System.out.println(request.getParameter("data"));
+        return request.getParameter("data");
+    }
 
-	private String extractJson()
-	{
-		System.out.println(request.getParameter("data"));
-		return request.getParameter("data");
-	}
+    private void respond(Response r) throws IOException
+    {
+        response.setContentType("text/JSON");
+        ObjectMapper mapper = new ObjectMapper();
+        response.getWriter().write(mapper.writeValueAsString(r));
+    }
 
-	private void respond(Response r) throws IOException
-	{
-		response.setContentType("text/JSON");
-		ObjectMapper mapper = new ObjectMapper();
-		response.getWriter().write(mapper.writeValueAsString(r));
+    private int convert(boolean result)
+    {
+        if (result)
+        {
+            return 1;
+        } else
+        {
+            return -1;
+        }
+    }
 
-	}
-
-	private int convert(boolean result)
-	{
-		if (result)
-		{
-			return 1;
-		} else
-		{
-			return -1;
-		}
-	}
-
-	private long generateId(PlayerNumberMessage pnm)
-	{
-		return ++lastId;
-	}
+    private long generateId(PlayerNumberMessage pnm)
+    {
+        return ++lastId;
+    }
 }

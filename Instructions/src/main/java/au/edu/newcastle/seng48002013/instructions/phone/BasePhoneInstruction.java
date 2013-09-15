@@ -12,12 +12,12 @@ public abstract class BasePhoneInstruction extends BaseInstruction
     protected String phoneId;
     protected String os;
     protected String iD;
-    
+
     public BasePhoneInstruction(String id, String os)
     {
         this.phoneId = id;
         this.os = os;
-        this.iD = os + "," + phoneId + "," + updated;       
+        this.iD = os + "," + phoneId + "," + updated;
     }
 
     public void setId(String s)

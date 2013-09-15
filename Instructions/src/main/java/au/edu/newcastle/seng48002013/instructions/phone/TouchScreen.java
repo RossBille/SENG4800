@@ -22,7 +22,7 @@ public class TouchScreen extends BasePhoneInstruction
             @JsonProperty("x1") float x1,
             @JsonProperty("x2") float x2,
             @JsonProperty("y1") float y1,
-            @JsonProperty("y2") float y2, 
+            @JsonProperty("y2") float y2,
             @JsonProperty("os") String os,
             @JsonProperty("iD") String iD)
     {
@@ -84,7 +84,7 @@ public class TouchScreen extends BasePhoneInstruction
     {
         this.y2 = y2;
     }
-    
+
     public float getX1()
     {
         return x1;
@@ -110,7 +110,6 @@ public class TouchScreen extends BasePhoneInstruction
     {
         return new Vector3d(x2 - x1, y2 - y1, 0);
     }
-  
 
     @Override
     public long getUpdated()

@@ -16,17 +16,17 @@ import org.codehaus.jackson.map.ObjectMapper;
 @WebServlet("/setup")
 public class OutputSetup extends BaseServlet
 {
-	@Override
-	protected void processRequest() throws IOException
-	{
-		ServletContext sc = getServletContext();
-		response.setContentType("text/json");
-		ObjectMapper mapper = new ObjectMapper();
-		PrintWriter out = response.getWriter();
-		SetupMessage setupMessages = GameResources.getResources();
-                String output = request.getParameter("callback") + "(" + mapper.writeValueAsString(setupMessages) + ")";
-                System.out.println("OUTPUT" + output);
-		out.print(output);
-	}
-	
+
+    @Override
+    protected void processRequest() throws IOException
+    {
+        ServletContext sc = getServletContext();
+        response.setContentType("text/json");
+        ObjectMapper mapper = new ObjectMapper();
+        PrintWriter out = response.getWriter();
+        SetupMessage setupMessages = GameResources.getResources();
+        String output = request.getParameter("callback") + "(" + mapper.writeValueAsString(setupMessages) + ")";
+        System.out.println("OUTPUT" + output);
+        out.print(output);
+    }
 }

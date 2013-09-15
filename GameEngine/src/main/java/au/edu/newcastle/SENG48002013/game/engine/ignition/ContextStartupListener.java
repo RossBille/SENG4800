@@ -17,33 +17,33 @@ import javax.servlet.annotation.WebListener;
 public class ContextStartupListener implements ServletContextListener
 {
 
-	@Override
-	public void contextInitialized(ServletContextEvent sce)
-	{
-		try
-		{
-			//init game stuff here
-			//read in config
+    @Override
+    public void contextInitialized(ServletContextEvent sce)
+    {
+        try
+        {
+            //init game stuff here
+            //read in config
 
-			//start the game
-			UpdateManager.start();
-			System.out.println("Context Set");
+            //start the game
+            UpdateManager.start();
+            System.out.println("Context Set");
 
-		} catch (IOException ex)
-		{
-			Logger.getLogger(ContextStartupListener.class.getName()).log(Level.SEVERE, null, ex);
-		}
-	}
+        } catch (IOException ex)
+        {
+            Logger.getLogger(ContextStartupListener.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
-	@Override
-	public void contextDestroyed(ServletContextEvent sce)
-	{
-		try
-		{
-			UpdateManager.start();
-		} catch (IOException ex)
-		{
-			Logger.getLogger(ContextStartupListener.class.getName()).log(Level.SEVERE, null, ex);
-		}
-	}
+    @Override
+    public void contextDestroyed(ServletContextEvent sce)
+    {
+        try
+        {
+            UpdateManager.start();
+        } catch (IOException ex)
+        {
+            Logger.getLogger(ContextStartupListener.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

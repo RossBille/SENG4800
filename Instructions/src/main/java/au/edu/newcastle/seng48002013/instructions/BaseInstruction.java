@@ -14,7 +14,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
         include = JsonTypeInfo.As.PROPERTY,
         property = "@class")
 @JsonIgnoreProperties(
-{
+        {
     "updated", "direction"
 })
 public abstract class BaseInstruction implements Serializable

@@ -6,16 +6,19 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  *
  * @author rossbille
  */
-public abstract class BaseMessage 
+public abstract class BaseMessage
 {
-	protected long timeStamp;
-	@JsonIgnore
-	public long getTimeStamp()
-	{
-			return timeStamp;
-	}
-	public BaseMessage()
-	{
-			timeStamp = System.currentTimeMillis();
-	}
+
+    protected long timeStamp;
+
+    @JsonIgnore
+    public long getTimeStamp()
+    {
+        return timeStamp;
+    }
+
+    public BaseMessage()
+    {
+        timeStamp = System.currentTimeMillis();
+    }
 }
