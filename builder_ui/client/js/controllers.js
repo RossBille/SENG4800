@@ -24,6 +24,7 @@ function LevelsController($scope, ListService, GameService, SaveXML) {
             },
             boundary: {
                 object_id: '',
+                level_id: '',
                 edges: '',
                 allow_overlap: 'no'
             },
@@ -70,6 +71,8 @@ function LevelsController($scope, ListService, GameService, SaveXML) {
                 $scope.current_event.event_type = {
                     boundary: $scope.events.event_types.boundary
                 }
+
+                $scope.current_event.event_type.boundary.level_id = level_index;
             }
             else if ($scope.selected_event_type.event_type.name === 'Timer') {
                 $scope.current_event.event_type = {
@@ -132,7 +135,7 @@ function LevelsController($scope, ListService, GameService, SaveXML) {
             {name: 'Change component', partial: 'views/actions/change_component.html'},
             {name: 'Change level', partial: 'views/actions/change_level.html'},
             {name: 'Reflect', partial: 'views/actions/reflect.html'},
-            {name: 'Input', partial: 'views/events/actions/input.html'}
+            {name: 'Input', partial: 'views/actions/input.html'}
         ],
         action_types: {
             change_sprite: {
@@ -146,7 +149,10 @@ function LevelsController($scope, ListService, GameService, SaveXML) {
             },
             change_component: {
                 object_id: '',
-                value: '',
+                value: {
+                    x: '',
+                    y: ''
+                },
                 component: '',
                 type: ''
             },
@@ -167,6 +173,9 @@ function LevelsController($scope, ListService, GameService, SaveXML) {
         action_type_options: {
             type_options: [
                 'add', 'sub', 'set'
+            ],
+            component_options: [
+                'pos', 'vel', 'acc'
             ]
         }
     };
@@ -183,6 +192,31 @@ function LevelsController($scope, ListService, GameService, SaveXML) {
             if ($scope.selected_action_type.action_type.name === 'Change sprite') {
                 $scope.current_action.action_type = {
                     change_sprite: $scope.actions.action_types.change_sprite
+                }
+            }
+            else if ($scope.selected_action_type.action_type.name === 'Change score') {
+                $scope.current_action.action_type = {
+                    change_score: $scope.actions.action_types.change_score
+                }
+            }
+            else if ($scope.selected_action_type.action_type.name === 'Change component') {
+                $scope.current_action.action_type = {
+                    change_component: $scope.actions.action_types.change_component
+                }
+            }
+            else if ($scope.selected_action_type.action_type.name === 'Change level') {
+                $scope.current_action.action_type = {
+                    change_level: $scope.actions.action_types.change_level
+                }
+            }
+            else if ($scope.selected_action_type.action_type.name === 'Reflect') {
+                $scope.current_action.action_type = {
+                    reflect: $scope.actions.action_types.reflect
+                }
+            }
+            else if ($scope.selected_action_type.action_type.name === 'Input') {
+                $scope.current_action.action_type = {
+                    input: $scope.actions.action_types.input
                 }
             }
         }

@@ -1,0 +1,23 @@
+<div class="item-detail-section">
+    <label>Object:</label>
+    <select ng-model="current_action.action_type.change_component.object_id" ng-options="scene_object.object_id as scene_object.object_name + ' (ID: ' + scene_object.object_id + ')' for scene_object in scene_objects">
+        <option value="">-- Choose object --</option>
+    </select>
+
+    <label>Component:</label>
+    <select ng-model="current_action.action_type.change_component.component" ng-options="component_option for component_option in actions.action_type_options.component_options">
+        <option value="">-- Choose component --</option>
+    </select>
+
+    <label>Type:</label>
+    <select ng-model="current_action.action_type.change_component.type" ng-options="type_option for type_option in actions.action_type_options.type_options">
+        <option value="">-- Choose type --</option>
+    </select>
+</div>
+<div class="item-detail-section">
+    <label for="value_x">Value (X):</label>
+    <input type="number" id="value_x" ng-model="current_action.action_type.change_component.value.x" />
+
+    <label for="value_y">Value (Y):</label>
+    <input type="number" id="value_y" ng-model="current_action.action_type.change_component.value.y" />
+</div>

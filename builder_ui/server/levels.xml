@@ -15,8 +15,8 @@
         </object_shape>
         <object_visible>yes</object_visible>
         <start_pos>
-          <x>135</x>
-          <y>150</y>
+          <x>117</x>
+          <y>115</y>
         </start_pos>
         <start_vel>
           <x>1</x>
@@ -29,17 +29,17 @@
       </object>
       <object>
         <object_id>1</object_id>
-        <object_name>Tennis Ball</object_name>
-        <sprite_id>2</sprite_id>
+        <object_name>Golf Ball</object_name>
+        <sprite_id>1</sprite_id>
         <object_shape>
           <circle>
-            <radius>87.5</radius>
+            <radius>75</radius>
           </circle>
         </object_shape>
         <object_visible>yes</object_visible>
         <start_pos>
-          <x>450</x>
-          <y>178</y>
+          <x>462</x>
+          <y>181</y>
         </start_pos>
         <start_vel>
           <x>1</x>
@@ -58,7 +58,7 @@
           <collision>
             <object_id1>0</object_id1>
             <object_id2>1</object_id2>
-            <allow_overlap>yes</allow_overlap>
+            <allow_overlap>no</allow_overlap>
           </collision>
         </event_type>
         <actions>
@@ -66,10 +66,61 @@
             <action_id>0</action_id>
             <action_type>
               <change_sprite>
-                <object_id>1</object_id>
-                <sprite_id>3</sprite_id>
+                <object_id>0</object_id>
+                <sprite_id>2</sprite_id>
               </change_sprite>
             </action_type>
+          </action>
+          <action>
+            <action_id>1</action_id>
+            <action_type>
+              <change_score>
+                <player_id>1</player_id>
+                <value>5</value>
+                <type>add</type>
+              </change_score>
+            </action_type>
+          </action>
+          <action>
+            <action_id>2</action_id>
+            <action_type>
+              <change_component>
+                <object_id>0</object_id>
+                <value>
+                  <x>5</x>
+                  <y>5</y>
+                </value>
+                <component>vel</component>
+                <type>sub</type>
+              </change_component>
+            </action_type>
+          </action>
+          <action>
+            <action_id>3</action_id>
+            <action_type>
+              <change_level>
+                <level_id>2</level_id>
+              </change_level>
+            </action_type>
+          </action>
+        </actions>
+      </event>
+      <event>
+        <event_id>1</event_id>
+        <event_type>
+          <timer>
+            <length>5</length>
+            <repeat>no</repeat>
+          </timer>
+        </event_type>
+        <actions>
+          <action>
+            <action_id>4</action_id>
+            <action_type/>
+          </action>
+          <action>
+            <action_id>5</action_id>
+            <action_type/>
           </action>
         </actions>
       </event>

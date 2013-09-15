@@ -1,0 +1,13 @@
+<div class="item-detail-section">
+    <label for="player_id">Player ID:</label>
+    <input type="number" id="player_id" ng-model="current_action.action_type.change_score.player_id" />
+
+    <label for="value">Value:</label>
+    <input type="number" id="value" ng-model="current_action.action_type.change_score.value" />
+</div>
+<div class="item-detail-section">
+    <label>Type:</label>
+    <select ng-model="current_action.action_type.change_score.type" ng-options="type_option for type_option in actions.action_type_options.type_options">
+        <option value="">-- Choose type --</option>
+    </select>
+</div>
