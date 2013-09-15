@@ -9,9 +9,12 @@
 				<OBJECT_NAME>Test Object</OBJECT_NAME>
 				<SPRITE_ID>0</SPRITE_ID>
 				<OBJECT_SHAPE>
-					<CIRCLE>
-						<RADIUS>100</RADIUS>
-					</CIRCLE>
+					<RECTANGLE>
+						<SIZE>
+							<WIDTH>200</WIDTH>
+							<HEIGHT>200</HEIGHT>
+						</SIZE>
+					</RECTANGLE>
 				</OBJECT_SHAPE>
 				<OBJECT_VISIBLE>YES</OBJECT_VISIBLE>
 				<START_POS>
@@ -19,8 +22,8 @@
 					<Y>100</Y>
 				</START_POS>
 				<START_VEL>
-					<X>3</X>
-					<Y>-2</Y>
+					<X>6</X>
+					<Y>-8</Y>
 				</START_VEL>
 				<START_ACC>
 					<X>0</X>
