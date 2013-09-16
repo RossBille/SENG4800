@@ -5,9 +5,32 @@
     <background_id></background_id>
     <objects>
       <object>
+        <object_id>0</object_id>
+        <object_name>Soccer Ball</object_name>
+        <sprite_id>0</sprite_id>
+        <object_shape>
+          <circle>
+            <radius>100</radius>
+          </circle>
+        </object_shape>
+        <object_visible>yes</object_visible>
+        <start_pos>
+          <x>37</x>
+          <y>68</y>
+        </start_pos>
+        <start_vel>
+          <x>1</x>
+          <y>1</y>
+        </start_vel>
+        <start_acc>
+          <x>1</x>
+          <y>1</y>
+        </start_acc>
+      </object>
+      <object>
         <object_id>1</object_id>
         <object_name>Golf Ball</object_name>
-        <sprite_id>0</sprite_id>
+        <sprite_id>1</sprite_id>
         <object_shape>
           <circle>
             <radius>75</radius>
@@ -15,8 +38,8 @@
         </object_shape>
         <object_visible>yes</object_visible>
         <start_pos>
-          <x>380</x>
-          <y>222</y>
+          <x>341</x>
+          <y>123</y>
         </start_pos>
         <start_vel>
           <x>1</x>

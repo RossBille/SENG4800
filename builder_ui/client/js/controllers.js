@@ -378,11 +378,11 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
     $scope.objects = $scope.game.setup.sprites.sprite;
 
     $scope.determineOrientation = function (item) {
-        if (item.radius) {
+        if (item.shape.radius) {
             return 'landscape';
         }
         else {
-            if (item.width >= item.height) {
+            if (item.shape.width >= item.shape.height) {
                 return 'landscape';
             }
             else {
@@ -457,15 +457,17 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
                     x: $scope.sprites[index].offset.x,
                     y: $scope.sprites[index].offset.y
                 },
-                shape: $scope.sprites[index].shape
+                shape: {
+                    shape_type: $scope.sprites[index].shape.shape_type
+                }
             };
 
-            if (new_sprite.shape === 'circle') {
-                new_sprite.radius = $scope.sprites[index].radius;
+            if (new_sprite.shape.shape_type === 'circle') {
+                new_sprite.shape.radius = $scope.sprites[index].shape.radius;
             }
-            else if (new_sprite.shape === 'rectangle') {
-                new_sprite.width = $scope.sprites[index].width;
-                new_sprite.height = $scope.sprites[index].height;
+            else if (new_sprite.shape.shape_type === 'rectangle') {
+                new_sprite.shape.width = $scope.sprites[index].shape.width;
+                new_sprite.shape.height = $scope.sprites[index].shape.height;
             }
 
             $scope.game.setup.sprites.sprite.push(new_sprite);
@@ -505,11 +507,11 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
     }
 
     $scope.determineOrientation = function (item) {
-        if (item.radius) {
+        if (item.shape.radius) {
             return 'landscape';
         }
         else {
-            if (item.width >= item.height) {
+            if (item.shape.width >= item.shape.height) {
                 return 'landscape';
             }
             else {

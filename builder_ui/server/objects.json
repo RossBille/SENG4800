@@ -9,8 +9,10 @@
                 "x": 0,
                 "y": 0
             },
-            "shape": "circle",
-            "radius": 100
+            "shape": {
+                "shape_type": "circle",
+                "radius": 100
+            }
         },
         {
             "sprite_id": 1,
@@ -21,8 +23,10 @@
                 "x": 0,
                 "y": 0
             },
-            "shape": "circle",
-            "radius": 75
+            "shape": {
+                "shape_type": "circle",
+                "radius": 75
+            }
         },
         {
             "sprite_id": 2,
@@ -33,8 +37,10 @@
                 "x": 0,
                 "y": 0
             },
-            "shape": "circle",
-            "radius": 87.5
+            "shape": {
+                "shape_type": "circle",
+                "radius": 87.5
+            }
         },
         {
             "sprite_id": 3,
@@ -45,9 +51,11 @@
                 "x": 0,
                 "y": 0
             },
-            "shape": "rectangle",
-            "width": 50,
-            "height": 400
+            "shape": {
+                "shape_type": "rectangle",
+                "width": 50,
+                "height": 400
+            }
         },
         {
             "sprite_id": 4,
@@ -58,9 +66,11 @@
                 "x": 0,
                 "y": 0
             },
-            "shape": "rectangle",
-            "width": 400,
-            "height": 50
+            "shape": {
+                "shape_type": "rectangle",
+                "width": 400,
+                "height": 50
+            }
         }
     ]
 }
