@@ -62,15 +62,6 @@ body {
     margin: 20px auto;
 }
 
-.object {
-    cursor: move;
-    vertical-align: bottom;
-    width: 100px;
-    height: auto;
-    position: relative;
-    z-index: 2;
-}
-
 .controls-container {
     @include columns(16);
 
@@ -100,4 +91,43 @@ body {
 
 .src-container {
     display: inline;
+}
+
+.object-list {
+    @include columns(16);
+
+    background: $lighter-grey;
+    padding: 0;
+
+    .object-container {
+        margin: 20px;
+        display: inline-block;
+        float: left;
+        display: table;
+        height: 100px;
+        width: 100px;
+
+        .image-container {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+    }
+}
+
+.object {
+    cursor: move;
+    vertical-align: middle;
+    position: relative;
+    z-index: 2;
+
+    &.portrait {
+        max-height: 100px;
+        width: auto;
+    }
+
+    &.landscape {
+        max-width: 100px;
+        height: auto;
+    }
 }

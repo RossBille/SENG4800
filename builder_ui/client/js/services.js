@@ -74,3 +74,21 @@ App.factory('GameService', function () {
         }
     }
 });
+
+App.factory('CanvasService', function () {
+    return {
+        canvas: {
+            width: '',
+            height: '',
+            multiplier: 0
+        }
+    }
+});
+
+App.factory('ConfigCompletionService', function () {
+    return {
+        config_completed: {
+            status: false
+        }
+    }
+});

@@ -1,6 +1,6 @@
 <div class="item-detail-section">
     <label>Object:</label>
-    <select ng-model="current_action.action_type.change_component.object_id" ng-options="scene_object.object_id as scene_object.object_name + ' (ID: ' + scene_object.object_id + ')' for scene_object in scene_objects">
+    <select ng-model="current_action.action_type.change_component.object_id" ng-options="scene_object.object_id as scene_object.object_name + ' (ID: ' + scene_object.object_id + ')' for scene_object in current_level.objects.object">
         <option value="">-- Choose object --</option>
     </select>
 

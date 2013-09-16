@@ -9,7 +9,6 @@
             <div class="controls">
                 <button ng-click="newEvent()">New Event</button>
                 <button ng-click="newLevel()">New Level</button>
-                <button ng-click="saveLevel()">Save Current Level</button>
                 <button ng-click="saveGame()">Save Game Levels to File</button>
             </div>
         </div>
@@ -23,12 +22,19 @@
         <div class='object-list'>
             <h2>Objects</h2>
 
-            <div class="object-container" ng-repeat="item in list">
-                <img ng-src="{{item.image}}" class="object" data-index="{{$index}}" draggable />
+            <div class="object-container" ng-repeat="item in objects">
+                <div class="image-container">
+                    <img ng-src="{{item.image}}" class="object" ng-class="determineOrientation(item)" data-index="{{$index}}" draggable/>
+                </div>
             </div>
         </div>
+    </div>
 
+    <div class="scene-container">
         <div class="scene" droppable></div>
+    </div>
+
+    <div class="container">
 
         <div id="item-detail" ng-include src="view_URL">
         </div>

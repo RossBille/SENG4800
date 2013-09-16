@@ -6,7 +6,7 @@
 
         <div class="controls-container">
             <div class="controls">
-                <button ng-click="saveConfig()">Save Game Configuration</button>
+                <button ng-click="saveConfig()">Save Game Configuration to File</button>
             </div>
         </div>
 
@@ -60,7 +60,9 @@
             <h2>Sprites</h2>
 
             <div class="object-container" ng-repeat="item in sprites">
-                <img ng-src="{{item.image}}" class="object" data-index="{{$index}}"/>
+                <div class="image-container">
+                    <img ng-src="{{item.image}}" class="object" ng-class="determineOrientation(item)" data-index="{{$index}}"/>
+                </div>
             </div>
         </div>
     </div>

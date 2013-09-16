@@ -2,8 +2,78 @@
 
 /* Controllers */
 
-function LevelsController($scope, ListService, GameService, SaveXML) {
+function LevelsController($scope, $location, CanvasService, GameService, ConfigCompletionService, SaveXML) {
+    $scope.config_completed = ConfigCompletionService.config_completed;
+
+    if ($scope.config_completed.status === false) {
+        $location.path('/config');
+    }
+
     $scope.game = GameService.game;
+    $scope.canvas = CanvasService.canvas;
+
+    $scope.canvas.width = $scope.game.setup.canvas_size.width;
+    $scope.canvas.height = $scope.game.setup.canvas_size.height;
+
+    if ($scope.canvas.width > 1280) {
+        $scope.canvas.multiplier = 2;
+    }
+    else {
+        $scope.canvas.multiplier = 1;
+    }
+
+    var $scene_container = $('.scene-container');
+
+    $scene_container.css('width', $scope.canvas.width / $scope.canvas.multiplier);
+    $scene_container.css('height', $scope.canvas.height / $scope.canvas.multiplier);
+
+    if ($scope.canvas.multiplier === 2) {
+        var new_object = '<span class="scene-scale">Scale: 0.5</span>';
+    }
+    else {
+        var new_object = '<span class="scene-scale">Scale: 1</span>';
+    }
+
+    $scene_container.append(new_object);
+
+    /* LEVELS */
+    $scope.current_level = null;
+
+    $scope.createNewLevel = function () {
+        level_index++;
+
+        var new_level = {
+            level_id: level_index,
+            level_name: "Level " + level_index,
+            background_id: '',
+            objects: {
+                object: []
+            },
+            events: {
+                event: []
+            }
+        };
+
+        $scope.game.levels.level.push(new_level);
+
+        $scope.current_level = $scope.game.levels.level[level_index];
+    };
+
+    $scope.newLevel = function () {
+        console.log('now creating new level');
+
+        //$scope.scene_objects = [];
+        scene_index = 0;
+        event_index = 0;
+
+        $('.scene').empty();
+        $scope.view_URL = '';
+
+        $scope.createNewLevel();
+    };
+
+    $scope.game.levels.level = [];
+    $scope.createNewLevel();
 
     /* EVENTS */
     $scope.event_view_URL = '';
@@ -89,7 +159,6 @@ function LevelsController($scope, ListService, GameService, SaveXML) {
             $scope.new_action_control_URL = '';
         }
     };
-
 
     $scope.current_event = null;
 
@@ -257,12 +326,12 @@ function LevelsController($scope, ListService, GameService, SaveXML) {
     };
 
     /* SCENE ITEMS */
-    $scope.scene_objects = [];
+    //$scope.scene_objects = [];
     $scope.view_URL = '';
     $scope.selected_item = null;
 
     $scope.setSelectedItem = function (index) {
-        $scope.selected_item = $scope.scene_objects[index];
+        $scope.selected_item = $scope.current_level.objects.object[index];
     };
 
     $scope.clicked = function (index) {
@@ -278,50 +347,6 @@ function LevelsController($scope, ListService, GameService, SaveXML) {
         console.log('game:');
         console.log($scope.game);
     };
-
-    /* LEVELS */
-    $scope.current_level = null;
-
-    $scope.createNewLevel = function () {
-        level_index++;
-
-        var new_level = {
-            level_id: level_index,
-            level_name: "Level " + level_index,
-            background_id: '',
-            objects: {
-                object: []
-            },
-            events: {
-                event: []
-            }
-        };
-
-        $scope.game.levels.level.push(new_level);
-
-        $scope.current_level = $scope.game.levels.level[level_index];
-    };
-
-    $scope.saveLevel = function () {
-        console.log('now saving current level');
-
-        $scope.current_level.objects.object = $scope.scene_objects;
-    };
-
-    $scope.newLevel = function () {
-        console.log('now creating new level');
-
-        $scope.scene_objects = [];
-        scene_index = 0;
-        event_index = 0;
-
-        $('.scene').empty();
-        $scope.view_URL = '';
-
-        $scope.createNewLevel();
-    };
-
-    $scope.createNewLevel();
 
     /* GAME */
     $scope.saveGame = function () {
@@ -346,16 +371,67 @@ function LevelsController($scope, ListService, GameService, SaveXML) {
         SaveXML.write(form_data_xml);
     };
 
-    ListService.getObjects(function (objects) {
-        $scope.list = objects;
-    });
+    /*ListService.getObjects(function (objects) {
+     $scope.objects = objects;
+     });*/
+
+    $scope.objects = $scope.game.setup.sprites.sprite;
+
+    $scope.determineOrientation = function (item) {
+        if (item.radius) {
+            return 'landscape';
+        }
+        else {
+            if (item.width >= item.height) {
+                return 'landscape';
+            }
+            else {
+                return 'portrait';
+            }
+        }
+    };
 
     console.log('game at end of levels controller:');
     console.log($scope.game);
 }
 
-function ConfigController($scope, $location, GameService, ListService, SaveXML) {
+function ConfigController($scope, $location, GameService, ListService, CanvasService, ConfigCompletionService, SaveXML) {
     $scope.game = GameService.game;
+    $scope.canvas = CanvasService.canvas;
+    $scope.config_completed = ConfigCompletionService.config_completed;
+
+    /*$scope.canvas_size_options = [
+     {
+     name: '1920x1080',
+     width: 1920,
+     height: 1080,
+     multiplier: 2
+     },
+     {
+     name: '640x480',
+     width: 640,
+     height: 480,
+     multiplier: 1
+     }
+     ];
+
+     $scope.selected_canvas_size = {
+     size: null
+     };
+
+     $scope.canvasSizeChanged = function () {
+     console.log('canvas:');
+     console.log($scope.canvas);
+
+     if ($scope.selected_canvas_size.size != null) {
+     if ($scope.selected_canvas_size.size.name === '1920x1080') {
+     $scope.canvas.size = $scope.canvas_size_options[0];
+     }
+     else if ($scope.selected_canvas_size.size.name === '640x480') {
+     $scope.canvas.size = $scope.canvas_size_options[1];
+     }
+     }
+     }; */
 
     ListService.getObjects(function (objects) {
         $scope.sprites = objects;
@@ -365,8 +441,9 @@ function ConfigController($scope, $location, GameService, ListService, SaveXML) 
     console.log($scope.game);
 
     $scope.saveConfig = function () {
-        //$scope.game.setup.sprites.sprite.push($scope.sprites);
         var sprite_index = 0;
+        level_index = -1;
+        $scope.game.setup.sprites.sprite = [];
 
         $.each($('.ui-selected'), function () {
             var index = $(this).attr('data-index');
@@ -380,9 +457,16 @@ function ConfigController($scope, $location, GameService, ListService, SaveXML) 
                     x: $scope.sprites[index].offset.x,
                     y: $scope.sprites[index].offset.y
                 },
-                height: $scope.sprites[index].height,
-                width: $scope.sprites[index].width
+                shape: $scope.sprites[index].shape
             };
+
+            if (new_sprite.shape === 'circle') {
+                new_sprite.radius = $scope.sprites[index].radius;
+            }
+            else if (new_sprite.shape === 'rectangle') {
+                new_sprite.width = $scope.sprites[index].width;
+                new_sprite.height = $scope.sprites[index].height;
+            }
 
             $scope.game.setup.sprites.sprite.push(new_sprite);
 
@@ -391,6 +475,9 @@ function ConfigController($scope, $location, GameService, ListService, SaveXML) 
 
         var setup = {};
         setup.setup = $scope.game.setup;
+
+        console.log('game.setup:');
+        console.log($scope.game.setup);
 
         var form_data_xml = {
             data: json2xml(setup),
@@ -410,6 +497,24 @@ function ConfigController($scope, $location, GameService, ListService, SaveXML) 
 
         SaveXML.write(form_data_xml);
 
+        console.log('canvas at end of save:');
+        console.log(CanvasService.canvas);
+
+        $scope.config_completed.status = true;
         $location.path('levels');
     }
+
+    $scope.determineOrientation = function (item) {
+        if (item.radius) {
+            return 'landscape';
+        }
+        else {
+            if (item.width >= item.height) {
+                return 'landscape';
+            }
+            else {
+                return 'portrait';
+            }
+        }
+    };
 }
