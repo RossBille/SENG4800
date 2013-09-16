@@ -6,6 +6,8 @@
 
         <div class="controls-container">
             <div class="controls">
+                <button>New Sprite</button>
+                <button ng-click="newBackground()">New Background</button>
                 <button ng-click="saveConfig()">Save Game Configuration to File</button>
             </div>
         </div>
@@ -64,6 +66,9 @@
                     <img ng-src="{{item.image}}" class="object" ng-class="determineOrientation(item)" data-index="{{$index}}"/>
                 </div>
             </div>
+        </div>
+
+        <div id="background-detail" ng-include src="background_view_URL">
         </div>
     </div>
 </section>

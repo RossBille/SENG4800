@@ -1,8 +1,8 @@
 <setup>
   <game_name>My game</game_name>
   <canvas_size>
-    <width>640</width>
-    <height>480</height>
+    <width>1920</width>
+    <height>1080</height>
   </canvas_size>
   <starting_level>1</starting_level>
   <players>
@@ -20,76 +20,11 @@
         <y>0</y>
       </offset>
       <shape>
-        <shape_type>circle</shape_type>
-        <radius>100</radius>
-      </shape>
-    </sprite>
-    <sprite>
-      <sprite_id>1</sprite_id>
-      <sprite_name>Golf Ball</sprite_name>
-      <image>/img/golf_ball.png</image>
-      <speed>1</speed>
-      <offset>
-        <x>0</x>
-        <y>0</y>
-      </offset>
-      <shape>
-        <shape_type>circle</shape_type>
-        <radius>75</radius>
-      </shape>
-    </sprite>
-    <sprite>
-      <sprite_id>2</sprite_id>
-      <sprite_name>Tennis Ball</sprite_name>
-      <image>/img/tennis_ball.png</image>
-      <speed>1</speed>
-      <offset>
-        <x>0</x>
-        <y>0</y>
-      </offset>
-      <shape>
-        <shape_type>circle</shape_type>
-        <radius>87.5</radius>
-      </shape>
-    </sprite>
-    <sprite>
-      <sprite_id>3</sprite_id>
-      <sprite_name>Paddle Vertical</sprite_name>
-      <image>/img/paddle_vertical.png</image>
-      <speed>1</speed>
-      <offset>
-        <x>0</x>
-        <y>0</y>
-      </offset>
-      <shape>
-        <shape_type>rectangle</shape_type>
-        <width>50</width>
-        <height>400</height>
-      </shape>
-    </sprite>
-    <sprite>
-      <sprite_id>4</sprite_id>
-      <sprite_name>Paddle Horizontal</sprite_name>
-      <image>/img/paddle_horizontal.png</image>
-      <speed>1</speed>
-      <offset>
-        <x>0</x>
-        <y>0</y>
-      </offset>
-      <shape>
-        <shape_type>rectangle</shape_type>
-        <width>400</width>
-        <height>50</height>
+        <circle>
+          <radius>100</radius>
+        </circle>
       </shape>
     </sprite>
   </sprites>
-  <backgrounds>
-    <background>
-      <background_id>0</background_id>
-      <background_name>Grey Background</background_name>
-      <image>/img/game_background.jpg</image>
-      <speed>1</speed>
-      <position_type>tiled</position_type>
-    </background>
-  </backgrounds>
+  <backgrounds></backgrounds>
 </setup>

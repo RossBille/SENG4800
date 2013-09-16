@@ -10,8 +10,9 @@
                 "y": 0
             },
             "shape": {
-                "shape_type": "circle",
-                "radius": 100
+                "circle": {
+                    "radius": 100
+                }
             }
         },
         {
@@ -24,8 +25,9 @@
                 "y": 0
             },
             "shape": {
-                "shape_type": "circle",
-                "radius": 75
+                "circle": {
+                    "radius": 75
+                }
             }
         },
         {
@@ -38,8 +40,9 @@
                 "y": 0
             },
             "shape": {
-                "shape_type": "circle",
-                "radius": 87.5
+                "circle": {
+                    "radius": 87.5
+                }
             }
         },
         {
@@ -52,9 +55,12 @@
                 "y": 0
             },
             "shape": {
-                "shape_type": "rectangle",
-                "width": 50,
-                "height": 400
+                "rectangle": {
+                    "size": {
+                        "width": 50,
+                        "height": 400
+                    }
+                }
             }
         },
         {
@@ -67,9 +73,12 @@
                 "y": 0
             },
             "shape": {
-                "shape_type": "rectangle",
-                "width": 400,
-                "height": 50
+                "rectangle": {
+                    "size": {
+                        "width": 400,
+                        "height": 60
+                    }
+                }
             }
         }
     ]

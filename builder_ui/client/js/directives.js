@@ -64,12 +64,12 @@ App.directive('droppable', function ($compile) {
                         var $new_object = $('.scene img[data-index="' + scene_index + '"]');
                         var $new_object_container = $new_object.parent();
 
-                        if (scope.objects[draggable_original_index].shape.shape_type === 'circle') {
-                            $new_object.attr('height', (scope.objects[draggable_original_index].shape.radius * 2) / scope.canvas.multiplier);
+                        if (scope.objects[draggable_original_index].shape.circle) {
+                            $new_object.attr('height', (scope.objects[draggable_original_index].shape.circle.radius * 2) / scope.canvas.multiplier);
                         }
-                        else if (scope.objects[draggable_original_index].shape.shape_type === 'rectangle') {
-                            $new_object.attr('width', scope.objects[draggable_original_index].shape.width / scope.canvas.multiplier);
-                            $new_object.attr('height', scope.objects[draggable_original_index].shape.height / scope.canvas.multiplier);
+                        else {
+                            $new_object.attr('width', scope.objects[draggable_original_index].shape.rectangle.size.width / scope.canvas.multiplier);
+                            $new_object.attr('height', scope.objects[draggable_original_index].shape.rectangle.size.height / scope.canvas.multiplier);
                         }
 
                         scene_index++;
@@ -135,19 +135,19 @@ App.directive('droppable', function ($compile) {
                             }
                         };
 
-                        if (scope.objects[draggable_original_index].shape.shape_type === 'circle') {
+                        if (scope.objects[draggable_original_index].shape.circle) {
                             new_scene_object.object_shape = {
                                 circle: {
-                                    radius: scope.objects[draggable_original_index].shape.radius
+                                    radius: scope.objects[draggable_original_index].shape.circle.radius
                                 }
                             }
                         }
-                        else if (scope.objects[draggable_original_index].shape.shape_type === 'rectangle') {
+                        else {
                             new_scene_object.object_shape = {
                                 rectangle: {
                                     size: {
-                                        width: scope.objects[draggable_original_index].shape.width,
-                                        height: scope.objects[draggable_original_index].shape.height
+                                        width: scope.objects[draggable_original_index].shape.rectangle.size.width,
+                                        height: scope.objects[draggable_original_index].shape.rectangle.size.height
                                     }
                                 }
                             }

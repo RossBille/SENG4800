@@ -57,15 +57,7 @@ App.factory('GameService', function () {
                     sprite: []
                 },
                 backgrounds: {
-                    background: [
-                        {
-                            background_id: 0,
-                            background_name: "Grey Background",
-                            image: "/img/game_background.jpg",
-                            speed: 1,
-                            position_type: "tiled"
-                        }
-                    ]
+                    background: []
                 }
             },
             levels: {

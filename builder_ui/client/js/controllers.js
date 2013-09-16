@@ -326,7 +326,6 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
     };
 
     /* SCENE ITEMS */
-    //$scope.scene_objects = [];
     $scope.view_URL = '';
     $scope.selected_item = null;
 
@@ -342,7 +341,7 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         $('.scene img[data-index="' + index + '"]').closest('.scene-object-container').addClass('selected');
 
         $scope.setSelectedItem(index);
-        $scope.view_URL = 'views/ball_detail.html';
+        $scope.view_URL = 'views/object_detail.html';
 
         console.log('game:');
         console.log($scope.game);
@@ -362,27 +361,17 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
             file_name: 'levels.xml'
         };
 
-        /*$http({
-         method: 'POST',
-         url: '/LevelsServlet',
-         data: form_data_xml.data
-         });*/
-
         SaveXML.write(form_data_xml);
     };
-
-    /*ListService.getObjects(function (objects) {
-     $scope.objects = objects;
-     });*/
 
     $scope.objects = $scope.game.setup.sprites.sprite;
 
     $scope.determineOrientation = function (item) {
-        if (item.shape.radius) {
+        if (item.shape.circle) {
             return 'landscape';
         }
         else {
-            if (item.shape.width >= item.shape.height) {
+            if (item.shape.rectangle.size.width >= item.shape.rectangle.size.height) {
                 return 'landscape';
             }
             else {
@@ -399,39 +388,6 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
     $scope.game = GameService.game;
     $scope.canvas = CanvasService.canvas;
     $scope.config_completed = ConfigCompletionService.config_completed;
-
-    /*$scope.canvas_size_options = [
-     {
-     name: '1920x1080',
-     width: 1920,
-     height: 1080,
-     multiplier: 2
-     },
-     {
-     name: '640x480',
-     width: 640,
-     height: 480,
-     multiplier: 1
-     }
-     ];
-
-     $scope.selected_canvas_size = {
-     size: null
-     };
-
-     $scope.canvasSizeChanged = function () {
-     console.log('canvas:');
-     console.log($scope.canvas);
-
-     if ($scope.selected_canvas_size.size != null) {
-     if ($scope.selected_canvas_size.size.name === '1920x1080') {
-     $scope.canvas.size = $scope.canvas_size_options[0];
-     }
-     else if ($scope.selected_canvas_size.size.name === '640x480') {
-     $scope.canvas.size = $scope.canvas_size_options[1];
-     }
-     }
-     }; */
 
     ListService.getObjects(function (objects) {
         $scope.sprites = objects;
@@ -457,17 +413,25 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
                     x: $scope.sprites[index].offset.x,
                     y: $scope.sprites[index].offset.y
                 },
-                shape: {
-                    shape_type: $scope.sprites[index].shape.shape_type
-                }
+                shape: {}
             };
 
-            if (new_sprite.shape.shape_type === 'circle') {
-                new_sprite.shape.radius = $scope.sprites[index].shape.radius;
+            if ($scope.sprites[index].shape.circle) {
+                new_sprite.shape = {
+                    circle: {
+                        radius: $scope.sprites[index].shape.circle.radius
+                    }
+                };
             }
-            else if (new_sprite.shape.shape_type === 'rectangle') {
-                new_sprite.shape.width = $scope.sprites[index].shape.width;
-                new_sprite.shape.height = $scope.sprites[index].shape.height;
+            else {
+                new_sprite.shape = {
+                    rectangle: {
+                        size: {
+                            width: $scope.sprites[index].shape.rectangle.size.width,
+                            height: $scope.sprites[index].shape.rectangle.size.height
+                        }
+                    }
+                };
             }
 
             $scope.game.setup.sprites.sprite.push(new_sprite);
@@ -486,17 +450,6 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
             file_name: 'game.xml'
         };
 
-        /*var form_data_json = {
-         setup: $scope.game.setup
-         }*/
-
-        /*$http({
-         method: 'POST',
-         url: '/GameConfigServlet',
-         //data: form_data_json
-         data: form_data_xml.data
-         });*/
-
         SaveXML.write(form_data_xml);
 
         console.log('canvas at end of save:');
@@ -507,16 +460,52 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
     }
 
     $scope.determineOrientation = function (item) {
-        if (item.shape.radius) {
+        if (item.shape.circle) {
             return 'landscape';
         }
         else {
-            if (item.shape.width >= item.shape.height) {
+            if (item.shape.rectangle.size.width >= item.shape.rectangle.size.height) {
                 return 'landscape';
             }
             else {
                 return 'portrait';
             }
         }
+    };
+
+    /* BACKGROUNDS */
+    $scope.background_view_URL = '';
+
+    $scope.position_type_options = [
+        'tiled', 'stretch', 'fill', 'centre'
+    ];
+
+    $scope.current_background = null;
+
+    $scope.setCurrentBackground = function (index) {
+        $scope.current_background = $scope.game.setup.backgrounds.background[index];
+    };
+
+    $scope.newBackground = function () {
+        background_index++;
+
+        $scope.background_view_URL = 'views/background_detail.html';
+
+        var new_background = {
+            background_id: background_index,
+            background_name: 'My background',
+            image: '/img/game_background.jpg',
+            speed: '1',
+            position_type: 'tiled'
+        };
+
+        $scope.game.setup.backgrounds.background.push(new_background);
+
+        $scope.setCurrentBackground(background_index);
+    };
+
+    $scope.saveBackground = function () {
+        $scope.background_view_URL = '';
+        $scope.current_background = null;
     };
 }

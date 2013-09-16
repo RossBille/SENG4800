@@ -20,56 +20,7 @@
     position: relative;
 }
 
-.item-detail {
-    @include columns(16);
-    @include clearfix;
 
-    margin-bottom: $section-padding / 3;
-    background: $lighter-grey;
-
-    .item-detail-section {
-        @include third(1);
-
-        padding: 0 20px 20px 20px;
-
-        &:first-of-type {
-            @include alpha;
-        }
-
-        &:last-of-type {
-            @include omega;
-        }
-
-        p {
-            margin-bottom: 20px;
-        }
-
-        p:last-child, input:last-child {
-            margin: 0;
-        }
-    }
-
-    label {
-        @extend %normal-text-bold;
-
-        width: 100%;
-        display: block;
-        margin-top: 20px;
-        margin-bottom: 5px;
-    }
-
-    input, select {
-        width: 100%;
-
-        &.small {
-            width: 40%;
-        }
-
-        &[type='checkbox'] {
-            width: auto;
-        }
-    }
-}
 
 .scene-container {
     @include container;

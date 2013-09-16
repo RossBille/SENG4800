@@ -1,0 +1,66 @@
+<div class="item-detail">
+    <h2>Object Settings</h2>
+
+    <div class="item-detail-section">
+        <div class="input-container full">
+            <label for="object_name" class="input-label">Object Name</label>
+
+            <div class="input"><input type="text" id="object_name" ng-model="selected_item.object_name"/></div>
+        </div>
+
+        <div class="input-container full">
+            <label class="input-label">Object ID</label>
+
+            <div class="input"><p>{{selected_item.object_id}}</p></div>
+        </div>
+
+        <div class="input-container full">
+            <label class="input-label">Object Shape</label>
+
+            <div class="input"><p>{{selected_item.object_shape}}</p></div>
+        </div>
+    </div>
+
+    <div class="item-detail-section">
+        <div class="input-container full">
+            <label for="object_visible" class="input-label checkbox">Object Visible</label>
+
+            <div class="input">
+                <input type="checkbox" id="object_visible" ng-model="selected_item.object_visible" ng-true-value="yes"
+                       ng-false-value="no">
+                <span>{{selected_item.object_visible}}</span>
+            </div>
+        </div>
+
+        <div class="input-container full">
+            <label class="input-label">Start Pos. (X - Y)</label>
+
+            <div class="input"><p>{{selected_item.start_pos.x}} - {{selected_item.start_pos.y}}</p></div>
+        </div>
+    </div>
+    <div class="item-detail-section">
+        <div class="input-container full">
+            <label for="velocity_x" class="input-label">Start Velocity (X)</label>
+
+            <div class="input"><input type="number" id="velocity_x" ng-model="selected_item.start_vel.x"/></div>
+        </div>
+
+        <div class="input-container full">
+            <label for="velocity_y" class="input-label">Start Velocity (Y)</label>
+
+            <div class="input"><input type="number" id="velocity_y" ng-model="selected_item.start_vel.y"/></div>
+        </div>
+
+        <div class="input-container full">
+            <label for="accel_x" class="input-label">Start Accel. (X)</label>
+
+            <div class="input"><input type="number" id="accel_x" ng-model="selected_item.start_acc.x"/></div>
+        </div>
+
+        <div class="input-container full">
+            <label for="accel_y" class="input-label">Start Accel. (Y)</label>
+
+            <div class="input"><input type="number" id="accel_y" ng-model="selected_item.start_acc.y"/></div>
+        </div>
+    </div>
+</div>
