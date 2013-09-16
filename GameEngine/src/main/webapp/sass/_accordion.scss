@@ -1,0 +1,29 @@
+/* ACCORDION */
+.accordion {
+    .head {
+        @include title-text;
+        @include adjust-font-size-to(24px);
+        @include border-radius(6px);
+
+        cursor: pointer;
+        margin: rhythm(4) 0 rhythm(2);
+        padding: rhythm(1) rhythm(2);
+        background: #ddd;
+
+        &.no-margin {
+            margin-bottom: 0;
+        }
+    }
+
+    .content {
+        display: none;
+
+        h3, h4 {
+            margin: rhythm(3) 0 rhythm(1);
+        }
+    }
+
+    &.small .head {
+        @include adjust-font-size-to(18px);
+    }
+}

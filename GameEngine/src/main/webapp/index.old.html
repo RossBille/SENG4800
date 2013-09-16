@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Game Engine</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <h1>Game Engine</h1>
+        <div>
+            The game engine has started, use the following endpoints to access 
+            the appropriate functionality. 
+            <table>
+                <tr>
+                    <th>Link</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="/MessageManager">Message manager</a>
+                    </td>
+                    <td>
+                        WebSocket
+                    </td>
+                    <td>
+                        Used for real time user input.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="/PlayerManager">Player manager</a>
+                    </td>
+                    <td>
+                        Servlet
+                    </td>
+                    <td>
+                        Used to add or remove players from the game.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="/output">Output</a>
+                    </td>
+                    <td>
+                        WebSocket
+                    </td>
+                    <td>
+                        Get the current game state represented in JSON
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="/setup">setup</a>
+                    </td>
+                    <td>
+                        Servlet
+                    </td>
+                    <td>
+                        Retrieve all setup information (for an output client)
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

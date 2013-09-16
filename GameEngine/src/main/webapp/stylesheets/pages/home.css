@@ -1,0 +1,10 @@
+/* line 1, ../../sass/pages/home.scss */
+.circle {
+  position: fixed;
+  height: 100px;
+  width: 100px;
+  background: red;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+}

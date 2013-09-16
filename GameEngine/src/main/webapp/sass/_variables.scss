@@ -1,0 +1,30 @@
+/* COMPASS SETUP */
+$base-font-size: 16px;
+$base-line-height: 6px;
+@include establish-baseline;
+$default-border-radius: 6px;
+
+html {
+    @include adjust-leading-to(4);
+}
+
+/* BRAND COLOURS */
+$base-colour: #09C;
+$highlight-colour: #da9436;
+
+/* STANDARD COLOURS */
+$text-colour: #333;
+$text-colour-light: #999;
+$light-colour: #fff;
+$dark-colour: #222;
+$darker-colour: #111;
+$input-colour: #d4d4d4;
+$error-colour: #b00b13;
+
+/* SITE VARIABLES */
+$section-padding: 40px;
+$header-padding: 40px;
+$hero-height: 350px;
+$hero-width: 700px;
+$footer-height: 80px;
+$border-width: 6px;

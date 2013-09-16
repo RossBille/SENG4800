@@ -1,65 +1,31 @@
-<!DOCTYPE html>
 <html>
-    <head>
-        <title>Game Engine</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-    <body>
-        <h1>Game Engine</h1>
-        <div>
-            The game engine has started, use the following endpoints to access 
-            the appropriate functionality. 
-            <table>
-                <tr>
-                    <th>Link</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="/MessageManager">Message manager</a>
-                    </td>
-                    <td>
-                        WebSocket
-                    </td>
-                    <td>
-                        Used for real time user input.
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="/PlayerManager">Player manager</a>
-                    </td>
-                    <td>
-                        Servlet
-                    </td>
-                    <td>
-                        Used to add or remove players from the game.
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="/output">Output</a>
-                    </td>
-                    <td>
-                        WebSocket
-                    </td>
-                    <td>
-                        Get the current game state represented in JSON
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="/setup">setup</a>
-                    </td>
-                    <td>
-                        Servlet
-                    </td>
-                    <td>
-                        Retrieve all setup information (for an output client)
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </body>
+<head>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+	<link href="stylesheets/styles.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div id="wrapper">
+		<div class="content-container">
+			<header>
+				<div class="container">
+					<div class="logo"></div>
+					<div class="content">
+						<h1>Software Engineering Final Year Project </h1>
+					</div>
+				</div>
+			</header>
+			<section class="game">
+				<div class="container">
+					<canvas id="game" width="1140" height="720"></canvas>
+                    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+					<script src="js/objectFactory.js" type="text/javascript"></script>
+					<script src="js/object.js" type="text/javascript"></script>
+					<script src="js/action.js" type="text/javascript"></script>
+					<script src="js/websocket.js" type="text/javascript"></script>
+					<script src="js/app.js" type="text/javascript"></script>
+				</div>
+			</section>
+		</div>
+	</div>
+</body>
 </html>

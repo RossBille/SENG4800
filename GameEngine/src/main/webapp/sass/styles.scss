@@ -1,0 +1,28 @@
+//Compass
+@import "compass/css3";
+@import "compass/utilities";
+@import "compass/typography";
+
+//Framework and normalisation
+//@import "includes/skeleton-responsive";
+@import "includes/skeleton";
+@import "includes/normalize";
+
+//Website elements
+@import "variables";
+@import "mixins";
+@import "includes/font-awesome/font-awesome";
+@import "global-styles";
+@import "typography";
+@import "standard-elements";
+@import "includes/_slider-container";
+
+//Partials
+@import "header";
+@import "navigation";
+@import "footer";
+
+//Page styles
+@import "pages/home"
+
+
