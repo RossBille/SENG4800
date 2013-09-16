@@ -13,6 +13,6 @@ app.main = (function() {
 
     /* Our websocket */
     var webSocket = new app.websocket;
-    window.setTimeout(function() { webSocket.close(); },2000);
+    window.setTimeout(function() { webSocket.close(); },10000);
 
 })();

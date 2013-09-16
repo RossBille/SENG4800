@@ -5,28 +5,27 @@ var context = app.context = canvas.getContext('2d');
 
 /* Our callback to perform action on each object */
 app.action = function(objects) {
+    context.clearRect(0, 0, canvas.width, canvas.height);
     
     while(objects.length > 0) {
         var object = objects.pop();
-        console.log(object);
         var img = getImage(object);
-        console.log(img);
-        img.onload = function () {
-            context.drawImage(this, this.setAtX, this.setAtY);
-        };
+        console.log(img.setAtX);
+        console.log(img.setAtY);
+        context.drawImage(img, img.setAtX, img.setAtY);
     }
-
+    
     function getImage(object) {
         if (list[object.id] !== undefined) {
             var image = list[object.id];
         }
         else {
             var image = new Image();
+            image.src = object.imageUrl;
+            list[object.id] = image;
         }
-        image.src = object.sprite;
-        image.setAtX = object.dx;
-        image.setAtY = object.dy;
-        list[object.id] = image;
+        image.setAtX = object.outputPos.x * 2.4;
+        image.setAtY = object.outputPos.y * 2.2;
         return image;
     }
 };
