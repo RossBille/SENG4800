@@ -22,7 +22,7 @@ app.websocket = (function() {
     function onMessage(msg) {
         var objects = [];
         var instruction = JSON.parse(msg.data);
-        console.log(msg);
+        console.log(msg.data);
 
         while (instruction.length > 0) {
             var o = instruction.pop();

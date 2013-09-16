@@ -68,6 +68,7 @@ public class OutputConnectionManager
         if (currentPeers() < getAllowedConnections())
         {
             peers.add(peer);
+            peer.getBasicRemote().sendText("{ \"hello\": \"world\"}");
         } else
         {
             //cancel handshake
