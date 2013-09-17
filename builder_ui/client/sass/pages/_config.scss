@@ -1,9 +1,11 @@
-#background-detail .item-detail {
-    margin-top: $section-padding;
-}
+#config {
+    .object-list {
+        margin-bottom: $section-padding;
+    }
 
-#config .object {
-    cursor: pointer;
+    .object {
+        cursor: pointer;
+    }
 }
 
 #settings {

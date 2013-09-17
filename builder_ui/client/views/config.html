@@ -74,6 +74,16 @@
             </div>
         </div>
 
+        <div class='object-list' selectable>
+            <h2>Backgrounds</h2>
+
+            <div class="object-container" ng-repeat="item in game.setup.backgrounds.background">
+                <div class="image-container">
+                    <div class="background" style="background-image: url({{item.image}})"></div>
+                </div>
+            </div>
+        </div>
+
         <div id="background-detail" ng-include src="background_view_URL">
         </div>
     </div>

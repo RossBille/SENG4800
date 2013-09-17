@@ -113,6 +113,12 @@ body {
             display: table-cell;
             vertical-align: middle;
             text-align: center;
+
+            .background {
+                width: 100px;
+                height: 100px;
+                background-repeat: repeat;
+            }
         }
     }
 }

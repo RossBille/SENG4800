@@ -542,4 +542,12 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
         $scope.background_view_URL = '';
         $scope.current_background = null;
     };
+
+    $scope.cancelBackground = function () {
+        $scope.saveBackground();
+
+        $scope.game.setup.backgrounds.background.splice(background_index, 1);
+
+        background_index--;
+    };
 }
