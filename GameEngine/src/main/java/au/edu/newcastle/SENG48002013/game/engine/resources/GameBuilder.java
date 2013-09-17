@@ -52,10 +52,10 @@ public class GameBuilder {
 		game.setMinPlayers(minPlayers);
 		game.setPlayers(players);
 		//Build sprites
-		NodeList spriteNodes = gameElement.getElementsByTagName("SPRITES");
+		NodeList spriteNodes = gameElement.getElementsByTagName("SPRITE");
 		buildSprites(spriteNodes);
 		//Build backgrounds
-		NodeList backgroundNodes = gameElement.getElementsByTagName("BACKGROUNDS");
+		NodeList backgroundNodes = gameElement.getElementsByTagName("BACKGROUND");
 		buildBackgrounds(backgroundNodes);
 		//Add to game resources
 		GameResources.setGame(game);
@@ -73,7 +73,7 @@ public class GameBuilder {
 		{
 			//Build Levels
 			for(int i = 0; i < levelNodes.getLength(); i++)
-			{
+		                        	{
 				Element levelElement = (Element)levelNodes.item(i);
 				buildLevel(levelElement);
 			}
@@ -81,7 +81,7 @@ public class GameBuilder {
 			for(int i = 0; i < levelNodes.getLength(); i++)
 			{
 				Element levelElement = (Element)levelNodes.item(i);
-				NodeList eventNodes = levelElement.getElementsByTagName("EVENTS");
+				NodeList eventNodes = levelElement.getElementsByTagName("EVENT");
 				long id = (long)XmlUtils.getNumericValue(levelElement, "LEVEL_ID");
 				Level level = GameResources.getLevel(id);
 				buildEvents(eventNodes, level);
@@ -97,7 +97,7 @@ public class GameBuilder {
 			long backgroundId = (long)XmlUtils.getNumericValue(levelElement, "BACKGROUND_ID");
 			level.setBackground(GameResources.getBackground(backgroundId));
 			level.setDimensions(((Game)GameResources.getGame()).getSize());
-			NodeList objectNodes = levelElement.getElementsByTagName("OBJECTS");
+			NodeList objectNodes = levelElement.getElementsByTagName("OBJECT");
 			buildGameObjects(objectNodes, level);
 			GameResources.addLevel(level);
 		}
