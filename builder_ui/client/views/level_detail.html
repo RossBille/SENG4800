@@ -5,15 +5,20 @@
         <div class="input-container">
             <label for="level_name" class="input-label">Level Name</label>
 
-            <div class="input"><input type="text" id="level_name" ng-model="current_level.level_name" /></div>
+            <div class="input"><input type="text" id="level_name" ng-model="current_level.level_name"/></div>
         </div>
     </div>
 
     <div class="item-detail-section">
         <div class="input-container">
-            <label for="background_id" class="input-label">Background ID</label>
+            <label class="input-label">Background</label>
 
-            <div class="input"><input type="number" id="background_id" ng-model="current_level.background_id" /></div>
+            <div class="input">
+                <select ng-model="current_level.background_id"
+                        ng-options="background.background_id as background.background_name + ' (ID: ' + background.background_id + ')' for background in game.setup.backgrounds.background">
+                    <option value="">Background</option>
+                </select>
+            </div>
         </div>
     </div>
 

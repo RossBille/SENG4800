@@ -2,20 +2,32 @@
   <level>
     <level_id>0</level_id>
     <level_name>Level 0</level_name>
-    <background_id></background_id>
-    <objects></objects>
-    <events>
-      <event>
-        <event_id>0</event_id>
-        <event_type>
-          <collision>
-            <object_id1></object_id1>
-            <object_id2></object_id2>
-            <allow_overlap>no</allow_overlap>
-          </collision>
-        </event_type>
-        <actions></actions>
-      </event>
-    </events>
+    <background_id>0</background_id>
+    <objects>
+      <object>
+        <object_id>0</object_id>
+        <object_name>Tennis Ball</object_name>
+        <sprite_id>2</sprite_id>
+        <object_shape>
+          <circle>
+            <radius>87.5</radius>
+          </circle>
+        </object_shape>
+        <object_visible>yes</object_visible>
+        <start_pos>
+          <x>660</x>
+          <y>152</y>
+        </start_pos>
+        <start_vel>
+          <x>1</x>
+          <y>1</y>
+        </start_vel>
+        <start_acc>
+          <x>1</x>
+          <y>1</y>
+        </start_acc>
+      </object>
+    </objects>
+    <events></events>
   </level>
 </levels>
