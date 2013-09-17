@@ -1,12 +1,23 @@
 <div class="item-detail-section">
-    <label>Object:</label>
-    <select ng-model="current_action.action_type.change_sprite.object_id" ng-options="scene_object.object_id as scene_object.object_name + ' (ID: ' + scene_object.object_id + ')' for scene_object in current_level.objects.object">
-        <option value="">-- Choose object --</option>
-    </select>
+    <div class="input-container full">
+        <label class="input-label">Object</label>
+
+        <div class="input">
+            <select ng-model="current_action.action_type.change_sprite.object_id" ng-options="scene_object.object_id as scene_object.object_name + ' (ID: ' + scene_object.object_id + ')' for scene_object in current_level.objects.object">
+                <option value="">Object</option>
+            </select>
+        </div>
+    </div>
 </div>
+
 <div class="item-detail-section">
-    <label>Sprite:</label>
-    <select ng-model="current_action.action_type.change_sprite.sprite_id" ng-options="sprite.sprite_id as sprite.sprite_name + ' (ID: ' + sprite.sprite_id + ')' for sprite in game.setup.sprites.sprite">
-        <option value="">-- Choose sprite --</option>
-    </select>
+    <div class="input-container full">
+        <label class="input-label">Sprite</label>
+
+        <div class="input">
+            <select ng-model="current_action.action_type.change_sprite.sprite_id" ng-options="sprite.sprite_id as sprite.sprite_name + ' (ID: ' + sprite.sprite_id + ')' for sprite in game.setup.sprites.sprite">
+                <option value="">Sprite</option>
+            </select>
+        </div>
+    </div>
 </div>

@@ -132,12 +132,14 @@ body {
     }
 }
 
-
-
 .input-container {
     width: 50%;
     float: left;
     margin-bottom: 20px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
 
     &.full {
         width: 100%;
@@ -182,7 +184,7 @@ body {
         }
 
         input, select {
-            @include transition(background .2s, border .2s);
+            @include transition(box-shadow .2s, border .2s);
             @include adjust-font-size-to(14px);
 
             background: $light-colour;
@@ -192,8 +194,10 @@ body {
             float: left;
 
             &:focus {
+                @include box-shadow(0 0 2px 1px rgba(#000, 0.2) inset);
+
                 outline: 0 none;
-                background: scale-lightness($light-colour, -5%);
+                //background: scale-lightness($light-colour, -5%);
                 border: 1px solid #000;
             }
         }

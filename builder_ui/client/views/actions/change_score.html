@@ -1,13 +1,25 @@
 <div class="item-detail-section">
-    <label for="player_id">Player ID:</label>
-    <input type="number" id="player_id" ng-model="current_action.action_type.change_score.player_id" />
+    <div class="input-container full">
+        <label for="player_id" class="input-label">Player ID:</label>
 
-    <label for="value">Value:</label>
-    <input type="number" id="value" ng-model="current_action.action_type.change_score.value" />
+        <div class="input"><input type="number" id="player_id" ng-model="current_action.action_type.change_score.player_id" /></div>
+    </div>
+
+    <div class="input-container full">
+        <label for="value" class="input-label">Value:</label>
+
+        <div class="input"><input type="number" id="value" ng-model="current_action.action_type.change_score.value" /></div>
+    </div>
 </div>
+
 <div class="item-detail-section">
-    <label>Type:</label>
-    <select ng-model="current_action.action_type.change_score.type" ng-options="type_option for type_option in actions.action_type_options.type_options">
-        <option value="">-- Choose type --</option>
-    </select>
+    <div class="input-container full">
+        <label class="input-label">Type</label>
+
+        <div class="input">
+            <select ng-model="current_action.action_type.change_score.type" ng-options="type_option for type_option in actions.action_type_options.type_options">
+                <option value="">Type</option>
+            </select>
+        </div>
+    </div>
 </div>

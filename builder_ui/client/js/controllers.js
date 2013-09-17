@@ -193,6 +193,14 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         };
     };
 
+    $scope.cancelEvent = function () {
+        $scope.saveEvent();
+
+        $scope.game.levels.level[level_index].events.event.splice(event_index, 1);
+
+        event_index--;
+    };
+
     /* ACTIONS */
     $scope.action_view_URL = '';
     $scope.action_controls_URL = '';
@@ -258,6 +266,8 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         console.log($scope.selected_action_type.action_type);
 
         if ($scope.selected_action_type.action_type != null) {
+            $scope.action_controls_URL = 'views/actions/action_controls.html';
+
             if ($scope.selected_action_type.action_type.name === 'Change sprite') {
                 $scope.current_action.action_type = {
                     change_sprite: $scope.actions.action_types.change_sprite
@@ -304,7 +314,6 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         action_index++;
 
         $scope.action_view_URL = 'views/action_detail.html';
-        $scope.action_controls_URL = 'views/actions/action_controls.html';
 
         var new_action = {
             action_id: action_index,
@@ -325,8 +334,17 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         };
     };
 
+    $scope.cancelAction = function () {
+        $scope.saveAction();
+
+        $scope.game.levels.level[level_index].events.event[event_index].actions.action.splice(action_index, 1);
+
+        action_index--;
+    };
+
     /* SCENE ITEMS */
     $scope.view_URL = '';
+    $scope.object_shape_view_URL = '';
     $scope.selected_item = null;
 
     $scope.setSelectedItem = function (index) {
@@ -343,8 +361,24 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         $scope.setSelectedItem(index);
         $scope.view_URL = 'views/object_detail.html';
 
+        if ($scope.selected_item.object_shape.circle) {
+            $scope.object_shape_view_URL = 'views/objects/circle.html';
+        }
+        else {
+            $scope.object_shape_view_URL = 'views/objects/rectangle.html';
+        }
+
         console.log('game:');
         console.log($scope.game);
+    };
+
+    $scope.getObjectShape = function () {
+        if ($scope.selected_item.object_shape.circle) {
+            return 'Circle';
+        }
+        else {
+            return 'Rectangle';
+        }
     };
 
     /* GAME */

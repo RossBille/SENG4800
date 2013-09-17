@@ -2,23 +2,26 @@
     <h2>New Event</h2>
 
     <div class="controls">
+        <button ng-click="cancelEvent()">Cancel</button>
         <button ng-click="saveEvent()">Save Event</button>
 
         <div ng-include src="new_action_control_URL" class="src-container">
-        </div>
-
-        <div ng-include src="action_controls_URL" class="src-container">
         </div>
     </div>
 
     <div class="row">
         <div class="item-detail-section">
-            <label>Event Type:</label>
-            <select ng-model="selected_event_type.event_type"
-                    ng-options="event_type.name for event_type in events.event_type_views"
-                    ng-change="selectedEventChanged()">
-                <option value="">-- Choose event type --</option>
-            </select>
+            <div class="input-container full">
+                <label class="input-label">Event Type</label>
+
+                <div class="input">
+                    <select ng-model="selected_event_type.event_type"
+                            ng-options="event_type.name for event_type in events.event_type_views"
+                            ng-change="selectedEventChanged()">
+                        <option value="">Event type</option>
+                    </select>
+                </div>
+            </div>
         </div>
 
         <div ng-include src="selected_event_type.event_type.partial">

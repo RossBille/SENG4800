@@ -1,16 +1,32 @@
 <div class="item-detail-section">
-    <label>Object 1:</label>
-    <select ng-model="current_event.event_type.collision.object_id1" ng-options="scene_object.object_id as scene_object.object_name + ' (ID: ' + scene_object.object_id + ')' for scene_object in current_level.objects.object">
-        <option value="">-- Choose object --</option>
-    </select>
+    <div class="input-container full">
+        <label class="input-label">Object 1</label>
 
-    <label>Object 2:</label>
-    <select ng-model="current_event.event_type.collision.object_id2" ng-options="scene_object.object_id as scene_object.object_name + ' (ID: ' + scene_object.object_id + ')' for scene_object in current_level.objects.object">
-        <option value="">-- Choose object --</option>
-    </select>
+        <div class="input">
+            <select ng-model="current_event.event_type.collision.object_id1" ng-options="scene_object.object_id as scene_object.object_name + ' (ID: ' + scene_object.object_id + ')' for scene_object in current_level.objects.object">
+                <option value="">Object</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="input-container full">
+        <label class="input-label">Object 2</label>
+
+        <div class="input">
+            <select ng-model="current_event.event_type.collision.object_id2" ng-options="scene_object.object_id as scene_object.object_name + ' (ID: ' + scene_object.object_id + ')' for scene_object in current_level.objects.object">
+                <option value="">Object</option>
+            </select>
+        </div>
+    </div>
 </div>
 <div class="item-detail-section">
-    <label>Allow overlap:</label>
-    <input type="checkbox" ng-model="current_event.event_type.collision.allow_overlap" ng-true-value="yes" ng-false-value="no">
-    {{current_event.event_type.collision.allow_overlap}}
+    <div class="input-container full">
+        <label for="allow_overlap" class="input-label checkbox">Allow overlap</label>
+
+        <div class="input">
+            <input type="checkbox" id="allow_overlap" ng-model="current_event.event_type.collision.allow_overlap" ng-true-value="yes"
+                   ng-false-value="no">
+            <span>{{current_event.event_type.collision.allow_overlap}}</span>
+        </div>
+    </div>
 </div>

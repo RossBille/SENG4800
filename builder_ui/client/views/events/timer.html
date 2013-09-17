@@ -1,9 +1,18 @@
 <div class="item-detail-section">
-    <label>Length:</label>
-    <input type="number" ng-model="current_event.event_type.timer.length" />
+    <div class="input-container full">
+        <label for="length" class="input-label">Length</label>
+
+        <div class="input"><input type="number" id="length" ng-model="current_event.event_type.timer.length" /></div>
+    </div>
 </div>
 <div class="item-detail-section">
-    <label>Repeat:</label>
-    <input type="checkbox" ng-model="current_event.event_type.timer.repeat" ng-true-value="yes" ng-false-value="no">
-    {{current_event.event_type.timer.repeat}}
+    <div class="input-container full">
+        <label for="repeat" class="input-label checkbox">Repeat</label>
+
+        <div class="input">
+            <input type="checkbox" id="repeat" ng-model="current_event.event_type.timer.repeat" ng-true-value="yes"
+                   ng-false-value="no">
+            <span>{{current_event.event_type.timer.repeat}}</span>
+        </div>
+    </div>
 </div>

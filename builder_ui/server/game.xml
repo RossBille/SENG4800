@@ -9,22 +9,6 @@
     <min>1</min>
     <max>4</max>
   </players>
-  <sprites>
-    <sprite>
-      <sprite_id>0</sprite_id>
-      <sprite_name>Soccer Ball</sprite_name>
-      <image>/img/ball.png</image>
-      <speed>1</speed>
-      <offset>
-        <x>0</x>
-        <y>0</y>
-      </offset>
-      <shape>
-        <circle>
-          <radius>100</radius>
-        </circle>
-      </shape>
-    </sprite>
-  </sprites>
+  <sprites></sprites>
   <backgrounds></backgrounds>
 </setup>

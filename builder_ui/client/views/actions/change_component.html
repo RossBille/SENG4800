@@ -1,23 +1,45 @@
 <div class="item-detail-section">
-    <label>Object:</label>
-    <select ng-model="current_action.action_type.change_component.object_id" ng-options="scene_object.object_id as scene_object.object_name + ' (ID: ' + scene_object.object_id + ')' for scene_object in current_level.objects.object">
-        <option value="">-- Choose object --</option>
-    </select>
+    <div class="input-container full">
+        <label class="input-label">Object</label>
 
-    <label>Component:</label>
-    <select ng-model="current_action.action_type.change_component.component" ng-options="component_option for component_option in actions.action_type_options.component_options">
-        <option value="">-- Choose component --</option>
-    </select>
+        <div class="input">
+            <select ng-model="current_action.action_type.change_component.object_id" ng-options="scene_object.object_id as scene_object.object_name + ' (ID: ' + scene_object.object_id + ')' for scene_object in current_level.objects.object">
+                <option value="">Object</option>
+            </select>
+        </div>
+    </div>
 
-    <label>Type:</label>
-    <select ng-model="current_action.action_type.change_component.type" ng-options="type_option for type_option in actions.action_type_options.type_options">
-        <option value="">-- Choose type --</option>
-    </select>
+    <div class="input-container full">
+        <label class="input-label">Component</label>
+
+        <div class="input">
+            <select ng-model="current_action.action_type.change_component.component" ng-options="component_option for component_option in actions.action_type_options.component_options">
+                <option value="">Component</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="input-container full">
+        <label class="input-label">Type</label>
+
+        <div class="input">
+            <select ng-model="current_action.action_type.change_component.type" ng-options="type_option for type_option in actions.action_type_options.type_options">
+                <option value="">Type</option>
+            </select>
+        </div>
+    </div>
+
 </div>
 <div class="item-detail-section">
-    <label for="value_x">Value (X):</label>
-    <input type="number" id="value_x" ng-model="current_action.action_type.change_component.value.x" />
+    <div class="input-container full">
+        <label for="value_x" class="input-label">Value (X)</label>
 
-    <label for="value_y">Value (Y):</label>
-    <input type="number" id="value_y" ng-model="current_action.action_type.change_component.value.y" />
+        <div class="input"><input type="number" id="value_x" ng-model="current_action.action_type.change_component.value.x" /></div>
+    </div>
+
+    <div class="input-container full">
+        <label for="value_y" class="input-label">Value (Y)</label>
+
+        <div class="input"><input type="number" id="value_y" ng-model="current_action.action_type.change_component.value.y" /></div>
+    </div>
 </div>
