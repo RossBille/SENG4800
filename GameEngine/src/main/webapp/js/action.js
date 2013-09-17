@@ -24,13 +24,9 @@ app.action = function(objects) {
             image.src = object.imageUrl;
             list[object.id] = image;
         }
-<<<<<<< HEAD
         image.setAtX = object.outputPos.x;
         image.setAtY = object.outputPos.y;
-=======
-        image.setAtX = object.outputPos.x;// * 2.4;
-        image.setAtY = object.outputPos.y;// * 2.2;
->>>>>>> 02d53db19b927f377b5bad1fa04f916779beeca5
+
         return image;
     }
 };

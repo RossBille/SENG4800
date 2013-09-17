@@ -24,11 +24,7 @@ public class ConfigReader {
 	//			SUPPORT FOR MULTIPLE ACTION TYPES? OR ONLY ONE
 	
     // levels storage object
-<<<<<<< HEAD
 	public static final String BASEDIR = "/home/b1nd/Projects/git/uon/SENG4800/config";
-=======
-	public static final String BASEDIR = "/home/clint/Projects/git/SENG4800/config";
->>>>>>> 02d53db19b927f377b5bad1fa04f916779beeca5
 	public static final String LEVELS = "levels.xml";
 	public static final String GAME = "game.xml";
     //public static ArrayList<Level> levels = new ArrayList<Level>();
