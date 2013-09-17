@@ -48,7 +48,7 @@ App.factory('GameService', function () {
                     width: 1920,
                     height: 1080
                 },
-                starting_level: 1,
+                starting_level: 0,
                 players: {
                     min: 1,
                     max: 4
