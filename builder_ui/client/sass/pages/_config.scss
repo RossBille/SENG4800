@@ -1,36 +1,11 @@
-
-
-#config {
-    .settings {
-        @include columns(16);
-
-        margin-bottom: $section-padding - 24px;
-
-        p {
-            width: 50%;
-            float: left;
-
-            &.full {
-                width: 100%;
-                padding: 0 !important;
-                text-align: center;
-            }
-
-            &:nth-of-type(odd) {
-                padding-right: 10px;
-            }
-
-            &:nth-of-type(even) {
-                padding-left: 10px;
-            }
-        }
-    }
-}
-
 #background-detail .item-detail {
     margin-top: $section-padding;
 }
 
 #config .object {
     cursor: pointer;
+}
+
+#settings {
+    margin-bottom: $section-padding;
 }

@@ -1,8 +1,8 @@
 <div class="item-detail">
     <h2>Level Settings</h2>
 
-    <div class="item-detail-section">
-        <div class="input-container full">
+    <div class="item-detail-section first">
+        <div class="input-container">
             <label for="level_name" class="input-label">Level Name</label>
 
             <div class="input"><input type="text" id="level_name" ng-model="current_level.level_name" /></div>
@@ -10,15 +10,15 @@
     </div>
 
     <div class="item-detail-section">
-        <div class="input-container full">
+        <div class="input-container">
             <label for="background_id" class="input-label">Background ID</label>
 
             <div class="input"><input type="number" id="background_id" ng-model="current_level.background_id" /></div>
         </div>
     </div>
 
-    <div class="item-detail-section">
-        <div class="input-container full">
+    <div class="item-detail-section last">
+        <div class="input-container">
             <label class="input-label">Level ID</label>
 
             <div class="input"><p>{{current_level.level_id}}</p></div>

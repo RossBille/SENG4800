@@ -135,18 +135,14 @@ body {
 }
 
 .input-container {
-    width: 50%;
     float: left;
     margin-bottom: 20px;
+    width: 100%;
+    padding: 0 !important;
+    text-align: center;
 
     &:last-child {
         margin-bottom: 0;
-    }
-
-    &.full {
-        width: 100%;
-        padding: 0 !important;
-        text-align: center;
     }
 
     &:nth-of-type(odd) {
@@ -251,25 +247,13 @@ body {
 
         &.half {
             @include columns(8);
-
-            &:nth-of-type(odd) {
-                @include alpha;
-            }
-
-            &:nth-of-type(even) {
-                @include omega;
-            }
-
-            .input-container {
-                margin-bottom: 0;
-            }
         }
 
-        &:first-of-type {
+        &.first {
             @include omega;
         }
 
-        &:last-of-type {
+        &.last {
             @include alpha;
         }
 

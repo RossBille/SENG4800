@@ -5,32 +5,28 @@
         <button ng-click="saveBackground()">Save Background</button>
     </div>
 
-    <div class="item-detail-section half">
-        <div class="input-container full">
+    <div class="item-detail-section half first">
+        <div class="input-container">
             <label for="background_name" class="input-label">Background Name</label>
 
             <div class="input"><input id="background_name" type="text" ng-model="current_background.background_name" /></div>
         </div>
-    </div>
 
-    <div class="item-detail-section half">
-        <div class="input-container full">
-            <label for="image" class="input-label">Image</label>
-
-            <div class="input"><input id="image" type="text" ng-model="current_background.image" /></div>
-        </div>
-    </div>
-
-    <div class="item-detail-section half">
-        <div class="input-container full">
+        <div class="input-container">
             <label for="speed" class="input-label">Speed</label>
 
             <div class="input"><input id="speed" type="text" ng-model="current_background.speed" /></div>
         </div>
     </div>
 
-    <div class="item-detail-section half">
-        <div class="input-container full">
+    <div class="item-detail-section half last">
+        <div class="input-container">
+            <label for="image" class="input-label">Image</label>
+
+            <div class="input"><input id="image" type="text" ng-model="current_background.image" /></div>
+        </div>
+
+        <div class="input-container">
             <label class="input-label">Position Type</label>
 
             <div class="input">
