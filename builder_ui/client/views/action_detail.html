@@ -1,11 +1,23 @@
 <h3>New Action</h3>
 
-<div class="item-detail-section">
-    <label>Action Type:</label>
-    <select ng-model="selected_action_type.action_type"
-            ng-options="action_type.name for action_type in actions.action_type_views" ng-change="selectedActionChanged()">
-        <option value="">-- Choose action type --</option>
-    </select>
+<div class="controls">
+    <button ng-click="cancelAction()">Cancel</button>
+
+    <div ng-include src="action_controls_URL" class="src-container">
+    </div>
+</div>
+
+<div class="item-detail-section first">
+    <div class="input-container">
+        <label class="input-label">Action Type</label>
+
+        <div class="input">
+            <select ng-model="selected_action_type.action_type"
+                    ng-options="action_type.name for action_type in actions.action_type_views" ng-change="selectedActionChanged()">
+                <option value="">Action type</option>
+            </select>
+        </div>
+    </div>
 </div>
 
 <div ng-include src="selected_action_type.action_type.partial">

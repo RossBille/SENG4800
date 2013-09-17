@@ -1,0 +1,41 @@
+<div class="item-detail">
+    <h2>New Background</h2>
+
+    <div class="controls">
+        <button ng-click="cancelBackground()">Cancel</button>
+        <button ng-click="saveBackground()">Save Background</button>
+    </div>
+
+    <div class="item-detail-section half first">
+        <div class="input-container">
+            <label for="background_name" class="input-label">Background Name</label>
+
+            <div class="input"><input id="background_name" type="text" ng-model="current_background.background_name" /></div>
+        </div>
+
+        <div class="input-container">
+            <label for="speed" class="input-label">Speed</label>
+
+            <div class="input"><input id="speed" type="number" ng-model="current_background.speed" /></div>
+        </div>
+    </div>
+
+    <div class="item-detail-section half last">
+        <div class="input-container">
+            <label for="image" class="input-label">Image path</label>
+
+            <div class="input"><input id="image" type="text" ng-model="current_background.image" /></div>
+        </div>
+
+        <div class="input-container">
+            <label class="input-label">Position Type</label>
+
+            <div class="input">
+                <select ng-model="current_background.position_type"
+                        ng-options="position_type for position_type in position_type_options">
+                    <option value="">Position type</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>

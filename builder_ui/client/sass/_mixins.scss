@@ -85,6 +85,7 @@
     border-bottom-width: 4px;
     display: inline-block;
     text-decoration: none;
+    position: relative;
 
     &:hover {
         background: scale-lightness($base-colour, 15%);
@@ -95,7 +96,7 @@
     &:active {
         background: scale-lightness($base-colour, -10%);
         border: 2px solid $text-colour;
-        margin-top: 2px;
+        top: 2px;
     }
 }
 

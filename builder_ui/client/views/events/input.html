@@ -1,16 +1,31 @@
 <div class="item-detail-section">
-    <label>Player ID:</label>
-    <input type="number" ng-model="current_event.event_type.input.player_id" />
+    <div class="input-container">
+        <label for="event_player_id" class="input-label">Player ID</label>
 
-    <label>Input type:</label>
-    <select ng-model="current_event.event_type.input.type" ng-options="input_type_option for input_type_option in events.event_type_options.input_type_options">
-        <option value="">-- Choose input type --</option>
-    </select>
+        <div class="input"><input type="number" id="event_player_id" ng-model="current_event.event_type.input.player_id" /></div>
+    </div>
+
+    <div class="input-container">
+        <label class="input-label">Input type</label>
+
+        <div class="input">
+            <select ng-model="current_event.event_type.input.type" ng-options="input_type_option for input_type_option in events.event_type_options.input_type_options">
+                <option value="">Input type</option>
+            </select>
+        </div>
+    </div>
 </div>
-<div class="item-detail-section">
-    <label>Value (X):</label>
-    <input type="number" ng-model="current_event.event_type.input.value.x" />
 
-    <label>Value (Y):</label>
-    <input type="number" ng-model="current_event.event_type.input.value.y" />
+<div class="item-detail-section last">
+    <div class="input-container">
+        <label for="value_x" class="input-label">Value (X)</label>
+
+        <div class="input"><input type="number" id="value_x" ng-model="current_event.event_type.input.value.x" /></div>
+    </div>
+
+    <div class="input-container">
+        <label for="value_y" class="input-label">Value (Y)</label>
+
+        <div class="input"><input type="number" id="value_y" ng-model="current_event.event_type.input.value.y" /></div>
+    </div>
 </div>

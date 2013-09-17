@@ -9,7 +9,7 @@ App.directive('selectable', function() {
         //The link function is responsible for registering DOM listeners as well as updating the DOM.
         link: function (scope, element, attrs) {
             element.selectable({
-                filter: 'img',
+                filter: '.selectable',
                 selected: function( event, ui ) {
                     console.log('selected item:');
                     console.log(ui.selected);
@@ -45,7 +45,7 @@ App.directive('droppable', function ($compile) {
                 drop: function (event, ui) {
                     var $drop_target = $(this);
                     var $draggable_original = ui.draggable;
-                    var $draggable_parent = $draggable_original.parent();
+                    var $draggable_parent = $draggable_original.parent().parent();
                     var $draggable_parent_parent = $draggable_parent.parent();
                     var draggable_original_index = $draggable_original.data('index');
                     var draggable_index = scene_index;
@@ -56,13 +56,21 @@ App.directive('droppable', function ($compile) {
                         console.log('old position:');
                         console.log(old_position);
 
-                        var new_object = '<div class="scene-object-container"><img src="' + scope.list[draggable_original_index].image + '" data-index="' + scene_index + '" ng-click="clicked(' + scene_index + ')" class="scene-object"></div>';
+                        var new_object = '<div class="scene-object-container"><img src="' + scope.objects[draggable_original_index].image + '" data-index="' + scene_index + '" ng-click="clicked(' + scene_index + ')" class="scene-object"></div>';
                         console.log(new_object);
 
                         $drop_target.append($compile(new_object)(scope));
 
                         var $new_object = $('.scene img[data-index="' + scene_index + '"]');
                         var $new_object_container = $new_object.parent();
+
+                        if (scope.objects[draggable_original_index].shape.circle) {
+                            $new_object.attr('height', (scope.objects[draggable_original_index].shape.circle.radius * 2) / scope.canvas.multiplier);
+                        }
+                        else {
+                            $new_object.attr('width', scope.objects[draggable_original_index].shape.rectangle.size.width / scope.canvas.multiplier);
+                            $new_object.attr('height', scope.objects[draggable_original_index].shape.rectangle.size.height / scope.canvas.multiplier);
+                        }
 
                         scene_index++;
 
@@ -109,17 +117,13 @@ App.directive('droppable', function ($compile) {
                         //var new_scene_object = jQuery.extend(true, {}, scope.list[draggable_original_index]);
                         var new_scene_object = {
                             object_id: draggable_index,
-                            object_name: scope.list[draggable_original_index].sprite_name,
-                            sprite_id: scope.list[draggable_original_index].sprite_id,
-                            object_shape: {
-                                circle: {
-                                    radius: scope.list[draggable_original_index].height / 2
-                                }
-                            },
+                            object_name: scope.objects[draggable_original_index].sprite_name,
+                            sprite_id: scope.objects[draggable_original_index].sprite_id,
+                            object_shape: {},
                             object_visible: "yes",
                             start_pos: {
-                                x: Math.round(left_offset),
-                                y: Math.round(top_offset)
+                                x: Math.round(left_offset * scope.canvas.multiplier),
+                                y: Math.round(top_offset * scope.canvas.multiplier)
                             },
                             start_vel: {
                                 x: 1,
@@ -130,6 +134,24 @@ App.directive('droppable', function ($compile) {
                                 y: 1
                             }
                         };
+
+                        if (scope.objects[draggable_original_index].shape.circle) {
+                            new_scene_object.object_shape = {
+                                circle: {
+                                    radius: scope.objects[draggable_original_index].shape.circle.radius
+                                }
+                            }
+                        }
+                        else {
+                            new_scene_object.object_shape = {
+                                rectangle: {
+                                    size: {
+                                        width: scope.objects[draggable_original_index].shape.rectangle.size.width,
+                                        height: scope.objects[draggable_original_index].shape.rectangle.size.height
+                                    }
+                                }
+                            }
+                        }
 
                         /*var offset = $new_object_container.position();
                          console.log(offset);
@@ -161,9 +183,9 @@ App.directive('droppable', function ($compile) {
                         //console.log('saved scene object xpos: ' + scope.scene_objects[draggable_index].xpos);
                         //console.log('saved scene object ypos: ' + scope.scene_objects[draggable_index].ypos);
 
-                        scope.scene_objects.push(new_scene_object);
+                        scope.current_level.objects.object.push(new_scene_object);
                         console.log('scene objects after push:');
-                        console.log(scope.scene_objects);
+                        console.log(scope.current_level.objects.object);
 
                         $new_object_container.draggable({
                             stop: function () {
@@ -173,8 +195,8 @@ App.directive('droppable', function ($compile) {
                                 var offset_top = Math.round(offset.top);
                                 var draggable_index = $(this).find('img').data('index');
 
-                                scope.scene_objects[draggable_index].start_pos.x = offset_left;
-                                scope.scene_objects[draggable_index].start_pos.y = offset_top;
+                                scope.current_level.objects.object[draggable_index].start_pos.x = offset_left * scope.canvas.multiplier;
+                                scope.current_level.objects.object[draggable_index].start_pos.y = offset_top * scope.canvas.multiplier;
 
                                 scope.$apply();
                             },
@@ -184,11 +206,18 @@ App.directive('droppable', function ($compile) {
                         $new_object.resizable({
                             stop: function () {
                                 console.log('scene object resized');
+
                                 var width = $(this).width();
                                 var height = $(this).height();
                                 var draggable_index = $(this).find('img').data('index');
 
-                                scope.scene_objects[draggable_index].object_shape.circle.radius = width / 2;
+                                if (scope.current_level.objects.object[draggable_index].object_shape.circle) {
+                                    scope.current_level.objects.object[draggable_index].object_shape.circle.radius = (width / 2) * scope.canvas.multiplier;
+                                }
+                                else if (scope.current_level.objects.object[draggable_index].object_shape.rectangle) {
+                                    scope.current_level.objects.object[draggable_index].object_shape.rectangle.size.width = width * scope.canvas.multiplier;
+                                    scope.current_level.objects.object[draggable_index].object_shape.rectangle.size.height = height * scope.canvas.multiplier;
+                                }
 
                                 scope.$apply();
                             },
@@ -199,7 +228,7 @@ App.directive('droppable', function ($compile) {
                     }
 
                     console.log('scene objects final:');
-                    console.log(scope.scene_objects);
+                    console.log(scope.current_level.objects.object);
                 }
             });
         }

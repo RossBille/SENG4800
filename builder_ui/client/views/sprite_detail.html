@@ -1,0 +1,57 @@
+<div class="item-detail">
+    <h2>New Sprite</h2>
+
+    <div class="controls">
+        <button ng-click="cancelSprite()">Cancel</button>
+        <button ng-click="saveSprite()">Save Sprite</button>
+    </div>
+
+    <div class="item-detail-section half first">
+        <div class="input-container">
+            <label for="sprite_name" class="input-label">Sprite Name</label>
+
+            <div class="input"><input id="sprite_name" type="text" ng-model="current_sprite.sprite_name" /></div>
+        </div>
+
+        <div class="input-container">
+            <label for="sprite_speed" class="input-label">Speed</label>
+
+            <div class="input"><input id="sprite_speed" type="number" ng-model="current_sprite.speed" /></div>
+        </div>
+
+        <div class="input-container">
+            <label for="offset_x" class="input-label">Offset (X)</label>
+
+            <div class="input"><input id="offset_x" type="number" ng-model="current_sprite.offset.x" /></div>
+        </div>
+
+        <div class="input-container">
+            <label for="offset_y" class="input-label">Offset (Y)</label>
+
+            <div class="input"><input id="offset_y" type="number" ng-model="current_sprite.offset.y" /></div>
+        </div>
+    </div>
+
+    <div class="item-detail-section half last">
+        <div class="input-container">
+            <label for="sprite_image" class="input-label">Image path</label>
+
+            <div class="input"><input id="sprite_image" type="text" ng-model="current_sprite.image" /></div>
+        </div>
+
+        <div class="input-container">
+            <label class="input-label">Shape</label>
+
+            <div class="input">
+                <select ng-model="selected_sprite_shape.shape"
+                        ng-options="sprite_shape for sprite_shape in sprite_shape_options"
+                        ng-change="selectedSpriteShapeChanged()">
+                    <option value="">Shape</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="sprite-shape-detail" ng-include src="sprite_shape_view_URL">
+        </div>
+    </div>
+</div>

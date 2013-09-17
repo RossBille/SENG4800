@@ -62,15 +62,6 @@ body {
     margin: 20px auto;
 }
 
-.object {
-    cursor: move;
-    vertical-align: bottom;
-    width: 100px;
-    height: auto;
-    position: relative;
-    z-index: 2;
-}
-
 .controls-container {
     @include columns(16);
 
@@ -91,7 +82,9 @@ body {
 .heading {
     @include columns(16);
 
-    margin-bottom: $section-padding / 2;
+    h1 {
+        margin-top: 0;
+    }
 }
 
 .ui-selected, .selected {
@@ -100,4 +93,207 @@ body {
 
 .src-container {
     display: inline;
+}
+
+.object-list {
+    @include columns(16);
+
+    background: $lighter-grey;
+    padding: 0;
+
+    .object-container {
+        margin: 20px;
+        display: inline-block;
+        float: left;
+        display: table;
+        height: 100px;
+        width: 100px;
+
+        .image-container {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+
+            .background {
+                width: 100px;
+                height: 100px;
+                background-repeat: repeat;
+            }
+        }
+    }
+}
+
+.object {
+    cursor: move;
+    vertical-align: middle;
+    position: relative;
+    z-index: 2;
+
+    &.portrait {
+        max-height: 100px;
+        width: auto;
+    }
+
+    &.landscape {
+        max-width: 100px;
+        height: auto;
+    }
+
+    &.circle {
+        @include border-radius(50%);
+    }
+}
+
+.input-container {
+    float: left;
+    margin-bottom: 20px;
+    width: 100%;
+    padding: 0 !important;
+    text-align: center;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    &:nth-of-type(odd) {
+        padding-right: 10px;
+    }
+
+    &:nth-of-type(even) {
+        padding-left: 10px;
+    }
+
+    .input {
+        overflow: hidden;
+
+        input, select, p {
+            height: 50px;
+            width: 100%;
+            padding: 0 15px;
+        }
+
+        select {
+            padding: 15px;
+        }
+
+        p {
+            text-align: left;
+            background: $dark-grey;
+            line-height: 50px;
+            border: 1px solid $dark-grey;
+            margin: 0;
+            color: $dark-colour;
+        }
+
+        span {
+            line-height: 50px;
+            float: left;
+            margin-left: 10px;
+        }
+
+        input, select {
+            @include transition(box-shadow .2s, border .2s);
+            @include adjust-font-size-to(14px);
+
+            background: $light-colour;
+            border: 1px solid $dark-grey;
+            margin: 0;
+            color: $dark-colour;
+            float: left;
+
+            &:focus {
+                @include box-shadow(0 0 2px 1px rgba(#000, 0.2) inset);
+
+                outline: 0 none;
+                //background: scale-lightness($light-colour, -5%);
+                border: 1px solid #000;
+            }
+        }
+
+        input[type='checkbox'] {
+            width: auto;
+            margin-left: 10px;
+        }
+    }
+
+    .input-label {
+        @include adjust-font-size-to(14px);
+        @extend %normal-text-bold;
+
+        display: inline-block;
+        float: left;
+        margin: 0;
+        padding: 0 15px;
+        height: 50px;
+        line-height: 48px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+
+        background: $light-grey;
+        border: 1px solid $dark-grey;
+        border-right-style: none;
+
+        &.checkbox {
+            border-right-style: solid;
+        }
+    }
+}
+
+.item-detail {
+    @include columns(16);
+    @include clearfix;
+
+    margin-bottom: $section-padding / 3;
+    background: $lighter-grey;
+
+    .controls {
+        margin-bottom: $section-padding / 3;
+    }
+
+    .item-detail-section {
+        @include third(1);
+
+        padding: 0 10px 20px 10px;
+
+        &.half {
+            @include columns(8);
+        }
+
+        &.first {
+            @include omega;
+        }
+
+        &.last {
+            @include alpha;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        p:last-child, .input:last-child {
+            margin: 0;
+        }
+    }
+
+    /*label {
+        @extend %normal-text-bold;
+
+        width: 100%;
+        display: block;
+        margin-top: 20px;
+        margin-bottom: 5px;
+    }
+
+    input, select {
+        width: 100%;
+
+        &.small {
+            width: 40%;
+        }
+
+        &[type='checkbox'] {
+            width: auto;
+        }
+    }*/
 }
