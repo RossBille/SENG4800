@@ -6,6 +6,7 @@ import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Security manager to handle token generation and checking for invalid requests
@@ -67,7 +68,7 @@ public class SecurityManager
         }
     }
 
-    public boolean checkRequest(String message)
+    public boolean checkRequest(HttpServletRequest request)
     {
         /* check for malformed requests, or other suspicious activity here first
          * before actioning the request

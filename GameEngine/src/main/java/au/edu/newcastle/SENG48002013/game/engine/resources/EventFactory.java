@@ -54,7 +54,7 @@ public class EventFactory
 		}
 		
 		//Call Action Factory to build actions
-		NodeList actionNodes = eventElement.getElementsByTagName("ACTIONS");
+		NodeList actionNodes = eventElement.getElementsByTagName("ACTION");
 		if(actionNodes != null && actionNodes.getLength() > 0)
 		{
 			for(int i = 0; i < actionNodes.getLength(); i++)

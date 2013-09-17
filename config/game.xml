@@ -1,8 +1,8 @@
 <SETUP>
 	<GAME_NAME>Test Game</GAME_NAME>
 	<CANVAS_SIZE>
-		<WIDTH>640</WIDTH>
-		<HEIGHT>480</HEIGHT>
+		<WIDTH>1140</WIDTH>
+		<HEIGHT>720</HEIGHT>
 	</CANVAS_SIZE>
 	<STARTING_LEVEL>0</STARTING_LEVEL>
 	<PLAYERS>
@@ -13,7 +13,7 @@
 		<SPRITE>
 			<SPRITE_ID>0</SPRITE_ID>
 			<SPRITE_NAME>Test Sprite</SPRITE_NAME>
-			<IMAGE>/projects/SENG4800/config/images/ball.png</IMAGE>
+			<IMAGE>images/ball.png</IMAGE>
 			<SPEED>24</SPEED>
 			<OFFSET>
 				<X>0</X>
@@ -25,7 +25,7 @@
 		<BACKGROUND>
 			<BACKGROUND_ID>0</BACKGROUND_ID>
 			<BACKGROUND_NAME>Test Background</BACKGROUND_NAME>
-			<IMAGE>/projects/SENG4800/config/images/ball.png</IMAGE>
+			<IMAGE>images/ball.png</IMAGE>
 			<SPEED>24</SPEED>
 			<POSITION_TYPE>STRETCH</POSITION_TYPE>
 		</BACKGROUND>
