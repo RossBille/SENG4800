@@ -6,10 +6,16 @@
 
         <div class="controls-container">
             <div class="controls">
-                <button>New Sprite</button>
+                <button ng-click="newSprite()">New Sprite</button>
                 <button ng-click="newBackground()">New Background</button>
                 <button ng-click="saveConfig()">Save Game Configuration to File</button>
             </div>
+        </div>
+
+        <div id="sprite-detail" ng-include src="sprite_view_URL">
+        </div>
+
+        <div id="background-detail" ng-include src="background_view_URL">
         </div>
 
         <div id="settings" class="item-detail">
@@ -63,28 +69,25 @@
             </div>
         </div>
 
-        <div class='object-list' selectable>
+        <div class='object-list' id="sprites" selectable>
             <h2>Sprites</h2>
 
             <div class="object-container" ng-repeat="item in sprites">
                 <div class="image-container">
-                    <img ng-src="{{item.image}}" class="object" ng-class="determineOrientation(item)"
-                         data-index="{{$index}}"/>
+                    <img ng-src="{{item.image}}" class="object selectable" ng-class="determineOrientation(item)"
+                         data-index="{{$index}}" title="{{item.sprite_name}}"/>
                 </div>
             </div>
         </div>
 
-        <div class='object-list' selectable>
+        <div class='object-list' id="backgrounds" selectable>
             <h2>Backgrounds</h2>
 
-            <div class="object-container" ng-repeat="item in game.setup.backgrounds.background">
+            <div class="object-container" ng-repeat="item in backgrounds">
                 <div class="image-container">
-                    <div class="background" style="background-image: url({{item.image}})"></div>
+                    <div class="background selectable" style="background-image: url({{item.image}})" title="{{item.background_name}}" data-index="{{$index}}"></div>
                 </div>
             </div>
-        </div>
-
-        <div id="background-detail" ng-include src="background_view_URL">
         </div>
     </div>
 </section>

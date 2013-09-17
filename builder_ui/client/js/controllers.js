@@ -362,10 +362,10 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         $scope.view_URL = 'views/object_detail.html';
 
         if ($scope.selected_item.object_shape.circle) {
-            $scope.object_shape_view_URL = 'views/objects/circle.html';
+            $scope.object_shape_view_URL = 'views/shapes/object_circle.html';
         }
         else {
-            $scope.object_shape_view_URL = 'views/objects/rectangle.html';
+            $scope.object_shape_view_URL = 'views/shapes/object_rectangle.html';
         }
 
         console.log('game:');
@@ -423,19 +423,16 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
     $scope.canvas = CanvasService.canvas;
     $scope.config_completed = ConfigCompletionService.config_completed;
 
-    ListService.getObjects(function (objects) {
-        $scope.sprites = objects;
-    });
-
     console.log('initial game:');
     console.log($scope.game);
 
     $scope.saveConfig = function () {
         var sprite_index = 0;
+        var background_index = 0;
         level_index = -1;
         $scope.game.setup.sprites.sprite = [];
 
-        $.each($('.ui-selected'), function () {
+        $.each($('#sprites .ui-selected'), function () {
             var index = $(this).attr('data-index');
 
             var new_sprite = {
@@ -473,6 +470,22 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
             sprite_index++;
         });
 
+        $.each($('#backgrounds .ui-selected'), function () {
+            var index = $(this).attr('data-index');
+
+            var new_background = {
+                background_id: background_index,
+                background_name: $scope.backgrounds[index].background_name,
+                image: $scope.backgrounds[index].image,
+                speed: $scope.backgrounds[index].speed,
+                position_type: $scope.backgrounds[index].position_type
+            };
+
+            $scope.game.setup.backgrounds.background.push(new_background);
+
+            background_index++;
+        });
+
         var setup = {};
         setup.setup = $scope.game.setup;
 
@@ -486,16 +499,13 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
 
         SaveXML.write(form_data_xml);
 
-        console.log('canvas at end of save:');
-        console.log(CanvasService.canvas);
-
         $scope.config_completed.status = true;
         $location.path('levels');
     }
 
     $scope.determineOrientation = function (item) {
         if (item.shape.circle) {
-            return 'landscape';
+            return 'landscape circle';
         }
         else {
             if (item.shape.rectangle.size.width >= item.shape.rectangle.size.height) {
@@ -507,7 +517,92 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
         }
     };
 
+    /* SPRITES */
+    ListService.getObjects(function (objects) {
+        $scope.sprites = objects;
+
+        angular.forEach($scope.sprites, function (value, key) {
+            if(value.sprite_id > sprite_index) {
+                sprite_index = value.sprite_id;
+            }
+        });
+    });
+
+    $scope.sprite_view_URL = '';
+    $scope.sprite_shape_view_URL = '';
+    $scope.current_sprite = null;
+
+    $scope.selected_sprite_shape = {
+        shape: ''
+    };
+
+    $scope.sprite_shape_options = [
+        'Circle', 'Rectangle'
+    ];
+
+    $scope.newSprite = function () {
+        sprite_index++;
+
+        $scope.sprite_view_URL = 'views/sprite_detail.html';
+
+        var new_sprite = {
+            sprite_id: sprite_index,
+            sprite_name: 'New sprite',
+            image: '/img/file_name.jpg',
+            speed: 1,
+            offset: {
+                x: 0,
+                y: 0
+            },
+            shape: {}
+        };
+
+        $scope.current_sprite = new_sprite;
+    };
+
+    $scope.saveSprite = function () {
+        $scope.sprites.push($scope.current_sprite);
+        $scope.current_sprite = null;
+
+        $scope.sprite_view_URL = '';
+    };
+
+    $scope.cancelSprite = function () {
+        $scope.current_sprite = null;
+        $scope.sprite_view_URL = '';
+
+        background_index--;
+    };
+
+    $scope.selectedSpriteShapeChanged = function () {
+        if ($scope.selected_sprite_shape.shape === 'Circle') {
+            $scope.current_sprite.shape = {
+                circle: {
+                    radius: ''
+                }
+            };
+
+            $scope.sprite_shape_view_URL = 'views/shapes/sprite_circle.html';
+        }
+        else if ($scope.selected_sprite_shape.shape === 'Rectangle'){
+            $scope.current_sprite.shape = {
+                rectangle: {
+                    size: {
+                        width: '',
+                        height: ''
+                    }
+                }
+            };
+
+            $scope.sprite_shape_view_URL = 'views/shapes/sprite_rectangle.html';
+        }
+        else {
+            $scope.sprite_shape_view_URL = '';
+        }
+    };
+
     /* BACKGROUNDS */
+    $scope.backgrounds = [];
     $scope.background_view_URL = '';
 
     $scope.position_type_options = [
@@ -516,10 +611,6 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
 
     $scope.current_background = null;
 
-    $scope.setCurrentBackground = function (index) {
-        $scope.current_background = $scope.game.setup.backgrounds.background[index];
-    };
-
     $scope.newBackground = function () {
         background_index++;
 
@@ -527,26 +618,25 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
 
         var new_background = {
             background_id: background_index,
-            background_name: 'My background',
-            image: '/img/game_background.jpg',
-            speed: '1',
-            position_type: 'tiled'
+            background_name: 'New background',
+            image: '/img/file_name.jpg',
+            speed: 1,
+            position_type: ''
         };
 
-        $scope.game.setup.backgrounds.background.push(new_background);
-
-        $scope.setCurrentBackground(background_index);
+        $scope.current_background = new_background;
     };
 
     $scope.saveBackground = function () {
-        $scope.background_view_URL = '';
+        $scope.backgrounds.push($scope.current_background);
         $scope.current_background = null;
+
+        $scope.background_view_URL = '';
     };
 
     $scope.cancelBackground = function () {
-        $scope.saveBackground();
-
-        $scope.game.setup.backgrounds.background.splice(background_index, 1);
+        $scope.current_background = null;
+        $scope.background_view_URL = '';
 
         background_index--;
     };

@@ -138,6 +138,10 @@ body {
         max-width: 100px;
         height: auto;
     }
+
+    &.circle {
+        @include border-radius(50%);
+    }
 }
 
 .input-container {

@@ -9,7 +9,7 @@ App.directive('selectable', function() {
         //The link function is responsible for registering DOM listeners as well as updating the DOM.
         link: function (scope, element, attrs) {
             element.selectable({
-                filter: 'img',
+                filter: '.selectable',
                 selected: function( event, ui ) {
                     console.log('selected item:');
                     console.log(ui.selected);

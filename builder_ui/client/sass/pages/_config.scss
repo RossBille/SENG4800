@@ -3,8 +3,14 @@
         margin-bottom: $section-padding;
     }
 
-    .object {
+    .object, .background {
         cursor: pointer;
+    }
+}
+
+#sprite-detail, #background-detail {
+    .item-detail {
+        margin-bottom: $section-padding;
     }
 }
 

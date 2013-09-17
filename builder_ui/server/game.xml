@@ -9,30 +9,6 @@
     <min>1</min>
     <max>4</max>
   </players>
-  <sprites>
-    <sprite>
-      <sprite_id>0</sprite_id>
-      <sprite_name>Tennis Ball</sprite_name>
-      <image>/img/tennis_ball.png</image>
-      <speed>1</speed>
-      <offset>
-        <x>0</x>
-        <y>0</y>
-      </offset>
-      <shape>
-        <circle>
-          <radius>87.5</radius>
-        </circle>
-      </shape>
-    </sprite>
-  </sprites>
-  <backgrounds>
-    <background>
-      <background_id>0</background_id>
-      <background_name>My background</background_name>
-      <image>/img/game_background.jpg</image>
-      <speed>1</speed>
-      <position_type>tiled</position_type>
-    </background>
-  </backgrounds>
+  <sprites></sprites>
+  <backgrounds></backgrounds>
 </setup>
