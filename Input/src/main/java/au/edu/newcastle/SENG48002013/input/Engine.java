@@ -6,6 +6,7 @@ import au.edu.newcastle.SENG48002013.messages.PlayerNumberMessage;
 import au.edu.newcastle.seng48002013.instructions.BaseInstruction;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,10 +24,12 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 import org.apache.http.HttpException;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.codehaus.jackson.map.ObjectMapper;
 
 /*
@@ -204,14 +207,17 @@ public class Engine implements ServletContextListener
         PlayerNumberMessage pnm = new PlayerNumberMessage();
         pnm.setConnecting(connecting);
         
+        ArrayList<NameValuePair> parameters; // for name/value pairs of req params
         HttpClient httpclient = new DefaultHttpClient();
         ObjectMapper mapper = new ObjectMapper();
         
         try
         {
+            parameters = new ArrayList<>();
+            parameters.add(new BasicNameValuePair("data", mapper.writeValueAsString(pnm)));         
             HttpPost post = new HttpPost("http://localhost:8080/GameEngine/PlayerManager");
-            post.setEntity(new ByteArrayEntity(mapper.writeValueAsString(pnm).getBytes("UTF8")));
-            HttpResponse result = httpclient.execute(post);
+            post.setEntity(new UrlEncodedFormEntity(parameters));           
+            HttpResponse result = httpclient.execute(post);       
         }
         
         catch (URISyntaxException | HttpException | IOException ex)
