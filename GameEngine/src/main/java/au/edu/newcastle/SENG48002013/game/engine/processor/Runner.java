@@ -40,8 +40,9 @@ public class Runner extends Thread
 			try
 			{
 				OutputConnectionManager.sendOutput((IGameOutput) game);
-			} catch (Exception e)
+			} catch (IOException e)
 			{
+					System.out.println("Runner encountered an IOException: "+ e.getMessage());
 			}
 			/*for(int i = 0; i < objects.length; i++)
 			 {

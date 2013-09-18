@@ -6,8 +6,7 @@ import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import au.edu.newcastle.SENG48002013.messages.PlayerNumberMessage;
 import au.edu.newcastle.SENG48002013.messages.responses.Response;
-import au.edu.newcastle.SENG48002013.util.ErrorCode;
-import au.edu.newcastle.SENG48002013.util.SuccessCode;
+import au.edu.newcastle.SENG48002013.util.ResultCode;
 import org.codehaus.jackson.map.ObjectMapper;
 
 /**
@@ -50,7 +49,7 @@ public class InputConnectionManager extends BaseServlet
             {
                 r.setError(true);
                 r.setMessage("No Room");
-                r.setCode(ErrorCode.INSUFFICIENT_ROOM);
+                r.setCode(ResultCode.INSUFFICIENT_ROOM);
             }
 
         } else
@@ -59,7 +58,7 @@ public class InputConnectionManager extends BaseServlet
             Boss.removePlayer(pnm.getPlayer());
             r.setError(false);
             r.setMessage("Player was removed");
-            r.setCode(SuccessCode.SUCCESS);
+            r.setCode(ResultCode.SUCCESS);
         }
 
     }

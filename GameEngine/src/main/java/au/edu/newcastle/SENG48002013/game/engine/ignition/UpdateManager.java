@@ -1,8 +1,8 @@
 package au.edu.newcastle.SENG48002013.game.engine.ignition;
 
 import au.edu.newcastle.SENG48002013.game.engine.processor.Boss;
+import au.edu.newcastle.SENG48002013.game.engine.resources.ConfigReader;
 import java.io.IOException;
-import javax.servlet.ServletContext;
 
 /**
  * Class to start and stop the game for loading of new games and remote
@@ -13,8 +13,9 @@ import javax.servlet.ServletContext;
 public class UpdateManager
 {
 
-    public static void start() throws IOException
+    public static void start(String path) throws IOException
     {
+		ConfigReader.BASEDIR = path;
         Boss.start();
         System.out.println("Game is starting...");
     }

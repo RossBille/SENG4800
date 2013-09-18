@@ -30,7 +30,7 @@ public class OutputConnectionManager
      * Broadcast to everyone connected to this socket
      *
      * @param gameOutput
-     * @throws IOException
+     * @throws IOException if the JSON mapping fails
      */
     public static void sendOutput(IGameOutput gameOutput) throws IOException
     {
@@ -38,7 +38,13 @@ public class OutputConnectionManager
         String message = mapper.writeValueAsString(gameOutput.getOutputObjects());
         for (Session peer : peers)
         {
-            peer.getBasicRemote().sendText(message);
+				try
+				{
+						peer.getBasicRemote().sendText(message);
+				} catch (IOException ex)
+				{
+						//client has errored, out of our control
+				}
         }
 
         //alternate

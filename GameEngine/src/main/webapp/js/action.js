@@ -10,8 +10,6 @@ app.action = function(objects) {
     while(objects.length > 0) {
         var object = objects.pop();
         var img = getImage(object);
-        console.log('x:' + img.setAtX);
-        console.log('y:' + img.setAtY);
         context.drawImage(img, img.setAtX, img.setAtY);
     }
     
@@ -21,9 +19,9 @@ app.action = function(objects) {
         }
         else {
             var image = new Image();
-            image.src = object.imageUrl;
-            list[object.id] = image;
         }
+        image.src = object.imageUrl;
+        list[object.id] = image;
         image.setAtX = object.outputPos.x;
         image.setAtY = object.outputPos.y;
 
