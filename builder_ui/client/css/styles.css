@@ -3600,7 +3600,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   line-height: 1.5em;
   position: absolute;
   top: 5px;
-  right: 5px;
+  right: 8px;
   z-index: 999;
-  color: #cccccc;
+  color: #777777;
 }

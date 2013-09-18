@@ -48,8 +48,8 @@
 
     position: absolute;
     top: 5px;
-    right: 5px;
+    right: 8px;
     z-index: 999;
 
-    color: scale-lightness($light-colour, -20%);
+    color: $text-colour-light;
 }
