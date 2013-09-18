@@ -517,17 +517,38 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
         }
     };
 
-    /* SPRITES */
-    ListService.getObjects(function (objects) {
-        $scope.sprites = objects;
+    /* SERVER DATA */
+    ListService.getObjects(function (data) {
+        //console.log('data:');
+        //console.log(data);
+
+        $scope.sprites = data.objects;
+
+        console.log('sprites:');
+        console.log($scope.sprites);
+
+        console.log('sprite IDs:');
 
         angular.forEach($scope.sprites, function (value, key) {
             if(value.sprite_id > sprite_index) {
                 sprite_index = value.sprite_id;
             }
         });
+
+        $scope.backgrounds = data.backgrounds;
+        console.log('backgrounds:');
+        console.log($scope.backgrounds);
+
+        console.log('background IDs:');
+
+        angular.forEach($scope.backgrounds, function (value, key) {
+            if(value.background_id > background_index) {
+                background_index = value.background_id;
+            }
+        });
     });
 
+    /* SPRITES */
     $scope.sprite_view_URL = '';
     $scope.sprite_shape_view_URL = '';
     $scope.current_sprite = null;
@@ -602,7 +623,7 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
     };
 
     /* BACKGROUNDS */
-    $scope.backgrounds = [];
+    //$scope.backgrounds = [];
     $scope.background_view_URL = '';
 
     $scope.position_type_options = [

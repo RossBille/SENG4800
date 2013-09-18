@@ -8,7 +8,17 @@ wss.on('connection', function(socket) {
     console.log("Connection opened");
 
     var objects_file = require('./objects.json');
-    socket.send(JSON.stringify(objects_file));
+    var backgrounds_file = require('./backgrounds.json');
+
+    var data = {
+        objects: objects_file,
+        backgrounds: backgrounds_file
+    }
+
+    console.log('data to send:');
+    console.log(data);
+
+    socket.send(JSON.stringify(data));
 
     socket.on('message', function(message) {
         console.log("received %s", message);
