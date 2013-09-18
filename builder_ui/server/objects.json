@@ -3,7 +3,7 @@
         {
             "sprite_id": 0,
             "sprite_name": "Soccer Ball",
-            "image": "/img/ball.png",
+            "image": "/images/ball.png",
             "speed": 1,
             "offset": {
                 "x": 0,
@@ -18,7 +18,7 @@
         {
             "sprite_id": 1,
             "sprite_name": "Golf Ball",
-            "image": "/img/golf_ball.png",
+            "image": "/images/golf_ball.png",
             "speed": 1,
             "offset": {
                 "x": 0,
@@ -33,7 +33,7 @@
         {
             "sprite_id": 2,
             "sprite_name": "Tennis Ball",
-            "image": "/img/tennis_ball.png",
+            "image": "/images/tennis_ball.png",
             "speed": 1,
             "offset": {
                 "x": 0,
@@ -48,7 +48,7 @@
         {
             "sprite_id": 3,
             "sprite_name": "Paddle Vertical",
-            "image": "/img/paddle_vertical.png",
+            "image": "/images/paddle_vertical.png",
             "speed": 1,
             "offset": {
                 "x": 0,
@@ -66,7 +66,7 @@
         {
             "sprite_id": 4,
             "sprite_name": "Paddle Horizontal",
-            "image": "/img/paddle_horizontal.png",
+            "image": "/images/paddle_horizontal.png",
             "speed": 1,
             "offset": {
                 "x": 0,

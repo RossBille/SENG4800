@@ -569,7 +569,7 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
         var new_sprite = {
             sprite_id: sprite_index,
             sprite_name: 'New sprite',
-            image: '/img/file_name.jpg',
+            image: '/images/file_name.jpg',
             speed: 1,
             offset: {
                 x: 0,
@@ -640,7 +640,7 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
         var new_background = {
             background_id: background_index,
             background_name: 'New background',
-            image: '/img/file_name.jpg',
+            image: '/images/file_name.jpg',
             speed: 1,
             position_type: ''
         };

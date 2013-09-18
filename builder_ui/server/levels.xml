@@ -2,10 +2,33 @@
   <level>
     <level_id>0</level_id>
     <level_name>Level 0</level_name>
-    <background_id>0</background_id>
+    <background_id></background_id>
     <objects>
       <object>
         <object_id>0</object_id>
+        <object_name>Soccer Ball</object_name>
+        <sprite_id>0</sprite_id>
+        <object_shape>
+          <circle>
+            <radius>100</radius>
+          </circle>
+        </object_shape>
+        <object_visible>yes</object_visible>
+        <start_pos>
+          <x>610</x>
+          <y>344</y>
+        </start_pos>
+        <start_vel>
+          <x>1</x>
+          <y>1</y>
+        </start_vel>
+        <start_acc>
+          <x>1</x>
+          <y>1</y>
+        </start_acc>
+      </object>
+      <object>
+        <object_id>1</object_id>
         <object_name>Tennis Ball</object_name>
         <sprite_id>2</sprite_id>
         <object_shape>
@@ -15,8 +38,8 @@
         </object_shape>
         <object_visible>yes</object_visible>
         <start_pos>
-          <x>660</x>
-          <y>152</y>
+          <x>1048</x>
+          <y>134</y>
         </start_pos>
         <start_vel>
           <x>1</x>
@@ -28,6 +51,29 @@
         </start_acc>
       </object>
     </objects>
-    <events></events>
+    <events>
+      <event>
+        <event_id>0</event_id>
+        <event_type>
+          <collision>
+            <object_id1>0</object_id1>
+            <object_id2>1</object_id2>
+            <allow_overlap>no</allow_overlap>
+          </collision>
+        </event_type>
+        <actions>
+          <action>
+            <action_id>0</action_id>
+            <action_type>
+              <change_score>
+                <player_id>1</player_id>
+                <value>5</value>
+                <type>add</type>
+              </change_score>
+            </action_type>
+          </action>
+        </actions>
+      </event>
+    </events>
   </level>
 </levels>
