@@ -12,7 +12,6 @@ package au.edu.newcastle.SENG48002013.game.engine.resources;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
 import javax.xml.parsers.*;
 import org.xml.sax.*;
 import org.w3c.dom.*;
@@ -24,7 +23,7 @@ public class ConfigReader {
 	//			SUPPORT FOR MULTIPLE ACTION TYPES? OR ONLY ONE
 	
     // levels storage object
-	public static final String BASEDIR = "/home/b1nd/Projects/git/uon/SENG4800/config";
+	public static final String BASEDIR = "D:/Projects/git/uon/SENG4800/config";
 	public static final String LEVELS = "levels.xml";
 	public static final String GAME = "game.xml";
     //public static ArrayList<Level> levels = new ArrayList<Level>();

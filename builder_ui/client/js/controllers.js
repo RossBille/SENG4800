@@ -520,7 +520,7 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
     /* SERVER DATA */
     ListService.getObjects(function (data) {
         //console.log('data:');
-        //console.log(data);
+        console.log(data);
 
         $scope.sprites = data.objects;
 

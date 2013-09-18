@@ -13,9 +13,11 @@ App.factory('ListService', function ($timeout) {
         ws.onmessage = function (msg) {
             $timeout(function () {
                 json = JSON.parse(msg.data);
+                console.log("JSON");
+                console.log(json);
 
                 //send out objects back to parent
-                callback(json.Objects);
+                callback(json.objects);
                 ws.close();
             });
         };
