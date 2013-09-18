@@ -23,9 +23,9 @@ public class ConfigReader {
 	//			SUPPORT FOR MULTIPLE ACTION TYPES? OR ONLY ONE
 	
     // levels storage object
-	public static final String BASEDIR = "D:/Projects/git/uon/SENG4800/config";
-	public static final String LEVELS = "levels.xml";
-	public static final String GAME = "game.xml";
+	public static String BASEDIR = "D:/Projects/git/uon/SENG4800/config";
+	public static String LEVELS = "levels.xml";
+	public static String GAME = "game.xml";
     //public static ArrayList<Level> levels = new ArrayList<Level>();
     //public static GameSetup gameSetup = new GameSetup();
     public static Element readGame()

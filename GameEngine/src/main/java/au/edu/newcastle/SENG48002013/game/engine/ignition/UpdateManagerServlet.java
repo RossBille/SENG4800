@@ -16,13 +16,21 @@ public class UpdateManagerServlet extends BaseServlet
     @Override
     protected void processRequest() throws IOException
     {
+		String path = new String();
+		if(request.getParameter("path") == null)
+		{		
+			path = getServletContext().getRealPath("/config/DefaultGame/");
+		}else{
+			path = request.getParameter("path");
+		}
+		
         if (authenticated())
         {
             String action = request.getParameter("action");
             switch (action)
             {
                 case "start":
-                    UpdateManager.start();
+                    UpdateManager.start(path);
                 case "stop":
                     UpdateManager.stop();
                 case "restart":

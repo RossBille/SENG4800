@@ -24,9 +24,8 @@ public class ContextStartupListener implements ServletContextListener
         {
             //init game stuff here
             //read in config
-
             //start the game
-            UpdateManager.start();
+            UpdateManager.start(sce.getServletContext().getRealPath("/config/DefaultGame/"));
             System.out.println("Context Set");
 
         } catch (IOException ex)
@@ -38,12 +37,6 @@ public class ContextStartupListener implements ServletContextListener
     @Override
     public void contextDestroyed(ServletContextEvent sce)
     {
-        try
-        {
-            UpdateManager.start();
-        } catch (IOException ex)
-        {
-            Logger.getLogger(ContextStartupListener.class.getName()).log(Level.SEVERE, null, ex);
-        }
+		UpdateManager.stop();
     }
 }
