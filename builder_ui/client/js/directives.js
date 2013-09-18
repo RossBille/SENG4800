@@ -64,8 +64,11 @@ App.directive('droppable', function ($compile) {
                         var $new_object = $('.scene img[data-index="' + scene_index + '"]');
                         var $new_object_container = $new_object.parent();
 
+                        $new_object_container.append('<div class="outline"></div>');
+
                         if (scope.objects[draggable_original_index].shape.circle) {
                             $new_object.attr('height', (scope.objects[draggable_original_index].shape.circle.radius * 2) / scope.canvas.multiplier);
+                            $new_object_container.find('.outline').addClass('circle');
                         }
                         else {
                             $new_object.attr('width', scope.objects[draggable_original_index].shape.rectangle.size.width / scope.canvas.multiplier);

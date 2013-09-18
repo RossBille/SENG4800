@@ -10,13 +10,13 @@
         <sprite_id>0</sprite_id>
         <object_shape>
           <circle>
-            <radius>100</radius>
+            <radius>183</radius>
           </circle>
         </object_shape>
         <object_visible>yes</object_visible>
         <start_pos>
-          <x>610</x>
-          <y>344</y>
+          <x>442</x>
+          <y>188</y>
         </start_pos>
         <start_vel>
           <x>1</x>
@@ -29,17 +29,17 @@
       </object>
       <object>
         <object_id>1</object_id>
-        <object_name>Tennis Ball</object_name>
-        <sprite_id>2</sprite_id>
+        <object_name>Soccer Ball</object_name>
+        <sprite_id>0</sprite_id>
         <object_shape>
           <circle>
-            <radius>87.5</radius>
+            <radius>100</radius>
           </circle>
         </object_shape>
         <object_visible>yes</object_visible>
         <start_pos>
-          <x>1048</x>
-          <y>134</y>
+          <x>1296</x>
+          <y>296</y>
         </start_pos>
         <start_vel>
           <x>1</x>
@@ -61,18 +61,7 @@
             <allow_overlap>no</allow_overlap>
           </collision>
         </event_type>
-        <actions>
-          <action>
-            <action_id>0</action_id>
-            <action_type>
-              <change_score>
-                <player_id>1</player_id>
-                <value>5</value>
-                <type>add</type>
-              </change_score>
-            </action_type>
-          </action>
-        </actions>
+        <actions></actions>
       </event>
     </events>
   </level>
