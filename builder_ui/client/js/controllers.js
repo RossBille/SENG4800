@@ -522,7 +522,7 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
         //console.log('data:');
         console.log(data);
 
-        $scope.sprites = data.objects;
+        $scope.sprites = data.objects.Objects;
 
         console.log('sprites:');
         console.log($scope.sprites);
