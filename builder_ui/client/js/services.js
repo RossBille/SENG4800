@@ -17,7 +17,7 @@ App.factory('ListService', function ($timeout) {
                 console.log(json);
 
                 //send out objects back to parent
-                callback(json.objects);
+                callback(json);
                 ws.close();
             });
         };
