@@ -1,7 +1,5 @@
 package au.edu.newcastle.SENG48002013.game.engine.connections.input;
 
-import au.edu.newcastle.SENG48002013.game.engine.connections.input.Input;
-import au.edu.newcastle.SENG48002013.game.engine.connections.input.InputManager;
 import au.edu.newcastle.SENG48002013.messages.PlayerControlMessage;
 import java.io.IOException;
 import java.util.Collections;

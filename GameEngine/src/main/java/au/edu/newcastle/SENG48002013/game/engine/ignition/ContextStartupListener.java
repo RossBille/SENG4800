@@ -1,6 +1,5 @@
 package au.edu.newcastle.SENG48002013.game.engine.ignition;
 
-import au.edu.newcastle.SENG48002013.game.engine.ignition.UpdateManager;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

@@ -16,7 +16,7 @@ public class UpdateManagerServlet extends BaseServlet
     @Override
     protected void processRequest() throws IOException
     {
-		String path = new String();
+		String path; 
 		if(request.getParameter("path") == null)
 		{		
 			path = getServletContext().getRealPath("/config/DefaultGame/");
