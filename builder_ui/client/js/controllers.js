@@ -535,7 +535,7 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
             }
         });
 
-        $scope.backgrounds = data.backgrounds;
+        $scope.backgrounds = data.backgrounds.Backgrounds;
         console.log('backgrounds:');
         console.log($scope.backgrounds);
 
