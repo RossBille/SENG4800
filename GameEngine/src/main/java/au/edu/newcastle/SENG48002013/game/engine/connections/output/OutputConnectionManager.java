@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.websocket.CloseReason;
 import javax.websocket.CloseReason.CloseCodes;
 import javax.websocket.OnClose;
@@ -12,6 +14,8 @@ import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
 /**
@@ -30,7 +34,7 @@ public class OutputConnectionManager
      * Broadcast to everyone connected to this socket
      *
      * @param gameOutput
-     * @throws IOException
+     * @throws IOException if the JSON mapping fails
      */
     public static void sendOutput(IGameOutput gameOutput) throws IOException
     {
@@ -38,7 +42,13 @@ public class OutputConnectionManager
         String message = mapper.writeValueAsString(gameOutput.getOutputObjects());
         for (Session peer : peers)
         {
-            peer.getBasicRemote().sendText(message);
+				try
+				{
+						peer.getBasicRemote().sendText(message);
+				} catch (IOException ex)
+				{
+						//client has errored, out of our control
+				}
         }
 
         //alternate
