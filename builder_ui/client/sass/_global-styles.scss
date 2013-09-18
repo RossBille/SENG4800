@@ -188,6 +188,12 @@ body {
     .input {
         overflow: hidden;
 
+        &.checkbox {
+            background: $light-colour;
+            border: 1px solid $dark-grey;
+            height: 50px;
+        }
+
         input, select, p {
             height: 50px;
             width: 100%;
@@ -254,10 +260,6 @@ body {
         background: $light-grey;
         border: 1px solid $dark-grey;
         border-right-style: none;
-
-        &.checkbox {
-            border-right-style: solid;
-        }
     }
 }
 
