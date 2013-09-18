@@ -101,6 +101,13 @@ body {
     background: $lighter-grey;
     padding: 0;
 
+    p {
+        @include adjust-font-size-to(13px);
+
+        color: $text-colour-light;
+        text-align: center;
+    }
+
     .object-container {
         margin: 20px;
         display: inline-block;
