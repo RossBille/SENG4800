@@ -21,96 +21,79 @@ import org.codehaus.jackson.map.ObjectMapper;
  * @author rossbille
  */
 @ServerEndpoint("/output")
-public class OutputConnectionManager
-{
+public class OutputConnectionManager {
 
-		private static final int ALLOWED_CONNECTIONS = 5;
-		private static Set<Session> peers = Collections.synchronizedSet(new HashSet<Session>());
+    private static final int ALLOWED_CONNECTIONS = 5;
+    private static Set<Session> peers = Collections.synchronizedSet(new HashSet<Session>());
 
-		/**
-		 * Broadcast to everyone connected to this socket
-		 *
-		 * @param gameOutput
-		 * @throws IOException if the JSON mapping fails
-		 */
-		public static void sendOutput(IGameOutput gameOutput) throws IOException
-		{
-				ObjectMapper mapper = new ObjectMapper();
-				final String message = mapper.writeValueAsString(gameOutput.getOutputObjects());
-				for (Session peer : peers)
-				{
-						Thread thread = new Runner(peer, message);
-						thread.start();
-				}
-		}
+    /**
+     * Broadcast to everyone connected to this socket
+     *
+     * @param gameOutput
+     * @throws IOException if the JSON mapping fails
+     */
+    public static void sendOutput(IGameOutput gameOutput) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        final String message = mapper.writeValueAsString(gameOutput.getOutputObjects());
+        for (Session peer : peers) {
+            Thread thread = new Runner(peer, message);
+            thread.start();
+        }
+    }
 
-		@OnOpen
-		public void onOpen(Session peer) throws IOException
-		{
-				System.out.println("connections: " + currentPeers());
+    @OnOpen
+    public void onOpen(Session peer) throws IOException {
+        System.out.println("connections: " + currentPeers());
 
-				//check if we have reached the max number of connections
-				if (currentPeers() < getAllowedConnections())
-				{
-						peers.add(peer);
-						peer.getBasicRemote().sendText("{ \"hello\": \"world\"}");
-				} else
-				{
-						//cancel handshake
-						peer.close(new CloseReason(CloseCodes.VIOLATED_POLICY, "Too many output devices connected"));
-				}
-		}
+        //check if we have reached the max number of connections
+        if (currentPeers() < getAllowedConnections()) {
+            peers.add(peer);
+            peer.getBasicRemote().sendText("{ \"hello\": \"world\"}");
+        } else {
+            //cancel handshake
+            peer.close(new CloseReason(CloseCodes.VIOLATED_POLICY, "Too many output devices connected"));
+        }
+    }
 
-		@OnClose
-		public void onClose(Session peer)
-		{
-				peers.remove(peer);
-				System.out.println("connections: " + currentPeers());
-		}
+    @OnClose
+    public void onClose(Session peer) {
+        peers.remove(peer);
+        System.out.println("connections: " + currentPeers());
+    }
 
-		public int currentPeers()
-		{
-				return peers.size();
-		}
+    public int currentPeers() {
+        return peers.size();
+    }
 
-		public int getAllowedConnections()
-		{
-				return ALLOWED_CONNECTIONS;
-		}
+    public int getAllowedConnections() {
+        return ALLOWED_CONNECTIONS;
+    }
 
-		private static class Runner extends Thread
-		{
+    private static class Runner extends Thread {
 
-				private Session peer;
-				private String message;
-				private boolean started = false;
+        private Session peer;
+        private String message;
+        private boolean started = false;
 
-				public Runner(Session peer, String message)
-				{
-						this.peer = peer;
-						this.message = message;
-				}
+        public Runner(Session peer, String message) {
+            this.peer = peer;
+            this.message = message;
+        }
 
-				@Override
-				public void run()
-				{
-						if (!started)
-						{
-								try
-								{
-										started = true;
-										peer.getBasicRemote().sendText(message);
-								} catch (IOException ex)
-								{
-										try
-										{
-												peer.close(new CloseReason(CloseCodes.PROTOCOL_ERROR, "Unable to write"));
-										} catch (IOException ex1)
-										{
-												Logger.getLogger(OutputConnectionManager.class.getName()).log(Level.SEVERE, "Client isnt writable", ex1);
-										}
-								}
-						}
-				}
-		}
+        @Override
+        public void run() {
+            if (!started) {
+                try {
+                    started = true;
+                    peer.getBasicRemote().sendText(message);
+                } catch (IOException ex) {
+                    try {
+                        peer.close(new CloseReason(CloseCodes.PROTOCOL_ERROR, "Unable to write"));
+                    } catch (IOException ex1) {
+                        Logger.getLogger(OutputConnectionManager.class.getName()).log(Level.SEVERE, "Client isnt writable", ex1);
+                    }
+                }
+            }
+        }
+    }
 }
