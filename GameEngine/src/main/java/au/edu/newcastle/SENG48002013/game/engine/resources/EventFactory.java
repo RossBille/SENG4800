@@ -45,7 +45,10 @@ public class EventFactory {
         }
 
         //Call Action Factory to build actions
-        NodeList actionNodes = eventElement.getElementsByTagName("ACTION");
+        // CHANGED: added support for XML reading ACTIONS, then ACTION from that nodelist
+        NodeList actionsNodes = eventElement.getElementsByTagName("ACTIONS");
+        Element actionsElement = (Element) actionsNodes.item[0];
+        NodeList actionNodes = actionsElement.getElementsByTagName("ACTION");
         if (actionNodes != null && actionNodes.getLength() > 0) {
             for (int i = 0; i < actionNodes.getLength(); i++) {
                 Element actionElement = (Element) actionNodes.item(i);
