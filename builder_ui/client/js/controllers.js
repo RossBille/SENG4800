@@ -122,7 +122,7 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
     }
 
     $scope.selected_event_type = {
-        event_type: null
+        event_type: {}
     };
 
     $scope.selectedEventChanged = function () {
@@ -132,6 +132,9 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         $scope.new_action_control_URL = 'views/actions/new_action_control.html';
 
         if ($scope.selected_event_type.event_type != null) {
+			console.log('current event inside selectedEventChanged');
+			console.log($scope.current_event);
+		
             if ($scope.selected_event_type.event_type.name === 'Collision') {
                 $scope.current_event.event_type = {
                     collision: $scope.events.event_types.collision
@@ -163,6 +166,7 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
     $scope.current_event = null;
 
     $scope.setCurrentEvent = function (index) {
+		console.log(index);
         $scope.current_event = $scope.game.levels.level[level_index].events.event[index];
     };
 
@@ -170,6 +174,10 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         event_index++;
 
         $scope.event_view_URL = 'views/event_detail.html';
+		
+		$scope.selected_event_type = {
+            event_type: {}
+        };
 
         var new_event = {
             event_id: event_index,
@@ -180,17 +188,27 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         };
 
         $scope.game.levels.level[level_index].events.event.push(new_event);
+		
+		console.log('new event created with ID ' + event_index);
+		console.log('event array:');
+		console.log($scope.game.levels.level[level_index].events.event);
 
-        $scope.setCurrentEvent(event_index);
+        //$scope.setCurrentEvent(event_index);
+		$scope.current_event = $scope.game.levels.level[level_index].events.event[event_index];
     };
 
     $scope.saveEvent = function () {
         $scope.event_view_URL = '';
         $scope.new_action_control_URL = '';
 
-        $scope.selected_event_type = {
+        /*$scope.selected_event_type = {
             event_type: null
-        };
+        };*/
+		
+		$scope.current_event = null;
+		
+		console.log('event array at end of save:');
+		console.log($scope.game.levels.level[level_index].events.event);
     };
 
     $scope.cancelEvent = function () {
