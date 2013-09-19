@@ -1,5 +1,5 @@
 var app = app || {};
-var sprites = app.sprites || [];
+//var sprites = app.sprites || [];
 
 app.main = (function() {
     /* Our initialisation will go here */
