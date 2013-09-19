@@ -46,7 +46,7 @@ public class GameBuilder {
         //Build sprites
         // CHANGED: add spritesNodes, spritesElement
         NodeList spritesNodes = gameElement.getElementsByTagName("SPRITES");
-        Element spritesElement = (Element) spritesNodes.item[0];
+        Element spritesElement = (Element) spritesNodes.item(0);
         NodeList spriteNodes = spritesElement.getElementsByTagName("SPRITE");
         buildSprites(spriteNodes);
         //Build backgrounds
@@ -75,7 +75,7 @@ public class GameBuilder {
                 Element levelElement = (Element) levelNodes.item(i);
                 // CHANGED: support for reading EVENTS not EVENT
                 NodeList eventsNodes = levelElement.getElementsByTagName("EVENTS");
-                Element eventsElement = (Element) eventsNodes.item[0];
+                Element eventsElement = (Element) eventsNodes.item(0);
                 NodeList eventNodes = eventsElement.getElementsByTagName("EVENT");
                 long id = (long) XmlUtils.getNumericValue(levelElement, "LEVEL_ID");
                 Level level = GameResources.getLevel(id);
@@ -93,7 +93,7 @@ public class GameBuilder {
             level.setDimensions(((Game) GameResources.getGame()).getSize());
             // CHANGED: added support for XML reading to read OBJECTS first, then OBJECT
             NodeList objectsNodes = levelElement.getElementsByTagName("OBJECTS");
-            Element objectsElement = (Element) objectsNodes.item[0];
+            Element objectsElement = (Element) objectsNodes.item(0);
             NodeList objectNodes = objectsElement.getElementsByTagName("OBJECT");
             buildGameObjects(objectNodes, level);
             GameResources.addLevel(level);

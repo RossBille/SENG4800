@@ -21,7 +21,7 @@ public class ConfigReader {
     //			ADD ACTION TYPE?
     //			SUPPORT FOR MULTIPLE ACTION TYPES? OR ONLY ONE
     // levels storage object
-    public static String BASEDIR = "/home/b1nd/Projects/git/uon/SENG4800/config";
+    public static String BASEDIR = "/home/clint/Projects/git/SENG4800/config";
     public static String LEVELS = "levels.xml";
     public static String GAME = "game.xml";
     //public static ArrayList<Level> levels = new ArrayList<Level>();
@@ -36,7 +36,7 @@ public class ConfigReader {
         Element docEle = loadXmlFile(LEVELS);
         // get a list of the levels
         NodeList levelsNodes = docEle.getElementsByTagName("LEVELS");
-        Element levelsElement = (Element) levelsNodes.item[0];
+        Element levelsElement = (Element) levelsNodes.item(0);
         NodeList levelNodes = levelsElement.getElementsByTagName("LEVEL");
         return levelNodes;
     }

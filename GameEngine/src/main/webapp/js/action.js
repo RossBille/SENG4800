@@ -14,7 +14,6 @@ app.action = function(objects) {
     }
 
     function getImage(object) {
-        console.log(list)
         if (list[object.id] !== undefined) {
             var image = list[object.id];
         }
