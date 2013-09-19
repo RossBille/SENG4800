@@ -6,19 +6,19 @@
 package au.edu.newcastle.SENG48002013.game.engine.model.environment;
 
 public class Circle extends Shape {
-	double radius;
-	public Circle(double radius)
-	{
-		this.radius = radius;
-	}
-	public double getRadius()
-	{
-		return radius;
-	}
-	public void setRadius(double radius)
-	{
-		this.radius = radius;
-		this.area = Math.PI*radius*radius;
-	}
-}
 
+    double radius;
+
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
+    public double getRadius() {
+        return radius;
+    }
+
+    public void setRadius(double radius) {
+        this.radius = radius;
+        this.area = Math.PI * radius * radius;
+    }
+}

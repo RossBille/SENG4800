@@ -6,9 +6,10 @@
 package au.edu.newcastle.SENG48002013.game.engine.model.environment;
 
 public abstract class Shape {
-	protected double area;
-	public double getArea()
-	{
-		return area;
-	}
+
+    protected double area;
+
+    public double getArea() {
+        return area;
+    }
 }

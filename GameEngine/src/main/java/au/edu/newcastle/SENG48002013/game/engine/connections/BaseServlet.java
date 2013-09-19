@@ -10,8 +10,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author rossbille
  */
-public abstract class BaseServlet extends HttpServlet
-{
+public abstract class BaseServlet extends HttpServlet {
 
     protected HttpServletRequest request;
     protected HttpServletResponse response;
@@ -19,16 +18,14 @@ public abstract class BaseServlet extends HttpServlet
     protected abstract void processRequest() throws IOException;
 
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException
-    {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         this.request = request;
         this.response = response;
         processRequest();
     }
 
     @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException
-    {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         this.request = request;
         this.response = response;
         processRequest();

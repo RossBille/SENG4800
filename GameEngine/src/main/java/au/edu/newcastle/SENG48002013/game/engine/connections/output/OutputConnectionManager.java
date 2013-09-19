@@ -20,8 +20,7 @@ import org.codehaus.jackson.map.ObjectMapper;
  * @author rossbille
  */
 @ServerEndpoint("/output")
-public class OutputConnectionManager
-{
+public class OutputConnectionManager {
 
     private static final int ALLOWED_CONNECTIONS = 1;
     private static Set<Session> peers = Collections.synchronizedSet(new HashSet<Session>());
@@ -32,19 +31,15 @@ public class OutputConnectionManager
      * @param gameOutput
      * @throws IOException if the JSON mapping fails
      */
-    public static void sendOutput(IGameOutput gameOutput) throws IOException
-    {
+    public static void sendOutput(IGameOutput gameOutput) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         String message = mapper.writeValueAsString(gameOutput.getOutputObjects());
-        for (Session peer : peers)
-        {
-				try
-				{
-						peer.getBasicRemote().sendText(message);
-				} catch (IOException ex)
-				{
-						//client has errored, out of our control
-				}
+        for (Session peer : peers) {
+            try {
+                peer.getBasicRemote().sendText(message);
+            } catch (IOException ex) {
+                //client has errored, out of our control
+            }
         }
 
         //alternate
@@ -68,27 +63,22 @@ public class OutputConnectionManager
     }
 
     @OnOpen
-    public void onOpen(Session peer) throws IOException
-    {
+    public void onOpen(Session peer) throws IOException {
         //check if we have reached the max number of connections
-        if (currentPeers() < getAllowedConnections())
-        {
+        if (currentPeers() < getAllowedConnections()) {
             peers.add(peer);
             peer.getBasicRemote().sendText("{ \"hello\": \"world\"}");
-        } else
-        {
+        } else {
             //cancel handshake
             peer.close(new CloseReason(CloseCodes.VIOLATED_POLICY, "Too many output devices connected"));
         }
     }
 
     @OnClose
-    public void onClose(Session peer)
-    {
+    public void onClose(Session peer) {
         peers.remove(peer);
         //check if there are any output devices left
-        if (currentPeers() <= 0)
-        {
+        if (currentPeers() <= 0) {
             //shutdown the game
         }
     }
@@ -102,21 +92,18 @@ public class OutputConnectionManager
      }
      */
     @OnMessage
-    public void onMessage(String message)
-    {
+    public void onMessage(String message) {
         //log the message
 
         //log the error
         throw new IllegalAccessError("Output device shouldnt be talking to the engine");
     }
 
-    public int currentPeers()
-    {
+    public int currentPeers() {
         return peers.size();
     }
 
-    public int getAllowedConnections()
-    {
+    public int getAllowedConnections() {
         return ALLOWED_CONNECTIONS;
     }
 }

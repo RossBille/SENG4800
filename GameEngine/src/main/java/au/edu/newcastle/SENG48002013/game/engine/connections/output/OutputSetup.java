@@ -14,12 +14,10 @@ import org.codehaus.jackson.map.ObjectMapper;
  * @author rossbille
  */
 @WebServlet("/setup")
-public class OutputSetup extends BaseServlet
-{
+public class OutputSetup extends BaseServlet {
 
     @Override
-    protected void processRequest() throws IOException
-    {
+    protected void processRequest() throws IOException {
         ServletContext sc = getServletContext();
         response.setContentType("text/json");
         ObjectMapper mapper = new ObjectMapper();
