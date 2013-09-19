@@ -28,7 +28,7 @@
 
                             function sendInstruction(instruction)
                             {
-                                alert(instruction);
+                                //alert(instruction);
                                 websocket.send(instruction);
                             }
                         }
