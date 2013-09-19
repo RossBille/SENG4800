@@ -59,12 +59,12 @@ public class MessageManager {
         input.setValue(vector);
         //use the 3rd parameter to indicate position or vector
         //1 means vector, 0 means position
-        input.setPosition(pcm.getDirection().z == 0);
+        input.setPosition(pcm.getDirection().z == 1);
         InputManager.addInput(input);
     }
 
     private long getNextId() {
-        return ++id;
+        return 1;
     }
 
     public int currentPeers() {

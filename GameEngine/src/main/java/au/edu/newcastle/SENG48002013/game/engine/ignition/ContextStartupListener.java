@@ -21,7 +21,7 @@ public class ContextStartupListener implements ServletContextListener {
             //init game stuff here
             //read in config
             //start the game
-            UpdateManager.start(sce.getServletContext().getRealPath("/config/DefaultGame/"));
+            UpdateManager.start(sce.getServletContext().getRealPath("/config/Game1/"));
             System.out.println("Context Set");
 
         } catch (IOException ex) {

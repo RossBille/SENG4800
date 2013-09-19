@@ -44,7 +44,10 @@ public class GameBuilder {
         game.setMinPlayers(minPlayers);
         game.setPlayers(players);
         //Build sprites
-        NodeList spriteNodes = gameElement.getElementsByTagName("SPRITE");
+        // CHANGED: add spritesNodes, spritesElement
+        NodeList spritesNodes = gameElement.getElementsByTagName("SPRITES");
+        Element spritesElement = (Element) spritesNodes.item(0);
+        NodeList spriteNodes = spritesElement.getElementsByTagName("SPRITE");
         buildSprites(spriteNodes);
         //Build backgrounds
         NodeList backgroundNodes = gameElement.getElementsByTagName("BACKGROUND");
@@ -70,7 +73,10 @@ public class GameBuilder {
             //Build events for each level
             for (int i = 0; i < levelNodes.getLength(); i++) {
                 Element levelElement = (Element) levelNodes.item(i);
-                NodeList eventNodes = levelElement.getElementsByTagName("EVENT");
+                // CHANGED: support for reading EVENTS not EVENT
+                NodeList eventsNodes = levelElement.getElementsByTagName("EVENTS");
+                Element eventsElement = (Element) eventsNodes.item(0);
+                NodeList eventNodes = eventsElement.getElementsByTagName("EVENT");
                 long id = (long) XmlUtils.getNumericValue(levelElement, "LEVEL_ID");
                 Level level = GameResources.getLevel(id);
                 buildEvents(eventNodes, level);
@@ -85,7 +91,10 @@ public class GameBuilder {
             long backgroundId = (long) XmlUtils.getNumericValue(levelElement, "BACKGROUND_ID");
             level.setBackground(GameResources.getBackground(backgroundId));
             level.setDimensions(((Game) GameResources.getGame()).getSize());
-            NodeList objectNodes = levelElement.getElementsByTagName("OBJECT");
+            // CHANGED: added support for XML reading to read OBJECTS first, then OBJECT
+            NodeList objectsNodes = levelElement.getElementsByTagName("OBJECTS");
+            Element objectsElement = (Element) objectsNodes.item(0);
+            NodeList objectNodes = objectsElement.getElementsByTagName("OBJECT");
             buildGameObjects(objectNodes, level);
             GameResources.addLevel(level);
         }
