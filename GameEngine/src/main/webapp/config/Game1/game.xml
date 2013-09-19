@@ -1,89 +1,43 @@
-<setup>
-  <game_name>My game</game_name>
-  <canvas_size>
-    <width>1920</width>
-    <height>1080</height>
-  </canvas_size>
-  <starting_level>0</starting_level>
-  <players>
-    <min>1</min>
-    <max>4</max>
-  </players>
-  <sprites>
-    <sprite>
-      <sprite_id>0</sprite_id>
-      <sprite_name>Golf Ball</sprite_name>
-      <image>/images/golf_ball.png</image>
-      <speed>1</speed>
-      <offset>
-        <x>0</x>
-        <y>0</y>
-      </offset>
-      <shape>
-        <circle>
-          <radius>75</radius>
-        </circle>
-      </shape>
-    </sprite>
-    <sprite>
-      <sprite_id>1</sprite_id>
-      <sprite_name>Tennis Ball</sprite_name>
-      <image>/images/tennis_ball.png</image>
-      <speed>1</speed>
-      <offset>
-        <x>0</x>
-        <y>0</y>
-      </offset>
-      <shape>
-        <circle>
-          <radius>87.5</radius>
-        </circle>
-      </shape>
-    </sprite>
-    <sprite>
-      <sprite_id>2</sprite_id>
-      <sprite_name>Paddle Vertical</sprite_name>
-      <image>/images/paddle_vertical.png</image>
-      <speed>1</speed>
-      <offset>
-        <x>0</x>
-        <y>0</y>
-      </offset>
-      <shape>
-        <rectangle>
-          <size>
-            <width>50</width>
-            <height>400</height>
-          </size>
-        </rectangle>
-      </shape>
-    </sprite>
-    <sprite>
-      <sprite_id>3</sprite_id>
-      <sprite_name>Paddle Horizontal</sprite_name>
-      <image>/images/paddle_horizontal.png</image>
-      <speed>1</speed>
-      <offset>
-        <x>0</x>
-        <y>0</y>
-      </offset>
-      <shape>
-        <rectangle>
-          <size>
-            <width>400</width>
-            <height>60</height>
-          </size>
-        </rectangle>
-      </shape>
-    </sprite>
-  </sprites>
-  <backgrounds>
-    <background>
-      <background_id>0</background_id>
-      <background_name>Grey noise</background_name>
-      <image>/images/grey_noise.jpg</image>
-      <speed>1</speed>
-      <position_type>tiled</position_type>
-    </background>
-  </backgrounds>
-</setup>
+<SETUP>
+	<GAME_NAME>Test Game</GAME_NAME>
+	<CANVAS_SIZE>
+		<WIDTH>1140</WIDTH>
+		<HEIGHT>720</HEIGHT>
+	</CANVAS_SIZE>
+	<STARTING_LEVEL>0</STARTING_LEVEL>
+	<PLAYERS>
+		<MIN>1</MIN>
+		<MAX>5</MAX>
+	</PLAYERS>
+	<SPRITES>
+		<SPRITE>
+			<SPRITE_ID>0</SPRITE_ID>
+			<SPRITE_NAME>Test Sprite</SPRITE_NAME>
+			<IMAGE>images/ball.png</IMAGE>
+			<SPEED>24</SPEED>
+			<OFFSET>
+				<X>0</X>
+				<Y>0</Y>
+			</OFFSET>
+		</SPRITE>	
+		<SPRITE>
+			<SPRITE_ID>1</SPRITE_ID>
+			<SPRITE_NAME>Test Sprite</SPRITE_NAME>
+			<IMAGE>images/logo-uon.png</IMAGE>
+			<SPEED>24</SPEED>
+			<OFFSET>
+				<X>0</X>
+				<Y>0</Y>
+			</OFFSET>
+		</SPRITE>	                
+	</SPRITES>
+	<BACKGROUNDS>
+		<BACKGROUND>
+			<BACKGROUND_ID>0</BACKGROUND_ID>
+			<BACKGROUND_NAME>Test Background</BACKGROUND_NAME>
+			<IMAGE>images/ball.png</IMAGE>
+			<SPEED>24</SPEED>
+			<POSITION_TYPE>STRETCH</POSITION_TYPE>
+		</BACKGROUND>
+	</BACKGROUNDS>
+</SETUP>

@@ -56,6 +56,15 @@
                             </CHANGE_COMPONENT>
                         </ACTION_TYPE>
                     </ACTION>
+                    <ACTION>
+                        <ACTION_ID>3</ACTION_ID>
+                        <ACTION_TYPE>
+                            <CHANGE_SPRITE>
+                                <OBJECT_ID>0</OBJECT_ID>
+                                <SPRITE_ID>0</SPRITE_ID>
+                            </CHANGE_SPRITE>
+                        </ACTION_TYPE>
+                    </ACTION>
                 </ACTIONS>
             </EVENT>
             <EVENT>
@@ -83,6 +92,15 @@
                                 <COMPONENT>pos</COMPONENT>
                                 <TYPE>add</TYPE>
                             </CHANGE_COMPONENT>
+                        </ACTION_TYPE>
+                    </ACTION>
+                    <ACTION>
+                        <ACTION_ID>4</ACTION_ID>
+                        <ACTION_TYPE>
+                            <CHANGE_SPRITE>
+                                <OBJECT_ID>0</OBJECT_ID>
+                                <SPRITE_ID>1</SPRITE_ID>
+                            </CHANGE_SPRITE>
                         </ACTION_TYPE>
                     </ACTION>
                 </ACTIONS>
