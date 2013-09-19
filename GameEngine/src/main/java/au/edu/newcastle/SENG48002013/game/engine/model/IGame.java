@@ -9,9 +9,11 @@ package au.edu.newcastle.SENG48002013.game.engine.model;
  *
  * @author Ross
  */
-public interface IGame
-{
-	public void step(double dt);
-	public boolean addPlayer(long inputId);
-	public void removePlayer(long inputId);
+public interface IGame {
+
+    public void step(double dt);
+
+    public boolean addPlayer(long inputId);
+
+    public void removePlayer(long inputId);
 }

@@ -6,11 +6,12 @@
 package au.edu.newcastle.SENG48002013.game.engine.model;
 
 import au.edu.newcastle.SENG48002013.game.engine.model.environment.IGameObject;
+
 /**
  *
  * @author Ross
  */
-public interface IGameOutput 
-{
-	public IGameObject[] getOutputObjects();
+public interface IGameOutput {
+
+    public IGameObject[] getOutputObjects();
 }

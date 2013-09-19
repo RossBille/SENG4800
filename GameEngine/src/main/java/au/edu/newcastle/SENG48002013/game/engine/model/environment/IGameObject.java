@@ -11,10 +11,11 @@ import javax.vecmath.Vector2d;
  *
  * @author rossbille
  */
-public interface IGameObject
-{
-	public Vector2d getOutputPos();
-	public long getId();
-	public String getImageUrl();
-	
+public interface IGameObject {
+
+    public Vector2d getOutputPos();
+
+    public long getId();
+
+    public String getImageUrl();
 }

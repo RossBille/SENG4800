@@ -6,8 +6,7 @@ import javax.vecmath.Vector2d;
  *
  * @author Ross
  */
-public interface IInput
-{
+public interface IInput {
 
     public long getId();
 

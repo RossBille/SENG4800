@@ -15,19 +15,16 @@ import org.codehaus.jackson.map.ObjectMapper;
  * @author rossbille
  */
 @WebServlet("/PlayerManager")
-public class InputConnectionManager extends BaseServlet
-{
+public class InputConnectionManager extends BaseServlet {
 
     private long lastId;
 
-    public InputConnectionManager()
-    {
+    public InputConnectionManager() {
         lastId = 0;
     }
 
     @Override
-    protected void processRequest() throws IOException
-    {
+    protected void processRequest() throws IOException {
         Response r = new Response();
 
         //parse instruction
@@ -36,24 +33,20 @@ public class InputConnectionManager extends BaseServlet
         pnm = mapper.readValue(extractJson(), PlayerNumberMessage.class);
         System.out.println(pnm.toString());
         //check if adding or removing
-        if (pnm.isConnecting())
-        {
+        if (pnm.isConnecting()) {
             long generatedId = generateId(pnm);
             boolean addPlayer = Boss.addPlayer(generatedId);
-            if (addPlayer)
-            {
+            if (addPlayer) {
                 r.setError(false);
                 r.setCode(convert(addPlayer));
                 r.setMessage("Player has been added");
-            } else
-            {
+            } else {
                 r.setError(true);
                 r.setMessage("No Room");
                 r.setCode(ResultCode.INSUFFICIENT_ROOM);
             }
 
-        } else
-        {
+        } else {
             //remove player from the game
             Boss.removePlayer(pnm.getPlayer());
             r.setError(false);
@@ -63,32 +56,26 @@ public class InputConnectionManager extends BaseServlet
 
     }
 
-    private String extractJson()
-    {
+    private String extractJson() {
         System.out.println(request.getParameter("data"));
         return request.getParameter("data");
     }
 
-    private void respond(Response r) throws IOException
-    {
+    private void respond(Response r) throws IOException {
         response.setContentType("text/JSON");
         ObjectMapper mapper = new ObjectMapper();
         response.getWriter().write(mapper.writeValueAsString(r));
     }
 
-    private int convert(boolean result)
-    {
-        if (result)
-        {
+    private int convert(boolean result) {
+        if (result) {
             return 1;
-        } else
-        {
+        } else {
             return -1;
         }
     }
 
-    private long generateId(PlayerNumberMessage pnm)
-    {
+    private long generateId(PlayerNumberMessage pnm) {
         return ++lastId;
     }
 }

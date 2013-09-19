@@ -17,7 +17,7 @@ app.Object = (function() {
         getID: function() {
             return this.id;
         },
-        getSprite: function () {
+        getSprite: function() {
             return this.sprite;
         },
         isVisible: function() {
@@ -33,19 +33,19 @@ app.Object = (function() {
         setID: function(id) {
             this.id = id;
         },
-        setSprite: function (sprite) {
+        setSprite: function(sprite) {
             this.sprite = sprite;
         },
         isVisible: function(visible) {
             this.visible = visible;
         },
-        setX: function(x) {
+                setX: function(x) {
             this.x = x;
         },
         setY: function(y) {
             this.y = y;
         },
-    } 
+    }
     return Constructor;
 
 })();

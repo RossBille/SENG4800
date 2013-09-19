@@ -5,46 +5,35 @@
  */
 package au.edu.newcastle.SENG48002013.game.engine.processor;
 
-import au.edu.newcastle.SENG48002013.game.engine.connections.output.OutputConnectionManager;
-
-import au.edu.newcastle.SENG48002013.game.engine.connections.output.TestOutputWindow;
-import au.edu.newcastle.SENG48002013.game.engine.model.IGame;
-import au.edu.newcastle.SENG48002013.game.engine.model.IGameOutput;
-import au.edu.newcastle.SENG48002013.game.engine.resources.GameBuilder;
 import java.io.IOException;
 
 /**
  *
  * @author Ross
  */
-public class Boss
-{
-	private static boolean running = false;
-	private static Runner runner = null;
-	
-	public static boolean addPlayer(long inputId)
-	{
-            return runner.addPlayer(inputId);
-	}
+public class Boss {
 
-	public static void removePlayer(long inputId)
-	{
-            runner.removePlayer(inputId);
-	}
-	
-	public static void start() throws IOException
-	{
-            runner = new Runner();
-            runner.start();
-	}
-	
-	public static void stop()
-	{
-            runner.stopRunning();
-	}
-	
-	public static boolean isRunning()
-	{
-		return running;
-	}
+    private static boolean running = false;
+    private static Runner runner = null;
+
+    public static boolean addPlayer(long inputId) {
+        return runner.addPlayer(inputId);
+    }
+
+    public static void removePlayer(long inputId) {
+        runner.removePlayer(inputId);
+    }
+
+    public static void start() throws IOException {
+        runner = new Runner();
+        runner.start();
+    }
+
+    public static void stop() {
+        runner.stopRunning();
+    }
+
+    public static boolean isRunning() {
+        return running;
+    }
 }

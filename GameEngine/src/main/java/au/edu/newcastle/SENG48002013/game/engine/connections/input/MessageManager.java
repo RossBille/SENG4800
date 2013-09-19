@@ -19,24 +19,20 @@ import org.codehaus.jackson.map.ObjectMapper;
  * @author rossbille
  */
 @ServerEndpoint("/MessageManager")
-public class MessageManager
-{
+public class MessageManager {
 
     private static long id;
     private static Set<Session> peers = Collections.synchronizedSet(new HashSet<Session>());
     private final int ALLOWED_CONNECTIONS = 1;
 
     @OnOpen
-    public void onOpen(Session peer)
-    {
+    public void onOpen(Session peer) {
         //check that they have a correct key to act as input to the engine
 
         //check the current number of connections
-        if (currentPeers() < ALLOWED_CONNECTIONS)
-        {
+        if (currentPeers() < ALLOWED_CONNECTIONS) {
             peers.add(peer);
-        } else
-        {
+        } else {
             //log the access
             //throw error
             throw new IllegalAccessError(String.format("Only %d connection(s) at a time", ALLOWED_CONNECTIONS));
@@ -44,18 +40,15 @@ public class MessageManager
     }
 
     @OnClose
-    public void onClose(Session peer)
-    {
+    public void onClose(Session peer) {
         peers.remove(peer);
-        if (peers.size() <= 0)
-        {
+        if (peers.size() <= 0) {
             //TODO: decide what to do when input drops out						
         }
     }
 
     @OnMessage
-    public void onMessage(String Message) throws IOException
-    {
+    public void onMessage(String Message) throws IOException {
         //process the input
         System.out.println("GAME ENGINE" + Message);
         ObjectMapper mapper = new ObjectMapper();
@@ -70,13 +63,11 @@ public class MessageManager
         InputManager.addInput(input);
     }
 
-    private long getNextId()
-    {
+    private long getNextId() {
         return ++id;
     }
 
-    public int currentPeers()
-    {
+    public int currentPeers() {
         return peers.size();
     }
 }

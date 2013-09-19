@@ -10,25 +10,20 @@ import javax.servlet.annotation.WebServlet;
  * @author rossbille
  */
 @WebServlet("/ignition")
-public class UpdateManagerServlet extends BaseServlet
-{
+public class UpdateManagerServlet extends BaseServlet {
 
     @Override
-    protected void processRequest() throws IOException
-    {
-		String path; 
-		if(request.getParameter("path") == null)
-		{		
-			path = getServletContext().getRealPath("/config/DefaultGame/");
-		}else{
-			path = request.getParameter("path");
-		}
-		
-        if (authenticated())
-        {
+    protected void processRequest() throws IOException {
+        String path;
+        if (request.getParameter("path") == null) {
+            path = getServletContext().getRealPath("/config/DefaultGame/");
+        } else {
+            path = request.getParameter("path");
+        }
+
+        if (authenticated()) {
             String action = request.getParameter("action");
-            switch (action)
-            {
+            switch (action) {
                 case "start":
                     UpdateManager.start(path);
                 case "stop":
@@ -39,8 +34,7 @@ public class UpdateManagerServlet extends BaseServlet
         }
     }
 
-    private boolean authenticated()
-    {
+    private boolean authenticated() {
         return true; //TODO some form of authentication
     }
 }
