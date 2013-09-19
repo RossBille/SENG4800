@@ -22,7 +22,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 @ServerEndpoint("/output")
 public class OutputConnectionManager {
 
-    private static final int ALLOWED_CONNECTIONS = 1;
+    private static final int ALLOWED_CONNECTIONS = 12;
     private static Set<Session> peers = Collections.synchronizedSet(new HashSet<Session>());
 
     /**
