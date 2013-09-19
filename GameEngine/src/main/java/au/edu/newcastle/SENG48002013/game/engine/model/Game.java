@@ -114,7 +114,7 @@ public class Game implements IGame, IGameOutput {
 
     private void activatePlayers() {
         while (addPlayerQueue.size() > 0) {
-            players[activePlayers - 1].setInputId(addPlayerQueue.remove());
+            players[activePlayers].setInputId(addPlayerQueue.remove());
             activePlayers++;
         }
     }

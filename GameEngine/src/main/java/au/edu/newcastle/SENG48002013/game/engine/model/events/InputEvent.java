@@ -49,9 +49,13 @@ public class InputEvent extends BaseEvent {
     }
 
     public int evaluate(double dt) {
+        if(player.getInput() == null) return -1;
         boolean triggerEvents = false;
         boolean isPosition = player.getInput().isPosition();
         Vector2d inputVec = player.getInput().getValue();
+        //System.out.println("X:" + inputVec.x);
+        //System.out.println("Y:" + inputVec.y);
+        //System.out.println("IsPos:" + isPosition);
         switch (type) {
             case ANY: {
                 if (inputVec.lengthSquared() != 0) {

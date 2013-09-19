@@ -35,9 +35,7 @@ public class ConfigReader {
     public static NodeList readLevels() {
         Element docEle = loadXmlFile(LEVELS);
         // get a list of the levels
-        NodeList levelsNodes = docEle.getElementsByTagName("LEVELS");
-        Element levelsElement = (Element) levelsNodes.item(0);
-        NodeList levelNodes = levelsElement.getElementsByTagName("LEVEL");
+        NodeList levelNodes = docEle.getElementsByTagName("LEVEL");
         return levelNodes;
     }
 

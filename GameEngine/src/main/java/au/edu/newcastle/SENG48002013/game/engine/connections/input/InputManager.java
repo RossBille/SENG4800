@@ -12,10 +12,10 @@ public class InputManager {
     private static HashMap<Long, Input> inputs = new HashMap<Long, Input>();
 
     public static void addInput(Input input) {
-        if (!(inputs.containsKey(input.getId()) && inputs.get(input.getId()).isAccessed())) {
+        //if (!(inputs.containsKey(input.getId()) && inputs.get(input.getId()).isAccessed())) {
             inputs.put(input.getId(), input);
-            System.out.println("INPUT MANAGER:i" + input.getValue());
-        }
+            System.out.println("INPUT MANAGER: id=" + input.getId() + " val=" + input.getValue());
+        //}
     }
 
     public static IInput getInput(long id) {
