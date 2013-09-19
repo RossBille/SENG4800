@@ -23,8 +23,9 @@ public class OutputSetup extends BaseServlet {
         ObjectMapper mapper = new ObjectMapper();
         PrintWriter out = response.getWriter();
         SetupMessage setupMessages = GameResources.getResources();
-        String output = request.getParameter("callback") + "(" + mapper.writeValueAsString(setupMessages) + ")";
-        System.out.println("OUTPUT" + output);
+        String outMessages = mapper.writeValueAsString(setupMessages);
+        String callback = request.getParameter("callback");
+        String output = String.format("%s(%s)", callback, outMessages);
         out.print(output);
     }
 }
