@@ -231,7 +231,7 @@ public class Engine implements ServletContextListener
     public void contextInitialized(ServletContextEvent sce)
     {
         //these hardcoded values can stay for now.
-        Engine.manager = new SecurityManager(10000, "ws://localhost:8080/Input/endpoint", this);
+        Engine.manager = new SecurityManager(10000, "ws://localhost:8181/Input/endpoint", this);
         sce.getServletContext().setAttribute("securityManager", Engine.manager);
         Engine.engineChannel = new WebSocketClient();
         
