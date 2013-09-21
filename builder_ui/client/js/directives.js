@@ -129,12 +129,12 @@ App.directive('droppable', function ($compile) {
                                 y: Math.round(top_offset * scope.canvas.multiplier)
                             },
                             start_vel: {
-                                x: 1,
-                                y: 1
+                                x: 0,
+                                y: 0
                             },
                             start_acc: {
-                                x: 1,
-                                y: 1
+                                x: 0,
+                                y: 0
                             }
                         };
 
