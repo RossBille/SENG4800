@@ -264,9 +264,7 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
             else if ($scope.selected_action_type.action_type.name === 'Reflect') {
                 $scope.current_action.action_type = {
                     reflect: {
-                        object_id: '',
-                        surface_object_id: '',
-                        surface_level_id: ''
+                        object_id: ''
                     }
                 }
             }
@@ -308,6 +306,10 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         $scope.selected_action_type = {
             action_type: null
         };
+
+        $scope.selected_reflect_option = {
+            reflect_option: null
+        };
     };
 
     $scope.cancelAction = function () {
@@ -316,6 +318,30 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         $scope.current_event.actions.action.splice(action_index, 1);
 
         action_index--;
+    };
+
+    /* REFLECT ACTION */
+    $scope.reflect_option_views = [
+        {name: 'Object', partial: 'views/actions/reflect_object.html'},
+        {name: 'Level', partial: 'views/actions/reflect_level.html'}
+    ]
+
+    $scope.selected_reflect_option = {
+        reflect_option: null
+    };
+
+    $scope.selectedReflectOptionChanged = function () {
+        console.log('selected_reflect_option:');
+        console.log($scope.selected_reflect_option.reflect_option);
+
+        if ($scope.selected_reflect_option.reflect_option != null) {
+            if ($scope.selected_reflect_option.reflect_option.name === 'Object') {
+                $scope.current_action.action_type.reflect.surface_object_id = '';
+            }
+            else if ($scope.selected_reflect_option.reflect_option.name === 'Level') {
+                $scope.current_action.action_type.reflect.surface_level_id = '';
+            }
+        }
     };
 
     /* SCENE ITEMS */

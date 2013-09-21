@@ -1,8 +1,8 @@
 <levels>
   <level>
     <level_id>0</level_id>
-    <level_name>Level 0</level_name>
-    <background_id></background_id>
+    <level_name>First Level</level_name>
+    <background_id>0</background_id>
     <objects>
       <object>
         <object_id>0</object_id>
@@ -15,8 +15,8 @@
         </object_shape>
         <object_visible>yes</object_visible>
         <start_pos>
-          <x>154</x>
-          <y>124</y>
+          <x>286</x>
+          <y>236</y>
         </start_pos>
         <start_vel>
           <x>1</x>
@@ -29,20 +29,17 @@
       </object>
       <object>
         <object_id>1</object_id>
-        <object_name>Paddle Vertical</object_name>
-        <sprite_id>3</sprite_id>
+        <object_name>Golf Ball</object_name>
+        <sprite_id>1</sprite_id>
         <object_shape>
-          <rectangle>
-            <size>
-              <width>50</width>
-              <height>400</height>
-            </size>
-          </rectangle>
+          <circle>
+            <radius>75</radius>
+          </circle>
         </object_shape>
         <object_visible>yes</object_visible>
         <start_pos>
-          <x>982</x>
-          <y>170</y>
+          <x>782</x>
+          <y>240</y>
         </start_pos>
         <start_vel>
           <x>1</x>
@@ -71,7 +68,6 @@
               <reflect>
                 <object_id>0</object_id>
                 <surface_object_id>1</surface_object_id>
-                <surface_level_id></surface_level_id>
               </reflect>
             </action_type>
           </action>
@@ -93,7 +89,6 @@
             <action_type>
               <reflect>
                 <object_id>0</object_id>
-                <surface_object_id></surface_object_id>
                 <surface_level_id>0</surface_level_id>
               </reflect>
             </action_type>

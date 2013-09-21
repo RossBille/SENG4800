@@ -40,57 +40,6 @@
         </circle>
       </shape>
     </sprite>
-    <sprite>
-      <sprite_id>2</sprite_id>
-      <sprite_name>Tennis Ball</sprite_name>
-      <image>/images/tennis_ball.png</image>
-      <speed>1</speed>
-      <offset>
-        <x>0</x>
-        <y>0</y>
-      </offset>
-      <shape>
-        <circle>
-          <radius>87.5</radius>
-        </circle>
-      </shape>
-    </sprite>
-    <sprite>
-      <sprite_id>3</sprite_id>
-      <sprite_name>Paddle Vertical</sprite_name>
-      <image>/images/paddle_vertical.png</image>
-      <speed>1</speed>
-      <offset>
-        <x>0</x>
-        <y>0</y>
-      </offset>
-      <shape>
-        <rectangle>
-          <size>
-            <width>50</width>
-            <height>400</height>
-          </size>
-        </rectangle>
-      </shape>
-    </sprite>
-    <sprite>
-      <sprite_id>4</sprite_id>
-      <sprite_name>Paddle Horizontal</sprite_name>
-      <image>/images/paddle_horizontal.png</image>
-      <speed>1</speed>
-      <offset>
-        <x>0</x>
-        <y>0</y>
-      </offset>
-      <shape>
-        <rectangle>
-          <size>
-            <width>400</width>
-            <height>60</height>
-          </size>
-        </rectangle>
-      </shape>
-    </sprite>
   </sprites>
   <backgrounds>
     <background>

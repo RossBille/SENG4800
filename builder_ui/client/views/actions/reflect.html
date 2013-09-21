@@ -8,22 +8,21 @@
             </select>
         </div>
     </div>
-
-    <div class="input-container">
-        <label class="input-label">Surface Object</label>
-
-        <div class="input">
-            <select ng-model="current_action.action_type.reflect.surface_object_id" ng-options="scene_object.object_id as scene_object.object_name + ' (ID: ' + scene_object.object_id + ')' for scene_object in current_level.objects.object">
-                <option value="">Surface object</option>
-            </select>
-        </div>
-    </div>
 </div>
 
 <div class="item-detail-section last">
     <div class="input-container">
-        <label for="level_id" class="input-label">Surface Level ID:</label>
+        <label class="input-label">Reflect Off</label>
 
-        <div class="input"><input type="number" id="level_id" ng-model="current_action.action_type.reflect.surface_level_id" /></div>
+        <div class="input">
+            <select ng-model="selected_reflect_option.reflect_option"
+                    ng-options="reflect_option.name for reflect_option in reflect_option_views"
+                    ng-change="selectedReflectOptionChanged()">
+                <option value="">Reflect off...</option>
+            </select>
+        </div>
+    </div>
+
+    <div ng-include src="selected_reflect_option.reflect_option.partial">
     </div>
 </div>
