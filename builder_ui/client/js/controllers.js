@@ -323,7 +323,7 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
     /* REFLECT ACTION */
     $scope.reflect_option_views = [
         {name: 'Object', partial: 'views/actions/reflect_object.html'},
-        {name: 'Level', partial: 'views/actions/reflect_level.html'}
+        {name: 'Level', partial: ''}
     ]
 
     $scope.selected_reflect_option = {
@@ -337,9 +337,11 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         if ($scope.selected_reflect_option.reflect_option != null) {
             if ($scope.selected_reflect_option.reflect_option.name === 'Object') {
                 $scope.current_action.action_type.reflect.surface_object_id = '';
+                delete $scope.current_action.action_type.reflect.surface_level_id;
             }
             else if ($scope.selected_reflect_option.reflect_option.name === 'Level') {
-                $scope.current_action.action_type.reflect.surface_level_id = '';
+                $scope.current_action.action_type.reflect.surface_level_id = $scope.current_level.level_id;
+                delete $scope.current_action.action_type.reflect.surface_object_id;
             }
         }
     };
