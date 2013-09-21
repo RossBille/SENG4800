@@ -76,7 +76,7 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
 
     /* EVENTS */
     $scope.event_view_URL = '';
-    $scope.new_action_control_URL = '';
+    $scope.event_selected_control_URL = '';
 
     $scope.events = {
         event_type_views: [
@@ -104,7 +104,7 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         console.log($scope.selected_event_type.event_type);
 
         if ($scope.selected_event_type.event_type != null) {
-            $scope.new_action_control_URL = 'views/actions/new_action_control.html';
+            $scope.event_selected_control_URL = 'views/actions/event_selected_control.html';
 
             if ($scope.selected_event_type.event_type.name === 'Collision') {
                 $scope.current_event.event_type = {
@@ -149,7 +149,7 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
             }
         }
         else {
-            $scope.new_action_control_URL = '';
+            $scope.event_selected_control_URL = '';
         }
     };
 
@@ -158,6 +158,10 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
     $scope.newEvent = function () {
         event_index++;
         action_index = -1;
+
+        $scope.saveEvent();
+        $scope.saveAction();
+
         $scope.event_view_URL = 'views/event_detail.html';
 
         var new_event = {
@@ -175,7 +179,7 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
 
     $scope.saveEvent = function () {
         $scope.event_view_URL = '';
-        $scope.new_action_control_URL = '';
+        $scope.event_selected_control_URL = '';
 
         $scope.selected_event_type = {
             event_type: null

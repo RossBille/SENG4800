@@ -1,22 +1,22 @@
 <levels>
   <level>
     <level_id>0</level_id>
-    <level_name>First Level</level_name>
-    <background_id>0</background_id>
+    <level_name>Level 0</level_name>
+    <background_id></background_id>
     <objects>
       <object>
         <object_id>0</object_id>
-        <object_name>Soccer Ball</object_name>
+        <object_name>Tennis Ball</object_name>
         <sprite_id>0</sprite_id>
         <object_shape>
           <circle>
-            <radius>100</radius>
+            <radius>87.5</radius>
           </circle>
         </object_shape>
         <object_visible>yes</object_visible>
         <start_pos>
-          <x>286</x>
-          <y>236</y>
+          <x>234</x>
+          <y>158</y>
         </start_pos>
         <start_vel>
           <x>1</x>
@@ -29,17 +29,20 @@
       </object>
       <object>
         <object_id>1</object_id>
-        <object_name>Golf Ball</object_name>
+        <object_name>Paddle Vertical</object_name>
         <sprite_id>1</sprite_id>
         <object_shape>
-          <circle>
-            <radius>75</radius>
-          </circle>
+          <rectangle>
+            <size>
+              <width>50</width>
+              <height>400</height>
+            </size>
+          </rectangle>
         </object_shape>
         <object_visible>yes</object_visible>
         <start_pos>
-          <x>782</x>
-          <y>240</y>
+          <x>716</x>
+          <y>190</y>
         </start_pos>
         <start_vel>
           <x>1</x>
@@ -65,10 +68,10 @@
           <action>
             <action_id>0</action_id>
             <action_type>
-              <reflect>
+              <change_sprite>
                 <object_id>0</object_id>
-                <surface_object_id>1</surface_object_id>
-              </reflect>
+                <sprite_id>1</sprite_id>
+              </change_sprite>
             </action_type>
           </action>
         </actions>
@@ -79,21 +82,11 @@
           <boundary>
             <object_id>0</object_id>
             <level_id>0</level_id>
-            <edges>all</edges>
+            <edges>top</edges>
             <allow_overlap>no</allow_overlap>
           </boundary>
         </event_type>
-        <actions>
-          <action>
-            <action_id>0</action_id>
-            <action_type>
-              <reflect>
-                <object_id>0</object_id>
-                <surface_level_id>0</surface_level_id>
-              </reflect>
-            </action_type>
-          </action>
-        </actions>
+        <actions></actions>
       </event>
     </events>
   </level>

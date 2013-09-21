@@ -12,8 +12,8 @@
   <sprites>
     <sprite>
       <sprite_id>0</sprite_id>
-      <sprite_name>Soccer Ball</sprite_name>
-      <image>/images/ball.png</image>
+      <sprite_name>Tennis Ball</sprite_name>
+      <image>/images/tennis_ball.png</image>
       <speed>1</speed>
       <offset>
         <x>0</x>
@@ -21,40 +21,28 @@
       </offset>
       <shape>
         <circle>
-          <radius>100</radius>
+          <radius>87.5</radius>
         </circle>
       </shape>
     </sprite>
     <sprite>
       <sprite_id>1</sprite_id>
-      <sprite_name>Golf Ball</sprite_name>
-      <image>/images/golf_ball.png</image>
+      <sprite_name>Paddle Vertical</sprite_name>
+      <image>/images/paddle_vertical.png</image>
       <speed>1</speed>
       <offset>
         <x>0</x>
         <y>0</y>
       </offset>
       <shape>
-        <circle>
-          <radius>75</radius>
-        </circle>
+        <rectangle>
+          <size>
+            <width>50</width>
+            <height>400</height>
+          </size>
+        </rectangle>
       </shape>
     </sprite>
   </sprites>
-  <backgrounds>
-    <background>
-      <background_id>0</background_id>
-      <background_name>Grey noise</background_name>
-      <image>/images/grey_noise.jpg</image>
-      <speed>1</speed>
-      <position_type>tiled</position_type>
-    </background>
-    <background>
-      <background_id>1</background_id>
-      <background_name>Geometry</background_name>
-      <image>/images/geometry.png</image>
-      <speed>1</speed>
-      <position_type>tiled</position_type>
-    </background>
-  </backgrounds>
+  <backgrounds></backgrounds>
 </setup>
