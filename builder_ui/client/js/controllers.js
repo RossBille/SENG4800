@@ -62,7 +62,6 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
     $scope.newLevel = function () {
         console.log('now creating new level');
 
-        //$scope.scene_objects = [];
         scene_index = 0;
         event_index = 0;
 
@@ -86,31 +85,6 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
             {name: 'Timer', partial: 'views/events/timer.html'},
             {name: 'Input', partial: 'views/events/input.html'}
         ],
-        event_types: {
-            collision: {
-                object_id1: '',
-                object_id2: '',
-                allow_overlap: 'no'
-            },
-            boundary: {
-                object_id: '',
-                level_id: '',
-                edges: '',
-                allow_overlap: 'no'
-            },
-            timer: {
-                length: '',
-                repeat: 'no'
-            },
-            input: {
-                player_id: '',
-                value: {
-                    x: '',
-                    y: ''
-                },
-                type: ''
-            }
-        },
         event_type_options: {
             edges_options: [
                 'top', 'bottom', 'left', 'right', 'all'
@@ -122,39 +96,55 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
     }
 
     $scope.selected_event_type = {
-        event_type: {}
+        event_type: null
     };
 
     $scope.selectedEventChanged = function () {
         console.log('selected_event_type:');
         console.log($scope.selected_event_type.event_type);
 
-        $scope.new_action_control_URL = 'views/actions/new_action_control.html';
-
         if ($scope.selected_event_type.event_type != null) {
-			console.log('current event inside selectedEventChanged');
-			console.log($scope.current_event);
-		
+            $scope.new_action_control_URL = 'views/actions/new_action_control.html';
+
             if ($scope.selected_event_type.event_type.name === 'Collision') {
                 $scope.current_event.event_type = {
-                    collision: $scope.events.event_types.collision
+                    collision: {
+                        object_id1: '',
+                        object_id2: '',
+                        allow_overlap: 'no'
+                    }
                 }
             }
             else if ($scope.selected_event_type.event_type.name === 'Boundary') {
                 $scope.current_event.event_type = {
-                    boundary: $scope.events.event_types.boundary
+                    boundary: {
+                        object_id: '',
+                        level_id: '',
+                        edges: '',
+                        allow_overlap: 'no'
+                    }
                 }
 
                 $scope.current_event.event_type.boundary.level_id = level_index;
             }
             else if ($scope.selected_event_type.event_type.name === 'Timer') {
                 $scope.current_event.event_type = {
-                    timer: $scope.events.event_types.timer
+                    timer: {
+                        length: '',
+                        repeat: 'no'
+                    }
                 }
             }
             else if ($scope.selected_event_type.event_type.name === 'Input') {
                 $scope.current_event.event_type = {
-                    input: $scope.events.event_types.input
+                    input: {
+                        player_id: '',
+                        value: {
+                            x: '',
+                            y: ''
+                        },
+                        type: ''
+                    }
                 }
             }
         }
@@ -165,19 +155,10 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
 
     $scope.current_event = null;
 
-    $scope.setCurrentEvent = function (index) {
-		console.log(index);
-        $scope.current_event = $scope.game.levels.level[level_index].events.event[index];
-    };
-
     $scope.newEvent = function () {
         event_index++;
-
+        action_index = -1;
         $scope.event_view_URL = 'views/event_detail.html';
-		
-		$scope.selected_event_type = {
-            event_type: {}
-        };
 
         var new_event = {
             event_id: event_index,
@@ -188,33 +169,23 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         };
 
         $scope.game.levels.level[level_index].events.event.push(new_event);
-		
-		console.log('new event created with ID ' + event_index);
-		console.log('event array:');
-		console.log($scope.game.levels.level[level_index].events.event);
 
-        //$scope.setCurrentEvent(event_index);
-		$scope.current_event = $scope.game.levels.level[level_index].events.event[event_index];
+        $scope.current_event = $scope.current_level.events.event[event_index];
     };
 
     $scope.saveEvent = function () {
         $scope.event_view_URL = '';
         $scope.new_action_control_URL = '';
 
-        /*$scope.selected_event_type = {
+        $scope.selected_event_type = {
             event_type: null
-        };*/
-		
-		$scope.current_event = null;
-		
-		console.log('event array at end of save:');
-		console.log($scope.game.levels.level[level_index].events.event);
+        };
     };
 
     $scope.cancelEvent = function () {
         $scope.saveEvent();
 
-        $scope.game.levels.level[level_index].events.event.splice(event_index, 1);
+        $scope.current_level.events.event.splice(event_index, 1);
 
         event_index--;
     };
@@ -232,39 +203,6 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
             {name: 'Reflect', partial: 'views/actions/reflect.html'},
             {name: 'Input', partial: 'views/actions/input.html'}
         ],
-        action_types: {
-            change_sprite: {
-                object_id: '',
-                sprite_id: ''
-            },
-            change_score: {
-                player_id: '',
-                value: '',
-                type: ''
-            },
-            change_component: {
-                object_id: '',
-                value: {
-                    x: '',
-                    y: ''
-                },
-                component: '',
-                type: ''
-            },
-            change_level: {
-                level_id: ''
-            },
-            reflect: {
-                object_id: '',
-                surface_object_id: '',
-                surface_level_id: ''
-            },
-            input: {
-                object_id: '',
-                player_id: '',
-                type: ''
-            }
-        },
         action_type_options: {
             type_options: [
                 'add', 'sub', 'set'
@@ -288,32 +226,57 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
 
             if ($scope.selected_action_type.action_type.name === 'Change sprite') {
                 $scope.current_action.action_type = {
-                    change_sprite: $scope.actions.action_types.change_sprite
+                    change_sprite: {
+                        object_id: '',
+                        sprite_id: ''
+                    }
                 }
             }
             else if ($scope.selected_action_type.action_type.name === 'Change score') {
                 $scope.current_action.action_type = {
-                    change_score: $scope.actions.action_types.change_score
+                    change_score: {
+                        player_id: '',
+                        value: '',
+                        type: ''
+                    }
                 }
             }
             else if ($scope.selected_action_type.action_type.name === 'Change component') {
                 $scope.current_action.action_type = {
-                    change_component: $scope.actions.action_types.change_component
+                    change_component: {
+                        object_id: '',
+                        value: {
+                            x: '',
+                            y: ''
+                        },
+                        component: '',
+                        type: ''
+                    }
                 }
             }
             else if ($scope.selected_action_type.action_type.name === 'Change level') {
                 $scope.current_action.action_type = {
-                    change_level: $scope.actions.action_types.change_level
+                    change_level: {
+                        level_id: ''
+                    }
                 }
             }
             else if ($scope.selected_action_type.action_type.name === 'Reflect') {
                 $scope.current_action.action_type = {
-                    reflect: $scope.actions.action_types.reflect
+                    reflect: {
+                        object_id: '',
+                        surface_object_id: '',
+                        surface_level_id: ''
+                    }
                 }
             }
             else if ($scope.selected_action_type.action_type.name === 'Input') {
                 $scope.current_action.action_type = {
-                    input: $scope.actions.action_types.input
+                    input: {
+                        object_id: '',
+                        player_id: '',
+                        type: ''
+                    }
                 }
             }
         }
@@ -324,13 +287,8 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
 
     $scope.current_action = null;
 
-    $scope.setCurrentAction = function (index) {
-        $scope.current_action = $scope.game.levels.level[level_index].events.event[event_index].actions.action[index];
-    };
-
     $scope.newAction = function () {
         action_index++;
-
         $scope.action_view_URL = 'views/action_detail.html';
 
         var new_action = {
@@ -338,9 +296,9 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
             action_type: {}
         };
 
-        $scope.game.levels.level[level_index].events.event[event_index].actions.action.push(new_action);
+        $scope.current_event.actions.action.push(new_action);
 
-        $scope.setCurrentAction(action_index);
+        $scope.current_action = $scope.current_event.actions.action[action_index];
     };
 
     $scope.saveAction = function () {
@@ -355,7 +313,7 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
     $scope.cancelAction = function () {
         $scope.saveAction();
 
-        $scope.game.levels.level[level_index].events.event[event_index].actions.action.splice(action_index, 1);
+        $scope.current_event.actions.action.splice(action_index, 1);
 
         action_index--;
     };
@@ -365,10 +323,6 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
     $scope.object_shape_view_URL = '';
     $scope.selected_item = null;
 
-    $scope.setSelectedItem = function (index) {
-        $scope.selected_item = $scope.current_level.objects.object[index];
-    };
-
     $scope.clicked = function (index) {
         console.log('scene item clicked');
         console.log(index);
@@ -376,7 +330,7 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         $('.scene .scene-object-container').removeClass('selected');
         $('.scene img[data-index="' + index + '"]').closest('.scene-object-container').addClass('selected');
 
-        $scope.setSelectedItem(index);
+        $scope.selected_item = $scope.current_level.objects.object[index];
         $scope.view_URL = 'views/object_detail.html';
 
         if ($scope.selected_item.object_shape.circle) {
@@ -385,9 +339,6 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         else {
             $scope.object_shape_view_URL = 'views/shapes/object_rectangle.html';
         }
-
-        console.log('game:');
-        console.log($scope.game);
     };
 
     $scope.getObjectShape = function () {
@@ -401,12 +352,11 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
 
     /* GAME */
     $scope.saveGame = function () {
-        console.log('now saving and POSTing game');
+        console.log('now saving and sending game to server');
 
         var game_levels = {
-            levels: {}
+            levels: $scope.game.levels
         };
-        game_levels.levels = $scope.game.levels;
 
         var form_data_xml = {
             data: json2xml(game_levels),
@@ -431,18 +381,12 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
             }
         }
     };
-
-    console.log('game at end of levels controller:');
-    console.log($scope.game);
 }
 
 function ConfigController($scope, $location, GameService, ListService, CanvasService, ConfigCompletionService, SaveXML) {
     $scope.game = GameService.game;
     $scope.canvas = CanvasService.canvas;
     $scope.config_completed = ConfigCompletionService.config_completed;
-
-    console.log('initial game:');
-    console.log($scope.game);
 
     $scope.saveConfig = function () {
         var sprite_index = 0;
@@ -504,11 +448,9 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
             background_index++;
         });
 
-        var setup = {};
-        setup.setup = $scope.game.setup;
-
-        console.log('game.setup:');
-        console.log($scope.game.setup);
+        var setup = {
+            setup: $scope.game.setup
+        };
 
         var form_data_xml = {
             data: json2xml(setup),
@@ -537,15 +479,10 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
 
     /* SERVER DATA */
     ListService.getObjects(function (data) {
-        //console.log('data:');
-        console.log(data);
-
         $scope.sprites = data.objects.Objects;
 
         console.log('sprites:');
         console.log($scope.sprites);
-
-        console.log('sprite IDs:');
 
         angular.forEach($scope.sprites, function (value, key) {
             if(value.sprite_id > sprite_index) {
@@ -554,10 +491,9 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
         });
 
         $scope.backgrounds = data.backgrounds.Backgrounds;
+
         console.log('backgrounds:');
         console.log($scope.backgrounds);
-
-        console.log('background IDs:');
 
         angular.forEach($scope.backgrounds, function (value, key) {
             if(value.background_id > background_index) {
@@ -602,7 +538,6 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
     $scope.saveSprite = function () {
         $scope.sprites.push($scope.current_sprite);
         $scope.current_sprite = null;
-
         $scope.sprite_view_URL = '';
     };
 
@@ -641,7 +576,6 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
     };
 
     /* BACKGROUNDS */
-    //$scope.backgrounds = [];
     $scope.background_view_URL = '';
 
     $scope.position_type_options = [
@@ -669,7 +603,6 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
     $scope.saveBackground = function () {
         $scope.backgrounds.push($scope.current_background);
         $scope.current_background = null;
-
         $scope.background_view_URL = '';
     };
 

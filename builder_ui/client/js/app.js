@@ -6,15 +6,15 @@
 //var App = angular.module('App', []);
 
 var App = angular.module('App', []).
-    config(['$routeProvider', function($routeProvider) {
+    config(['$routeProvider', function ($routeProvider) {
         $routeProvider.
             when('/config', {templateUrl: 'views/config.html', controller: ConfigController}).
             when('/levels', {templateUrl: 'views/levels.html', controller: LevelsController}).
             otherwise({redirectTo: '/config'});
     }]);
 
-App.run(function($rootScope, $templateCache) {
-    $rootScope.$on('$viewContentLoaded', function() {
+App.run(function ($rootScope, $templateCache) {
+    $rootScope.$on('$viewContentLoaded', function () {
         $templateCache.removeAll();
     });
 });

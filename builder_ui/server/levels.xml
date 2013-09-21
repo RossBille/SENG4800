@@ -6,31 +6,31 @@
     <objects>
       <object>
         <object_id>0</object_id>
-        <object_name>Tennis Ball</object_name>
+        <object_name>Soccer Ball</object_name>
         <sprite_id>0</sprite_id>
         <object_shape>
           <circle>
-            <radius>87.5</radius>
+            <radius>100</radius>
           </circle>
         </object_shape>
         <object_visible>yes</object_visible>
         <start_pos>
-          <x>441</x>
-          <y>203</y>
+          <x>154</x>
+          <y>124</y>
         </start_pos>
         <start_vel>
-          <x>5</x>
-          <y>3</y>
+          <x>1</x>
+          <y>1</y>
         </start_vel>
         <start_acc>
-          <x>0</x>
-          <y>0</y>
+          <x>1</x>
+          <y>1</y>
         </start_acc>
       </object>
       <object>
         <object_id>1</object_id>
         <object_name>Paddle Vertical</object_name>
-        <sprite_id>1</sprite_id>
+        <sprite_id>3</sprite_id>
         <object_shape>
           <rectangle>
             <size>
@@ -41,16 +41,16 @@
         </object_shape>
         <object_visible>yes</object_visible>
         <start_pos>
-          <x>963</x>
-          <y>147</y>
+          <x>982</x>
+          <y>170</y>
         </start_pos>
         <start_vel>
-          <x>0</x>
-          <y>-4</y>
+          <x>1</x>
+          <y>1</y>
         </start_vel>
         <start_acc>
-          <x>0</x>
-          <y>0</y>
+          <x>1</x>
+          <y>1</y>
         </start_acc>
       </object>
     </objects>
@@ -58,10 +58,32 @@
       <event>
         <event_id>0</event_id>
         <event_type>
+          <collision>
+            <object_id1>0</object_id1>
+            <object_id2>1</object_id2>
+            <allow_overlap>no</allow_overlap>
+          </collision>
+        </event_type>
+        <actions>
+          <action>
+            <action_id>0</action_id>
+            <action_type>
+              <reflect>
+                <object_id>0</object_id>
+                <surface_object_id>1</surface_object_id>
+                <surface_level_id></surface_level_id>
+              </reflect>
+            </action_type>
+          </action>
+        </actions>
+      </event>
+      <event>
+        <event_id>1</event_id>
+        <event_type>
           <boundary>
             <object_id>0</object_id>
             <level_id>0</level_id>
-            <edges>bottom</edges>
+            <edges>all</edges>
             <allow_overlap>no</allow_overlap>
           </boundary>
         </event_type>
@@ -75,23 +97,6 @@
                 <surface_level_id>0</surface_level_id>
               </reflect>
             </action_type>
-          </action>
-        </actions>
-      </event>
-      <event>
-        <event_id>1</event_id>
-        <event_type>
-          <boundary>
-            <object_id>0</object_id>
-            <level_id>0</level_id>
-            <edges>bottom</edges>
-            <allow_overlap>no</allow_overlap>
-          </boundary>
-        </event_type>
-        <actions>
-          <action>
-            <action_id>1</action_id>
-            <action_type/>
           </action>
         </actions>
       </event>
