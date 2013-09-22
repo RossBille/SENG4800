@@ -22,6 +22,20 @@
         </event_type>
         <actions></actions>
       </event>
+      <event>
+        <event_id>2</event_id>
+        <event_type>
+          <input>
+            <player_id>5</player_id>
+            <value>
+              <x>5</x>
+              <y>5</y>
+            </value>
+            <type>up</type>
+          </input>
+        </event_type>
+        <actions></actions>
+      </event>
     </events>
   </level>
 </levels>

@@ -110,13 +110,23 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         event_type: null
     };
 
+    $scope.old_selected_event_type = {
+        event_type: null
+    };
+
     $scope.selectedEventChanged = function () {
         console.log('selected_event_type:');
         console.log($scope.selected_event_type.event_type);
 
         if ($scope.selected_event_type.event_type !== null) {
-            $scope.event_selected_control_URL = 'views/actions/event_selected_control.html';
+            if ($scope.selected_event_type.event_type.name === 'Step') {
+                $scope.selected_event_type.event_type = $scope.getEventTypeByName($scope.old_selected_event_type.event_type.name);
+                return;
+            }
 
+            $scope.old_selected_event_type.event_type = $scope.selected_event_type.event_type;
+
+            $scope.event_selected_control_URL = 'views/actions/event_selected_control.html';
             $scope.current_event.actions.action = [];
             $scope.saveAction();
             action_index = -1;
@@ -218,7 +228,7 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
     };
 
     $scope.getEventTypeByName = function (value) {
-        console.log('searching for event: ' + value);
+        console.log('searching for event type: ' + value);
 
         for (var i = 0; i < $scope.events.event_type_views.length; i++) {
             if ($scope.events.event_type_views[i].name === value) {
@@ -239,7 +249,7 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         $scope.event_view_URL = 'views/event_detail.html';
         var current_event_type;
 
-        console.log('current event:');
+        console.log('current event changed to:');
         console.log($scope.current_event);
 
         for (var key in $scope.current_event.event_type) {
@@ -249,19 +259,16 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         $scope.selected_event_type.event_type = $scope.getEventTypeByName(current_event_type);
     };
 
-    $scope.getEventLabel = function (event_type)
-    {
+    $scope.getEventLabel = function (event_type) {
         var first_key = null;
 
-        angular.forEach(event_type, function (value, key)
-        {
-            if (first_key === null)
-            {
+        angular.forEach(event_type, function (value, key) {
+            if (first_key === null) {
                 first_key = key;
             }
         });
 
-        if(!first_key) {
+        if (!first_key) {
             return 'New event';
         }
 
@@ -434,19 +441,16 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         $scope.selected_action_type.action_type = $scope.getActionTypeByName(current_action_type);
     };
 
-    $scope.getLabel = function (type, item_type)
-    {
+    $scope.getLabel = function (type, item_type) {
         var first_key = null;
 
-        angular.forEach(type, function (value, key)
-        {
-            if (first_key === null)
-            {
+        angular.forEach(type, function (value, key) {
+            if (first_key === null) {
                 first_key = key;
             }
         });
 
-        if(!first_key) {
+        if (!first_key) {
             return 'New ' + item_type;
         }
 
@@ -656,7 +660,7 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
         console.log($scope.sprites);
 
         angular.forEach($scope.sprites, function (value, key) {
-            if(value.sprite_id > sprite_index) {
+            if (value.sprite_id > sprite_index) {
                 sprite_index = value.sprite_id;
             }
         });
@@ -667,7 +671,7 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
         console.log($scope.backgrounds);
 
         angular.forEach($scope.backgrounds, function (value, key) {
-            if(value.background_id > background_index) {
+            if (value.background_id > background_index) {
                 background_index = value.background_id;
             }
         });
@@ -729,7 +733,7 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
 
             $scope.sprite_shape_view_URL = 'views/shapes/sprite_circle.html';
         }
-        else if ($scope.selected_sprite_shape.shape === 'Rectangle'){
+        else if ($scope.selected_sprite_shape.shape === 'Rectangle') {
             $scope.current_sprite.shape = {
                 rectangle: {
                     size: {
