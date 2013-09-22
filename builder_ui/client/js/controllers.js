@@ -117,6 +117,10 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         if ($scope.selected_event_type.event_type !== null) {
             $scope.event_selected_control_URL = 'views/actions/event_selected_control.html';
 
+            $scope.current_event.actions.action = [];
+            $scope.saveAction();
+            action_index = -1;
+
             if ($scope.selected_event_type.event_type.name === 'Collision') {
                 $scope.current_event.event_type = {
                     collision: {
@@ -214,6 +218,8 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
     };
 
     $scope.getEventTypeByName = function (value) {
+        console.log('searching for event: ' + value);
+
         for (var i = 0; i < $scope.events.event_type_views.length; i++) {
             if ($scope.events.event_type_views[i].name === value) {
                 console.log('event type view found:');
@@ -233,11 +239,35 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         $scope.event_view_URL = 'views/event_detail.html';
         var current_event_type;
 
+        console.log('current event:');
+        console.log($scope.current_event);
+
         for (var key in $scope.current_event.event_type) {
             current_event_type = key.charAt(0).toUpperCase() + key.slice(1);
         }
 
         $scope.selected_event_type.event_type = $scope.getEventTypeByName(current_event_type);
+    };
+
+    $scope.getEventLabel = function (event_type)
+    {
+        var first_key = null;
+
+        angular.forEach(event_type, function (value, key)
+        {
+            if (first_key === null)
+            {
+                first_key = key;
+            }
+        });
+
+        if(!first_key) {
+            return 'New event';
+        }
+
+        first_key = first_key.replace(/_/g, " ");
+
+        return first_key.charAt(0).toUpperCase() + first_key.slice(1);
     };
 
     /* ACTIONS */
@@ -402,6 +432,27 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         }
 
         $scope.selected_action_type.action_type = $scope.getActionTypeByName(current_action_type);
+    };
+
+    $scope.getLabel = function (type, item_type)
+    {
+        var first_key = null;
+
+        angular.forEach(type, function (value, key)
+        {
+            if (first_key === null)
+            {
+                first_key = key;
+            }
+        });
+
+        if(!first_key) {
+            return 'New ' + item_type;
+        }
+
+        first_key = first_key.replace(/_/g, " ");
+
+        return first_key.charAt(0).toUpperCase() + first_key.slice(1);
     };
 
     /* REFLECT ACTION */

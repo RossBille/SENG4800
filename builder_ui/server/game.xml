@@ -9,40 +9,6 @@
     <min>1</min>
     <max>4</max>
   </players>
-  <sprites>
-    <sprite>
-      <sprite_id>0</sprite_id>
-      <sprite_name>Tennis Ball</sprite_name>
-      <image>/images/tennis_ball.png</image>
-      <speed>1</speed>
-      <offset>
-        <x>0</x>
-        <y>0</y>
-      </offset>
-      <shape>
-        <circle>
-          <radius>87.5</radius>
-        </circle>
-      </shape>
-    </sprite>
-    <sprite>
-      <sprite_id>1</sprite_id>
-      <sprite_name>Paddle Vertical</sprite_name>
-      <image>/images/paddle_vertical.png</image>
-      <speed>1</speed>
-      <offset>
-        <x>0</x>
-        <y>0</y>
-      </offset>
-      <shape>
-        <rectangle>
-          <size>
-            <width>50</width>
-            <height>400</height>
-          </size>
-        </rectangle>
-      </shape>
-    </sprite>
-  </sprites>
+  <sprites></sprites>
   <backgrounds></backgrounds>
 </setup>

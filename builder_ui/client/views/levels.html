@@ -20,8 +20,9 @@
                     <label class="input-label">Current Event</label>
 
                     <div class="input">
-                        <select ng-model="current_event"
-                                ng-options="event.event_id for event in current_level.events.event"
+                        <select
+                                ng-model="current_event"
+                                ng-options="event as getLabel(event.event_type, 'event') + ' (ID: ' + event.event_id + ')' for event in current_level.events.event"
                                 ng-change="currentEventChanged()">
                         </select>
                     </div>
@@ -34,7 +35,7 @@
 
                     <div class="input">
                         <select ng-model="current_action"
-                                ng-options="action.action_id for action in current_event.actions.action"
+                                ng-options="action as getLabel(action.action_type, 'action') + ' (ID: ' + action.action_id + ')' for action in current_event.actions.action"
                                 ng-change="currentActionChanged()">
                         </select>
                     </div>
