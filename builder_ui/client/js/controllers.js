@@ -572,8 +572,16 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
         SaveXML.write(form_data_xml);
 
         $scope.config_completed.status = true;
+    };
+
+    $scope.configureLevels = function () {
+        if ($scope.config_completed.status === false) {
+            alert('Error: you must save the game configuration to file before configuring levels');
+            return;
+        }
+
         $location.path('levels');
-    }
+    };
 
     $scope.determineOrientation = function (item) {
         if (item.shape.circle) {
