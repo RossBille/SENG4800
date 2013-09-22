@@ -716,7 +716,7 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
         $scope.sprite_view_URL = '';
     };
 
-    $scope.cancelSprite = function () {
+    $scope.deleteSprite = function () {
         $scope.current_sprite = null;
         $scope.sprite_view_URL = '';
 
@@ -781,7 +781,7 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
         $scope.background_view_URL = '';
     };
 
-    $scope.cancelBackground = function () {
+    $scope.deleteBackground = function () {
         $scope.current_background = null;
         $scope.background_view_URL = '';
 

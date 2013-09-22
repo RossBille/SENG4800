@@ -45,7 +45,7 @@ App.factory('GameService', function () {
     return {
         game: {
             setup: {
-                game_name: 'My game',
+                game_name: 'My Game',
                 canvas_size: {
                     width: 1920,
                     height: 1080
