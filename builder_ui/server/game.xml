@@ -1,8 +1,8 @@
 <setup>
   <game_name>My game</game_name>
   <canvas_size>
-    <width>1920</width>
-    <height>1080</height>
+    <width>640</width>
+    <height>480</height>
   </canvas_size>
   <starting_level>0</starting_level>
   <players>
