@@ -50,7 +50,17 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
                 object: []
             },
             events: {
-                event: []
+                event: [
+                    {
+                        event_id: 0,
+                        event_type: {
+                            step: {}
+                        },
+                        actions: {
+                            action: []
+                        }
+                    }
+                ]
             }
         };
 
@@ -83,7 +93,8 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
             {name: 'Collision', partial: 'views/events/collision.html'},
             {name: 'Boundary', partial: 'views/events/boundary.html'},
             {name: 'Timer', partial: 'views/events/timer.html'},
-            {name: 'Input', partial: 'views/events/input.html'}
+            {name: 'Input', partial: 'views/events/input.html'},
+            {name: 'Step', partial: ''}
         ],
         event_type_options: {
             edges_options: [
@@ -189,6 +200,12 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
     };
 
     $scope.deleteEvent = function () {
+        if ($scope.current_event.event_type.step) {
+            alert('Error: cannot delete the step event');
+
+            return;
+        }
+
         $scope.saveEvent();
 
         $scope.current_level.events.event.splice(event_index, 1);

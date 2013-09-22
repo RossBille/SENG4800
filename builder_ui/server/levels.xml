@@ -15,8 +15,34 @@
         </object_shape>
         <object_visible>yes</object_visible>
         <start_pos>
-          <x>170</x>
-          <y>116</y>
+          <x>268</x>
+          <y>56</y>
+        </start_pos>
+        <start_vel>
+          <x>0</x>
+          <y>0</y>
+        </start_vel>
+        <start_acc>
+          <x>0</x>
+          <y>0</y>
+        </start_acc>
+      </object>
+      <object>
+        <object_id>1</object_id>
+        <object_name>Paddle Vertical</object_name>
+        <sprite_id>1</sprite_id>
+        <object_shape>
+          <rectangle>
+            <size>
+              <width>50</width>
+              <height>400</height>
+            </size>
+          </rectangle>
+        </object_shape>
+        <object_visible>yes</object_visible>
+        <start_pos>
+          <x>626</x>
+          <y>100</y>
         </start_pos>
         <start_vel>
           <x>0</x>
@@ -32,11 +58,41 @@
       <event>
         <event_id>0</event_id>
         <event_type>
+          <step/>
+        </event_type>
+        <actions>
+          <action>
+            <action_id>0</action_id>
+            <action_type>
+              <change_score>
+                <player_id>1</player_id>
+                <value>2</value>
+                <type>add</type>
+              </change_score>
+            </action_type>
+          </action>
+        </actions>
+      </event>
+      <event>
+        <event_id>1</event_id>
+        <event_type>
           <collision>
             <object_id1>0</object_id1>
             <object_id2>0</object_id2>
             <allow_overlap>no</allow_overlap>
           </collision>
+        </event_type>
+        <actions></actions>
+      </event>
+      <event>
+        <event_id>2</event_id>
+        <event_type>
+          <boundary>
+            <object_id>0</object_id>
+            <level_id>0</level_id>
+            <edges>all</edges>
+            <allow_overlap>no</allow_overlap>
+          </boundary>
         </event_type>
         <actions></actions>
       </event>
