@@ -2932,7 +2932,7 @@ body {
         width: $mobile-landscape-width;
     }*/
   background: #f2f2f2;
-  margin-bottom: 60px;
+  margin-bottom: 20px;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\0000372}}
@@ -3502,11 +3502,13 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 
 @media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/pages\/_config\.scss}line{font-family:\0000312}}
 #sprite-detail .item-detail, #background-detail .item-detail {
-  margin-bottom: 60px;
+  margin-top: 40px;
+  margin-bottom: 20px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/pages\/_config\.scss}line{font-family:\0000317}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/pages\/_config\.scss}line{font-family:\0000318}}
 #settings {
+  margin-top: 40px;
   margin-bottom: 60px;
 }
 
@@ -3604,4 +3606,14 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   right: 8px;
   z-index: 999;
   color: #777777;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/pages\/_scenes\.scss}line{font-family:\0000358}}
+#level-detail .item-detail, #event-detail .item-detail {
+  margin-bottom: 60px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/pages\/_scenes\.scss}line{font-family:\0000363}}
+#game-elements {
+  margin-bottom: 60px;
 }

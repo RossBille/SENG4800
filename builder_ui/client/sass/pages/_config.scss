@@ -10,10 +10,12 @@
 
 #sprite-detail, #background-detail {
     .item-detail {
-        margin-bottom: $section-padding;
+        margin-top: $section-padding - ($section-padding / 3);
+        margin-bottom: $section-padding / 3;
     }
 }
 
 #settings {
+    margin-top: $section-padding - ($section-padding / 3);
     margin-bottom: $section-padding;
 }

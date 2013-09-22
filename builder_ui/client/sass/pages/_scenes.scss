@@ -53,3 +53,13 @@
 
     color: $text-colour-light;
 }
+
+#level-detail, #event-detail {
+    .item-detail {
+        margin-bottom: $section-padding;
+    }
+}
+
+#game-elements {
+    margin-bottom: $section-padding;
+}

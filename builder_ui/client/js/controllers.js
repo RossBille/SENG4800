@@ -103,7 +103,7 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         console.log('selected_event_type:');
         console.log($scope.selected_event_type.event_type);
 
-        if ($scope.selected_event_type.event_type != null) {
+        if ($scope.selected_event_type.event_type !== null) {
             $scope.event_selected_control_URL = 'views/actions/event_selected_control.html';
 
             if ($scope.selected_event_type.event_type.name === 'Collision') {
@@ -184,14 +184,43 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         $scope.selected_event_type = {
             event_type: null
         };
+
+        $scope.current_event = null;
     };
 
-    $scope.cancelEvent = function () {
+    $scope.deleteEvent = function () {
         $scope.saveEvent();
 
         $scope.current_level.events.event.splice(event_index, 1);
 
         event_index--;
+    };
+
+    $scope.getEventTypeByName = function (value) {
+        for (var i = 0; i < $scope.events.event_type_views.length; i++) {
+            if ($scope.events.event_type_views[i].name === value) {
+                console.log('event type view found:');
+                console.log($scope.events.event_type_views[i]);
+
+                $scope.event_selected_control_URL = 'views/actions/event_selected_control.html';
+
+                return $scope.events.event_type_views[i];
+            }
+        }
+
+        console.log('event type view not found');
+        return '';
+    };
+
+    $scope.currentEventChanged = function () {
+        $scope.event_view_URL = 'views/event_detail.html';
+        var current_event_type;
+
+        for (var key in $scope.current_event.event_type) {
+            current_event_type = key.charAt(0).toUpperCase() + key.slice(1);
+        }
+
+        $scope.selected_event_type.event_type = $scope.getEventTypeByName(current_event_type);
     };
 
     /* ACTIONS */
@@ -225,7 +254,7 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         console.log('selected_action_type:');
         console.log($scope.selected_action_type.action_type);
 
-        if ($scope.selected_action_type.action_type != null) {
+        if ($scope.selected_action_type.action_type !== null) {
             $scope.action_controls_URL = 'views/actions/action_controls.html';
 
             if ($scope.selected_action_type.action_type.name === 'Change sprite') {
@@ -291,6 +320,9 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
 
     $scope.newAction = function () {
         action_index++;
+
+        $scope.saveAction();
+
         $scope.action_view_URL = 'views/action_detail.html';
 
         var new_action = {
@@ -314,14 +346,45 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         $scope.selected_reflect_option = {
             reflect_option: null
         };
+
+        $scope.current_action = null;
     };
 
-    $scope.cancelAction = function () {
+    $scope.deleteAction = function () {
         $scope.saveAction();
 
         $scope.current_event.actions.action.splice(action_index, 1);
 
         action_index--;
+    };
+
+    $scope.getActionTypeByName = function (value) {
+        for (var i = 0; i < $scope.actions.action_type_views.length; i++) {
+            if ($scope.actions.action_type_views[i].name === value) {
+                console.log('action type view found:');
+                console.log($scope.actions.action_type_views[i]);
+
+                $scope.action_controls_URL = 'views/actions/action_controls.html';
+
+                return $scope.actions.action_type_views[i];
+            }
+        }
+
+        console.log('action type view not found');
+        return '';
+    };
+
+    $scope.currentActionChanged = function () {
+        $scope.action_view_URL = 'views/action_detail.html';
+        var current_action_type;
+
+        for (var key in $scope.current_action.action_type) {
+            current_action_type = key.charAt(0).toUpperCase() + key.slice(1);
+            current_action_type = current_action_type.replace(/_/g, " ");
+            console.log('current_action_type: ' + current_action_type);
+        }
+
+        $scope.selected_action_type.action_type = $scope.getActionTypeByName(current_action_type);
     };
 
     /* REFLECT ACTION */
@@ -338,7 +401,7 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         console.log('selected_reflect_option:');
         console.log($scope.selected_reflect_option.reflect_option);
 
-        if ($scope.selected_reflect_option.reflect_option != null) {
+        if ($scope.selected_reflect_option.reflect_option !== null) {
             if ($scope.selected_reflect_option.reflect_option.name === 'Object') {
                 $scope.current_action.action_type.reflect.surface_object_id = '';
                 delete $scope.current_action.action_type.reflect.surface_level_id;
