@@ -88,7 +88,7 @@
 
             <div class="object-container" ng-repeat="item in backgrounds">
                 <div class="image-container">
-                    <div class="background selectable" style="background-image: url({{item.image}})" title="{{item.background_name}}" data-index="{{$index}}"></div>
+                    <div class="background selectable {{item.position_type}}" ng-style="item.image != '' && {'background-image':'url('+item.image+')'}" title="{{item.background_name}}" data-index="{{$index}}"></div>
                 </div>
             </div>
         </div>

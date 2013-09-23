@@ -3671,6 +3671,29 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   margin-bottom: 60px;
 }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/pages\/_config\.scss}line{font-family:\0000324}}
+.object-list .object-container .image-container .background.centre {
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/pages\/_config\.scss}line{font-family:\0000329}}
+.object-list .object-container .image-container .background.fill {
+  background-position: center center;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  /* For WebKit */
+  -moz-background-size: cover;
+  /* Mozilla */
+  -o-background-size: cover;
+  /* Opera */
+  background-size: cover;
+  /* Generic */
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/pages\/_config\.scss}line{font-family:\0000338}}
+.object-list .object-container .image-container .background.tiled {
+  background-repeat: repeat;
+}
+
 @media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/pages\/_scenes\.scss}line{font-family:\000031}}
 .list {
   float: left;
@@ -3748,14 +3771,36 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 .scene {
   width: 100%;
   height: 100%;
-  background: #f2f2f2;
+  background-color: #f2f2f2;
   padding: 0;
   margin: 0;
   position: relative;
   z-index: 1;
 }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/pages\/_scenes\.scss}line{font-family:\0000342}}
+.scene.centre {
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/pages\/_scenes\.scss}line{font-family:\0000347}}
+.scene.fill {
+  background-position: center center;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  /* For WebKit */
+  -moz-background-size: cover;
+  /* Mozilla */
+  -o-background-size: cover;
+  /* Opera */
+  background-size: cover;
+  /* Generic */
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/pages\/_scenes\.scss}line{font-family:\0000356}}
+.scene.tiled {
+  background-repeat: repeat;
+}
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/pages\/_scenes\.scss}line{font-family:\0000346}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/pages\/_scenes\.scss}line{font-family:\0000363}}
 .scene-scale {
   font-size: 0.75em;
   line-height: 1.5em;
@@ -3766,12 +3811,12 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   color: #777777;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/pages\/_scenes\.scss}line{font-family:\0000358}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/pages\/_scenes\.scss}line{font-family:\0000375}}
 #level-detail .item-detail, #event-detail .item-detail {
   margin-bottom: 60px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/pages\/_scenes\.scss}line{font-family:\0000363}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/pages\/_scenes\.scss}line{font-family:\0000380}}
 #game-elements {
   margin-bottom: 60px;
 }

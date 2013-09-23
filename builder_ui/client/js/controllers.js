@@ -42,13 +42,13 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         "current_level.background_id",
         function (new_value, old_value) {
             if ($scope.game.setup.backgrounds.background[new_value]) {
-                console.log('changing to background image:');
-                console.log($scope.game.setup.backgrounds.background[new_value].image);
-
                 $scope.scene_background = {'background-image': 'url(' + $scope.game.setup.backgrounds.background[new_value].image + ')'};
+
+                $('.scene').removeClass('fill').removeClass('centre').removeClass('tiled');
+                $('.scene').addClass($scope.game.setup.backgrounds.background[new_value].position_type);
             }
             else {
-                console.log('corresponding background image not found');
+                $('.scene').removeClass('fill').removeClass('centre').removeClass('tiled');
                 $scope.scene_background = {'background-image': 'none'};
             }
         }
@@ -636,6 +636,7 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
         var background_index = 0;
         level_index = -1;
         $scope.game.setup.sprites.sprite = [];
+        $scope.game.setup.backgrounds.background = [];
 
         $.each($('#sprites .ui-selected'), function () {
             var index = $(this).attr('data-index');
@@ -863,7 +864,7 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
     $scope.background_view_URL = '';
 
     $scope.position_type_options = [
-        'tiled', 'stretch', 'fill', 'centre'
+        'tiled', 'fill', 'centre'
     ];
 
     $scope.current_background = null;

@@ -12,6 +12,69 @@
   <sprites>
     <sprite>
       <sprite_id>0</sprite_id>
+      <sprite_name>Soccer Ball</sprite_name>
+      <image>/images/ball.png</image>
+      <speed>1</speed>
+      <offset>
+        <x>0</x>
+        <y>0</y>
+      </offset>
+      <shape>
+        <circle>
+          <radius>100</radius>
+        </circle>
+      </shape>
+    </sprite>
+    <sprite>
+      <sprite_id>1</sprite_id>
+      <sprite_name>Golf Ball</sprite_name>
+      <image>/images/golf_ball.png</image>
+      <speed>1</speed>
+      <offset>
+        <x>0</x>
+        <y>0</y>
+      </offset>
+      <shape>
+        <circle>
+          <radius>75</radius>
+        </circle>
+      </shape>
+    </sprite>
+    <sprite>
+      <sprite_id>2</sprite_id>
+      <sprite_name>Tennis Ball</sprite_name>
+      <image>/images/tennis_ball.png</image>
+      <speed>1</speed>
+      <offset>
+        <x>0</x>
+        <y>0</y>
+      </offset>
+      <shape>
+        <circle>
+          <radius>87.5</radius>
+        </circle>
+      </shape>
+    </sprite>
+    <sprite>
+      <sprite_id>3</sprite_id>
+      <sprite_name>Paddle Vertical</sprite_name>
+      <image>/images/paddle_vertical.png</image>
+      <speed>1</speed>
+      <offset>
+        <x>0</x>
+        <y>0</y>
+      </offset>
+      <shape>
+        <rectangle>
+          <size>
+            <width>50</width>
+            <height>400</height>
+          </size>
+        </rectangle>
+      </shape>
+    </sprite>
+    <sprite>
+      <sprite_id>4</sprite_id>
       <sprite_name>Paddle Horizontal</sprite_name>
       <image>/images/paddle_horizontal.png</image>
       <speed>1</speed>
@@ -43,6 +106,27 @@
       <image>/images/geometry.png</image>
       <speed>1</speed>
       <position_type>tiled</position_type>
+    </background>
+    <background>
+      <background_id>2</background_id>
+      <background_name>New background</background_name>
+      <image>/images/paddle_horizontal.png</image>
+      <speed>1</speed>
+      <position_type>tiled</position_type>
+    </background>
+    <background>
+      <background_id>3</background_id>
+      <background_name>New background</background_name>
+      <image>/images/paddle_horizontal.png</image>
+      <speed>1</speed>
+      <position_type>fill</position_type>
+    </background>
+    <background>
+      <background_id>4</background_id>
+      <background_name>New background</background_name>
+      <image>/images/paddle_horizontal.png</image>
+      <speed>1</speed>
+      <position_type>centre</position_type>
     </background>
   </backgrounds>
 </setup>

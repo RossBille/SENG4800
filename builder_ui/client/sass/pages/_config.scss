@@ -19,3 +19,23 @@
     margin-top: $section-padding - ($section-padding / 3);
     margin-bottom: $section-padding;
 }
+
+.object-list .object-container .image-container .background {
+    &.centre {
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+
+    &.fill {
+        background-position: center center;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover; /* For WebKit */
+        -moz-background-size: cover;    /* Mozilla */
+        -o-background-size: cover;      /* Opera */
+        background-size: cover;         /* Generic */
+    }
+
+    &.tiled {
+        background-repeat: repeat;
+    }
+}
