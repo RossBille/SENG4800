@@ -1,11 +1,11 @@
 #config {
-    .object-list {
-        margin-bottom: $section-padding;
-    }
-
     .object, .background {
         cursor: pointer;
     }
+}
+
+#sprites {
+    margin-bottom: $section-padding;
 }
 
 #sprite-detail, #background-detail {

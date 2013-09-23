@@ -281,6 +281,8 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
 
     $scope.currentEventChanged = function () {
         $scope.event_view_URL = 'views/event_detail.html';
+        $scope.action_view_URL = '';
+        $scope.current_action = null;
         var current_event_type;
 
         console.log('current event changed to:');
@@ -407,7 +409,7 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
     $scope.current_action = null;
 
     $scope.newAction = function () {
-        action_index++;
+        action_index = $scope.current_event.actions.action.length;
 
         $scope.saveAction(false);
 

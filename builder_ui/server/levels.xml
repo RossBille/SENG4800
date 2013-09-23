@@ -10,31 +10,37 @@
         <event_type>
           <step/>
         </event_type>
-        <actions></actions>
+        <actions>
+          <action>
+            <action_id>0</action_id>
+            <action_type>
+              <reflect>
+                <object_id></object_id>
+                <surface_level_id>0</surface_level_id>
+              </reflect>
+            </action_type>
+          </action>
+        </actions>
       </event>
       <event>
         <event_id>1</event_id>
         <event_type>
-          <timer>
-            <length></length>
-            <repeat>no</repeat>
-          </timer>
+          <collision>
+            <object_id1></object_id1>
+            <object_id2></object_id2>
+            <allow_overlap>no</allow_overlap>
+          </collision>
         </event_type>
-        <actions></actions>
-      </event>
-      <event>
-        <event_id>2</event_id>
-        <event_type>
-          <input>
-            <player_id>5</player_id>
-            <value>
-              <x>5</x>
-              <y>5</y>
-            </value>
-            <type>up</type>
-          </input>
-        </event_type>
-        <actions></actions>
+        <actions>
+          <action>
+            <action_id>0</action_id>
+            <action_type>
+              <change_level>
+                <level_id>5</level_id>
+              </change_level>
+            </action_type>
+          </action>
+        </actions>
       </event>
     </events>
   </level>

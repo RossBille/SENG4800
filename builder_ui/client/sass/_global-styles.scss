@@ -64,6 +64,7 @@ body {
 
 .controls-container {
     @include columns(16);
+    @include border-radius($default-border-radius);
 
     background: $lighter-grey;
     margin-bottom: $section-padding / 3;
@@ -115,6 +116,7 @@ body {
 
 .object-list {
     @include columns(16);
+    @include border-radius($default-border-radius);
 
     background: $lighter-grey;
     padding: 0;
@@ -193,6 +195,7 @@ body {
         overflow: hidden;
 
         &.checkbox {
+            @include border-right-radius($default-border-radius / 2);
             background: $light-colour;
             border: 1px solid $dark-grey;
             height: 50px;
@@ -200,6 +203,7 @@ body {
 
         input, select, p {
             @include adjust-font-size-to(14px);
+            @include border-right-radius($default-border-radius / 2);
 
             height: 50px;
             width: 100%;
@@ -254,6 +258,7 @@ body {
     .input-label {
         @include adjust-font-size-to(14px);
         @extend %heading-text;
+        @include border-left-radius($default-border-radius / 2);
 
         display: inline-block;
         float: left;
@@ -271,6 +276,7 @@ body {
 }
 
 .item-detail {
+    @include border-radius($default-border-radius);
     @include columns(16);
     @include clearfix;
 
