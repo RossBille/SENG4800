@@ -657,6 +657,16 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
             sprite_index++;
         });
 
+        if($scope.game.setup.sprites.sprite.length === 0) {
+            $.pnotify({
+                title: 'Configuration Not Saved',
+                text: 'You must select at least one sprite to use in your game.',
+                type: 'error'
+            });
+
+            return;
+        }
+
         $.each($('#backgrounds .ui-selected'), function () {
             var index = $(this).attr('data-index');
 
@@ -697,7 +707,7 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
         if ($scope.config_completed.status === false) {
             ;
             $.pnotify({
-                title: 'Configuration Not Saved',
+                title: 'Cannot Configure Levels',
                 text: 'You must save the game configuration to file before configuring levels.',
                 type: 'error'
             });
