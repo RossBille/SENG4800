@@ -36,6 +36,24 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
 
     $scene_container.append(new_object);
 
+    $scope.scene_background = {'background-image': 'none'};
+
+    $scope.$watch(
+        "current_level.background_id",
+        function (new_value, old_value) {
+            if ($scope.game.setup.backgrounds.background[new_value]) {
+                console.log('changing to background image:');
+                console.log($scope.game.setup.backgrounds.background[new_value].image);
+
+                $scope.scene_background = {'background-image': 'url(' + $scope.game.setup.backgrounds.background[new_value].image + ')'};
+            }
+            else {
+                console.log('corresponding background image not found');
+                $scope.scene_background = {'background-image': 'none'};
+            }
+        }
+    );
+
     /* LEVELS */
     $scope.current_level = null;
 
@@ -657,7 +675,7 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
             sprite_index++;
         });
 
-        if($scope.game.setup.sprites.sprite.length === 0) {
+        if ($scope.game.setup.sprites.sprite.length === 0) {
             $.pnotify({
                 title: 'Configuration Not Saved',
                 text: 'You must select at least one sprite to use in your game.',

@@ -12,19 +12,37 @@
   <sprites>
     <sprite>
       <sprite_id>0</sprite_id>
-      <sprite_name>Tennis Ball</sprite_name>
-      <image>/images/tennis_ball.png</image>
+      <sprite_name>Paddle Horizontal</sprite_name>
+      <image>/images/paddle_horizontal.png</image>
       <speed>1</speed>
       <offset>
         <x>0</x>
         <y>0</y>
       </offset>
       <shape>
-        <circle>
-          <radius>87.5</radius>
-        </circle>
+        <rectangle>
+          <size>
+            <width>400</width>
+            <height>60</height>
+          </size>
+        </rectangle>
       </shape>
     </sprite>
   </sprites>
-  <backgrounds></backgrounds>
+  <backgrounds>
+    <background>
+      <background_id>0</background_id>
+      <background_name>Grey noise</background_name>
+      <image>/images/grey_noise.jpg</image>
+      <speed>1</speed>
+      <position_type>tiled</position_type>
+    </background>
+    <background>
+      <background_id>1</background_id>
+      <background_name>Geometry</background_name>
+      <image>/images/geometry.png</image>
+      <speed>1</speed>
+      <position_type>tiled</position_type>
+    </background>
+  </backgrounds>
 </setup>
