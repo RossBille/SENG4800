@@ -91,10 +91,9 @@ body {
     @include box-shadow(0 0 5px 5px $success-colour);
 }
 
-.selected .outline {
-    @include box-shadow(0 0 5px 5px $success-colour);
+.outline {
+    cursor: pointer;
     z-index: 1;
-
     position: absolute;
     top: 0;
     bottom: 0;
@@ -104,6 +103,10 @@ body {
     &.circle {
         @include border-radius(50%);
     }
+}
+
+.selected .outline {
+    @include box-shadow(0 0 5px 5px $success-colour);
 }
 
 .src-container {
@@ -196,13 +199,15 @@ body {
         }
 
         input, select, p {
+            @include adjust-font-size-to(14px);
+
             height: 50px;
             width: 100%;
             padding: 0 15px;
         }
 
         select {
-            padding: 15px;
+            padding: 14px 15px;
         }
 
         p {
@@ -215,6 +220,8 @@ body {
         }
 
         span {
+            @include adjust-font-size-to(14px);
+
             line-height: 50px;
             float: left;
             margin-left: 10px;
@@ -222,7 +229,6 @@ body {
 
         input, select {
             @include transition(box-shadow .2s, border .2s);
-            @include adjust-font-size-to(14px);
 
             background: $light-colour;
             border: 1px solid $dark-grey;
@@ -247,7 +253,7 @@ body {
 
     .input-label {
         @include adjust-font-size-to(14px);
-        @extend %normal-text-bold;
+        @extend %heading-text;
 
         display: inline-block;
         float: left;
@@ -300,25 +306,29 @@ body {
             margin: 0;
         }
     }
+}
 
-    /*label {
-        @extend %normal-text-bold;
+.ui-pnotify {
+    h4 {
+        @include adjust-font-size-to(15px);
 
-        width: 100%;
-        display: block;
-        margin-top: 20px;
-        margin-bottom: 5px;
+        border: none;
+        margin: 0;
+        padding: 0;
+        text-align: left;
     }
 
-    input, select {
-        width: 100%;
+    .ui-pnotify-icon {
+        margin-top: 5px;
+    }
 
-        &.small {
-            width: 40%;
-        }
+    .ui-pnotify-text {
+        @include adjust-font-size-to(13px);
+        @extend %normal-text;
+    }
 
-        &[type='checkbox'] {
-            width: auto;
-        }
-    }*/
+    .ui-state-default {
+        background: $success-colour-light;
+        color: $success-colour-dark;
+    }
 }

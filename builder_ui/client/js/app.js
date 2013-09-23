@@ -26,3 +26,9 @@ var event_index = 0;
 var action_index = -1;
 var background_index = -1;
 var sprite_index = -1;
+
+// Setup Pines notifications
+$.pnotify.defaults.styling = "jqueryui";
+$.pnotify.defaults.history = false;
+$.pnotify.defaults.delay = 8000;
+$.pnotify.defaults.animate_speed = "normal";

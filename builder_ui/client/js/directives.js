@@ -56,7 +56,7 @@ App.directive('droppable', function ($compile) {
                         console.log('old position:');
                         console.log(old_position);
 
-                        var new_object = '<div class="scene-object-container"><img src="' + scope.objects[draggable_original_index].image + '" data-index="' + scene_index + '" ng-click="clicked(' + scene_index + ')" class="scene-object"></div>';
+                        var new_object = '<div class="scene-object-container"><img src="' + scope.objects[draggable_original_index].image + '" data-index="' + scene_index + '"class="scene-object"><div class="outline" ng-click="clicked(' + scene_index + ')" ></div></div>';
                         console.log(new_object);
 
                         $drop_target.append($compile(new_object)(scope));
@@ -64,7 +64,7 @@ App.directive('droppable', function ($compile) {
                         var $new_object = $('.scene img[data-index="' + scene_index + '"]');
                         var $new_object_container = $new_object.parent();
 
-                        $new_object_container.append('<div class="outline"></div>');
+                        //$new_object_container.append('<div class="outline"></div>');
 
                         if (scope.objects[draggable_original_index].shape.circle) {
                             $new_object.attr('height', (scope.objects[draggable_original_index].shape.circle.radius * 2) / scope.canvas.multiplier);
@@ -225,6 +225,12 @@ App.directive('droppable', function ($compile) {
                                 scope.$apply();
                             },
                             containment: '.scene'
+                        });
+
+                        $.pnotify({
+                            title: 'New Object Created',
+                            text: 'New object successfully added to the current level. Click on the new object to set advanced options.',
+                            type: 'success'
                         });
 
                         scope.$apply();

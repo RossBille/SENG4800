@@ -120,7 +120,19 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
 
         if ($scope.selected_event_type.event_type !== null) {
             if ($scope.selected_event_type.event_type.name === 'Step') {
-                $scope.selected_event_type.event_type = $scope.getEventTypeByName($scope.old_selected_event_type.event_type.name);
+                if ($scope.old_selected_event_type.event_type !== null) {
+                    $scope.selected_event_type.event_type = $scope.getEventTypeByName($scope.old_selected_event_type.event_type.name);
+                }
+                else {
+                    $scope.selected_event_type.event_type = null;
+                }
+
+                $.pnotify({
+                    title: 'New Step Event',
+                    text: 'A new Step event cannot be created. Select the Step event from the list of events to add actions to it.',
+                    type: 'error'
+                });
+
                 return;
             }
 
@@ -128,7 +140,7 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
 
             $scope.event_selected_control_URL = 'views/actions/event_selected_control.html';
             $scope.current_event.actions.action = [];
-            $scope.saveAction();
+            $scope.saveAction(false);
             action_index = -1;
 
             if ($scope.selected_event_type.event_type.name === 'Collision') {
@@ -174,6 +186,8 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
             }
         }
         else {
+            alert('$scope.selected_event_type.event_type === null');
+
             $scope.event_selected_control_URL = '';
         }
     };
@@ -184,8 +198,8 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         event_index++;
         action_index = -1;
 
-        $scope.saveEvent();
-        $scope.saveAction();
+        $scope.saveEvent(false);
+        $scope.saveAction(false);
 
         $scope.event_view_URL = 'views/event_detail.html';
 
@@ -202,7 +216,9 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         $scope.current_event = $scope.current_level.events.event[event_index];
     };
 
-    $scope.saveEvent = function () {
+    $scope.saveEvent = function (show_notification) {
+        show_notification = typeof show_notification !== 'undefined' ? show_notification : true;
+
         $scope.event_view_URL = '';
         $scope.event_selected_control_URL = '';
 
@@ -211,20 +227,38 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         };
 
         $scope.current_event = null;
+
+        if (show_notification) {
+            $.pnotify({
+                title: 'Event Saved',
+                text: 'The current event has been saved.',
+                type: 'success'
+            });
+        }
     };
 
     $scope.deleteEvent = function () {
         if ($scope.current_event.event_type.step) {
-            alert('Error: cannot delete the step event');
+            $.pnotify({
+                title: 'Event Not Deleted',
+                text: 'The step event cannot be deleted.',
+                type: 'error'
+            });
 
             return;
         }
 
-        $scope.saveEvent();
+        $scope.saveEvent(false);
 
         $scope.current_level.events.event.splice(event_index, 1);
 
         event_index--;
+
+        $.pnotify({
+            title: 'Event Deleted',
+            text: 'The current event has been deleted.',
+            type: 'info'
+        });
     };
 
     $scope.getEventTypeByName = function (value) {
@@ -375,7 +409,7 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
     $scope.newAction = function () {
         action_index++;
 
-        $scope.saveAction();
+        $scope.saveAction(false);
 
         $scope.action_view_URL = 'views/action_detail.html';
 
@@ -389,7 +423,9 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         $scope.current_action = $scope.current_event.actions.action[action_index];
     };
 
-    $scope.saveAction = function () {
+    $scope.saveAction = function (show_notification) {
+        show_notification = typeof show_notification !== 'undefined' ? show_notification : true;
+
         $scope.action_view_URL = '';
         $scope.action_controls_URL = '';
 
@@ -402,14 +438,28 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         };
 
         $scope.current_action = null;
+
+        if (show_notification) {
+            $.pnotify({
+                title: 'Action Saved',
+                text: 'The current action has been saved.',
+                type: 'success'
+            });
+        }
     };
 
     $scope.deleteAction = function () {
-        $scope.saveAction();
+        $scope.saveAction(false);
 
         $scope.current_event.actions.action.splice(action_index, 1);
 
         action_index--;
+
+        $.pnotify({
+            title: 'Action Deleted',
+            text: 'The current action has been deleted.',
+            type: 'info'
+        });
     };
 
     $scope.getActionTypeByName = function (value) {
@@ -531,13 +581,19 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         };
 
         SaveXML.write(form_data_xml);
+
+        $.pnotify({
+            title: 'Levels Configuration Saved',
+            text: 'Your levels configuration has been saved to the following location: server/' + form_data_xml.file_name,
+            type: 'success'
+        });
     };
 
     $scope.objects = $scope.game.setup.sprites.sprite;
 
     $scope.determineOrientation = function (item) {
         if (item.shape.circle) {
-            return 'landscape';
+            return 'landscape circle';
         }
         else {
             if (item.shape.rectangle.size.width >= item.shape.rectangle.size.height) {
@@ -627,11 +683,22 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
         SaveXML.write(form_data_xml);
 
         $scope.config_completed.status = true;
+
+        $.pnotify({
+            title: 'Game Configuration Saved',
+            text: 'Your game configuration has been saved to the following location: server/' + form_data_xml.file_name,
+            type: 'success'
+        });
     };
 
     $scope.configureLevels = function () {
         if ($scope.config_completed.status === false) {
-            alert('Error: you must save the game configuration to file before configuring levels');
+            ;
+            $.pnotify({
+                title: 'Configuration Not Saved',
+                text: 'You must save the game configuration to file before configuring levels.',
+                type: 'error'
+            });
             return;
         }
 
@@ -714,6 +781,12 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
         $scope.sprites.push($scope.current_sprite);
         $scope.current_sprite = null;
         $scope.sprite_view_URL = '';
+
+        $.pnotify({
+            title: 'Sprite Saved',
+            text: 'Your sprite has been saved. Select it from the list to use it in your game.',
+            type: 'success'
+        });
     };
 
     $scope.deleteSprite = function () {
@@ -721,6 +794,12 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
         $scope.sprite_view_URL = '';
 
         background_index--;
+
+        $.pnotify({
+            title: 'Sprite Deleted',
+            text: 'Your new sprite has been deleted.',
+            type: 'info'
+        });
     };
 
     $scope.selectedSpriteShapeChanged = function () {
@@ -779,6 +858,12 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
         $scope.backgrounds.push($scope.current_background);
         $scope.current_background = null;
         $scope.background_view_URL = '';
+
+        $.pnotify({
+            title: 'Background Saved',
+            text: 'Your background has been saved. Select it from the list to use it in your game.',
+            type: 'success'
+        });
     };
 
     $scope.deleteBackground = function () {
@@ -786,5 +871,11 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
         $scope.background_view_URL = '';
 
         background_index--;
+
+        $.pnotify({
+            title: 'Background Deleted',
+            text: 'Your new background has been deleted.',
+            type: 'info'
+        });
     };
 }

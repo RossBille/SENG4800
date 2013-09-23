@@ -401,6 +401,115 @@ table {
   border-spacing: 0;
 }
 
+/*
+Document   : jquery.pnotify.default.css
+Created on : Nov 23, 2009, 3:14:10 PM
+Author     : Hunter Perrin
+Version    : 1.2.0
+Link       : http://pinesframework.org/pnotify/
+Description:
+	Default styling for Pines Notify jQuery plugin.
+*/
+/* -- Notice */
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/includes\/jquery\.pnotify\.default\.scss}line{font-family:\0000311}}
+.ui-pnotify {
+  top: 25px;
+  right: 25px;
+  position: absolute;
+  height: auto;
+  /* Ensures notices are above everything */
+  z-index: 9999;
+}
+
+/* Hides position: fixed from IE6 */
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/includes\/jquery\.pnotify\.default\.scss}line{font-family:\0000320}}
+html > body .ui-pnotify {
+  position: fixed;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/includes\/jquery\.pnotify\.default\.scss}line{font-family:\0000323}}
+.ui-pnotify .ui-pnotify-shadow {
+  -webkit-box-shadow: 0px 2px 10px rgba(50, 50, 50, 0.5);
+  -moz-box-shadow: 0px 2px 10px rgba(50, 50, 50, 0.5);
+  box-shadow: 0px 2px 10px rgba(50, 50, 50, 0.5);
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/includes\/jquery\.pnotify\.default\.scss}line{font-family:\0000328}}
+.ui-pnotify-container {
+  background-position: 0 0;
+  padding: .8em;
+  height: 100%;
+  margin: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/includes\/jquery\.pnotify\.default\.scss}line{font-family:\0000334}}
+.ui-pnotify-sharp {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/includes\/jquery\.pnotify\.default\.scss}line{font-family:\0000339}}
+.ui-pnotify-closer, .ui-pnotify-sticker {
+  float: right;
+  margin-left: .2em;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/includes\/jquery\.pnotify\.default\.scss}line{font-family:\0000343}}
+.ui-pnotify-title {
+  display: block;
+  margin-bottom: .4em;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/includes\/jquery\.pnotify\.default\.scss}line{font-family:\0000347}}
+.ui-pnotify-text {
+  display: block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/includes\/jquery\.pnotify\.default\.scss}line{font-family:\0000350}}
+.ui-pnotify-icon, .ui-pnotify-icon span {
+  display: block;
+  float: left;
+  margin-right: .2em;
+}
+
+/* -- History Pulldown */
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/includes\/jquery\.pnotify\.default\.scss}line{font-family:\0000356}}
+.ui-pnotify-history-container {
+  position: absolute;
+  top: 0;
+  right: 18px;
+  width: 70px;
+  border-top: none;
+  padding: 0;
+  -webkit-border-top-left-radius: 0;
+  -moz-border-top-left-radius: 0;
+  border-top-left-radius: 0;
+  -webkit-border-top-right-radius: 0;
+  -moz-border-top-right-radius: 0;
+  border-top-right-radius: 0;
+  /* Ensures history container is above notices. */
+  z-index: 10000;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/includes\/jquery\.pnotify\.default\.scss}line{font-family:\0000372}}
+.ui-pnotify-history-container .ui-pnotify-history-header {
+  padding: 2px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/includes\/jquery\.pnotify\.default\.scss}line{font-family:\0000375}}
+.ui-pnotify-history-container button {
+  cursor: pointer;
+  display: block;
+  width: 100%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/includes\/jquery\.pnotify\.default\.scss}line{font-family:\0000380}}
+.ui-pnotify-history-container .ui-pnotify-history-pulldown {
+  display: block;
+  margin: 0 auto;
+}
+
 /* COMPASS SETUP */
 @media -sass-debug-info{filename{font-family:file\:\/\/D\:\/compass\.app\/lib\/ruby\/compass_0\.12\/compass-0\.12\.2\/frameworks\/compass\/stylesheets\/compass\/typography\/_vertical_rhythm\.scss}line{font-family:\0000361}}
 * html {
@@ -424,19 +533,19 @@ html {
 /* MEDIA QUERIES */
 /* FONT STYLES */
 @media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_mixins\.scss}line{font-family:\0000338}}
-h1, h2, h3, h4, h5, h6 {
+.input-container .input-label, h1, h2, h3, h4, h5, h6 {
   font-family: 'PT Sans', Helvetica, serif;
   font-weight: 700;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_mixins\.scss}line{font-family:\0000344}}
-body {
+body, .ui-pnotify .ui-pnotify-text {
   font-family: 'Open Sans', Arial, sans-serif;
   font-weight: 400;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_mixins\.scss}line{font-family:\0000350}}
-.controls button, .input-container .input-label, strong {
+.controls button, strong {
   font-family: 'Open Sans', Arial, sans-serif;
   font-weight: 700;
 }
@@ -2981,10 +3090,8 @@ body {
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\0000394}}
-.selected .outline {
-  -webkit-box-shadow: 0 0 5px 5px #99ff66;
-  -moz-box-shadow: 0 0 5px 5px #99ff66;
-  box-shadow: 0 0 5px 5px #99ff66;
+.outline {
+  cursor: pointer;
   z-index: 1;
   position: absolute;
   top: 0;
@@ -2992,19 +3099,26 @@ body {
   left: 0;
   right: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003104}}
-.selected .outline.circle {
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003103}}
+.outline.circle {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003109}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003108}}
+.selected .outline {
+  -webkit-box-shadow: 0 0 5px 5px #99ff66;
+  -moz-box-shadow: 0 0 5px 5px #99ff66;
+  box-shadow: 0 0 5px 5px #99ff66;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003112}}
 .src-container {
   display: inline;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003113}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003116}}
 .object-list {
   float: left;
   display: inline;
@@ -3030,14 +3144,14 @@ body {
   background: #f2f2f2;
   padding: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003119}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003122}}
 .object-list p {
   font-size: 0.8125em;
   line-height: 1.38462em;
   color: #777777;
   text-align: center;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003126}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003129}}
 .object-list .object-container {
   margin: 20px;
   display: inline-block;
@@ -3046,13 +3160,13 @@ body {
   height: 100px;
   width: 100px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003134}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003137}}
 .object-list .object-container .image-container {
   display: table-cell;
   vertical-align: middle;
   text-align: center;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003139}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003142}}
 .object-list .object-container .image-container .background {
   width: 100px;
   height: 100px;
@@ -3060,31 +3174,31 @@ body {
   border: 1px solid #777;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003149}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003152}}
 .object {
   cursor: move;
   vertical-align: middle;
   position: relative;
   z-index: 2;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003155}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003158}}
 .object.portrait {
   max-height: 100px;
   width: auto;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003160}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003163}}
 .object.landscape {
   max-width: 100px;
   height: auto;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003165}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003168}}
 .object.circle {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003170}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003173}}
 .input-container {
   float: left;
   margin-bottom: 20px;
@@ -3092,39 +3206,41 @@ body {
   padding: 0 !important;
   text-align: center;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003177}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003180}}
 .input-container:last-child {
   margin-bottom: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003181}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003184}}
 .input-container:nth-of-type(odd) {
   padding-right: 10px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003185}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003188}}
 .input-container:nth-of-type(even) {
   padding-left: 10px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003189}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003192}}
 .input-container .input {
   overflow: hidden;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003192}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003195}}
 .input-container .input.checkbox {
   background: white;
   border: 1px solid #888888;
   height: 50px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003198}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003201}}
 .input-container .input input, .input-container .input select, .input-container .input p {
+  font-size: 0.875em;
+  line-height: 1.28571em;
   height: 50px;
   width: 100%;
   padding: 0 15px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003204}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003209}}
 .input-container .input select {
-  padding: 15px;
+  padding: 14px 15px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003208}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003213}}
 .input-container .input p {
   text-align: left;
   background: #888888;
@@ -3133,27 +3249,27 @@ body {
   margin: 0;
   color: #222222;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003217}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003222}}
 .input-container .input span {
+  font-size: 0.875em;
+  line-height: 1.28571em;
   line-height: 50px;
   float: left;
   margin-left: 10px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003223}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003230}}
 .input-container .input input, .input-container .input select {
   -webkit-transition: box-shadow 0.2s, border 0.2s;
   -moz-transition: box-shadow 0.2s, border 0.2s;
   -o-transition: box-shadow 0.2s, border 0.2s;
   transition: box-shadow 0.2s, border 0.2s;
-  font-size: 0.875em;
-  line-height: 1.28571em;
   background: white;
   border: 1px solid #888888;
   margin: 0;
   color: #222222;
   float: left;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003233}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003239}}
 .input-container .input input:focus, .input-container .input select:focus {
   -webkit-box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2) inset;
   -moz-box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2) inset;
@@ -3161,12 +3277,12 @@ body {
   outline: 0 none;
   border: 1px solid #000;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003242}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003248}}
 .input-container .input input[type='checkbox'] {
   width: auto;
   margin-left: 10px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003248}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003254}}
 .input-container .input-label {
   font-size: 0.875em;
   line-height: 1.28571em;
@@ -3183,7 +3299,7 @@ body {
   border-right-style: none;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003267}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003273}}
 .item-detail {
   float: left;
   display: inline;
@@ -3209,26 +3325,6 @@ body {
   zoom: 1;
   margin-bottom: 20px;
   background: #f2f2f2;
-    /*label {
-        @extend %normal-text-bold;
-
-        width: 100%;
-        display: block;
-        margin-top: 20px;
-        margin-bottom: 5px;
-    }
-
-    input, select {
-        width: 100%;
-
-        &.small {
-            width: 40%;
-        }
-
-        &[type='checkbox'] {
-            width: auto;
-        }
-    }*/
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/includes\/_skeleton\.scss}line{font-family:\00003139}}
 .item-detail:after {
@@ -3243,11 +3339,11 @@ body {
   width: 0;
   height: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003274}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003280}}
 .item-detail .controls {
   margin-bottom: 20px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003278}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003284}}
 .item-detail .item-detail-section {
   float: left;
   display: inline;
@@ -3272,7 +3368,7 @@ body {
     }*/
   padding: 0 10px 20px 10px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003283}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003289}}
 .item-detail .item-detail-section.half {
   float: left;
   display: inline;
@@ -3296,21 +3392,45 @@ body {
         width: $mobile-landscape-width;
     }*/
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003287}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003293}}
 .item-detail .item-detail-section.first {
   margin-right: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003291}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003297}}
 .item-detail .item-detail-section.last {
   margin-left: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003295}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003301}}
 .item-detail .item-detail-section p {
   margin-bottom: 20px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003299}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003305}}
 .item-detail .item-detail-section p:last-child, .item-detail .item-detail-section .input:last-child {
   margin: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003312}}
+.ui-pnotify h4 {
+  font-size: 0.9375em;
+  line-height: 1.6em;
+  border: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003321}}
+.ui-pnotify .ui-pnotify-icon {
+  margin-top: 5px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003325}}
+.ui-pnotify .ui-pnotify-text {
+  font-size: 0.8125em;
+  line-height: 1.38462em;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003330}}
+.ui-pnotify .ui-state-default {
+  background: #dff0d8;
+  color: #468847;
 }
 
 /* LINKS */
@@ -3549,12 +3669,11 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 
 @media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/pages\/_scenes\.scss}line{font-family:\0000317}}
 .scene-object {
-  cursor: pointer;
   vertical-align: bottom;
   position: relative;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/pages\/_scenes\.scss}line{font-family:\0000325}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/pages\/_scenes\.scss}line{font-family:\0000324}}
 .scene-container {
   position: relative;
   margin: 0 auto;
@@ -3586,7 +3705,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   visibility: hidden;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/pages\/_scenes\.scss}line{font-family:\0000335}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/pages\/_scenes\.scss}line{font-family:\0000334}}
 .scene {
   width: 100%;
   height: 100%;
@@ -3597,7 +3716,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   z-index: 1;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/pages\/_scenes\.scss}line{font-family:\0000346}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/pages\/_scenes\.scss}line{font-family:\0000345}}
 .scene-scale {
   font-size: 0.75em;
   line-height: 1.5em;
@@ -3608,12 +3727,12 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   color: #777777;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/pages\/_scenes\.scss}line{font-family:\0000358}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/pages\/_scenes\.scss}line{font-family:\0000357}}
 #level-detail .item-detail, #event-detail .item-detail {
   margin-bottom: 60px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/pages\/_scenes\.scss}line{font-family:\0000363}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/pages\/_scenes\.scss}line{font-family:\0000362}}
 #game-elements {
   margin-bottom: 60px;
 }
