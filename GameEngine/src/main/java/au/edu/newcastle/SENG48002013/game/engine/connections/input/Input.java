@@ -75,6 +75,7 @@ public class Input implements IInput
         {
             position = false;
             value.set(0, 0);
+            accessed = false;
         }
     }
 }

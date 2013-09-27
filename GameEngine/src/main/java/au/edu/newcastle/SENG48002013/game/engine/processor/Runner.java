@@ -4,6 +4,7 @@
  */
 package au.edu.newcastle.SENG48002013.game.engine.processor;
 
+import au.edu.newcastle.SENG48002013.game.engine.connections.input.InputManager;
 import au.edu.newcastle.SENG48002013.game.engine.connections.output.OutputConnectionManager;
 import au.edu.newcastle.SENG48002013.game.engine.model.IGame;
 import au.edu.newcastle.SENG48002013.game.engine.model.IGameOutput;
@@ -43,6 +44,7 @@ public class Runner extends Thread {
              System.out.println("X:" + objects[i].getPos().x + " Y:" + objects[i].getPos().y);
              }*/
             game.step(dt);
+            InputManager.flush();
         }
     }
 
