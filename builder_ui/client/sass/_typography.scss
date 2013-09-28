@@ -63,6 +63,16 @@ h1, h2, h3, h4, h5, h6 {
     border-bottom: 2px solid $text-colour;
 }
 
+h2, h3 {
+    margin-left: 20px;
+    margin-right: 20px;
+
+    &.no-margin {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
 h1 {
     @include adjust-font-size-to(28px);
 }

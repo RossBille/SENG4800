@@ -1,0 +1,9 @@
+<div class="input-container">
+    <label class="input-label">Object</label>
+
+    <div class="input">
+        <select ng-model="current_action.action_type.reflect.surface_object_id" ng-options="scene_object.object_id as scene_object.object_name + ' (ID: ' + scene_object.object_id + ')' for scene_object in current_level.objects.object">
+            <option value="">Object</option>
+        </select>
+    </div>
+</div>

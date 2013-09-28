@@ -3,75 +3,19 @@
     <level_id>0</level_id>
     <level_name>Level 0</level_name>
     <background_id></background_id>
-    <objects>
-      <object>
-        <object_id>0</object_id>
-        <object_name>Tennis Ball</object_name>
-        <sprite_id>0</sprite_id>
-        <object_shape>
-          <circle>
-            <radius>87.5</radius>
-          </circle>
-        </object_shape>
-        <object_visible>yes</object_visible>
-        <start_pos>
-          <x>441</x>
-          <y>203</y>
-        </start_pos>
-        <start_vel>
-          <x>5</x>
-          <y>3</y>
-        </start_vel>
-        <start_acc>
-          <x>0</x>
-          <y>0</y>
-        </start_acc>
-      </object>
-      <object>
-        <object_id>1</object_id>
-        <object_name>Paddle Vertical</object_name>
-        <sprite_id>1</sprite_id>
-        <object_shape>
-          <rectangle>
-            <size>
-              <width>50</width>
-              <height>400</height>
-            </size>
-          </rectangle>
-        </object_shape>
-        <object_visible>yes</object_visible>
-        <start_pos>
-          <x>963</x>
-          <y>147</y>
-        </start_pos>
-        <start_vel>
-          <x>0</x>
-          <y>-4</y>
-        </start_vel>
-        <start_acc>
-          <x>0</x>
-          <y>0</y>
-        </start_acc>
-      </object>
-    </objects>
+    <objects></objects>
     <events>
       <event>
         <event_id>0</event_id>
         <event_type>
-          <boundary>
-            <object_id>0</object_id>
-            <level_id>0</level_id>
-            <edges>bottom</edges>
-            <allow_overlap>no</allow_overlap>
-          </boundary>
+          <step/>
         </event_type>
         <actions>
           <action>
             <action_id>0</action_id>
             <action_type>
               <reflect>
-                <object_id>0</object_id>
-                <surface_object_id></surface_object_id>
+                <object_id></object_id>
                 <surface_level_id>0</surface_level_id>
               </reflect>
             </action_type>
@@ -81,17 +25,20 @@
       <event>
         <event_id>1</event_id>
         <event_type>
-          <boundary>
-            <object_id>0</object_id>
-            <level_id>0</level_id>
-            <edges>bottom</edges>
+          <collision>
+            <object_id1></object_id1>
+            <object_id2></object_id2>
             <allow_overlap>no</allow_overlap>
-          </boundary>
+          </collision>
         </event_type>
         <actions>
           <action>
-            <action_id>1</action_id>
-            <action_type/>
+            <action_id>0</action_id>
+            <action_type>
+              <change_level>
+                <level_id>5</level_id>
+              </change_level>
+            </action_type>
           </action>
         </actions>
       </event>

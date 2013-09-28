@@ -4,9 +4,9 @@
 @import "compass/typography";
 
 //Framework and normalisation
-//@import "includes/skeleton-responsive";
 @import "includes/skeleton";
 @import "includes/normalize";
+@import "includes/jquery.pnotify.default";
 
 //Website elements
 @import "variables";

@@ -22,4 +22,4 @@
 			<!ELEMENT BACKGROUND_NAME (#PCDATA)>
 			<!ELEMENT IMAGE (#PCDATA)>
 			<!ELEMENT SPEED (#PCDATA)>
-			<!ELEMENT POSITION_TYPE (tiled|stretch|fill|centre)>
+			<!ELEMENT POSITION_TYPE (tiled|fill|centre)>
