@@ -1,7 +1,7 @@
 <levels>
   <level>
     <level_id>0</level_id>
-    <level_name>Level 0</level_name>
+    <level_name>Level Zero</level_name>
     <background_id></background_id>
     <objects></objects>
     <events>
@@ -14,29 +14,8 @@
           <action>
             <action_id>0</action_id>
             <action_type>
-              <reflect>
-                <object_id></object_id>
-                <surface_level_id>0</surface_level_id>
-              </reflect>
-            </action_type>
-          </action>
-        </actions>
-      </event>
-      <event>
-        <event_id>1</event_id>
-        <event_type>
-          <collision>
-            <object_id1></object_id1>
-            <object_id2></object_id2>
-            <allow_overlap>no</allow_overlap>
-          </collision>
-        </event_type>
-        <actions>
-          <action>
-            <action_id>0</action_id>
-            <action_type>
               <change_level>
-                <level_id>5</level_id>
+                <level_id>0</level_id>
               </change_level>
             </action_type>
           </action>

@@ -1,7 +1,11 @@
 <div class="item-detail-section">
     <div class="input-container">
-        <label for="level_id" class="input-label">Level ID</label>
+        <label class="input-label">Level ID</label>
 
-        <div class="input"><input type="number" id="level_id" ng-model="current_action.action_type.change_level.level_id" /></div>
+        <div class="input">
+            <select ng-model="current_action.action_type.change_level.level_id"
+                    ng-options="level.level_id as level.level_name + ' (ID: ' + level.level_id + ')' for level in game.levels.level">
+                <option value="">Level</option>
+            </select></div>
     </div>
 </div>

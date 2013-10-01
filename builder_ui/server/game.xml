@@ -73,24 +73,6 @@
         </rectangle>
       </shape>
     </sprite>
-    <sprite>
-      <sprite_id>4</sprite_id>
-      <sprite_name>Paddle Horizontal</sprite_name>
-      <image>/images/paddle_horizontal.png</image>
-      <speed>1</speed>
-      <offset>
-        <x>0</x>
-        <y>0</y>
-      </offset>
-      <shape>
-        <rectangle>
-          <size>
-            <width>400</width>
-            <height>60</height>
-          </size>
-        </rectangle>
-      </shape>
-    </sprite>
   </sprites>
   <backgrounds>
     <background>
@@ -106,27 +88,6 @@
       <image>/images/geometry.png</image>
       <speed>1</speed>
       <position_type>tiled</position_type>
-    </background>
-    <background>
-      <background_id>2</background_id>
-      <background_name>New background</background_name>
-      <image>/images/paddle_horizontal.png</image>
-      <speed>1</speed>
-      <position_type>tiled</position_type>
-    </background>
-    <background>
-      <background_id>3</background_id>
-      <background_name>New background</background_name>
-      <image>/images/paddle_horizontal.png</image>
-      <speed>1</speed>
-      <position_type>fill</position_type>
-    </background>
-    <background>
-      <background_id>4</background_id>
-      <background_name>New background</background_name>
-      <image>/images/paddle_horizontal.png</image>
-      <speed>1</speed>
-      <position_type>centre</position_type>
     </background>
   </backgrounds>
 </setup>
