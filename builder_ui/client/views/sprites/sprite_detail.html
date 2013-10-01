@@ -2,8 +2,12 @@
     <h2>New Sprite</h2>
 
     <div class="controls">
+        <button ng-click="addSpriteImage()">Add Sprite Image</button>
         <button ng-click="deleteSprite()">Delete Sprite</button>
         <button ng-click="saveSprite()">Save Sprite</button>
+    </div>
+
+    <div id="sprite-image-detail" ng-include src="sprite_image_view_URL">
     </div>
 
     <div class="item-detail-section half first">
@@ -33,11 +37,6 @@
     </div>
 
     <div class="item-detail-section half last">
-        <div class="input-container">
-            <label for="sprite_image" class="input-label">Image path</label>
-
-            <div class="input"><input id="sprite_image" type="text" ng-model="current_sprite.image" /></div>
-        </div>
 
         <div class="input-container">
             <label class="input-label">Shape</label>

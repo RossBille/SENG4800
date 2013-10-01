@@ -2,7 +2,7 @@
     "Backgrounds": [
         {
             "background_id": 0,
-            "background_name": "Grey noise",
+            "background_name": "Grey Noise",
             "image": "/images/grey_noise.jpg",
             "speed": 1,
             "position_type": "tiled"

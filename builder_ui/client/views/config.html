@@ -72,24 +72,30 @@
 
         <div class='object-list' id="sprites" selectable>
             <h2>Sprites</h2>
+
             <p>Select which sprites to use in your game (click and drag or control + click)</p>
 
             <div class="object-container" ng-repeat="item in sprites">
                 <div class="image-container">
-                    <img ng-src="{{item.image}}" class="object selectable" ng-class="determineOrientation(item)"
+                    <img ng-src="{{item.images.image[0]}}" class="object selectable" ng-class="determineOrientation(item)"
                          data-index="{{$index}}" title="{{item.sprite_name}}"/>
                 </div>
+                <span>{{item.sprite_name}}</span>
             </div>
         </div>
 
         <div class='object-list' id="backgrounds" selectable>
             <h2>Backgrounds</h2>
+
             <p>Select which backgrounds to use in your game (click and drag or control + click)</p>
 
             <div class="object-container" ng-repeat="item in backgrounds">
                 <div class="image-container">
-                    <div class="background selectable {{item.position_type}}" ng-style="item.image != '' && {'background-image':'url('+item.image+')'}" title="{{item.background_name}}" data-index="{{$index}}"></div>
+                    <div class="background selectable {{item.position_type}}"
+                         ng-style="item.image != '' && {'background-image':'url('+item.image+')'}"
+                         title="{{item.background_name}}" data-index="{{$index}}"></div>
                 </div>
+                <span>{{item.background_name}}</span>
             </div>
         </div>
     </div>

@@ -56,7 +56,7 @@ App.directive('droppable', function ($compile) {
                         console.log('old position:');
                         console.log(old_position);
 
-                        var new_object = '<div class="scene-object-container"><img src="' + scope.objects[draggable_original_index].image + '" data-index="' + scene_index + '"class="scene-object"><div class="outline" ng-click="clicked(' + scene_index + ')" ></div></div>';
+                        var new_object = '<div class="scene-object-container"><img src="' + scope.objects[draggable_original_index].images.image[0] + '" data-index="' + scene_index + '"class="scene-object"><div class="outline" ng-click="clicked(' + scene_index + ')" ></div></div>';
                         console.log(new_object);
 
                         $drop_target.append($compile(new_object)(scope));

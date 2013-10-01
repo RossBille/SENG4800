@@ -129,12 +129,13 @@ body {
     }
 
     .object-container {
-        margin: 20px;
+        margin: 20px 20px 60px 20px;
         display: inline-block;
         float: left;
         display: table;
-        height: 100px;
         width: 100px;
+        height: 100px;
+        position: relative;
 
         .image-container {
             display: table-cell;
@@ -147,6 +148,16 @@ body {
                 background-repeat: repeat;
                 border: 1px solid #777;
             }
+        }
+
+        span {
+            @include adjust-font-size-to(12px);
+
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 110px;
+            text-align: center;
         }
     }
 }
@@ -294,6 +305,18 @@ body {
 
         &.half {
             @include columns(8);
+        }
+
+        &.full {
+            @include columns(16);
+
+            padding-left: 0;
+            padding-right: 0;
+            padding-bottom: 60px;
+
+            .input-container {
+                padding: 0 20px !important;
+            }
         }
 
         &.first {

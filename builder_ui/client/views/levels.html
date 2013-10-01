@@ -56,8 +56,9 @@
 
             <div class="object-container" ng-repeat="item in objects">
                 <div class="image-container">
-                    <img ng-src="{{item.image}}" class="object" ng-class="determineOrientation(item)" data-index="{{$index}}" draggable/>
+                    <img ng-src="{{item.images.image[0]}}" class="object" ng-class="determineOrientation(item)" data-index="{{$index}}" draggable/>
                 </div>
+                <span>{{item.sprite_name}}</span>
             </div>
         </div>
     </div>
