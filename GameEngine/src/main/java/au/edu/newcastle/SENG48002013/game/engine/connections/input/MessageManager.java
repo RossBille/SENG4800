@@ -53,7 +53,7 @@ public class MessageManager {
         System.out.println("GAME ENGINE" + Message);
         ObjectMapper mapper = new ObjectMapper();
         PlayerControlMessage pcm = mapper.readValue(Message, PlayerControlMessage.class);
-        Input input = new Input(getNextId());
+        Input input = new Input(pcm.getPlayer());
         //convert 3d vector to 2d vector
         Vector2d vector = new Vector2d(pcm.getDirection().x, pcm.getDirection().y);
         input.setValue(vector);
@@ -63,9 +63,6 @@ public class MessageManager {
         InputManager.addInput(input);
     }
 
-    private long getNextId() {
-        return 1;
-    }
 
     public int currentPeers() {
         return peers.size();
