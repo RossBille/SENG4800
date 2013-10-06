@@ -5,18 +5,21 @@
     <background_id></background_id>
     <objects>
       <object>
-        <object_id>1</object_id>
-        <object_name>Golf Ball</object_name>
-        <sprite_id>1</sprite_id>
+        <object_id>0</object_id>
+        <object_name>Paddle Vertical</object_name>
+        <sprite_id>0</sprite_id>
         <object_shape>
-          <circle>
-            <radius>75</radius>
-          </circle>
+          <rectangle>
+            <size>
+              <width>50</width>
+              <height>400</height>
+            </size>
+          </rectangle>
         </object_shape>
         <object_visible>yes</object_visible>
         <start_pos>
-          <x>626</x>
-          <y>208</y>
+          <x/>
+          <y>1</y>
         </start_pos>
         <start_vel>
           <x>0</x>

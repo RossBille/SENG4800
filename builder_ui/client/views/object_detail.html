@@ -24,9 +24,15 @@
         </div>
 
         <div class="input-container">
-            <label class="input-label">Start Pos. (X - Y)</label>
+            <label for="start_pos_x" class="input-label">Start Pos. (X)</label>
 
-            <div class="input"><p>{{selected_object.start_pos.x}} - {{selected_object.start_pos.y}}</p></div>
+            <div class="input"><input type="number" id="start_pos_x" ng-model="selected_object.start_pos.x"/></div>
+        </div>
+
+        <div class="input-container">
+            <label for="start_pos_y" class="input-label">Start Pos. (Y)</label>
+
+            <div class="input"><input type="number" id="start_pos_y" ng-model="selected_object.start_pos.y"/></div>
         </div>
 
         <div class="input-container">

@@ -241,7 +241,7 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
             }
         });
 
-        if(current_event_index === -1) {
+        if (current_event_index === -1) {
             console.log('ERROR: current event index was not found!');
             return;
         }
@@ -291,7 +291,7 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
             }
         });
 
-        if(index_to_delete === -1) {
+        if (index_to_delete === -1) {
             console.log('ERROR: index to delete was not found!');
             return;
         }
@@ -478,7 +478,7 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
             }
         });
 
-        if(current_action_index === -1) {
+        if (current_action_index === -1) {
             console.log('ERROR: current action index was not found!');
             return;
         }
@@ -522,7 +522,7 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
             }
         });
 
-        if(index_to_delete === -1) {
+        if (index_to_delete === -1) {
             console.log('ERROR: index to delete was not found!');
             return;
         }
@@ -632,7 +632,7 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
             }
         });
 
-        if(selected_object_index === -1) {
+        if (selected_object_index === -1) {
             console.log('ERROR: selected object index was not found!');
             return;
         }
@@ -670,7 +670,7 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
             }
         });
 
-        if(index_to_delete === -1) {
+        if (index_to_delete === -1) {
             console.log('ERROR: index to delete was not found!');
             return;
         }
@@ -687,6 +687,106 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         $scope.selected_object = null;
         $scope.view_URL = '';
     };
+
+    $scope.$watch(
+        "selected_object.start_pos.x",
+        function(new_value, old_value) {
+            console.log('===========================================');
+            console.log('selected object start position modified (x)');
+            console.log('===========================================');
+
+            console.log('old value:');
+            console.log(old_value);
+
+            console.log('new value:');
+            console.log(new_value);
+
+            if (new_value === null) {
+                console.log('new value is null');
+                return;
+            }
+
+            if (new_value === undefined) {
+                console.log('new value is undefined');
+                $scope.selected_object.start_pos.x = old_value;
+                return;
+            }
+
+            if($scope.selected_object.object_shape.circle) {
+                var right_value = new_value + ($scope.selected_object.object_shape.circle.radius * 2);
+            }
+            else {
+                var right_value = new_value + ($scope.selected_object.object_shape.rectangle.size.width);
+            }
+
+            if(right_value > $scope.game.setup.canvas_size.width) {
+                $.pnotify({
+                    title: 'Unable to Move Object',
+                    text: 'Cannot move object to new position since it would be outside of the canvas',
+                    type: 'error'
+                });
+
+                $scope.selected_object.start_pos.x = old_value;
+                return;
+            }
+
+            var $scene_object = $('.scene').find("img[data-index='" + $scope.selected_object.object_id + "']");
+            var $scene_object_container = $scene_object.closest('.scene-object-container');
+
+            $scene_object_container.css({left: new_value});
+            console.log('set left offset to new value');
+        }
+    );
+
+    $scope.$watch(
+        "selected_object.start_pos.y",
+        function(new_value, old_value) {
+            console.log('===========================================');
+            console.log('selected object start position modified (y)');
+            console.log('===========================================');
+
+            console.log('old value:');
+            console.log(old_value);
+
+            console.log('new value:');
+            console.log(new_value);
+
+            if (new_value === null) {
+                console.log('new value is null');
+                return;
+            }
+
+            if (new_value === undefined) {
+                console.log('new value is undefined');
+                $scope.selected_object.start_pos.y = old_value;
+                return;
+            }
+
+            if($scope.selected_object.object_shape.circle) {
+                var bottom_value = new_value + ($scope.selected_object.object_shape.circle.radius * 2);
+            }
+            else {
+                var bottom_value = new_value + ($scope.selected_object.object_shape.rectangle.size.height);
+            }
+
+            if(bottom_value > $scope.game.setup.canvas_size.height) {
+                $.pnotify({
+                    title: 'Unable to Move Object',
+                    text: 'Cannot move object to new position since it would be outside of the canvas',
+                    type: 'error'
+                });
+
+                $scope.selected_object.start_pos.y = old_value;
+                return;
+            }
+
+            var $scene_object = $('.scene').find("img[data-index='" + $scope.selected_object.object_id + "']");
+            var $scene_object_container = $scene_object.closest('.scene-object-container');
+
+            $scene_object_container.css({top: new_value});
+            console.log('set top offset to new value');
+        }
+    );
 
     /* GAME */
     $scope.saveGame = function() {
