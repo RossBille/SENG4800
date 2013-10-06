@@ -82,6 +82,26 @@
         </rectangle>
       </shape>
     </sprite>
+    <sprite>
+      <sprite_id>4</sprite_id>
+      <sprite_name>Paddle Horizontal</sprite_name>
+      <images>
+        <image>/images/paddle_horizontal.png</image>
+      </images>
+      <speed>1</speed>
+      <offset>
+        <x>0</x>
+        <y>0</y>
+      </offset>
+      <shape>
+        <rectangle>
+          <size>
+            <width>400</width>
+            <height>60</height>
+          </size>
+        </rectangle>
+      </shape>
+    </sprite>
   </sprites>
   <backgrounds></backgrounds>
 </setup>

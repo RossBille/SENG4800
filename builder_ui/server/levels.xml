@@ -3,32 +3,36 @@
     <level_id>0</level_id>
     <level_name>Level 0</level_name>
     <background_id></background_id>
-    <objects></objects>
+    <objects>
+      <object>
+        <object_id>1</object_id>
+        <object_name>Golf Ball</object_name>
+        <sprite_id>1</sprite_id>
+        <object_shape>
+          <circle>
+            <radius>75</radius>
+          </circle>
+        </object_shape>
+        <object_visible>yes</object_visible>
+        <start_pos>
+          <x>626</x>
+          <y>208</y>
+        </start_pos>
+        <start_vel>
+          <x>0</x>
+          <y>0</y>
+        </start_vel>
+        <start_acc>
+          <x>0</x>
+          <y>0</y>
+        </start_acc>
+      </object>
+    </objects>
     <events>
       <event>
         <event_id>0</event_id>
         <event_type>
           <step/>
-        </event_type>
-        <actions></actions>
-      </event>
-      <event>
-        <event_id>2</event_id>
-        <event_type>
-          <timer>
-            <length>2</length>
-            <repeat>no</repeat>
-          </timer>
-        </event_type>
-        <actions></actions>
-      </event>
-      <event>
-        <event_id>3</event_id>
-        <event_type>
-          <timer>
-            <length>3</length>
-            <repeat>no</repeat>
-          </timer>
         </event_type>
         <actions></actions>
       </event>

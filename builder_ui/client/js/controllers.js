@@ -614,19 +614,34 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
     /* SCENE ITEMS */
     $scope.view_URL = '';
     $scope.object_shape_view_URL = '';
-    $scope.selected_item = null;
+    $scope.selected_object = null;
 
-    $scope.clicked = function(index) {
-        console.log('scene item clicked');
-        console.log(index);
+    $scope.clicked = function(clicked_index) {
+        console.log('scene item clicked: ' + clicked_index);
 
         $('.scene .scene-object-container').removeClass('selected');
-        $('.scene img[data-index="' + index + '"]').closest('.scene-object-container').addClass('selected');
+        $('.scene img[data-index="' + clicked_index + '"]').closest('.scene-object-container').addClass('selected');
 
-        $scope.selected_item = $scope.current_level.objects.object[index];
+        var selected_object_index = -1;
+
+        angular.forEach($scope.current_level.objects.object, function(value, index) {
+            if (clicked_index === value.object_id) {
+                selected_object_index = index;
+
+                console.log('found selected object index: ' + selected_object_index);
+            }
+        });
+
+        if(selected_object_index === -1) {
+            console.log('ERROR: selected object index was not found!');
+            return;
+        }
+
+        $scope.selected_object = $scope.current_level.objects.object[selected_object_index];
+
         $scope.view_URL = 'views/object_detail.html';
 
-        if ($scope.selected_item.object_shape.circle) {
+        if ($scope.selected_object.object_shape.circle) {
             $scope.object_shape_view_URL = 'views/shapes/object_circle.html';
         }
         else {
@@ -635,12 +650,42 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
     };
 
     $scope.getObjectShape = function() {
-        if ($scope.selected_item.object_shape.circle) {
+        if ($scope.selected_object.object_shape.circle) {
             return 'Circle';
         }
         else {
             return 'Rectangle';
         }
+    };
+
+    $scope.deleteObject = function() {
+        var index_to_delete = -1;
+        var index_to_remove = $scope.selected_object.object_id;
+
+        angular.forEach($scope.current_level.objects.object, function(value, index) {
+            if ($scope.selected_object.object_id === value.object_id) {
+                index_to_delete = index;
+
+                console.log('found index to delete: ' + index_to_delete);
+            }
+        });
+
+        if(index_to_delete === -1) {
+            console.log('ERROR: index to delete was not found!');
+            return;
+        }
+
+        $scope.current_level.objects.object.splice(index_to_delete, 1);
+
+        $.pnotify({
+            title: 'Object Deleted',
+            text: 'The selected object has been deleted.',
+            type: 'info'
+        });
+
+        $('.scene').find("img[data-index='" + index_to_remove + "']").closest('.scene-object-container').remove();
+        $scope.selected_object = null;
+        $scope.view_URL = '';
     };
 
     /* GAME */
