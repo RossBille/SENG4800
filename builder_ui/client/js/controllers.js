@@ -231,7 +231,22 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
 
         $scope.game.levels.level[level_index].events.event.push(new_event);
 
-        $scope.current_event = $scope.current_level.events.event[event_index];
+        var current_event_index = -1;
+
+        angular.forEach($scope.current_level.events.event, function(value, index) {
+            if (event_index === value.event_id) {
+                current_event_index = index;
+
+                console.log('found current event index: ' + current_event_index);
+            }
+        });
+
+        if(current_event_index === -1) {
+            console.log('ERROR: current event index was not found!');
+            return;
+        }
+
+        $scope.current_event = $scope.current_level.events.event[current_event_index];
     };
 
     $scope.saveEvent = function(show_notification) {
@@ -266,17 +281,30 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
             return;
         }
 
-        $scope.saveEvent(false);
+        var index_to_delete = -1;
 
-        $scope.current_level.events.event.splice(event_index, 1);
+        angular.forEach($scope.current_level.events.event, function(value, index) {
+            if ($scope.current_event.event_id === value.event_id) {
+                index_to_delete = index;
 
-        event_index--;
+                console.log('found index to delete: ' + index_to_delete);
+            }
+        });
+
+        if(index_to_delete === -1) {
+            console.log('ERROR: index to delete was not found!');
+            return;
+        }
+
+        $scope.current_level.events.event.splice(index_to_delete, 1);
 
         $.pnotify({
             title: 'Event Deleted',
             text: 'The current event has been deleted.',
             type: 'info'
         });
+
+        $scope.saveEvent(false);
     };
 
     $scope.getEventTypeByName = function(value) {
@@ -427,7 +455,7 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
     $scope.current_action = null;
 
     $scope.newAction = function() {
-        action_index = $scope.current_event.actions.action.length;
+        action_index++;
 
         $scope.saveAction(false);
 
@@ -440,7 +468,22 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
 
         $scope.current_event.actions.action.push(new_action);
 
-        $scope.current_action = $scope.current_event.actions.action[action_index];
+        var current_action_index = -1;
+
+        angular.forEach($scope.current_event.actions.action, function(value, index) {
+            if (action_index === value.action_id) {
+                current_action_index = index;
+
+                console.log('found current action index: ' + current_action_index);
+            }
+        });
+
+        if(current_action_index === -1) {
+            console.log('ERROR: current action index was not found!');
+            return;
+        }
+
+        $scope.current_action = $scope.current_event.actions.action[current_action_index];
     };
 
     $scope.saveAction = function(show_notification) {
@@ -469,17 +512,30 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
     };
 
     $scope.deleteAction = function() {
-        $scope.saveAction(false);
+        var index_to_delete = -1;
 
-        $scope.current_event.actions.action.splice(action_index, 1);
+        angular.forEach($scope.current_event.actions.action, function(value, index) {
+            if ($scope.current_action.action_id === value.action_id) {
+                index_to_delete = index;
 
-        action_index--;
+                console.log('found index to delete: ' + index_to_delete);
+            }
+        });
+
+        if(index_to_delete === -1) {
+            console.log('ERROR: index to delete was not found!');
+            return;
+        }
+
+        $scope.current_event.actions.action.splice(index_to_delete, 1);
 
         $.pnotify({
             title: 'Action Deleted',
             text: 'The current action has been deleted.',
             type: 'info'
         });
+
+        $scope.saveAction(false);
     };
 
     $scope.getActionTypeByName = function(value) {
@@ -815,7 +871,7 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
     };
 
     $scope.saveSprite = function() {
-        if($scope.selected_sprite_shape.shape === '') {
+        if ($scope.selected_sprite_shape.shape === '') {
             $.pnotify({
                 title: 'Sprite Not Saved',
                 text: 'Your sprite has not been saved. You must choose a sprite shape.',
@@ -825,7 +881,7 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
             return;
         }
 
-        if($scope.current_sprite.images.image.length === 0) {
+        if ($scope.current_sprite.images.image.length === 0) {
             $.pnotify({
                 title: 'Sprite Not Saved',
                 text: 'Your sprite has not been saved. You must add at least one image.',

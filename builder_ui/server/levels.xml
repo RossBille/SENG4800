@@ -1,7 +1,7 @@
 <levels>
   <level>
     <level_id>0</level_id>
-    <level_name>Level Zero</level_name>
+    <level_name>Level 0</level_name>
     <background_id></background_id>
     <objects></objects>
     <events>
@@ -10,16 +10,27 @@
         <event_type>
           <step/>
         </event_type>
-        <actions>
-          <action>
-            <action_id>0</action_id>
-            <action_type>
-              <change_level>
-                <level_id>0</level_id>
-              </change_level>
-            </action_type>
-          </action>
-        </actions>
+        <actions></actions>
+      </event>
+      <event>
+        <event_id>2</event_id>
+        <event_type>
+          <timer>
+            <length>2</length>
+            <repeat>no</repeat>
+          </timer>
+        </event_type>
+        <actions></actions>
+      </event>
+      <event>
+        <event_id>3</event_id>
+        <event_type>
+          <timer>
+            <length>3</length>
+            <repeat>no</repeat>
+          </timer>
+        </event_type>
+        <actions></actions>
       </event>
     </events>
   </level>
