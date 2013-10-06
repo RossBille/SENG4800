@@ -4,13 +4,13 @@ var canvas = app.canvas = document.getElementById('game');
 var context = app.context = canvas.getContext('2d');
 
 /* Our callback to perform action on each object */
-app.action = function(objects) {
+app.action = function (objects) {
     context.clearRect(0, 0, canvas.width, canvas.height);
 
     while (objects.length > 0) {
         var object = objects.pop();
         var img = getImage(object);
-        context.drawImage(img, img.setAtX, img.setAtY);
+        context.drawImage(img, img.setAtX, img.setAtY)
     }
 
     function getImage(object) {

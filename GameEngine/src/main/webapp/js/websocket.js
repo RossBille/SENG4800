@@ -16,13 +16,12 @@ app.websocket = (function() {
             this.ws.close();
         }
     }
-
     /* Our web socket function */
 
     function onMessage(msg) {
         var objects = [];
         var instruction = JSON.parse(msg.data);
-        //console.log(msg.data);
+        console.log(msg.data);
 
         while (instruction.length > 0) {
             var o = instruction.pop();
