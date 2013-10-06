@@ -198,8 +198,23 @@ App.directive('droppable', function ($compile) {
                                 var offset_top = Math.round(offset.top);
                                 var draggable_index = $(this).find('img').data('index');
 
-                                scope.current_level.objects.object[draggable_index].start_pos.x = offset_left * scope.canvas.multiplier;
-                                scope.current_level.objects.object[draggable_index].start_pos.y = offset_top * scope.canvas.multiplier;
+                                var dragged_object_index = -1;
+
+                                angular.forEach(scope.current_level.objects.object, function(value, index) {
+                                    if (draggable_index === value.object_id) {
+                                        dragged_object_index = index;
+
+                                        console.log('found dragged object index: ' + dragged_object_index);
+                                    }
+                                });
+
+                                if(dragged_object_index === -1) {
+                                    console.log('ERROR: dragged object index was not found!');
+                                    return;
+                                }
+
+                                scope.current_level.objects.object[dragged_object_index].start_pos.x = offset_left * scope.canvas.multiplier;
+                                scope.current_level.objects.object[dragged_object_index].start_pos.y = offset_top * scope.canvas.multiplier;
 
                                 scope.$apply();
                             },
@@ -214,12 +229,27 @@ App.directive('droppable', function ($compile) {
                                 var height = $(this).height();
                                 var draggable_index = $(this).find('img').data('index');
 
-                                if (scope.current_level.objects.object[draggable_index].object_shape.circle) {
-                                    scope.current_level.objects.object[draggable_index].object_shape.circle.radius = (width / 2) * scope.canvas.multiplier;
+                                var dragged_object_index = -1;
+
+                                angular.forEach(scope.current_level.objects.object, function(value, index) {
+                                    if (draggable_index === value.object_id) {
+                                        dragged_object_index = index;
+
+                                        console.log('found dragged object index: ' + dragged_object_index);
+                                    }
+                                });
+
+                                if(dragged_object_index === -1) {
+                                    console.log('ERROR: dragged object index was not found!');
+                                    return;
                                 }
-                                else if (scope.current_level.objects.object[draggable_index].object_shape.rectangle) {
-                                    scope.current_level.objects.object[draggable_index].object_shape.rectangle.size.width = width * scope.canvas.multiplier;
-                                    scope.current_level.objects.object[draggable_index].object_shape.rectangle.size.height = height * scope.canvas.multiplier;
+
+                                if (scope.current_level.objects.object[dragged_object_index].object_shape.circle) {
+                                    scope.current_level.objects.object[dragged_object_index].object_shape.circle.radius = (width / 2) * scope.canvas.multiplier;
+                                }
+                                else if (scope.current_level.objects.object[dragged_object_index].object_shape.rectangle) {
+                                    scope.current_level.objects.object[dragged_object_index].object_shape.rectangle.size.width = width * scope.canvas.multiplier;
+                                    scope.current_level.objects.object[dragged_object_index].object_shape.rectangle.size.height = height * scope.canvas.multiplier;
                                 }
 
                                 scope.$apply();
