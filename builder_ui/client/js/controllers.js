@@ -162,7 +162,14 @@ function LevelsController($scope, $location, $compile, CanvasService, GameServic
                 containment: ".scene"
             });
 
+            var preserve_aspect_ratio = false;
+
+            if($new_object_container.find('.outline').hasClass('circle')) {
+                preserve_aspect_ratio = true;
+            }
+
             $new_object.resizable({
+                aspectRatio: preserve_aspect_ratio,
                 stop: function () {
                     console.log('scene object resized');
 
