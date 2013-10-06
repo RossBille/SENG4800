@@ -3,7 +3,31 @@
     <level_id>0</level_id>
     <level_name>Level 0</level_name>
     <background_id></background_id>
-    <objects></objects>
+    <objects>
+      <object>
+        <object_id>0</object_id>
+        <object_name>Golf Ball</object_name>
+        <sprite_id>0</sprite_id>
+        <object_shape>
+          <circle>
+            <radius>75</radius>
+          </circle>
+        </object_shape>
+        <object_visible>yes</object_visible>
+        <start_pos>
+          <x>1770</x>
+          <y>930</y>
+        </start_pos>
+        <start_vel>
+          <x>0</x>
+          <y>0</y>
+        </start_vel>
+        <start_acc>
+          <x>0</x>
+          <y>0</y>
+        </start_acc>
+      </object>
+    </objects>
     <events>
       <event>
         <event_id>0</event_id>
@@ -21,40 +45,17 @@
     <objects>
       <object>
         <object_id>0</object_id>
-        <object_name>Soccer Ball</object_name>
+        <object_name>Golf Ball</object_name>
         <sprite_id>0</sprite_id>
         <object_shape>
           <circle>
-            <radius>100</radius>
+            <radius>75</radius>
           </circle>
         </object_shape>
         <object_visible>yes</object_visible>
         <start_pos>
-          <x>425</x>
-          <y>42</y>
-        </start_pos>
-        <start_vel>
           <x>0</x>
           <y>0</y>
-        </start_vel>
-        <start_acc>
-          <x>0</x>
-          <y>0</y>
-        </start_acc>
-      </object>
-      <object>
-        <object_id>1</object_id>
-        <object_name>Tennis Ball</object_name>
-        <sprite_id>2</sprite_id>
-        <object_shape>
-          <circle>
-            <radius>87.5</radius>
-          </circle>
-        </object_shape>
-        <object_visible>yes</object_visible>
-        <start_pos>
-          <x>96</x>
-          <y>49</y>
         </start_pos>
         <start_vel>
           <x>0</x>

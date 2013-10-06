@@ -129,7 +129,7 @@ function LevelsController($scope, $location, $compile, CanvasService, GameServic
                 $new_object.attr('height', $scope.objects[value.sprite_id].shape.rectangle.size.height / $scope.canvas.multiplier);
             }
 
-            $new_object_container.css({left: value.start_pos.x, top: value.start_pos.y});
+            $new_object_container.css({left: value.start_pos.x / $scope.canvas.multiplier, top: value.start_pos.y / $scope.canvas.multiplier});
 
             $new_object_container.draggable({
                 stop: function () {
@@ -188,7 +188,7 @@ function LevelsController($scope, $location, $compile, CanvasService, GameServic
                     if ($scope.current_level.objects.object[dragged_object_index].object_shape.circle) {
                         $scope.current_level.objects.object[dragged_object_index].object_shape.circle.radius = (width / 2) * $scope.canvas.multiplier;
                     }
-                    else if (scope.current_level.objects.object[dragged_object_index].object_shape.rectangle) {
+                    else if ($scope.current_level.objects.object[dragged_object_index].object_shape.rectangle) {
                         $scope.current_level.objects.object[dragged_object_index].object_shape.rectangle.size.width = width * $scope.canvas.multiplier;
                         $scope.current_level.objects.object[dragged_object_index].object_shape.rectangle.size.height = height * $scope.canvas.multiplier;
                     }
@@ -824,7 +824,7 @@ function LevelsController($scope, $location, $compile, CanvasService, GameServic
             var $scene_object = $('.scene').find("img[data-index='" + $scope.selected_object.object_id + "']");
             var $scene_object_container = $scene_object.closest('.scene-object-container');
 
-            $scene_object_container.css({left: new_value});
+            $scene_object_container.css({left: new_value / $scope.canvas.multiplier});
             console.log('set left offset to new value');
         }
     );
@@ -864,7 +864,7 @@ function LevelsController($scope, $location, $compile, CanvasService, GameServic
             var $scene_object = $('.scene').find("img[data-index='" + $scope.selected_object.object_id + "']");
             var $scene_object_container = $scene_object.closest('.scene-object-container');
 
-            $scene_object_container.css({top: new_value});
+            $scene_object_container.css({top: new_value / $scope.canvas.multiplier});
             console.log('set top offset to new value');
         }
     );
