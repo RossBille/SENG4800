@@ -3,23 +3,58 @@
     <level_id>0</level_id>
     <level_name>Level 0</level_name>
     <background_id></background_id>
+    <objects></objects>
+    <events>
+      <event>
+        <event_id>0</event_id>
+        <event_type>
+          <step/>
+        </event_type>
+        <actions></actions>
+      </event>
+    </events>
+  </level>
+  <level>
+    <level_id>1</level_id>
+    <level_name>Level 1</level_name>
+    <background_id></background_id>
     <objects>
       <object>
         <object_id>0</object_id>
-        <object_name>Paddle Vertical</object_name>
+        <object_name>Soccer Ball</object_name>
         <sprite_id>0</sprite_id>
         <object_shape>
-          <rectangle>
-            <size>
-              <width>50</width>
-              <height>400</height>
-            </size>
-          </rectangle>
+          <circle>
+            <radius>100</radius>
+          </circle>
         </object_shape>
         <object_visible>yes</object_visible>
         <start_pos>
-          <x/>
-          <y>1</y>
+          <x>425</x>
+          <y>42</y>
+        </start_pos>
+        <start_vel>
+          <x>0</x>
+          <y>0</y>
+        </start_vel>
+        <start_acc>
+          <x>0</x>
+          <y>0</y>
+        </start_acc>
+      </object>
+      <object>
+        <object_id>1</object_id>
+        <object_name>Tennis Ball</object_name>
+        <sprite_id>2</sprite_id>
+        <object_shape>
+          <circle>
+            <radius>87.5</radius>
+          </circle>
+        </object_shape>
+        <object_visible>yes</object_visible>
+        <start_pos>
+          <x>96</x>
+          <y>49</y>
         </start_pos>
         <start_vel>
           <x>0</x>

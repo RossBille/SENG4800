@@ -14,10 +14,24 @@
         </div>
 
         <div id="game-elements" class="item-detail">
-            <div class="item-detail-section half first">
+            <div class="item-detail-section first">
+                <div class="input-container">
+                    <h2 class="no-margin">Levels</h2>
+                    <label class="input-label">Current</label>
+
+                    <div class="input">
+                        <select
+                                ng-model="current_level"
+                                ng-options="level as level.level_name + ' (ID: ' + level.level_id + ')' for level in game.levels.level"
+                                ng-change="currentLevelChanged()">
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="item-detail-section">
                 <div class="input-container">
                     <h2 class="no-margin">Events</h2>
-                    <label class="input-label">Current Event</label>
+                    <label class="input-label">Current</label>
 
                     <div class="input">
                         <select
@@ -28,10 +42,10 @@
                     </div>
                 </div>
             </div>
-            <div class="item-detail-section half last">
+            <div class="item-detail-section last">
                 <div class="input-container">
                     <h2 class="no-margin">Actions</h2>
-                    <label class="input-label">Current Action</label>
+                    <label class="input-label">Current</label>
 
                     <div class="input">
                         <select ng-model="current_action"

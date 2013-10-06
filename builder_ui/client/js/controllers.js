@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-function LevelsController($scope, $location, CanvasService, GameService, ConfigCompletionService, SaveXML) {
+function LevelsController($scope, $location, $compile, CanvasService, GameService, ConfigCompletionService, SaveXML) {
     $scope.config_completed = ConfigCompletionService.config_completed;
 
     if ($scope.config_completed.status === false) {
@@ -97,6 +97,107 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
         $scope.view_URL = '';
 
         $scope.createNewLevel();
+    };
+
+    $scope.currentLevelChanged = function() {
+        console.log('current level changed to:');
+        console.log($scope.current_level);
+
+        $scope.view_URL = '';
+        $scope.saveEvent(false);
+        $scope.saveAction(false);
+
+        $('.scene').empty();
+
+        angular.forEach($scope.current_level.objects.object, function(value, key) {
+            var $drop_target = $('.scene');
+
+            var new_object = '<div class="scene-object-container"><img src="' + $scope.objects[value.sprite_id].images.image[0] + '" data-index="' + value.object_id + '"class="scene-object"><div class="outline" ng-click="clicked(' + value.object_id + ')" ></div></div>';
+
+            $drop_target.append($compile(new_object)($scope));
+
+            var $new_object = $('.scene img[data-index="' + value.object_id + '"]');
+            var $new_object_parent = $new_object.parent();
+            var $new_object_container = $new_object.closest('.scene-object-container');
+
+            if ($scope.objects[value.sprite_id].shape.circle) {
+                $new_object.attr('height', ($scope.objects[value.sprite_id].shape.circle.radius * 2) / $scope.canvas.multiplier);
+                $new_object_parent.find('.outline').addClass('circle');
+            }
+            else {
+                $new_object.attr('width', $scope.objects[value.sprite_id].shape.rectangle.size.width / $scope.canvas.multiplier);
+                $new_object.attr('height', $scope.objects[value.sprite_id].shape.rectangle.size.height / $scope.canvas.multiplier);
+            }
+
+            $new_object_container.css({left: value.start_pos.x, top: value.start_pos.y});
+
+            $new_object_container.draggable({
+                stop: function () {
+                    console.log('scene object dragged');
+                    var offset = $(this).position();
+                    var offset_left = Math.round(offset.left);
+                    var offset_top = Math.round(offset.top);
+                    var draggable_index = $(this).find('img').data('index');
+
+                    var dragged_object_index = -1;
+
+                    angular.forEach($scope.current_level.objects.object, function(value, index) {
+                        if (draggable_index === value.object_id) {
+                            dragged_object_index = index;
+
+                            console.log('found dragged object index: ' + dragged_object_index);
+                        }
+                    });
+
+                    if(dragged_object_index === -1) {
+                        console.log('ERROR: dragged object index was not found!');
+                        return;
+                    }
+
+                    $scope.current_level.objects.object[dragged_object_index].start_pos.x = offset_left * $scope.canvas.multiplier;
+                    $scope.current_level.objects.object[dragged_object_index].start_pos.y = offset_top * $scope.canvas.multiplier;
+
+                    $scope.$apply();
+                },
+                containment: ".scene"
+            });
+
+            $new_object.resizable({
+                stop: function () {
+                    console.log('scene object resized');
+
+                    var width = $(this).width();
+                    var height = $(this).height();
+                    var draggable_index = $(this).find('img').data('index');
+
+                    var dragged_object_index = -1;
+
+                    angular.forEach($scope.current_level.objects.object, function(value, index) {
+                        if (draggable_index === value.object_id) {
+                            dragged_object_index = index;
+
+                            console.log('found dragged object index: ' + dragged_object_index);
+                        }
+                    });
+
+                    if(dragged_object_index === -1) {
+                        console.log('ERROR: dragged object index was not found!');
+                        return;
+                    }
+
+                    if ($scope.current_level.objects.object[dragged_object_index].object_shape.circle) {
+                        $scope.current_level.objects.object[dragged_object_index].object_shape.circle.radius = (width / 2) * $scope.canvas.multiplier;
+                    }
+                    else if (scope.current_level.objects.object[dragged_object_index].object_shape.rectangle) {
+                        $scope.current_level.objects.object[dragged_object_index].object_shape.rectangle.size.width = width * $scope.canvas.multiplier;
+                        $scope.current_level.objects.object[dragged_object_index].object_shape.rectangle.size.height = height * $scope.canvas.multiplier;
+                    }
+
+                    $scope.$apply();
+                },
+                containment: '.scene'
+            });
+        });
     };
 
     $scope.game.levels.level = [];
@@ -691,16 +792,6 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
     $scope.$watch(
         "selected_object.start_pos.x",
         function(new_value, old_value) {
-            console.log('===========================================');
-            console.log('selected object start position modified (x)');
-            console.log('===========================================');
-
-            console.log('old value:');
-            console.log(old_value);
-
-            console.log('new value:');
-            console.log(new_value);
-
             if (new_value === null) {
                 console.log('new value is null');
                 return;
@@ -741,16 +832,6 @@ function LevelsController($scope, $location, CanvasService, GameService, ConfigC
     $scope.$watch(
         "selected_object.start_pos.y",
         function(new_value, old_value) {
-            console.log('===========================================');
-            console.log('selected object start position modified (y)');
-            console.log('===========================================');
-
-            console.log('old value:');
-            console.log(old_value);
-
-            console.log('new value:');
-            console.log(new_value);
-
             if (new_value === null) {
                 console.log('new value is null');
                 return;
