@@ -166,7 +166,7 @@ describe('WebSocket', function() {
 describe('Action', function() {
     var canvas;
     var context;
-    var action = app.action
+    var action = new app.Helper;
 
     before(function() {
         canvas = document.getElementById('game');
@@ -176,7 +176,7 @@ describe('Action', function() {
     describe('#init', function() {
         it('should throw a RangeError when array is zero', function() {
             var objects = [];
-            expect(action(objects)).to.be.instanceOf(RangeError);
+            expect(action.draw(objects)).to.be.instanceOf(RangeError);
         })
     })
     describe("Visual Test", function() {
@@ -192,7 +192,7 @@ describe('Action', function() {
             var list = [];
             list.push(o);
 
-            var newList = action(list);
+            var newList = action.draw(list);
             expect(newList[1].src).to.equal(window.location.href + o.imageUrl);
         })
     })
