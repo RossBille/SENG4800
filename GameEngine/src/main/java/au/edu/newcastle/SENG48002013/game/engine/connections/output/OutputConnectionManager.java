@@ -48,7 +48,7 @@ public class OutputConnectionManager {
         //check if we have reached the max number of connections
         if (currentPeers() < getAllowedConnections()) {
             peers.add(peer);
-            peer.getBasicRemote().sendText("{ \"hello\": \"world\"}");
+            peer.getBasicRemote().sendText("{\"hello\":\"world\"}");
         } else {
             //cancel handshake
             peer.close(new CloseReason(CloseCodes.VIOLATED_POLICY, "Too many output devices connected"));

@@ -1,7 +1,7 @@
 /* Factory */
 var app = app || {};
 
-app.objectFactory = (function() {
+app.ObjectFactory = (function() {
     var Constructor;
 
     Constructor = function() {};

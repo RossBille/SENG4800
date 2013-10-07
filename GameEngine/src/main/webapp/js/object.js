@@ -36,15 +36,15 @@ app.Object = (function() {
         setSprite: function(sprite) {
             this.sprite = sprite;
         },
-        isVisible: function(visible) {
+        setVisible: function(visible) {
             this.visible = visible;
         },
-                setX: function(x) {
+        setX: function(x) {
             this.x = x;
         },
         setY: function(y) {
             this.y = y;
-        },
+        }
     }
     return Constructor;
 

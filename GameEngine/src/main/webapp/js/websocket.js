@@ -1,14 +1,27 @@
 var app = app || {};
 var action = app.action || {};
 
-app.websocket = (function() {
+app.Websocket = (function() {
     var Constructor;
 
-    Constructor = function() {
-        this.ws = new WebSocket("ws://localhost:8080/GameEngine/output");
+    Constructor = function(url) {
+        this.ws = new WebSocket(url);
         this.ws.onopen = onOpen;
         this.ws.onclose = onClose;
         this.ws.onmessage = onMessage;
+    }
+
+    Constructor.prototype.open = function() {
+        if (this.ws !== null) {
+            return;
+        }
+        try {
+            this.ws.open();
+        }
+        catch (e) {
+            console.log("Could not open web socket");
+            return new Error("Could not open web socket");
+        }
     }
 
     Constructor.prototype.close = function() {
@@ -19,16 +32,9 @@ app.websocket = (function() {
     /* Our web socket function */
 
     function onMessage(msg) {
-        var objects = [];
         var instruction = JSON.parse(msg.data);
-        console.log(msg.data);
-
-        while (instruction.length > 0) {
-            var o = instruction.pop();
-            objects.push(o);
-        }
         /* our callback */
-        action(objects);
+        action(instruction);
     }
 
     function onOpen() {
