@@ -100,7 +100,6 @@ describe('Object', function() {
             object.setSprite('testing');
             expect(object.getSprite()).to.equal('testing');
         })
-
         it('should have correct API', function() {
             expect(object).to.have.property('getID');
         });
