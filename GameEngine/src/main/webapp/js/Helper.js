@@ -45,6 +45,14 @@ app.Helper = (function() {
                 this.context.drawImage(img, img.setAtX, img.setAtY)
             }
             return this.list;
+        },
+
+        list: function() {
+            return this.list;
+        },
+
+        setList: function(list) {
+            this.list = list;
         }
     }
     return Constructor;

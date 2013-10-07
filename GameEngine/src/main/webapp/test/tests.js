@@ -140,60 +140,97 @@ describe('WebSocket', function() {
         websocket = new app.Websocket('ws://localhost:8080/GameEngine/output');
     })
 
-    describe('Error handling open sockets', function() {
-        it('should return not return Error', function() {
-            expect(websocket.open()).to.not.be.instanceOf(Error);
-        })
-    })
-
-    describe('Implements websocket API', function() {
+    describe('#open', function() {
         it('should have open method', function() {
             expect(websocket).to.have.property('open');
         })
-        it('should have onopen method', function() {
-            expect(websocket).to.have.property('close');
+    })
+
+    describe('#close', function() {
+        it('should not return an error when correctly closed', function() {
+            expect(websocket.close()).to.not.be.instanceOf(Error);
         })
     })
 
-    afterEach(function(done) {
-        window.setTimeout(function() {
-            websocket.close();
-            done();
-        }, 1000);
+    after(function() {
+        websocket.close();
     })
 })
 
-describe('Action', function() {
-    var canvas;
-    var context;
-    var action = new app.Helper;
+describe('Helper', function() {
+    var helper;
+    var mockObject;
 
     before(function() {
-        canvas = document.getElementById('game');
-        context = canvas.getContext('2d');
+        helper = new app.Helper;
+        mockObject = {
+            id: 2,
+            imageUrl: "images/ball.png",
+            outputPos: {
+                x: 100,
+                y: 100
+            }
+        }
     })
 
     describe('#init', function() {
+        it('should initialise correctly', function() {
+            var list = [];
+            list.push(mockObject);
+            var action = new app.Helper(list);
+            expect(action.list).to.equal(list);
+        })
         it('should throw a RangeError when array is zero', function() {
             var objects = [];
-            expect(action.draw(objects)).to.be.instanceOf(RangeError);
+            expect(helper.draw(objects)).to.be.instanceOf(RangeError);
         })
     })
-    describe("Visual Test", function() {
-        it('should move the object over the screen', function() {
-            var o = {
-                id: 1,
-                imageUrl: "images/ball.png",
-                outputPos: {
-                    x: 100,
-                    y: 100
-                }
-            }
-            var list = [];
-            list.push(o);
 
-            var newList = action.draw(list);
-            expect(newList[1].src).to.equal(window.location.href + o.imageUrl);
+    describe("#getImage", function() {
+        it('should contain a getImage method', function() {
+            expect(helper).to.have.property('getImage');
+        })
+        it('should return an image with correct src', function() {
+            var out = helper.getImage(mockObject);
+            expect(out.src).to.equal(window.location.href + mockObject.imageUrl);
+        })
+    })
+
+    describe("#draw", function() {
+        it('should contain a draw method', function() {
+            expect(helper).to.have.property('draw');
+        })
+        it('should move the object over the screen', function() {
+            var list = [];
+            list.push(mockObject);
+
+            var newList = helper.draw(list);
+            var id = mockObject.id;
+            expect(newList[id].src).to.equal(window.location.href + mockObject.imageUrl);
+        })
+    })
+
+    describe("#list", function() {
+        it('should contain a list method', function() {
+            expect(helper).to.have.property('list');
+        })
+        it('should return a correct list', function() {
+            var list = [];
+            list.push(mockObject);
+            var newlist = helper.draw(list);
+            expect(helper.list).to.have.length(mockObject.id + 1);
+        })
+    })
+
+    describe("#setList", function() {
+        it('should contain a setList method', function() {
+            expect(helper).to.have.property('setList');
+        })
+        it('should correctly set the list', function() {
+            var list = [];
+            list.push(mockObject);
+            helper.setList(list);
+            expect(helper.list).to.equal(list);
         })
     })
 })
