@@ -796,6 +796,111 @@ function LevelsController($scope, $location, $compile, CanvasService, GameServic
         $scope.view_URL = '';
     };
 
+    $scope.copyObject = function() {
+        var $new_scene_object = jQuery.extend(true, {}, $scope.selected_object);
+        $new_scene_object.object_id = scene_index;
+        $new_scene_object.start_pos.x += 50;
+        $new_scene_object.start_pos.y += 50;
+        $scope.current_level.objects.object.push($new_scene_object);
+        scene_index++;
+
+        var $drop_target = $('.scene');
+        var new_object = '<div class="scene-object-container"><img src="' + $scope.objects[$new_scene_object.sprite_id].images.image[0] + '" data-index="' + $new_scene_object.object_id + '"class="scene-object"><div class="outline" ng-click="clicked(' + $new_scene_object.object_id + ')" ></div></div>';
+
+        $drop_target.append($compile(new_object)($scope));
+
+        var $new_object = $('.scene img[data-index="' + $new_scene_object.object_id + '"]');
+        var $new_object_parent = $new_object.parent();
+        var $new_object_container = $new_object.closest('.scene-object-container');
+
+        if ($scope.objects[$new_scene_object.sprite_id].shape.circle) {
+            $new_object.attr('height', ($new_scene_object.object_shape.circle.radius * 2) / $scope.canvas.multiplier);
+            $new_object_parent.find('.outline').addClass('circle');
+        }
+        else {
+            $new_object.attr('width', $new_scene_object.object_shape.rectangle.size.width / $scope.canvas.multiplier);
+            $new_object.attr('height', $new_scene_object.object_shape.rectangle.size.height / $scope.canvas.multiplier);
+        }
+
+        $new_object_container.css({left: ($new_scene_object.start_pos.x + 50) / $scope.canvas.multiplier, top: ($new_scene_object.start_pos.y + 50) / $scope.canvas.multiplier});
+
+        $new_object_container.draggable({
+            stop: function () {
+                console.log('scene object dragged');
+                var offset = $(this).position();
+                var offset_left = Math.round(offset.left);
+                var offset_top = Math.round(offset.top);
+                var draggable_index = $(this).find('img').data('index');
+
+                var dragged_object_index = -1;
+
+                angular.forEach($scope.current_level.objects.object, function(value, index) {
+                    if (draggable_index === value.object_id) {
+                        dragged_object_index = index;
+
+                        console.log('found dragged object index: ' + dragged_object_index);
+                    }
+                });
+
+                if(dragged_object_index === -1) {
+                    console.log('ERROR: dragged object index was not found!');
+                    return;
+                }
+
+                $scope.current_level.objects.object[dragged_object_index].start_pos.x = offset_left * $scope.canvas.multiplier;
+                $scope.current_level.objects.object[dragged_object_index].start_pos.y = offset_top * $scope.canvas.multiplier;
+
+                $scope.$apply();
+            },
+            containment: ".scene"
+        });
+
+        var preserve_aspect_ratio = false;
+
+        if($new_object_container.find('.outline').hasClass('circle')) {
+            preserve_aspect_ratio = true;
+        }
+
+        $new_object.resizable({
+            aspectRatio: preserve_aspect_ratio,
+            stop: function () {
+                console.log('scene object resized');
+
+                var width = $(this).width();
+                var height = $(this).height();
+                var draggable_index = $(this).find('img').data('index');
+
+                var dragged_object_index = -1;
+
+                angular.forEach($scope.current_level.objects.object, function(value, index) {
+                    if (draggable_index === value.object_id) {
+                        dragged_object_index = index;
+
+                        console.log('found dragged object index: ' + dragged_object_index);
+                    }
+                });
+
+                if(dragged_object_index === -1) {
+                    console.log('ERROR: dragged object index was not found!');
+                    return;
+                }
+
+                if ($scope.current_level.objects.object[dragged_object_index].object_shape.circle) {
+                    $scope.current_level.objects.object[dragged_object_index].object_shape.circle.radius = (width / 2) * $scope.canvas.multiplier;
+                }
+                else if ($scope.current_level.objects.object[dragged_object_index].object_shape.rectangle) {
+                    $scope.current_level.objects.object[dragged_object_index].object_shape.rectangle.size.width = width * $scope.canvas.multiplier;
+                    $scope.current_level.objects.object[dragged_object_index].object_shape.rectangle.size.height = height * $scope.canvas.multiplier;
+                }
+
+                $scope.$apply();
+            },
+            containment: '.scene'
+        });
+
+        $scope.clicked($new_scene_object.object_id);
+    };
+
     $scope.$watch(
         "selected_object.start_pos.x",
         function(new_value, old_value) {

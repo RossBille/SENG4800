@@ -5,18 +5,18 @@
     <background_id></background_id>
     <objects>
       <object>
-        <object_id>0</object_id>
-        <object_name>Golf Ball</object_name>
+        <object_id>1</object_id>
+        <object_name>Soccer Ball</object_name>
         <sprite_id>0</sprite_id>
         <object_shape>
           <circle>
-            <radius>75</radius>
+            <radius>100</radius>
           </circle>
         </object_shape>
         <object_visible>yes</object_visible>
         <start_pos>
-          <x>1770</x>
-          <y>930</y>
+          <x>344</x>
+          <y>216</y>
         </start_pos>
         <start_vel>
           <x>0</x>
@@ -27,35 +27,42 @@
           <y>0</y>
         </start_acc>
       </object>
-    </objects>
-    <events>
-      <event>
-        <event_id>0</event_id>
-        <event_type>
-          <step/>
-        </event_type>
-        <actions></actions>
-      </event>
-    </events>
-  </level>
-  <level>
-    <level_id>1</level_id>
-    <level_name>Level 1</level_name>
-    <background_id></background_id>
-    <objects>
       <object>
-        <object_id>0</object_id>
-        <object_name>Golf Ball</object_name>
+        <object_id>2</object_id>
+        <object_name>Soccer Ball</object_name>
         <sprite_id>0</sprite_id>
         <object_shape>
           <circle>
-            <radius>75</radius>
+            <radius>100</radius>
           </circle>
         </object_shape>
         <object_visible>yes</object_visible>
         <start_pos>
+          <x>394</x>
+          <y>266</y>
+        </start_pos>
+        <start_vel>
           <x>0</x>
           <y>0</y>
+        </start_vel>
+        <start_acc>
+          <x>0</x>
+          <y>0</y>
+        </start_acc>
+      </object>
+      <object>
+        <object_id>3</object_id>
+        <object_name>Soccer Ball</object_name>
+        <sprite_id>0</sprite_id>
+        <object_shape>
+          <circle>
+            <radius>100</radius>
+          </circle>
+        </object_shape>
+        <object_visible>yes</object_visible>
+        <start_pos>
+          <x>444</x>
+          <y>316</y>
         </start_pos>
         <start_vel>
           <x>0</x>
