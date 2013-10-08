@@ -3,8 +3,6 @@
 /* App Module */
 
 // Bootstrap the Application
-//var App = angular.module('App', []);
-
 var App = angular.module('App', []).
     config(['$routeProvider', function ($routeProvider) {
         $routeProvider.
@@ -27,7 +25,7 @@ var action_index = -1;
 var background_index = -1;
 var sprite_index = -1;
 
-// Setup Pines notifications
+// Set up Pines notifications
 $.pnotify.defaults.styling = "jqueryui";
 $.pnotify.defaults.history = false;
 $.pnotify.defaults.delay = 8000;
