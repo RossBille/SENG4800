@@ -73,7 +73,7 @@
                 <version>3.1.2.2</version>
                 <configuration>
                     <app>target/${project.artifactId}-${project.version}</app>
-                    <port>8181</port>
+                    <port>30000</port>
                     <contextRoot>${project.artifactId}</contextRoot>
                 </configuration>
                 <dependencies>

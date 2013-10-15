@@ -35,10 +35,11 @@ public class InputConnectionManager extends BaseServlet {
         //check if adding or removing
         if (pnm.isConnecting()) {
             long generatedId = generateId(pnm);
+			System.out.println("GeneratedId:"+generatedId);
             boolean addPlayer = Boss.addPlayer(generatedId);
             if (addPlayer) {
                 r.setError(false);
-                r.setCode(pnm.getPlayer());//return the player number to the Input component 
+                r.setCode((int) generatedId);//return the player number to the Input component 
                 r.setMessage("Player has been added");
             } else {
                 r.setError(true);
@@ -76,7 +77,8 @@ public class InputConnectionManager extends BaseServlet {
     }
 
     private long generateId(PlayerNumberMessage pnm) {
-        //System.out.println("generated a new playerid");
+        System.out.println("generated a new playerid");
+		System.out.println("new player id:"+ (lastId +1));
         return ++lastId;
     }
 }
