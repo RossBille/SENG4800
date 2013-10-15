@@ -32,9 +32,7 @@ public class ClientEndpointDefinition
         }
     }
 
-    /*
-     * Check for what messages are being returned from the Game Engine!
-     */
+   
     @OnMessage
     public void onMessage(String message)
     {
