@@ -11,7 +11,11 @@ public class InputManager {
 
     private static HashMap<Long, Input> inputs = new HashMap<Long, Input>();
 
-    public static void addInput(Input input) 
+    /**
+	 *
+	 * @param input
+	 */
+	public static void addInput(Input input) 
     {
         if(!(inputs.containsKey(input.getId()) && inputs.get(input.getId()).isAccessed()))
         {
@@ -20,12 +24,20 @@ public class InputManager {
         }
     }
 
-    public static IInput getInput(long id) 
+    /**
+	 *
+	 * @param id
+	 * @return
+	 */
+	public static IInput getInput(long id) 
     {
         return (IInput) inputs.get(id);
     }
 
-    public static void flush() 
+    /**
+	 *
+	 */
+	public static void flush() 
     {
         Iterator<Input> inputIter = inputs.values().iterator();
         while (inputIter.hasNext()) {

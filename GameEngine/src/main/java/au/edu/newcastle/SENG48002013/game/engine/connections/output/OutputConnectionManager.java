@@ -63,7 +63,11 @@ public class OutputConnectionManager {
         }
     }
 
-    @OnClose
+    /**
+	 *
+	 * @param peer
+	 */
+	@OnClose
     public void onClose(Session peer) {
         peers.remove(peer);
         System.out.println("connections: " + currentPeers());
@@ -84,7 +88,10 @@ public class OutputConnectionManager {
 	public int getAllowedConnections() {
         return ALLOWED_CONNECTIONS;
     }
-
+	
+	/**
+	 * 
+	 */
     private static class Runner extends Thread {
 
         private Session peer;
