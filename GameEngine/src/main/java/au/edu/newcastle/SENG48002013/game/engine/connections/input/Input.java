@@ -3,7 +3,9 @@ package au.edu.newcastle.SENG48002013.game.engine.connections.input;
 import javax.vecmath.Vector2d;
 
 /**
- *
+ * Implementation of IInput
+ * an Input represents a message that comes in from an external source (generally a client device)
+ * to instruct an object in the game to react a certain way.
  */
 public class Input implements IInput
 {
@@ -13,63 +15,102 @@ public class Input implements IInput
     private boolean position;
     private boolean accessed;
 
-    public Input(long id)
+    /**
+	 *
+	 * @param id
+	 */
+	public Input(long id)
     {
         this.id = id;
         value = new Vector2d();
         accessed = false;
     }
 
-    @Override
+    /**
+	 *
+	 * @return
+	 */
+	@Override
     public long getId()
     {
         return id;
     }
 
-    @Override
+    /**
+	 *
+	 * @param id
+	 */
+	@Override
     public void setId(long id)
     {
         this.id = id;
     }
 
-    @Override
+    /**
+	 *
+	 * @return
+	 */
+	@Override
     public Vector2d getValue()
     {
         accessed = true;
         return value;
     }
 
-    @Override
+    /**
+	 *
+	 * @param value
+	 */
+	@Override
     public void setValue(Vector2d value)
     {
         this.value = value;
         accessed = false;
     }
 
-    @Override
+    /**
+	 *
+	 * @return
+	 */
+	@Override
     public boolean isPosition()
     {
         return position;
     }
 
-    @Override
+    /**
+	 *
+	 * @param position
+	 */
+	@Override
     public void setPosition(boolean position)
     {
         this.position = position;
     }
 
-    @Override
+    /**
+	 *
+	 * @return
+	 */
+	@Override
     public Vector2d getPos()
     {
         return getValue();
     }
 
-    public boolean isAccessed()
+    /**
+	 *
+	 * @return
+	 */
+	public boolean isAccessed()
     {
         return accessed;
     }
 
-    public void flush()
+    /**
+	 *
+	 */
+	public void flush()
     {
         if (accessed)
         {

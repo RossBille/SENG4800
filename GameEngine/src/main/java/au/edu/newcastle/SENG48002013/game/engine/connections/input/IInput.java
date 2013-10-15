@@ -3,7 +3,7 @@ package au.edu.newcastle.SENG48002013.game.engine.connections.input;
 import javax.vecmath.Vector2d;
 
 /**
- *
+ * Interface to an Input for the Processor
  * @author Ross
  */
 public interface IInput {
