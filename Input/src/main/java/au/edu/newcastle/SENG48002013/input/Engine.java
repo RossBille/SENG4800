@@ -91,9 +91,9 @@ public class Engine implements ServletContextListener
             try
             {
                 BaseInstruction b = mapper.readValue(message, BaseInstruction.class);
-                System.out.println("Vector from Instruction: " + b.getDirection());              
                 PlayerControlMessage pcm = new PlayerControlMessage();
-                pcm.setCode((String) playerMappings.get(session.getId())); // player ID
+				pcm.setPlayer(Integer.parseInt(playerMappings.get(session.getId()).toString()));
+                pcm.setCode(playerMappings.get(session.getId()).toString()); // player ID
                 pcm.setDirection(b.getDirection());               
                 internalChannel.sendGameInstruction(mapper.writeValueAsString(pcm));
             }
@@ -193,7 +193,7 @@ public class Engine implements ServletContextListener
     @Override
     public void contextInitialized(ServletContextEvent sce)
     {
-        Engine.securityManager = new SecurityManager(10000, "ws://localhost:8181/Input/endpoint", this);
+        Engine.securityManager = new SecurityManager(10000, "ws://localhost:30000/Input/endpoint", this);
         Engine.MAX_CLIENTS = 5; 
         Engine.internalChannel = new InternalChannel("ws://localhost:8080/GameEngine/MessageManager", 
                 "http://localhost:8080/GameEngine/PlayerManager");

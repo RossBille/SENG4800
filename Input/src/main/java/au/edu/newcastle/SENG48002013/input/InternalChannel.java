@@ -65,7 +65,6 @@ public class InternalChannel
             HttpResponse result = httpclient.execute(post); 
             InputStream stream = result.getEntity().getContent();
             String clientHello = IOUtils.toString(stream, "UTF-8"); 
-            
             Response postResult = mapper.readValue(clientHello, Response.class);
             
             if (!postResult.isError())

@@ -35,7 +35,6 @@ public class InputConnectionManager extends BaseServlet {
         //check if adding or removing
         if (pnm.isConnecting()) {
             long generatedId = generateId(pnm);
-			System.out.println("GeneratedId:"+generatedId);
             boolean addPlayer = Boss.addPlayer(generatedId);
             if (addPlayer) {
                 r.setError(false);
@@ -46,7 +45,6 @@ public class InputConnectionManager extends BaseServlet {
                 r.setMessage("No Room");
                 r.setCode(ResultCode.INSUFFICIENT_ROOM);
             }
-
         } else {
             //remove player from the game
             Boss.removePlayer(pnm.getPlayer());
@@ -54,7 +52,8 @@ public class InputConnectionManager extends BaseServlet {
             r.setMessage("Player was removed");
             r.setCode(ResultCode.SUCCESS);
         }
-
+		//convert result to string and send 
+		response.getWriter().write(mapper.writeValueAsString(r));
     }
 
     private String extractJson() {
