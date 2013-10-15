@@ -12,6 +12,10 @@ import javax.servlet.annotation.WebServlet;
 @WebServlet("/ignition")
 public class UpdateManagerServlet extends BaseServlet {
 
+	/**
+	 * 
+	 * @throws IOException 
+	 */
     @Override
     protected void processRequest() throws IOException {
         String path;
