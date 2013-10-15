@@ -53,7 +53,7 @@ public class InputConnectionManager extends BaseServlet {
             r.setCode(ResultCode.SUCCESS);
         }
 		//convert result to string and send 
-		response.getWriter().write(mapper.writeValueAsString(r));
+		respond(r);
     }
 
     private String extractJson() {
