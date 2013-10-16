@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package au.edu.newcastle.SENG48002013.game.engine.model.environment;
 
 import javax.vecmath.Vector2d;
@@ -31,7 +26,11 @@ public class GameObject implements IGameObject {
     private double currentTime;
     private final long TARGET_FPS = 60;
 
-    public GameObject(long id) {
+    /**
+	 *
+	 * @param id
+	 */
+	public GameObject(long id) {
         this.id = id;
         size = new Vector2d(0, 0);
         pos = new Vector2d(0, 0);
@@ -46,120 +45,220 @@ public class GameObject implements IGameObject {
         imageUrl = null;
     }
 
-    @Override
+    /**
+	 *
+	 * @return
+	 */
+	@Override
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    /**
+	 *
+	 * @param id
+	 */
+	public void setId(long id) {
         this.id = id;
     }
 
-    @JsonIgnore
+    /**
+	 *
+	 * @return
+	 */
+	@JsonIgnore
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    /**
+	 *
+	 * @param name
+	 */
+	public void setName(String name) {
         this.name = name;
     }
 
-    @JsonIgnore
+    /**
+	 *
+	 * @return
+	 */
+	@JsonIgnore
     public Sprite getSprite() {
         return sprite;
     }
 
-    public void setSprite(Sprite sprite) {
+    /**
+	 *
+	 * @param sprite
+	 */
+	public void setSprite(Sprite sprite) {
         this.sprite = sprite;
         this.currentFrame = 0;
         this.currentTime = 0;
     }
 
-    @JsonIgnore
+    /**
+	 *
+	 * @return
+	 */
+	@JsonIgnore
     public Shape getShape() {
         return shape;
     }
 
-    public void setShape(Shape shape) {
+    /**
+	 *
+	 * @param shape
+	 */
+	public void setShape(Shape shape) {
         this.shape = shape;
     }
 
-    @JsonIgnore
+    /**
+	 *
+	 * @return
+	 */
+	@JsonIgnore
     public Vector2d getSize() {
         return this.size;
     }
 
-    public void setSize(Vector2d size) {
+    /**
+	 *
+	 * @param size
+	 */
+	public void setSize(Vector2d size) {
         this.size.set(size);
     }
 
-    @JsonIgnore
+    /**
+	 *
+	 * @return
+	 */
+	@JsonIgnore
     public Vector2d getPos() {
         return pos;
     }
 
-    public void setPos(Vector2d pos) {
+    /**
+	 *
+	 * @param pos
+	 */
+	public void setPos(Vector2d pos) {
         this.pos.set(pos);
     }
 
-    @JsonIgnore
+    /**
+	 *
+	 * @return
+	 */
+	@JsonIgnore
     public Vector2d getVel() {
         return vel;
     }
 
-    public void setVel(Vector2d vel) {
+    /**
+	 *
+	 * @param vel
+	 */
+	public void setVel(Vector2d vel) {
         this.vel.set(vel);
     }
 
-    @JsonIgnore
+    /**
+	 *
+	 * @return
+	 */
+	@JsonIgnore
     public Vector2d getAcc() {
         return acc;
     }
 
-    public void setAcc(Vector2d acc) {
+    /**
+	 *
+	 * @param acc
+	 */
+	public void setAcc(Vector2d acc) {
         this.acc.set(acc);
     }
 
-    @JsonIgnore
+    /**
+	 *
+	 * @return
+	 */
+	@JsonIgnore
     public Vector2d getNextPos() {
         return nextPos;
     }
 
-    public void setNextPos(Vector2d nextPos) {
+    /**
+	 *
+	 * @param nextPos
+	 */
+	public void setNextPos(Vector2d nextPos) {
         committed = false;
         this.nextPos.set(nextPos);
     }
 
-    @JsonIgnore
+    /**
+	 *
+	 * @return
+	 */
+	@JsonIgnore
     public Vector2d getNextVel() {
         return nextVel;
     }
 
-    public void setNextVel(Vector2d nextVel) {
+    /**
+	 *
+	 * @param nextVel
+	 */
+	public void setNextVel(Vector2d nextVel) {
         committed = false;
         this.nextVel.set(nextVel);
     }
 
-    @JsonIgnore
+    /**
+	 *
+	 * @return
+	 */
+	@JsonIgnore
     public Vector2d getNextAcc() {
         return nextAcc;
     }
 
-    public void setNextAcc(Vector2d nextAcc) {
+    /**
+	 *
+	 * @param nextAcc
+	 */
+	public void setNextAcc(Vector2d nextAcc) {
         committed = false;
         this.nextAcc = nextAcc;
     }
 
-    @JsonIgnore
+    /**
+	 *
+	 * @return
+	 */
+	@JsonIgnore
     public boolean isActive() {
         return active;
     }
 
-    public void setActive(boolean active) {
+    /**
+	 *
+	 * @param active
+	 */
+	public void setActive(boolean active) {
         this.active = active;
     }
 
-    public void stepNext(double dt) {
+    /**
+	 *
+	 * @param dt
+	 */
+	public void stepNext(double dt) {
         committed = false;
         nextAcc.set(acc);
         nextVel.scaleAdd((double) (dt), nextAcc, vel);
@@ -167,7 +266,10 @@ public class GameObject implements IGameObject {
         stepAnimation(dt);
     }
 
-    public void commit() {
+    /**
+	 *
+	 */
+	public void commit() {
         acc.set(nextAcc);
         vel.set(nextVel);
         pos.set(nextPos);
@@ -185,12 +287,20 @@ public class GameObject implements IGameObject {
         }
     }
 
-    @JsonIgnore
+    /**
+	 *
+	 * @return
+	 */
+	@JsonIgnore
     public boolean isCommitted() {
         return committed;
     }
 
-    @Override
+    /**
+	 *
+	 * @return
+	 */
+	@Override
     public Vector2d getOutputPos() {
         Vector2d outputPos = new Vector2d();
         outputPos.add(pos, sprite.getOffset());
@@ -202,7 +312,11 @@ public class GameObject implements IGameObject {
         return outputPos;
     }
 
-    @Override
+    /**
+	 *
+	 * @return
+	 */
+	@Override
     public String getImageUrl() {
         if (sprite != null) {
             return sprite.getImageUrl(currentFrame);
@@ -211,7 +325,11 @@ public class GameObject implements IGameObject {
         }
     }
 
-    public void setImageUrl(String imageUrl) {
+    /**
+	 *
+	 * @param imageUrl
+	 */
+	public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
 }

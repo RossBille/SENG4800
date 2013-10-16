@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package au.edu.newcastle.SENG48002013.game.engine.model.environment;
 
 import au.edu.newcastle.SENG48002013.game.engine.connections.input.IInput;
@@ -18,41 +13,77 @@ public class Player {
     long inputId;
     double score;
 
-    public Player(long id) {
+    /**
+	 *
+	 * @param id
+	 */
+	public Player(long id) {
         this.id = id;
         this.inputId = -1;
         this.score = 0;
     }
 
-    public long getId() {
+    /**
+	 *
+	 * @return
+	 */
+	public long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    /**
+	 *
+	 * @param id
+	 */
+	public void setId(long id) {
         this.id = id;
     }
 
-    public long getInputId() {
+    /**
+	 *
+	 * @return
+	 */
+	public long getInputId() {
         return inputId;
     }
 
-    public void setInputId(long inputId) {
+    /**
+	 *
+	 * @param inputId
+	 */
+	public void setInputId(long inputId) {
         this.inputId = inputId;
     }
 
-    public double getScore() {
+    /**
+	 *
+	 * @return
+	 */
+	public double getScore() {
         return score;
     }
 
-    public void setScore(double score) {
+    /**
+	 *
+	 * @param score
+	 */
+	public void setScore(double score) {
         this.score = score;
     }
 
-    public IInput getInput() {
+    /**
+	 *
+	 * @return
+	 */
+	public IInput getInput() {
         return InputManager.getInput(inputId);
     }
 
-    public boolean isInitialized() {
+    /**
+	 *
+	 * @return
+	 */
+	public boolean isInitialized() {
         return (inputId != -1);
     }
 }
