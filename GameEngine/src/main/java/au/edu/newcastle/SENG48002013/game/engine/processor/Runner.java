@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package au.edu.newcastle.SENG48002013.game.engine.processor;
 
 import au.edu.newcastle.SENG48002013.game.engine.connections.input.InputManager;
@@ -20,10 +16,16 @@ public class Runner extends Thread {
     private IGame game;
     boolean running;
 
+	/**
+	 * 
+	 */
     public Runner() {
         running = false;
     }
 
+	/**
+	 * 
+	 */
     @Override
     public void run() {
         System.out.println("STARTING GAME");
@@ -48,6 +50,11 @@ public class Runner extends Thread {
         }
     }
 
+	/**
+	 *
+	 * @param inputId
+	 * @return  
+	 */
     public boolean addPlayer(long inputId) {
         boolean added = false;
         if (game != null) {
@@ -56,12 +63,19 @@ public class Runner extends Thread {
         return added;
     }
 
+	/**
+	 * 
+	 * @param inputId 
+	 */
     public void removePlayer(long inputId) {
         if (game != null) {
             game.removePlayer(inputId);
         }
     }
 
+	/**
+	 * 
+	 */
     public void stopRunning() {
         running = false;
     }

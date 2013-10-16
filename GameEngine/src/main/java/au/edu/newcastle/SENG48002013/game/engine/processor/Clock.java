@@ -1,15 +1,26 @@
 package au.edu.newcastle.SENG48002013.game.engine.processor;
 
+/**
+ *
+ * @author Peter
+ */
 public class Clock implements IClock {
 
     public final int TARGET_FPS = 60;
     private final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
     private long lastLoopTime;
 
+	/**
+	 * 
+	 */
     public Clock() {
         lastLoopTime = -1;
     }
 
+	/**
+	 * 
+	 * @return 
+	 */
     @Override
     public double rest() {
         if (lastLoopTime == -1) {
