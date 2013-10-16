@@ -13,6 +13,13 @@ public class Response implements Serializable
 	private String message;
 
 	/**
+	 *
+	 */
+	public Response()
+	{
+	}
+
+	/**
 	 * 
 	 * @return 
 	 */
