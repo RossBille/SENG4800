@@ -9,24 +9,40 @@ import javax.vecmath.Vector3d;
 public class IpCamera extends BaseCameraInstruction
 {
 
-    @Override
+    /**
+	 *
+	 * @return
+	 */
+	@Override
     public Vector3d getDirection()
     {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
+    /**
+	 *
+	 * @return
+	 */
+	@Override
     public String getId()
     {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
+    /**
+	 *
+	 * @return
+	 */
+	@Override
     public long getUpdated()
     {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+	/**
+	 * 
+	 * @param id 
+	 */
     @Override
     public void setId(String id)
     {

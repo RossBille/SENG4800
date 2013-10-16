@@ -22,14 +22,29 @@ public abstract class BaseInstruction implements Serializable
 
     protected long updated;
 
-    public BaseInstruction()
+    /**
+	 *
+	 */
+	public BaseInstruction()
     {
         updated = System.currentTimeMillis();
     }
 
-    public abstract Vector3d getDirection();
+    /**
+	 *
+	 * @return
+	 */
+	public abstract Vector3d getDirection();
 
-    public abstract String getId();
+    /**
+	 *
+	 * @return
+	 */
+	public abstract String getId();
 
-    public abstract long getUpdated();
+    /**
+	 *
+	 * @return
+	 */
+	public abstract long getUpdated();
 }

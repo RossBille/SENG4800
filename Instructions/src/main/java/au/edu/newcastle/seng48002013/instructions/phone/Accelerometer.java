@@ -9,19 +9,31 @@ import javax.vecmath.Vector3d;
 public class Accelerometer extends BasePhoneInstruction
 {
 
-    public Accelerometer(String os, String iD)
+    /**
+	 *
+	 * @param os
+	 * @param iD
+	 */
+	public Accelerometer(String os, String iD)
     {
         super(iD, os);
     }
-    //need variables to represent acc movement
 
-    @Override
+    /**
+	 *
+	 * @return
+	 */
+	@Override
     public Vector3d getDirection()
     {
         throw new UnsupportedOperationException("Implement method to get direction");
     }
 
-    @Override
+    /**
+	 *
+	 * @return
+	 */
+	@Override
     public long getUpdated()
     {
         throw new UnsupportedOperationException("Not supported yet.");

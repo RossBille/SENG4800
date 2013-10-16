@@ -13,39 +13,68 @@ public abstract class BasePhoneInstruction extends BaseInstruction
     protected String os;
     protected String iD;
 
-    public BasePhoneInstruction(String id, String os)
+    /**
+	 *
+	 * @param id
+	 * @param os
+	 */
+	public BasePhoneInstruction(String id, String os)
     {
         this.phoneId = id;
         this.os = os;
         this.iD = os + "," + phoneId + "," + updated;
     }
 
+	/**
+	 * 
+	 * @param s 
+	 */
     public void setId(String s)
     {
         this.iD = s;
     }
 
+	/**
+	 *
+	 * @return  
+	 */
     @Override
     public String getId()
     {
         return this.iD;
     }
 
+	/**
+	 *
+	 * @return  
+	 */
     public String getPhoneId()
     {
         return phoneId;
     }
 
+	/**
+	 *
+	 * @return  
+	 */
     public String getOs()
     {
         return os;
     }
 
+	/**
+	 *
+	 * @param phoneId  
+	 */
     public void setPhoneId(String phoneId)
     {
         this.phoneId = phoneId;
     }
 
+	/**
+	 *
+	 * @param os  
+	 */
     public void setOs(String os)
     {
         this.os = os;

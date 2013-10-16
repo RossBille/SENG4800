@@ -30,9 +30,12 @@ public class TouchScreen extends BasePhoneInstruction
         this.setValues(x1, x2, y1, y2);
     }
 
-    /*
-     * String as constructor arg, eg "left"
-     */
+	/**
+	 * Use a String as constructor arg, eg "left"
+	 * @param direction
+	 * @param os
+	 * @param iD  
+	 */
     public TouchScreen(String direction, String os, String iD)
     {
         super(iD, os);
@@ -65,52 +68,92 @@ public class TouchScreen extends BasePhoneInstruction
         this.y2 = y2;
     }
 
+	/**
+	 * 
+	 * @param x1 
+	 */
     public void setX1(float x1)
     {
         this.x1 = x1;
     }
 
+	/**
+	 *
+	 * @param x2  
+	 */
     public void setX2(float x2)
     {
         this.x2 = x2;
     }
 
+	/**
+	 *
+	 * @param y1  
+	 */
     public void setY1(float y1)
     {
         this.y1 = y1;
     }
 
+	/**
+	 *
+	 * @param y2  
+	 */
     public void setY2(float y2)
     {
         this.y2 = y2;
     }
 
+	/**
+	 *
+	 * @return  
+	 */
     public float getX1()
     {
         return x1;
     }
 
+	/**
+	 *
+	 * @return  
+	 */
     public float getX2()
     {
         return x2;
     }
 
+	/**
+	 *
+	 * @return  
+	 */
     public float getY1()
     {
         return y1;
     }
 
+	/**
+	 *
+	 * @return  
+	 */
     public float getY2()
     {
         return y2;
     }
 
+	/**
+	 *
+	 * @return  
+	 */
     @Override
     public Vector3d getDirection()
     {
         return new Vector3d(x2 - x1, y2 - y1, 0);
     }
 
+	/**
+	 *
+	 * @return  
+	 */
     @Override
     public long getUpdated()
     {
