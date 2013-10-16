@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>ActiveLayerIndex</key>
-	<integer>0</integer>
+	<integer>1</integer>
 	<key>ApplicationVersion</key>
 	<array>
 		<string>com.omnigroup.OmniGrafflePro</string>
@@ -53,7 +53,7 @@
 	<array>
 		<dict>
 			<key>Bounds</key>
-			<string>{{432.27357737037653, 265.75536227234261}, {85, 38}}</string>
+			<string>{{434.91889241951236, 312.93147275273151}, {85, 38}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -81,7 +81,7 @@
 				<key>ID</key>
 				<integer>537</integer>
 				<key>Position</key>
-				<real>0.4701564610004425</real>
+				<real>0.50152504444122314</real>
 				<key>RotationType</key>
 				<integer>0</integer>
 			</dict>
@@ -128,8 +128,8 @@
 			<integer>0</integer>
 			<key>Points</key>
 			<array>
-				<string>{428.41849595356183, 284.75536227234261}</string>
-				<string>{527.01350689561309, 284.75536227234261}</string>
+				<string>{427.97102517511729, 331.93147275273151}</string>
+				<string>{526.56603611716844, 331.93147275273151}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -148,7 +148,7 @@
 			<key>AllowConnections</key>
 			<string>NO</string>
 			<key>Bounds</key>
-			<string>{{527.01350689561309, 274.50314449957227}, {18, 21.011253356933594}}</string>
+			<string>{{527.01350689561309, 321.92581816803636}, {18, 21.011253356933594}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>HFlip</key>
@@ -162,7 +162,7 @@
 				<key>ID</key>
 				<integer>534</integer>
 				<key>Position</key>
-				<real>0.52087032794952393</real>
+				<real>0.66225171089172363</real>
 				<key>RotationType</key>
 				<integer>0</integer>
 			</dict>
@@ -427,7 +427,7 @@ Engine}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{160.84889896254356, 266.0645254707735}, {127, 24}}</string>
+			<string>{{160.84889896254356, 312.33469464851447}, {127, 24}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -503,8 +503,8 @@ Engine}</string>
 			<integer>0</integer>
 			<key>Points</key>
 			<array>
-				<string>{41.837840793080375, 285.16129909519367}</string>
-				<string>{412.38624088999433, 285.16129909519367}</string>
+				<string>{41.837840793080375, 331.43146827293464}</string>
+				<string>{412.38624088999433, 331.43146827293464}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -523,7 +523,7 @@ Engine}</string>
 			<key>AllowConnections</key>
 			<string>NO</string>
 			<key>Bounds</key>
-			<string>{{410.4184872755356, 267.85736182214731}, {18, 32.240962982177734}}</string>
+			<string>{{410.4184872755356, 313.2181797329572}, {18, 32.240962982177734}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>HFlip</key>
@@ -539,7 +539,7 @@ Engine}</string>
 				<key>Offset</key>
 				<real>-0.64516133069992065</real>
 				<key>Position</key>
-				<real>0.51741886138916016</real>
+				<real>0.65325397253036499</real>
 				<key>RotationType</key>
 				<integer>0</integer>
 			</dict>
@@ -565,7 +565,7 @@ Engine}</string>
 			<key>AllowConnections</key>
 			<string>NO</string>
 			<key>Bounds</key>
-			<string>{{22.44383799457745, 254.755373125353}, {18, 61}}</string>
+			<string>{{23.474765771867794, 300.1161705066117}, {18, 61}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>HFlip</key>
@@ -578,8 +578,10 @@ Engine}</string>
 			<dict>
 				<key>ID</key>
 				<integer>495</integer>
+				<key>Offset</key>
+				<real>1.0309277772903442</real>
 				<key>Position</key>
-				<real>0.52087032794952393</real>
+				<real>0.65681153535842896</real>
 				<key>RotationType</key>
 				<integer>0</integer>
 			</dict>
@@ -1608,7 +1610,115 @@ Engine}</string>
 			<array>
 				<dict>
 					<key>Bounds</key>
-					<string>{{2.9959186965340692, 365.88950361959434}, {112.94981035240566, 23.950450761039871}}</string>
+					<string>{{8.9438377349725329, 262.1478577687198}, {143.89400025960492, 21.011253356933594}}</string>
+					<key>Class</key>
+					<string>ShapedGraphic</string>
+					<key>ID</key>
+					<integer>482</integer>
+					<key>Shape</key>
+					<string>Bezier</string>
+					<key>ShapeData</key>
+					<dict>
+						<key>UnitPoints</key>
+						<array>
+							<string>{-0.5, -0.5}</string>
+							<string>{-0.5, -0.5}</string>
+							<string>{0.5, -0.5}</string>
+							<string>{0.5, -0.5}</string>
+							<string>{0.5, -0.5}</string>
+							<string>{0.5, 0}</string>
+							<string>{0.5, 0}</string>
+							<string>{0.5, 0}</string>
+							<string>{0.41666700000000001, 0.5}</string>
+							<string>{0.41666700000000001, 0.5}</string>
+							<string>{0.41666700000000001, 0.5}</string>
+							<string>{-0.5, 0.49999399999999999}</string>
+							<string>{-0.5, 0.49999399999999999}</string>
+							<string>{-0.5, 0.49999399999999999}</string>
+							<string>{-0.5, -0.5}</string>
+						</array>
+					</dict>
+					<key>Style</key>
+					<dict>
+						<key>shadow</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+					</dict>
+					<key>Text</key>
+					<dict>
+						<key>Align</key>
+						<integer>0</integer>
+						<key>Text</key>
+						<string>{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf390
+\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\f0\b\fs24 \cf0 loop 
+\b0 (min, max)}</string>
+						<key>VerticalPad</key>
+						<integer>0</integer>
+					</dict>
+				</dict>
+				<dict>
+					<key>Bounds</key>
+					<string>{{8.9438377349725329, 262.14785776871946}, {443.49945068359398, 115.17172241210953}}</string>
+					<key>Class</key>
+					<string>ShapedGraphic</string>
+					<key>HFlip</key>
+					<string>YES</string>
+					<key>ID</key>
+					<integer>483</integer>
+					<key>Magnets</key>
+					<array>
+						<string>{1, 0.5}</string>
+						<string>{1, -0.5}</string>
+						<string>{-1, 0.5}</string>
+						<string>{-1, -0.5}</string>
+						<string>{0.5, 1}</string>
+						<string>{-0.5, 1}</string>
+						<string>{0.5, -1}</string>
+						<string>{-0.5, -1}</string>
+					</array>
+					<key>Shape</key>
+					<string>Rectangle</string>
+					<key>Style</key>
+					<dict>
+						<key>fill</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+						<key>shadow</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+					</dict>
+					<key>Text</key>
+					<dict>
+						<key>Align</key>
+						<integer>0</integer>
+						<key>VerticalPad</key>
+						<integer>0</integer>
+					</dict>
+				</dict>
+			</array>
+			<key>ID</key>
+			<integer>481</integer>
+			<key>Layer</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>Class</key>
+			<string>Group</string>
+			<key>Graphics</key>
+			<array>
+				<dict>
+					<key>Bounds</key>
+					<string>{{2.9959186965340692, 394.36341995528562}, {112.94981035240566, 29.909017879612534}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FontInfo</key>
@@ -1661,7 +1771,7 @@ Engine}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{2.9959186965342326, 228.55119216983178}, {179.06652506433852, 23.950450761039871}}</string>
+					<string>{{2.9959186965342326, 222.85708574513149}, {179.06652506433852, 29.909017879612534}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FontInfo</key>
@@ -1717,8 +1827,8 @@ Engine}</string>
 					<integer>487</integer>
 					<key>Points</key>
 					<array>
-						<string>{2.9959186965339768, 362.85598243303508}</string>
-						<string>{474.07737011254966, 362.85598243303508}</string>
+						<string>{2.9959186965339768, 390.57519733216151}</string>
+						<string>{474.07737011254966, 390.57519733216151}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -1737,7 +1847,7 @@ Engine}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{2.9959186965342894, 212.2559089704778}, {151.82703522700609, 15.71370559258828}}</string>
+					<string>{{2.9959186965342894, 202.50774362103078}, {151.82703522700609, 19.623075415691456}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>ID</key>
@@ -1790,7 +1900,7 @@ Engine}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{2.9959180594280781, 212.25591046633033}, {460.50782715130708, 177.58403866069585}}</string>
+					<string>{{2.9959180594280781, 202.50774548903243}, {460.50782715130708, 221.76468578522685}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>HFlip</key>
@@ -1854,7 +1964,7 @@ Engine}</string>
 	<array>
 		<dict>
 			<key>Lock</key>
-			<string>NO</string>
+			<string>YES</string>
 			<key>Name</key>
 			<string>Layer 1</string>
 			<key>Print</key>
@@ -1895,7 +2005,7 @@ Engine}</string>
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2013-10-11 07:37:04 +0000</string>
+	<string>2013-10-16 00:16:23 +0000</string>
 	<key>Modifier</key>
 	<string>Ross Bille</string>
 	<key>NotesVisible</key>
@@ -1976,7 +2086,7 @@ Engine}</string>
 			</dict>
 		</array>
 		<key>Frame</key>
-		<string>{{640, 4}, {640, 774}}</string>
+		<string>{{-0, 4}, {1280, 774}}</string>
 		<key>ListView</key>
 		<true/>
 		<key>OutlineWidth</key>
@@ -1990,7 +2100,7 @@ Engine}</string>
 		<key>SidebarWidth</key>
 		<integer>120</integer>
 		<key>VisibleRegion</key>
-		<string>{{37.257729739029976, 0}, {520.61854134534428, 654.63915594909645}}</string>
+		<string>{{-329, 0}, {1180.412336317662, 654.63915594909645}}</string>
 		<key>Zoom</key>
 		<real>0.97000002861022949</real>
 		<key>ZoomValues</key>
