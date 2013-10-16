@@ -12,35 +12,55 @@ public class Response implements Serializable
 	private boolean error;
 	private String message;
 
-	public Response()
-	{
-	}
-
+	/**
+	 * 
+	 * @return 
+	 */
 	public int getCode()
 	{
 		return code;
 	}
 
+	/**
+	 *
+	 * @param code  
+	 */
 	public void setCode(int code)
 	{
 		this.code = code;
 	}
 
+	/**
+	 *
+	 * @return  
+	 */
 	public boolean isError()
 	{
 		return error;
 	}
 
+	/**
+	 *
+	 * @param error  
+	 */
 	public void setError(boolean error)
 	{
 		this.error = error;
 	}
 
+	/**
+	 *
+	 * @return  
+	 */
 	public String getMessage()
 	{
 		return message;
 	}
 
+	/**
+	 *
+	 * @param message  
+	 */
 	public void setMessage(String message)
 	{
 		this.message = message;
