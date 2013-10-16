@@ -1,6 +1,3 @@
-/**
- *
- */
 package au.edu.newcastle.SENG48002013.game.engine.model.actions;
 
 import javax.vecmath.Vector2d;
@@ -21,7 +18,11 @@ public class ReflectAction extends BaseAction {
     private Level level;
     private Type type;
 
-    public ReflectAction(long id) {
+    /**
+	 *
+	 * @param id
+	 */
+	public ReflectAction(long id) {
         super(id);
         gameObject = null;
         surfaceObject = null;
@@ -29,32 +30,62 @@ public class ReflectAction extends BaseAction {
         type = Type.OBJECT;
     }
 
-    public GameObject getGameObject() {
+    /**
+	 *
+	 * @return
+	 */
+	public GameObject getGameObject() {
         return gameObject;
     }
 
-    public void setGameObject(GameObject gameObject) {
+    /**
+	 *
+	 * @param gameObject
+	 */
+	public void setGameObject(GameObject gameObject) {
         this.gameObject = gameObject;
         this.type = Type.OBJECT;
     }
 
-    public GameObject getSurfaceObject() {
+    /**
+	 *
+	 * @return
+	 */
+	public GameObject getSurfaceObject() {
         return surfaceObject;
     }
 
-    public void setSurfaceObject(GameObject surfaceObject) {
+    /**
+	 *
+	 * @param surfaceObject
+	 */
+	public void setSurfaceObject(GameObject surfaceObject) {
         this.surfaceObject = surfaceObject;
     }
 
-    public Level getLevel() {
+    /**
+	 *
+	 * @return
+	 */
+	public Level getLevel() {
         return level;
     }
 
-    public void setLevel(Level level) {
+    /**
+	 *
+	 * @param level
+	 */
+	public void setLevel(Level level) {
         this.level = level;
         this.type = Type.LEVEL;
     }
 
+	/**
+	 *
+	 * @param dt
+	 * @return
+	 */
+	@Override
     public int doAction(double dt) {
         //Object -> Object
         if (type == Type.OBJECT) {
@@ -239,7 +270,6 @@ public class ReflectAction extends BaseAction {
     }
 
     private enum Type {
-
         OBJECT,
         LEVEL
     }
