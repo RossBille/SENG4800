@@ -5,6 +5,10 @@ import javax.vecmath.Vector2d;
 import au.edu.newcastle.SENG48002013.game.engine.model.environment.GameObject;
 import au.edu.newcastle.SENG48002013.game.engine.model.environment.Player;
 
+/**
+ *
+ * @author rossbille
+ */
 public class InputEvent extends BaseEvent {
 
     private Player player;
@@ -12,42 +16,84 @@ public class InputEvent extends BaseEvent {
     private Vector2d value;
     private Type type;
 
-    public InputEvent(long id) {
+    /**
+	 *
+	 * @param id
+	 */
+	public InputEvent(long id) {
         super(id);
     }
 
-    public Player getPlayer() {
+    /**
+	 *
+	 * @return
+	 */
+	public Player getPlayer() {
         return player;
     }
 
-    public void setPlayer(Player player) {
+    /**
+	 *
+	 * @param player
+	 */
+	public void setPlayer(Player player) {
         this.player = player;
     }
 
-    public GameObject getGameObject() {
+    /**
+	 *
+	 * @return
+	 */
+	public GameObject getGameObject() {
         return gameObject;
     }
 
-    public void setGameObject(GameObject gameObject) {
+    /**
+	 *
+	 * @param gameObject
+	 */
+	public void setGameObject(GameObject gameObject) {
         this.gameObject = gameObject;
     }
 
-    public Vector2d getValue() {
+    /**
+	 *
+	 * @return
+	 */
+	public Vector2d getValue() {
         return value;
     }
 
-    public void setValue(Vector2d value) {
+    /**
+	 *
+	 * @param value
+	 */
+	public void setValue(Vector2d value) {
         this.value = value;
     }
 
-    public Type getType() {
+    /**
+	 *
+	 * @return
+	 */
+	public Type getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    /**
+	 *
+	 * @param type
+	 */
+	public void setType(Type type) {
         this.type = type;
     }
 
+	/**
+	 * 
+	 * @param dt
+	 * @return 
+	 */
+	@Override
     public int evaluate(double dt) {
         if(player.getInput() == null) return -1;
         boolean triggerEvents = false;
@@ -106,8 +152,10 @@ public class InputEvent extends BaseEvent {
         }
     }
 
-    public enum Type {
-
+    /**
+	 *
+	 */
+	public enum Type {
         LEFT,
         RIGHT,
         UP,

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package au.edu.newcastle.SENG48002013.game.engine.model.events;
 
 import java.util.Iterator;
@@ -11,30 +6,55 @@ import java.util.List;
 
 import au.edu.newcastle.SENG48002013.game.engine.model.actions.IAction;
 
+/**
+ *
+ * @author Peter
+ */
 public abstract class BaseEvent implements IEvent {
 
     private long id;
     private List<IAction> actions;
 
-    public BaseEvent(long id) {
+    /**
+	 *
+	 * @param id
+	 */
+	public BaseEvent(long id) {
         this.id = id;
         actions = new LinkedList<IAction>();
     }
 
-    @Override
+    /**
+	 *
+	 * @return
+	 */
+	@Override
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    /**
+	 *
+	 * @param id
+	 */
+	public void setId(long id) {
         this.id = id;
     }
 
-    public void addAction(IAction action) {
+    /**
+	 *
+	 * @param action
+	 */
+	public void addAction(IAction action) {
         actions.add(action);
     }
 
-    protected int doActions(double dt) {
+    /**
+	 *
+	 * @param dt
+	 * @return
+	 */
+	protected int doActions(double dt) {
         int returnCode = -1;
         Iterator<IAction> actionIter = actions.iterator();
         while (actionIter.hasNext()) {
@@ -46,6 +66,11 @@ public abstract class BaseEvent implements IEvent {
         return returnCode;
     }
 
-    @Override
+    /**
+	 *
+	 * @param dt
+	 * @return
+	 */
+	@Override
     public abstract int evaluate(double dt);
 }

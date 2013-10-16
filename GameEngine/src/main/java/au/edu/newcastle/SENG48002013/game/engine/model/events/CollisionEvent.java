@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package au.edu.newcastle.SENG48002013.game.engine.model.events;
 
 import au.edu.newcastle.SENG48002013.game.engine.model.environment.Circle;
@@ -10,46 +5,89 @@ import au.edu.newcastle.SENG48002013.game.engine.model.environment.GameObject;
 import au.edu.newcastle.SENG48002013.game.engine.model.environment.Rectangle;
 import javax.vecmath.Vector2d;
 
+/**
+ *
+ * @author Peter
+ */
 public class CollisionEvent extends BaseEvent {
 
     private GameObject object1;
     private GameObject object2;
     private boolean allowOverlap;
 
-    public CollisionEvent(long id) {
+    /**
+	 *
+	 * @param id
+	 */
+	public CollisionEvent(long id) {
         super(id);
     }
 
-    public CollisionEvent(long id, GameObject object1, GameObject object2) {
+    /**
+	 *
+	 * @param id
+	 * @param object1
+	 * @param object2
+	 */
+	public CollisionEvent(long id, GameObject object1, GameObject object2) {
         super(id);
         this.object1 = object1;
         this.object2 = object2;
     }
 
-    public GameObject getObject1() {
+    /**
+	 *
+	 * @return
+	 */
+	public GameObject getObject1() {
         return object1;
     }
 
-    public void setObject1(GameObject object1) {
+    /**
+	 *
+	 * @param object1
+	 */
+	public void setObject1(GameObject object1) {
         this.object1 = object1;
     }
 
-    public GameObject getObject2() {
+    /**
+	 *
+	 * @return
+	 */
+	public GameObject getObject2() {
         return object2;
     }
 
-    public void setObject2(GameObject object2) {
+    /**
+	 *
+	 * @param object2
+	 */
+	public void setObject2(GameObject object2) {
         this.object2 = object2;
     }
 
-    public boolean isAllowOverlap() {
+    /**
+	 *
+	 * @return
+	 */
+	public boolean isAllowOverlap() {
         return allowOverlap;
     }
 
-    public void setAllowOverlap(boolean allowOverlap) {
+    /**
+	 *
+	 * @param allowOverlap
+	 */
+	public void setAllowOverlap(boolean allowOverlap) {
         this.allowOverlap = allowOverlap;
     }
 
+	/**
+	 * 
+	 * @param dt
+	 * @return 
+	 */
     @Override
     public int evaluate(double dt) {
         int returnCode = -1;
