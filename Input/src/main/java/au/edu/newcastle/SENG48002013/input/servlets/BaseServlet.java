@@ -14,7 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 public abstract class BaseServlet extends HttpServlet 
 {
 
-    @Override
+    /**
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {    
@@ -27,7 +34,14 @@ public abstract class BaseServlet extends HttpServlet
     }
 
  
-    @Override
+    /**
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	@Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
         SecurityManager secMan = (SecurityManager) getServletContext().getAttribute("securityManager");
@@ -38,7 +52,13 @@ public abstract class BaseServlet extends HttpServlet
         }      
     }
 
-
-    protected abstract void processRequest(HttpServletRequest request, HttpServletResponse response, SecurityManager secMan) throws IOException;
+    /**
+	 *
+	 * @param request
+	 * @param response
+	 * @param secMan
+	 * @throws IOException
+	 */
+	protected abstract void processRequest(HttpServletRequest request, HttpServletResponse response, SecurityManager secMan) throws IOException;
 
 }

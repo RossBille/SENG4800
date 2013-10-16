@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.codehaus.jackson.map.ObjectMapper;
 
 /**
+ * @author Rowan
  * Initial entry point for clients wanting to connect to the system. Receives a
  * registration request from the client, determines if it should be granted.
  * 

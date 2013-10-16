@@ -37,11 +37,15 @@ public class InternalChannel
         this.engineChannel.start(instructionWebSocket);     
     }
     
-    /*
-     * Sends Http Post to Game Engine Servlet /PlayerManager indicating that
+    /**
+	 *
+	 * Sends Http Post to Game Engine Servlet /PlayerManager indicating that
      * a player either connecting or disconnecting based on boolean flag
-     */
-    public long sendPlayerControlMessage(boolean connecting, long iD)
+	 * @param connecting
+	 * @param iD
+	 * @return
+	 */
+	public long sendPlayerControlMessage(boolean connecting, long iD)
     {
         long playerID = -1;
         PlayerNumberMessage pnm = new PlayerNumberMessage();
@@ -81,7 +85,11 @@ public class InternalChannel
         return playerID;
     }
 
-    public void sendGameInstruction(String instruction)
+    /**
+	 *
+	 * @param instruction
+	 */
+	public void sendGameInstruction(String instruction)
     {
         try
         {

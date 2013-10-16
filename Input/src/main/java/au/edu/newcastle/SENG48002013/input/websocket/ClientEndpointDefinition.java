@@ -18,7 +18,11 @@ import javax.websocket.Session;
 @ClientEndpoint
 public class ClientEndpointDefinition
 {
-    @OnOpen
+    /**
+	 *
+	 * @param session
+	 */
+	@OnOpen
     public void onOpen(Session session)
     {
         System.out.println("Connected to endpoint: " + session.getBasicRemote());
@@ -33,7 +37,11 @@ public class ClientEndpointDefinition
     }
 
    
-    @OnMessage
+    /**
+	 *
+	 * @param message
+	 */
+	@OnMessage
     public void onMessage(String message)
     {
         System.out.println("Message from server: " + message);

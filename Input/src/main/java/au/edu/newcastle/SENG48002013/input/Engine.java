@@ -21,7 +21,8 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 import org.codehaus.jackson.map.ObjectMapper;
 
-/*
+/**
+ * @author Rowan
  * This class is where end users are referred to after being sued with a token
  * from their contact with the ConnectionBroker. 
  * 
@@ -66,12 +67,15 @@ public class Engine implements ServletContextListener
 
     // ********** Web Socket Methods **********
 
-    /*
-     * OnMessage
+    /**
+	 * 
      * Determine if the user is is currently authenticated or not by checking
      * what list their session is currently in
-     */
-    @OnMessage
+	 * @param session
+	 * @param message
+	 * @throws IOException
+	 */
+	@OnMessage
     public void onMessage(Session session, String message) throws IOException
     {      
         ObjectMapper mapper = new ObjectMapper();
@@ -117,12 +121,16 @@ public class Engine implements ServletContextListener
         }
     }
 
-    /*
-     * onOpen - add session to list containing active connections
+	/**
+	 *
+	 * add session to list containing active connections
      * that are yet authenticated. Clients must pass valid security token
      * to move from unauth list to auth list where they can start
-     * passing instructions to the game engine
-     */
+     * passing instructions to the game engine 
+	 * @param peer
+	 * @param config
+	 * @throws IOException 
+	 */
     @OnOpen
     public void onOpen(Session peer, EndpointConfig config) throws IOException
     {
@@ -130,11 +138,13 @@ public class Engine implements ServletContextListener
         unknown.add(peer);
     }
 
-    /*
-     * Client is disconnecting from Input system. If they were part of a game, 
+    /**
+	 *
+	 * Client is disconnecting from Input system. If they were part of a game, 
      * then the game engine must be notified that they are leaving
-     */
-    @OnClose
+	 * @param peer
+	 */
+	@OnClose
     public void onClose(Session peer)
     {
         if (known.contains(peer)) //player was connected, must notify Game Engine
@@ -190,7 +200,11 @@ public class Engine implements ServletContextListener
     
 
     // ********** Servlet Context Methods **********
-    @Override
+    /**
+	 *
+	 * @param sce
+	 */
+	@Override
     public void contextInitialized(ServletContextEvent sce)
     {
         Engine.securityManager = new SecurityManager(10000, "ws://localhost:30000/Input/endpoint", this);
@@ -203,7 +217,11 @@ public class Engine implements ServletContextListener
         log.info("*** Servlet Context Initialized ***");
     }
 
-    @Override
+    /**
+	 *
+	 * @param sce
+	 */
+	@Override
     public void contextDestroyed(ServletContextEvent sce)
     {
         sce.getServletContext().removeAttribute("securityManager");

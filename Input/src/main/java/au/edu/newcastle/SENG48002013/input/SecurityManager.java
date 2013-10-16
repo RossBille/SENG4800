@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 
 /**
+ * @author Rowan
  * Security manager to handle token generation and checking for invalid requests
  * to the Connection Broker
  */
@@ -21,7 +22,13 @@ public class SecurityManager
     private String endpoint;
     private Engine engine;
 
-    public SecurityManager(long time, String end, Engine e)
+    /**
+	 *
+	 * @param time
+	 * @param end
+	 * @param e
+	 */
+	public SecurityManager(long time, String end, Engine e)
     {
         validTokens = new HashMap();
         timeout = time;
@@ -30,7 +37,11 @@ public class SecurityManager
         log.log(Level.INFO, "Security Manager created. ID: {0}", this.toString());
     }
 
-    public String generateToken()
+    /**
+	 *
+	 * @return
+	 */
+	public String generateToken()
     {
         random = new SecureRandom();
         String token = new BigInteger(130, random).toString(32); //generate token
@@ -41,7 +52,12 @@ public class SecurityManager
         return token;
     }
 
-    public boolean checkToken(String token)
+    /**
+	 *
+	 * @param token
+	 * @return
+	 */
+	public boolean checkToken(String token)
     {
         long current = System.currentTimeMillis();
 
@@ -68,7 +84,12 @@ public class SecurityManager
         }
     }
 
-    public boolean checkRequest(HttpServletRequest request)
+    /**
+	 *
+	 * @param request
+	 * @return
+	 */
+	public boolean checkRequest(HttpServletRequest request)
     {
         /* check for malformed requests, or other suspicious activity here first
          * before actioning the request
@@ -76,12 +97,13 @@ public class SecurityManager
         return true;
     }
 
-    /*
-     * Returns a result obj inicating the result
+    /**
+	 *
+	 * Returns a result obj inicating the result
      * of a clients connection request
-     * 
-     */
-    public Result serviceRequest()
+	 * @return
+	 */
+	public Result serviceRequest()
     {
         Result r = new Result();
         /*
