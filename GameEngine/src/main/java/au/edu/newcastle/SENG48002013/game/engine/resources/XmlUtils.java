@@ -1,12 +1,21 @@
 package au.edu.newcastle.SENG48002013.game.engine.resources;
 
 import javax.vecmath.Vector2d;
-
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+/**
+ * 
+ * @author Peter
+ */
 public class XmlUtils {
 
+	/**
+	 * 
+	 * @param doc
+	 * @param tag
+	 * @return 
+	 */
     public static Element getElement(Element doc, String tag) {
         Element element = null;
         NodeList nl = doc.getElementsByTagName(tag);
@@ -16,6 +25,12 @@ public class XmlUtils {
         return element;
     }
 
+	/**
+	 *
+	 * @param doc
+	 * @param tag
+	 * @return  
+	 */
     public static double getNumericValue(Element doc, String tag) {
         double value = 0;
         NodeList nl = doc.getElementsByTagName(tag);
@@ -28,6 +43,12 @@ public class XmlUtils {
         return value;
     }
 
+	/**
+	 *
+	 * @param doc
+	 * @param tag
+	 * @return  
+	 */
     public static String getTextValue(Element doc, String tag) {
         String value = "";
         NodeList nl = doc.getElementsByTagName(tag);
@@ -40,6 +61,12 @@ public class XmlUtils {
         return value;
     }
 
+	/**
+	 *
+	 * @param doc
+	 * @param tag
+	 * @return  
+	 */
     public static Vector2d getVectorValue(Element doc, String tag) {
         Vector2d vector = new Vector2d();
         NodeList nl = doc.getElementsByTagName(tag);

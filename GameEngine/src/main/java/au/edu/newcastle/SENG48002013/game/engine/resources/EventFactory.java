@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package au.edu.newcastle.SENG48002013.game.engine.resources;
 
 import javax.vecmath.Vector2d;
@@ -13,10 +8,15 @@ import au.edu.newcastle.SENG48002013.game.engine.model.events.*;
 
 /**
  *
- * @author Ross
+ * @author Peter
  */
 public class EventFactory {
 
+	/**
+	 * 
+	 * @param eventElement
+	 * @return 
+	 */
     public static IEvent buildEvent(Element eventElement) {
         BaseEvent event = null;
         long id = (long) XmlUtils.getNumericValue(eventElement, "EVENT_ID");
