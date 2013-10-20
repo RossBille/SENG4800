@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package au.edu.newcastle.SENG48002013.game.engine.resources;
 
 /**
  *
- * @author Ross
+ * @author Peter 
  */
 import java.io.File;
 import java.io.IOException;
@@ -17,21 +12,24 @@ import org.w3c.dom.*;
 
 public class ConfigReader {
 
-    // TO DO:
-    //			ADD ACTION TYPE?
-    //			SUPPORT FOR MULTIPLE ACTION TYPES? OR ONLY ONE
-    // levels storage object
+	//the following gets changed as soon as context is initialised
     public static String BASEDIR = "/home/clint/Projects/git/SENG4800/config";
     public static String LEVELS = "levels.xml";
     public static String GAME = "game.xml";
-    //public static ArrayList<Level> levels = new ArrayList<Level>();
-    //public static GameSetup gameSetup = new GameSetup();
 
+	/**
+	 * 
+	 * @return 
+	 */
     public static Element readGame() {
         Element docEle = loadXmlFile(GAME);
         return docEle;
     }
 
+	/**
+	 *
+	 * @return  
+	 */
     public static NodeList readLevels() {
         Element docEle = loadXmlFile(LEVELS);
         // get a list of the levels

@@ -23,6 +23,11 @@ public class InputConnectionManager extends BaseServlet {
         lastId = 0;
     }
 
+	/**
+	 * maps a JSON instruction to a PLayerNumberMessage
+	 * decides whether to add a new player to the game or remove depending on the message
+	 * @throws IOException if the request doesn't contain a PlayerNumberMessage
+	 */
     @Override
     protected void processRequest() throws IOException {
         Response r = new Response();
@@ -38,14 +43,13 @@ public class InputConnectionManager extends BaseServlet {
             boolean addPlayer = Boss.addPlayer(generatedId);
             if (addPlayer) {
                 r.setError(false);
-                r.setCode(pnm.getPlayer());//return the player number to the Input component 
+                r.setCode((int) generatedId);//return the player number to the Input component 
                 r.setMessage("Player has been added");
             } else {
                 r.setError(true);
                 r.setMessage("No Room");
                 r.setCode(ResultCode.INSUFFICIENT_ROOM);
             }
-
         } else {
             //remove player from the game
             Boss.removePlayer(pnm.getPlayer());
@@ -53,20 +57,27 @@ public class InputConnectionManager extends BaseServlet {
             r.setMessage("Player was removed");
             r.setCode(ResultCode.SUCCESS);
         }
-
+		respond(r);
     }
 
-    private String extractJson() {
+    /**
+	 * finds the "data" parameter in the reuqest 
+	 * @return string representation of the instruction sent
+	 */
+	private String extractJson() {
         System.out.println(request.getParameter("data"));
         return request.getParameter("data");
     }
 
+	//convert result to string and send 
     private void respond(Response r) throws IOException {
         response.setContentType("text/JSON");
         ObjectMapper mapper = new ObjectMapper();
         response.getWriter().write(mapper.writeValueAsString(r));
     }
 
+	//converts a false boolean to -1
+	//			 true boolean to 1
     private int convert(boolean result) {
         if (result) {
             return 1;
@@ -76,7 +87,6 @@ public class InputConnectionManager extends BaseServlet {
     }
 
     private long generateId(PlayerNumberMessage pnm) {
-        //System.out.println("generated a new playerid");
         return ++lastId;
     }
 }

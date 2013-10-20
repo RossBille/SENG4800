@@ -16,6 +16,10 @@ import org.codehaus.jackson.map.ObjectMapper;
 @WebServlet("/setup")
 public class OutputSetup extends BaseServlet {
 
+	/**
+	 * 
+	 * @throws IOException 
+	 */
     @Override
     protected void processRequest() throws IOException {
         ServletContext sc = getServletContext();

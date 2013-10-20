@@ -11,34 +11,68 @@ public class InputAction extends BaseAction {
     private GameObject gameObject;
     private Type type;
 
-    public InputAction(long id) {
+    /**
+	 *
+	 * @param id
+	 */
+	public InputAction(long id) {
         super(id);
     }
 
-    public Player getPlayer() {
+    /**
+	 *
+	 * @return
+	 */
+	public Player getPlayer() {
         return player;
     }
 
-    public void setPlayer(Player player) {
+    /**
+	 *
+	 * @param player
+	 */
+	public void setPlayer(Player player) {
         this.player = player;
     }
 
-    public GameObject getGameObject() {
+    /**
+	 *
+	 * @return
+	 */
+	public GameObject getGameObject() {
         return gameObject;
     }
 
-    public void setGameObject(GameObject gameObject) {
+    /**
+	 *
+	 * @param gameObject
+	 */
+	public void setGameObject(GameObject gameObject) {
         this.gameObject = gameObject;
     }
 
-    public Type getType() {
+    /**
+	 *
+	 * @return
+	 */
+	public Type getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    /**
+	 *
+	 * @param type
+	 */
+	public void setType(Type type) {
         this.type = type;
     }
 
+	/**
+	 *
+	 * @param dt
+	 * @return
+	 */
+	@Override
     public int doAction(double dt) {
         Vector2d value = player.getInput().getValue();
         if (player.getInput().isPosition()) {
@@ -69,8 +103,10 @@ public class InputAction extends BaseAction {
         return -1;
     }
 
-    public enum Type {
-
+    /**
+	 *
+	 */
+	public enum Type {
         ADD,
         SUB,
         SET

@@ -11,42 +11,84 @@ public class ChangeComponentAction extends BaseAction {
     private Type type;
     private Component component;
 
-    public ChangeComponentAction(long id) {
+    /**
+	 *
+	 * @param id
+	 */
+	public ChangeComponentAction(long id) {
         super(id);
     }
 
-    public GameObject getGameObject() {
+    /**
+	 *
+	 * @return
+	 */
+	public GameObject getGameObject() {
         return gameObject;
     }
 
-    public void setGameObject(GameObject gameObject) {
+    /**
+	 *
+	 * @param gameObject
+	 */
+	public void setGameObject(GameObject gameObject) {
         this.gameObject = gameObject;
     }
 
-    public Vector2d getValue() {
+    /**
+	 *
+	 * @return
+	 */
+	public Vector2d getValue() {
         return value;
     }
 
-    public void setValue(Vector2d value) {
+    /**
+	 *
+	 * @param value
+	 */
+	public void setValue(Vector2d value) {
         this.value = value;
     }
 
-    public Type getType() {
+    /**
+	 *
+	 * @return
+	 */
+	public Type getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    /**
+	 *
+	 * @param type
+	 */
+	public void setType(Type type) {
         this.type = type;
     }
 
-    public Component getComponent() {
+    /**
+	 *
+	 * @return
+	 */
+	public Component getComponent() {
         return component;
     }
 
-    public void setComponent(Component component) {
+    /**
+	 *
+	 * @param component
+	 */
+	public void setComponent(Component component) {
         this.component = component;
     }
 
+	/**
+	 *
+	 * @param dt
+	 * @return
+	 */
+	@Override
     public int doAction(double dt) {
         switch (type) {
             case ADD: {
@@ -95,14 +137,20 @@ public class ChangeComponentAction extends BaseAction {
         return -1;
     }
 
-    public enum Component {
+    /**
+	 *
+	 */
+	public enum Component {
 
         POS,
         VEL,
         ACC
     }
 
-    public enum Type {
+    /**
+	 *
+	 */
+	public enum Type {
 
         ADD,
         SUB,

@@ -8,34 +8,68 @@ public class ChangeScoreAction extends BaseAction {
     private double value;
     private Type type;
 
-    public ChangeScoreAction(long id) {
+    /**
+	 *
+	 * @param id
+	 */
+	public ChangeScoreAction(long id) {
         super(id);
     }
 
-    public double getValue() {
+    /**
+	 *
+	 * @return
+	 */
+	public double getValue() {
         return value;
     }
 
-    public void setValue(double value) {
+    /**
+	 *
+	 * @param value
+	 */
+	public void setValue(double value) {
         this.value = value;
     }
 
-    public Player getPlayer() {
+    /**
+	 *
+	 * @return
+	 */
+	public Player getPlayer() {
         return player;
     }
 
-    public void setPlayer(Player player) {
+    /**
+	 *
+	 * @param player
+	 */
+	public void setPlayer(Player player) {
         this.player = player;
     }
 
-    public Type getType() {
+    /**
+	 *
+	 * @return
+	 */
+	public Type getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    /**
+	 *
+	 * @param type
+	 */
+	public void setType(Type type) {
         this.type = type;
     }
 
+	/**
+	 *
+	 * @param dt
+	 * @return
+	 */
+	@Override
     public int doAction(double dt) {
         switch (type) {
             case ADD:
@@ -50,7 +84,10 @@ public class ChangeScoreAction extends BaseAction {
         return -1;
     }
 
-    public enum Type {
+    /**
+	 *
+	 */
+	public enum Type {
 
         ADD,
         SUB,

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package au.edu.newcastle.SENG48002013.game.engine.model.events;
 
 import au.edu.newcastle.SENG48002013.game.engine.model.environment.Circle;
@@ -11,6 +6,10 @@ import au.edu.newcastle.SENG48002013.game.engine.model.environment.Level;
 import au.edu.newcastle.SENG48002013.game.engine.model.environment.Rectangle;
 import javax.vecmath.Vector2d;
 
+/**
+ *
+ * @author rossbille
+ */
 public class BoundaryEvent extends BaseEvent {
 
     private GameObject gameObject;
@@ -18,48 +17,95 @@ public class BoundaryEvent extends BaseEvent {
     private boolean allowOverlap;
     private Edge edge;
 
-    public BoundaryEvent(long id) {
+    /**
+	 *
+	 * @param id
+	 */
+	public BoundaryEvent(long id) {
         super(id);
     }
 
-    public BoundaryEvent(long id, GameObject gameObject, Level level) {
+    /**
+	 *
+	 * @param id
+	 * @param gameObject
+	 * @param level
+	 */
+	public BoundaryEvent(long id, GameObject gameObject, Level level) {
         super(id);
         this.gameObject = gameObject;
         this.level = level;
     }
 
-    public GameObject getGameObject() {
+    /**
+	 *
+	 * @return
+	 */
+	public GameObject getGameObject() {
         return gameObject;
     }
 
-    public void setGameObject(GameObject gameObject) {
+    /**
+	 *
+	 * @param gameObject
+	 */
+	public void setGameObject(GameObject gameObject) {
         this.gameObject = gameObject;
     }
 
-    public Level getLevel() {
+    /**
+	 *
+	 * @return
+	 */
+	public Level getLevel() {
         return level;
     }
 
-    public void setLevel(Level level) {
+    /**
+	 *
+	 * @param level
+	 */
+	public void setLevel(Level level) {
         this.level = level;
     }
 
-    public boolean isAllowOverlap() {
+    /**
+	 *
+	 * @return
+	 */
+	public boolean isAllowOverlap() {
         return allowOverlap;
     }
 
-    public void setAllowOverlap(boolean allowOverlap) {
+    /**
+	 *
+	 * @param allowOverlap
+	 */
+	public void setAllowOverlap(boolean allowOverlap) {
         this.allowOverlap = allowOverlap;
     }
 
-    public Edge getEdge() {
+    /**
+	 *
+	 * @return
+	 */
+	public Edge getEdge() {
         return edge;
     }
 
-    public void setEdge(Edge edge) {
+    /**
+	 *
+	 * @param edge
+	 */
+	public void setEdge(Edge edge) {
         this.edge = edge;
     }
 
+	/**
+	 * 
+	 * @param dt
+	 * @return 
+	 */
     @Override
     public int evaluate(double dt) {
         int returnCode = -1;
@@ -182,8 +228,10 @@ public class BoundaryEvent extends BaseEvent {
         return returnCode;
     }
 
-    public enum Edge {
-
+    /**
+	 *
+	 */
+	public enum Edge {
         TOP,
         BOTTOM,
         LEFT,

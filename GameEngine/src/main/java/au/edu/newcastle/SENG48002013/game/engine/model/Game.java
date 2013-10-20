@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package au.edu.newcastle.SENG48002013.game.engine.model;
 
 import java.util.LinkedList;
@@ -16,7 +11,7 @@ import au.edu.newcastle.SENG48002013.game.engine.model.environment.Player;
 
 /**
  *
- * @author Ross
+ * @author Peter 
  */
 public class Game implements IGame, IGameOutput {
 
@@ -30,6 +25,9 @@ public class Game implements IGame, IGameOutput {
     Queue<Long> addPlayerQueue;
     Queue<Long> removePlayerQueue;
 
+	/**
+	 * 
+	 */
     public Game() {
         levels = null;
         players = null;
@@ -40,10 +38,18 @@ public class Game implements IGame, IGameOutput {
         removePlayerQueue = new LinkedList<Long>();
     }
 
+	/**
+	 *
+	 * @param levels  
+	 */
     public void setLevels(Level[] levels) {
         this.levels = levels;
     }
 
+	/**
+	 *
+	 * @param levelId  
+	 */
     public void setCurrentLevel(long levelId) {
         for (int i = 0; i < levels.length; i++) {
             if (levels[i].getId() == levelId) {
@@ -53,34 +59,67 @@ public class Game implements IGame, IGameOutput {
         }
     }
 
+	/**
+	 *
+	 * @param players  
+	 */
     public void setPlayers(Player[] players) {
         this.players = players;
     }
 
+	/**
+	 *
+	 * @return  
+	 */
     public int getMaxPlayers() {
         return maxPlayers;
     }
 
+	/**
+	 *
+	 * @param maxPlayers  
+	 */
     public void setMaxPlayers(int maxPlayers) {
         this.maxPlayers = maxPlayers;
     }
 
+	/**
+	 *
+	 * @return  
+	 */
     public int getMinPlayers() {
         return minPlayers;
     }
 
+	/**
+	 * 
+	 * @param minPlayers 
+	 */
     public void setMinPlayers(int minPlayers) {
         this.minPlayers = minPlayers;
     }
 
+	/**
+	 *
+	 * @return  
+	 */
     public Vector2d getSize() {
         return size;
     }
 
+	/**
+	 *
+	 * @param size  
+	 */
     public void setSize(Vector2d size) {
         this.size = size;
     }
 
+	/**
+	 *
+	 * @param inputId
+	 * @return  
+	 */
     @Override
     public boolean addPlayer(long inputId) {
         boolean added = false;
@@ -91,11 +130,19 @@ public class Game implements IGame, IGameOutput {
         return added;
     }
 
+	/**
+	 * 
+	 * @param inputId 
+	 */
     @Override
     public void removePlayer(long inputId) {
         removePlayerQueue.add(inputId);
     }
 
+	/**
+	 *
+	 * @param dt  
+	 */
     @Override
     public void step(double dt) {
         deactivatePlayers();
@@ -107,6 +154,10 @@ public class Game implements IGame, IGameOutput {
         }
     }
 
+	/**
+	 *
+	 * @return  
+	 */
     @Override
     public IGameObject[] getOutputObjects() {
         return levels[currentLevel].getOutputObjects();
@@ -120,7 +171,7 @@ public class Game implements IGame, IGameOutput {
     }
     //I think there's a logic error here, given that we're using arrays and stuff
     //I think it should probably be reordered after each deactivation, otherwise
-    //shit might get overwritten. Will look into later.
+    //stuff might get overwritten. Will look into later.
 
     private void deactivatePlayers() {
         while (removePlayerQueue.size() > 0) {

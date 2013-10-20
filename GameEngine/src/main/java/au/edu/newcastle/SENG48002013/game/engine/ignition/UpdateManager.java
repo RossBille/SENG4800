@@ -12,18 +12,30 @@ import java.io.IOException;
  */
 public class UpdateManager {
 
-    public static void start(String path) throws IOException {
+    /**
+	 *
+	 * @param path
+	 * @throws IOException
+	 */
+	public static void start(String path) throws IOException {
         ConfigReader.BASEDIR = path;
         Boss.start();
         System.out.println("Game is starting...");
     }
 
-    public static void stop() {
+    /**
+	 *
+	 */
+	public static void stop() {
         Boss.stop();
         System.out.println("Game is stopping...");
     }
 
-    public static void restart() throws IOException {
+    /**
+	 *
+	 * @throws IOException
+	 */
+	public static void restart() throws IOException {
         Boss.stop();
         Boss.start();
         System.out.println("Game is restarting...");

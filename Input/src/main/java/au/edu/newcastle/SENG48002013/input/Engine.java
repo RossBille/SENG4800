@@ -1,38 +1,28 @@
 package au.edu.newcastle.SENG48002013.input;
 
-import au.edu.newcastle.SENG48002013.input.websocket.WebSocketClient;
 import au.edu.newcastle.SENG48002013.messages.PlayerControlMessage;
-import au.edu.newcastle.SENG48002013.messages.PlayerNumberMessage;
 import au.edu.newcastle.seng48002013.instructions.BaseInstruction;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
-import javax.servlet.http.HttpSession;
 import javax.websocket.EndpointConfig;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
-import org.apache.http.HttpException;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 import org.codehaus.jackson.map.ObjectMapper;
 
-/*
+/**
+ * @author Rowan
  * This class is where end users are referred to after being sued with a token
  * from their contact with the ConnectionBroker. 
  * 
@@ -64,25 +54,28 @@ public class Engine implements ServletContextListener
     private final static Logger log = Logger.getLogger(Engine.class.getName());
     private static Set<Session> known = Collections.synchronizedSet(new HashSet<Session>());
     private static Set<Session> unknown = Collections.synchronizedSet(new HashSet<Session>());
-    private HttpSession httpSession;
-    private final int MAX_CLIENTS;
-    private static SecurityManager manager;
-    private static WebSocketClient engineChannel;
+    private static int MAX_CLIENTS;
+    private static SecurityManager securityManager;
+    private static InternalChannel internalChannel;
+    private Map playerMappings;
 
     public Engine()
     {
-       this.MAX_CLIENTS = 5; // get this value from the XML config for final project
        log.info("*** Engine Instantiated ***");
+       playerMappings = new HashMap<>();
     }
 
     // ********** Web Socket Methods **********
 
-    /*
-     * OnMessage
+    /**
+	 * 
      * Determine if the user is is currently authenticated or not by checking
      * what list their session is currently in
-     */
-    @OnMessage
+	 * @param session
+	 * @param message
+	 * @throws IOException
+	 */
+	@OnMessage
     public void onMessage(Session session, String message) throws IOException
     {      
         ObjectMapper mapper = new ObjectMapper();
@@ -102,11 +95,11 @@ public class Engine implements ServletContextListener
             try
             {
                 BaseInstruction b = mapper.readValue(message, BaseInstruction.class);
-                System.out.println("Vector from Instruction: " + b.getDirection());              
                 PlayerControlMessage pcm = new PlayerControlMessage();
-                pcm.setCode(session.getId()); // player ID
+				pcm.setPlayer(Integer.parseInt(playerMappings.get(session.getId()).toString()));
+                pcm.setCode(playerMappings.get(session.getId()).toString()); // player ID
                 pcm.setDirection(b.getDirection());               
-                engineChannel.getSession().getBasicRemote().sendText(mapper.writeValueAsString(pcm));
+                internalChannel.sendGameInstruction(mapper.writeValueAsString(pcm));
             }
             
             catch (IOException e)
@@ -128,33 +121,38 @@ public class Engine implements ServletContextListener
         }
     }
 
-    /*
-     * onOpen - add session to list containing active connections
+	/**
+	 *
+	 * add session to list containing active connections
      * that are yet authenticated. Clients must pass valid security token
      * to move from unauth list to auth list where they can start
-     * passing instructions to the game engine
-     */
+     * passing instructions to the game engine 
+	 * @param peer
+	 * @param config
+	 * @throws IOException 
+	 */
     @OnOpen
     public void onOpen(Session peer, EndpointConfig config) throws IOException
     {
-        this.httpSession = (HttpSession) config.getUserProperties()
-                .get(HttpSession.class.getName());
-
-        peer.getBasicRemote().sendText("token"); //request token from client
+        peer.getBasicRemote().sendText("Please transmit your token."); //request token from client
         unknown.add(peer);
     }
 
-    /*
-     * Client is disconnecting from Input system. If they were part of a game, 
+    /**
+	 *
+	 * Client is disconnecting from Input system. If they were part of a game, 
      * then the game engine must be notified that they are leaving
-     */
-    @OnClose
+	 * @param peer
+	 */
+	@OnClose
     public void onClose(Session peer)
     {
         if (known.contains(peer)) //player was connected, must notify Game Engine
         {
+            long playerID = (long) playerMappings.get(peer.getId());
             known.remove(peer);
-            notifyGameEngine(false);
+            playerMappings.remove(peer.getId());
+            long result = internalChannel.sendPlayerControlMessage(false, playerID);           
         }
         
         else
@@ -183,12 +181,13 @@ public class Engine implements ServletContextListener
 
     private void processToken(String token, Session session)
     {
-        if (manager.checkToken(token)) //id token passed from client
+        if (securityManager.checkToken(token)) //id token passed from client
         {
             log.info("Valid token received, adding player");
             known.add(session);
             unknown.remove(session);
-            notifyGameEngine(true); //notify Game Engine of conencting client
+            long result = internalChannel.sendPlayerControlMessage(true, 0); //notify Game Engine of connecting client
+            playerMappings.put(session.getId(), result);
         }
         
         else //invalid token, remove client
@@ -198,49 +197,31 @@ public class Engine implements ServletContextListener
         }
     }
     
-    /*
-     * Sends Http Post to Game Engine Servlet /PlayerManager indicating that
-     * a player either connecting or disconnecting based on boolean flag
-     */
-    private void notifyGameEngine(boolean connecting)
-    {
-        PlayerNumberMessage pnm = new PlayerNumberMessage();
-        pnm.setConnecting(connecting);
-        
-        ArrayList<NameValuePair> parameters; // for name/value pairs of req params
-        HttpClient httpclient = new DefaultHttpClient();
-        ObjectMapper mapper = new ObjectMapper();
-        
-        try
-        {
-            parameters = new ArrayList<>();
-            parameters.add(new BasicNameValuePair("data", mapper.writeValueAsString(pnm)));         
-            HttpPost post = new HttpPost("http://localhost:8080/GameEngine/PlayerManager");
-            post.setEntity(new UrlEncodedFormEntity(parameters));           
-            HttpResponse result = httpclient.execute(post);       
-        }
-        
-        catch (URISyntaxException | HttpException | IOException ex)
-        {
-            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+    
 
     // ********** Servlet Context Methods **********
-    @Override
+    /**
+	 *
+	 * @param sce
+	 */
+	@Override
     public void contextInitialized(ServletContextEvent sce)
     {
-        //these hardcoded values can stay for now.
-        Engine.manager = new SecurityManager(10000, "ws://localhost:8181/Input/endpoint", this);
-        sce.getServletContext().setAttribute("securityManager", Engine.manager);
-        Engine.engineChannel = new WebSocketClient();
+        Engine.securityManager = new SecurityManager(10000, "ws://localhost:30000/Input/endpoint", this);
+        Engine.MAX_CLIENTS = 5; 
+        Engine.internalChannel = new InternalChannel("ws://localhost:8080/GameEngine/MessageManager", 
+                "http://localhost:8080/GameEngine/PlayerManager");
         
-        //URL for "internal" web socket will need to be passed from XML config
-        engineChannel.start("ws://localhost:8080/GameEngine/MessageManager");
+        sce.getServletContext().setAttribute("securityManager", Engine.securityManager);
+        
         log.info("*** Servlet Context Initialized ***");
     }
 
-    @Override
+    /**
+	 *
+	 * @param sce
+	 */
+	@Override
     public void contextDestroyed(ServletContextEvent sce)
     {
         sce.getServletContext().removeAttribute("securityManager");

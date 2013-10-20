@@ -15,7 +15,11 @@ import javax.servlet.annotation.WebListener;
 @WebListener
 public class ContextStartupListener implements ServletContextListener {
 
-    @Override
+    /**
+	 *
+	 * @param sce
+	 */
+	@Override
     public void contextInitialized(ServletContextEvent sce) {
         try {
             //init game stuff here
@@ -29,7 +33,11 @@ public class ContextStartupListener implements ServletContextListener {
         }
     }
 
-    @Override
+    /**
+	 *
+	 * @param sce
+	 */
+	@Override
     public void contextDestroyed(ServletContextEvent sce) {
         UpdateManager.stop();
     }

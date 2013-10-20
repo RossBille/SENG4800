@@ -25,7 +25,11 @@ public class MessageManager {
     private static Set<Session> peers = Collections.synchronizedSet(new HashSet<Session>());
     private final int ALLOWED_CONNECTIONS = 1;
 
-    @OnOpen
+    /**
+	 *
+	 * @param peer
+	 */
+	@OnOpen
     public void onOpen(Session peer) {
         //check that they have a correct key to act as input to the engine
 
@@ -39,7 +43,11 @@ public class MessageManager {
         }
     }
 
-    @OnClose
+    /**
+	 *
+	 * @param peer
+	 */
+	@OnClose
     public void onClose(Session peer) {
         peers.remove(peer);
         if (peers.size() <= 0) {
@@ -47,7 +55,12 @@ public class MessageManager {
         }
     }
 
-    @OnMessage
+    /**
+	 *
+	 * @param Message
+	 * @throws IOException
+	 */
+	@OnMessage
     public void onMessage(String Message) throws IOException {
         //process the input
         System.out.println("GAME ENGINE" + Message);
@@ -64,7 +77,11 @@ public class MessageManager {
     }
 
 
-    public int currentPeers() {
+    /**
+	 *
+	 * @return
+	 */
+	public int currentPeers() {
         return peers.size();
     }
 }

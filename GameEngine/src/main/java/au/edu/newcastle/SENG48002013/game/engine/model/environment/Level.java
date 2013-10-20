@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package au.edu.newcastle.SENG48002013.game.engine.model.environment;
 
 import java.util.Iterator;
@@ -20,42 +15,79 @@ public class Level {
     private List<GameObject> gameObjects;
     private List<IEvent> events;
 
-    public Level(long id) {
+    /**
+	 *
+	 * @param id
+	 */
+	public Level(long id) {
         this.id = id;
         dimensions = new Vector2d();
         gameObjects = new LinkedList<GameObject>();
         events = new LinkedList<IEvent>();
     }
 
-    public long getId() {
+    /**
+	 *
+	 * @return
+	 */
+	public long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    /**
+	 *
+	 * @param id
+	 */
+	public void setId(long id) {
         this.id = id;
     }
 
-    public Background getBackground() {
+    /**
+	 *
+	 * @return
+	 */
+	public Background getBackground() {
         return background;
     }
 
-    public void setBackground(Background background) {
+    /**
+	 *
+	 * @param background
+	 */
+	public void setBackground(Background background) {
         this.background = background;
     }
 
-    public Vector2d getDimensions() {
+    /**
+	 *
+	 * @return
+	 */
+	public Vector2d getDimensions() {
         return dimensions;
     }
 
-    public void setDimensions(Vector2d dimensions) {
+    /**
+	 *
+	 * @param dimensions
+	 */
+	public void setDimensions(Vector2d dimensions) {
         this.dimensions.set(dimensions);
     }
 
-    public GameObject getGameObject(int index) {
+    /**
+	 *
+	 * @param index
+	 * @return
+	 */
+	public GameObject getGameObject(int index) {
         return gameObjects.get(index);
     }
 
-    public IGameObject[] getOutputObjects() {
+    /**
+	 *
+	 * @return
+	 */
+	public IGameObject[] getOutputObjects() {
         List<GameObject> outputObjects = new LinkedList<GameObject>();
         Iterator<GameObject> objectIter = gameObjects.iterator();
         while (objectIter.hasNext()) {
@@ -67,27 +99,55 @@ public class Level {
         return outputObjects.toArray(new IGameObject[0]);
     }
 
-    public void setGameObject(int index, GameObject gameObject) {
+    /**
+	 *
+	 * @param index
+	 * @param gameObject
+	 */
+	public void setGameObject(int index, GameObject gameObject) {
         gameObjects.set(index, gameObject);
     }
 
-    public void addGameObject(GameObject gameObject) {
+    /**
+	 *
+	 * @param gameObject
+	 */
+	public void addGameObject(GameObject gameObject) {
         gameObjects.add(gameObject);
     }
 
-    public IEvent getEvent(int index) {
+    /**
+	 *
+	 * @param index
+	 * @return
+	 */
+	public IEvent getEvent(int index) {
         return events.get(index);
     }
 
-    public void setEvent(int index, IEvent event) {
+    /**
+	 *
+	 * @param index
+	 * @param event
+	 */
+	public void setEvent(int index, IEvent event) {
         events.set(index, event);
     }
 
-    public void addEvent(IEvent event) {
+    /**
+	 *
+	 * @param event
+	 */
+	public void addEvent(IEvent event) {
         events.add(event);
     }
 
-    public int step(double dt) {
+    /**
+	 *
+	 * @param dt
+	 * @return
+	 */
+	public int step(double dt) {
         int returnCode = -1;
         stepNext(dt);
         returnCode = stepEvents(dt);

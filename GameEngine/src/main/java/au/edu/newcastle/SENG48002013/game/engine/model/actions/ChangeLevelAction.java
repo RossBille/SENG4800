@@ -4,18 +4,36 @@ public class ChangeLevelAction extends BaseAction {
 
     private long levelId;
 
-    public ChangeLevelAction(long id) {
+    /**
+	 *
+	 * @param id
+	 */
+	public ChangeLevelAction(long id) {
         super(id);
     }
 
-    public long getLevelId() {
+    /**
+	 *
+	 * @return
+	 */
+	public long getLevelId() {
         return levelId;
     }
 
-    public void setLevelId(long levelId) {
+    /**
+	 *
+	 * @param levelId
+	 */
+	public void setLevelId(long levelId) {
         this.levelId = levelId;
     }
 
+	/**
+	 *
+	 * @param dt
+	 * @return
+	 */
+	@Override
     public int doAction(double dt) {
         return (int) levelId;
     }

@@ -9,5 +9,5 @@ app.Main = (function() {
 
     /* Our websocket */
     var webSocket = new app.Websocket('ws://localhost:8080/GameEngine/output');
-    window.setTimeout(function() { webSocket.close(); mocha.run(); },1000);
+//    window.setTimeout(function() { webSocket.close(); mocha.run(); },1000);
 })();

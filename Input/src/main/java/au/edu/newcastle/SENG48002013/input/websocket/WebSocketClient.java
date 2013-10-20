@@ -20,7 +20,11 @@ public class WebSocketClient
     private Session session;
     WebSocketContainer container;
 
-    public void start(String remote)
+    /**
+	 *
+	 * @param remote
+	 */
+	public void start(String remote)
     {
         this.container = ContainerProvider.getWebSocketContainer();
         try
@@ -37,7 +41,11 @@ public class WebSocketClient
         }
     }
 
-    public Session getSession()
+    /**
+	 *
+	 * @return
+	 */
+	public Session getSession()
     {
         return this.session;
     }

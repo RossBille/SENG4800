@@ -41,7 +41,15 @@ public class OutputConnectionManager {
         }
     }
 
-    @OnOpen
+	/**
+	 * Executed whenever a client connects, this method varifies agasint certain rules to make sure
+	 * that the client can connect
+	 * 		Rules:  - Legit client
+	 * 			 	- Enough connection spots 	
+	 * @param peer the web socket client session
+	 * @throws IOException if the peer has no associated writer (i.e. they don't meet websockets 1.0 spec)
+	 */
+	@OnOpen
     public void onOpen(Session peer) throws IOException {
         System.out.println("connections: " + currentPeers());
 
@@ -55,20 +63,35 @@ public class OutputConnectionManager {
         }
     }
 
-    @OnClose
+    /**
+	 *
+	 * @param peer
+	 */
+	@OnClose
     public void onClose(Session peer) {
         peers.remove(peer);
         System.out.println("connections: " + currentPeers());
     }
 
-    public int currentPeers() {
+	/**
+	 * Method to see how many peers are currently connected
+	 * @return int	number of currently connected peers 
+	 */
+	public int currentPeers() {
         return peers.size();
     }
 
-    public int getAllowedConnections() {
+    /**
+	 * method to see maximum number of peers that can be connected at any one time
+	 * @return int	max number of peers
+	 */
+	public int getAllowedConnections() {
         return ALLOWED_CONNECTIONS;
     }
-
+	
+	/**
+	 * 
+	 */
     private static class Runner extends Thread {
 
         private Session peer;

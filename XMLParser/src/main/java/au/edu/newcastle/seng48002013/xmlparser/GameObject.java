@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package au.edu.newcastle.seng48002013.xmlparser;
 
 /**
@@ -10,7 +6,8 @@ package au.edu.newcastle.seng48002013.xmlparser;
  */
 import java.util.ArrayList;
 
-public class GameObject {
+public class GameObject
+{
 
 	// Variables
 	private String name;
@@ -20,66 +17,140 @@ public class GameObject {
 	private String colour;
 	private int spriteSpeed;
 	private ArrayList<String> sprite = new ArrayList<String>();
-	
+
 	// Mutators
-	public String getName() {
+	/**
+	 *
+	 * @return
+	 */
+	public String getName()
+	{
 		return name;
 	}
-	
-	public void setName(String name) {
+
+	/**
+	 *
+	 * @param name
+	 */
+	public void setName(String name)
+	{
 		this.name = name;
 	}
-	
-	public int getId() {
+
+	/**
+	 *
+	 * @return
+	 */
+	public int getId()
+	{
 		return id;
 	}
-	
-	public void setId(int id) {
+
+	/**
+	 *
+	 * @param id
+	 */
+	public void setId(int id)
+	{
 		this.id = id;
 	}
-	
-	public int getPosX() {
+
+	/**
+	 *
+	 * @return
+	 */
+	public int getPosX()
+	{
 		return posX;
 	}
-	
-	public void setPosX(int position_x) {
+
+	/**
+	 *
+	 * @param position_x
+	 */
+	public void setPosX(int position_x)
+	{
 		this.posX = position_x;
 	}
-	
-	public int getPosY() {
+
+	/**
+	 *
+	 * @return
+	 */
+	public int getPosY()
+	{
 		return posY;
 	}
-	
-	public void setPosY(int position_y) {
+
+	/**
+	 *
+	 * @param position_y
+	 */
+	public void setPosY(int position_y)
+	{
 		this.posY = position_y;
 	}
-	
-	public String getColour() {
+
+	/**
+	 *
+	 * @return
+	 */
+	public String getColour()
+	{
 		return colour;
 	}
-	
-	public void setColour(String colour) {
+
+	/**
+	 *
+	 * @param colour
+	 */
+	public void setColour(String colour)
+	{
 		this.colour = colour;
 	}
-	
-	public int getSpriteSpeed() {
+
+	/**
+	 *
+	 * @return
+	 */
+	public int getSpriteSpeed()
+	{
 		return spriteSpeed;
 	}
-	
-	public void setSpriteSpeed(int spriteSpeed) {
+
+	/**
+	 *
+	 * @param spriteSpeed
+	 */
+	public void setSpriteSpeed(int spriteSpeed)
+	{
 		this.spriteSpeed = spriteSpeed;
 	}
-	
-	public ArrayList<String> getSprite() {
+
+	/**
+	 *
+	 * @return
+	 */
+	public ArrayList<String> getSprite()
+	{
 		return sprite;
 	}
-	
-	public void setSprite(ArrayList<String> sprite) {
+
+	/**
+	 *
+	 * @param sprite
+	 */
+	public void setSprite(ArrayList<String> sprite)
+	{
 		this.sprite = sprite;
 	}
-	
-	public void addSprite(String newSprite) {
+
+	/**
+	 *
+	 * @param newSprite
+	 */
+	public void addSprite(String newSprite)
+	{
 		sprite.add(newSprite);
 	}
-	
 }
