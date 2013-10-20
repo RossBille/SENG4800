@@ -83,5 +83,20 @@
       </shape>
     </sprite>
   </sprites>
-  <backgrounds></backgrounds>
+  <backgrounds>
+    <background>
+      <background_id>0</background_id>
+      <background_name>Grey Noise</background_name>
+      <image>/images/grey_noise.jpg</image>
+      <speed>1</speed>
+      <position_type>tiled</position_type>
+    </background>
+    <background>
+      <background_id>1</background_id>
+      <background_name>Geometry</background_name>
+      <image>/images/geometry.png</image>
+      <speed>1</speed>
+      <position_type>tiled</position_type>
+    </background>
+  </backgrounds>
 </setup>

@@ -1118,7 +1118,6 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
 
     $scope.configureLevels = function() {
         if ($scope.config_completed.status === false) {
-            ;
             $.pnotify({
                 title: 'Cannot Configure Levels',
                 text: 'You must save the game configuration to file before configuring levels.',
