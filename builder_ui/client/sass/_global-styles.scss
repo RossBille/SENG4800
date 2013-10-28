@@ -207,9 +207,16 @@ body {
 
         &.checkbox {
             @include border-right-radius($default-border-radius / 2);
+
             background: $light-colour;
             border: 1px solid $dark-grey;
             height: 50px;
+
+            input[type='file'] {
+                border: none;
+                height: auto;
+                padding-top: 12px;
+            }
         }
 
         input, select, p {

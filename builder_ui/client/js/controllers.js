@@ -1025,6 +1025,18 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
     $scope.canvas = CanvasService.canvas;
     $scope.config_completed = ConfigCompletionService.config_completed;
 
+    $scope.setSpriteFile = function(element) {
+        $scope.$apply(function($scope) {
+            $scope.current_sprite.images.image[$scope.sprite_image_index] = '/images/' + element.files[0].name;
+        });
+    };
+
+    $scope.setBackgroundFile = function(element) {
+        $scope.$apply(function($scope) {
+            $scope.current_background.image = '/images/' + element.files[0].name;
+        });
+    };
+
     $scope.saveConfig = function() {
         var sprite_index = 0;
         var background_index = 0;

@@ -7,9 +7,9 @@
     </div>
 
     <div class="input-container">
-        <label for="image" class="input-label">Image path</label>
+        <label for="image" class="input-label">Image</label>
 
-        <div class="input"><input id="image" type="text" ng-model="current_sprite.images.image[sprite_image_index]"/></div>
+        <div class="input checkbox"><input type="file" id="image" onchange="angular.element(this).scope().setSpriteFile(this)"></div>
     </div>
 
 </div>
