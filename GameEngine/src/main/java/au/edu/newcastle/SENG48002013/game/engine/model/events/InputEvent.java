@@ -122,13 +122,13 @@ public class InputEvent extends BaseEvent {
             }
             break;
             case UP: {
-                if (!isPosition && inputVec.y < 0) {
+                if (!isPosition && inputVec.y > 0) {
                     triggerEvents = true;
                 }
             }
             break;
             case DOWN: {
-                if (!isPosition && inputVec.y > 0) {
+                if (!isPosition && inputVec.y < 0) {
                     triggerEvents = true;
                 }
             }
