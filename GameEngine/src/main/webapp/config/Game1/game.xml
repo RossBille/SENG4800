@@ -1,43 +1,61 @@
 <SETUP>
-	<GAME_NAME>Test Game</GAME_NAME>
-	<CANVAS_SIZE>
-		<WIDTH>1140</WIDTH>
-		<HEIGHT>720</HEIGHT>
-	</CANVAS_SIZE>
-	<STARTING_LEVEL>0</STARTING_LEVEL>
-	<PLAYERS>
-		<MIN>1</MIN>
-		<MAX>5</MAX>
-	</PLAYERS>
-	<SPRITES>
-		<SPRITE>
-			<SPRITE_ID>0</SPRITE_ID>
-			<SPRITE_NAME>Test Sprite</SPRITE_NAME>
-			<IMAGE>images/ball.png</IMAGE>
-			<SPEED>24</SPEED>
-			<OFFSET>
-				<X>0</X>
-				<Y>0</Y>
-			</OFFSET>
-		</SPRITE>	
-		<SPRITE>
-			<SPRITE_ID>1</SPRITE_ID>
-			<SPRITE_NAME>Test Sprite</SPRITE_NAME>
-			<IMAGE>images/logo-uon.png</IMAGE>
-			<SPEED>24</SPEED>
-			<OFFSET>
-				<X>0</X>
-				<Y>0</Y>
-			</OFFSET>
-		</SPRITE>	                
-	</SPRITES>
-	<BACKGROUNDS>
-		<BACKGROUND>
-			<BACKGROUND_ID>0</BACKGROUND_ID>
-			<BACKGROUND_NAME>Test Background</BACKGROUND_NAME>
-			<IMAGE>images/ball.png</IMAGE>
-			<SPEED>24</SPEED>
-			<POSITION_TYPE>STRETCH</POSITION_TYPE>
-		</BACKGROUND>
-	</BACKGROUNDS>
+  <GAME_NAME>Pong</GAME_NAME>
+  <CANVAS_SIZE>
+    <WIDTH>1140</WIDTH>
+    <HEIGHT>720</HEIGHT>
+  </CANVAS_SIZE>
+  <STARTING_LEVEL>0</STARTING_LEVEL>
+  <PLAYERS>
+    <MIN>1</MIN>
+    <MAX>2</MAX>
+  </PLAYERS>
+  <SPRITES>
+    <SPRITE>
+      <SPRITE_ID>0</SPRITE_ID>
+      <SPRITE_NAME>Golf Ball</SPRITE_NAME>
+      <IMAGES>
+        <IMAGE>images/golf_ball.png</IMAGE>
+      </IMAGES>
+      <SPEED>1</SPEED>
+      <OFFSET>
+        <X>0</X>
+        <Y>0</Y>
+      </OFFSET>
+    </SPRITE>
+    <SPRITE>
+      <SPRITE_ID>1</SPRITE_ID>
+      <SPRITE_NAME>Tennis Ball</SPRITE_NAME>
+      
+        <IMAGE>images/tennis_ball.png</IMAGE>
+      
+      <SPEED>1</SPEED>
+      <OFFSET>
+        <X>0</X>
+        <Y>0</Y>
+      </OFFSET>
+      
+    </SPRITE>
+    <SPRITE>
+      <SPRITE_ID>2</SPRITE_ID>
+      <SPRITE_NAME>Paddle Vertical</SPRITE_NAME>
+      
+        <IMAGE>images/paddle_vertical.png</IMAGE>
+      
+      <SPEED>1</SPEED>
+      <OFFSET>
+        <X>0</X>
+        <Y>0</Y>
+      </OFFSET>
+
+    </SPRITE>
+  </SPRITES>
+  <BACKGROUNDS>
+        <BACKGROUND>
+      <BACKGROUND_ID>0</BACKGROUND_ID>
+      <BACKGROUND_NAME>Test Background</BACKGROUND_NAME>
+      <IMAGE>images/ball.png</IMAGE>
+      <SPEED>24</SPEED>
+      <POSITION_TYPE>STRETCH</POSITION_TYPE>
+    </BACKGROUND>
+  </BACKGROUNDS>
 </SETUP>
