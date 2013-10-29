@@ -21,41 +21,49 @@
         <X>0</X>
         <Y>0</Y>
       </OFFSET>
+      <SHAPE>
+        <CIRCLE>
+          <RADIUS>75</RADIUS>
+        </CIRCLE>
+      </SHAPE>
     </SPRITE>
     <SPRITE>
       <SPRITE_ID>1</SPRITE_ID>
       <SPRITE_NAME>Tennis Ball</SPRITE_NAME>
-      
+      <IMAGES>
         <IMAGE>images/tennis_ball.png</IMAGE>
-      
+      </IMAGES>
       <SPEED>1</SPEED>
       <OFFSET>
         <X>0</X>
         <Y>0</Y>
       </OFFSET>
-      
+      <SHAPE>
+        <CIRCLE>
+          <RADIUS>87.5</RADIUS>
+        </CIRCLE>
+      </SHAPE>
     </SPRITE>
     <SPRITE>
       <SPRITE_ID>2</SPRITE_ID>
       <SPRITE_NAME>Paddle Vertical</SPRITE_NAME>
-      
+      <IMAGES>
         <IMAGE>images/paddle_vertical.png</IMAGE>
-      
+      </IMAGES>
       <SPEED>1</SPEED>
       <OFFSET>
         <X>0</X>
         <Y>0</Y>
       </OFFSET>
-
+      <SHAPE>
+        <RECTANGLE>
+          <SIZE>
+            <WIDTH>50</WIDTH>
+            <HEIGHT>400</HEIGHT>
+          </SIZE>
+        </RECTANGLE>
+      </SHAPE>
     </SPRITE>
   </SPRITES>
-  <BACKGROUNDS>
-        <BACKGROUND>
-      <BACKGROUND_ID>0</BACKGROUND_ID>
-      <BACKGROUND_NAME>Test Background</BACKGROUND_NAME>
-      <IMAGE>images/ball.png</IMAGE>
-      <SPEED>24</SPEED>
-      <POSITION_TYPE>STRETCH</POSITION_TYPE>
-    </BACKGROUND>
-  </BACKGROUNDS>
+  <BACKGROUNDS></BACKGROUNDS>
 </SETUP>
