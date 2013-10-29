@@ -6,21 +6,21 @@
     <objects>
       <object>
         <object_id>0</object_id>
-        <object_name>Soccer Ball</object_name>
+        <object_name>Golf Ball</object_name>
         <sprite_id>0</sprite_id>
         <object_shape>
           <circle>
-            <radius>100</radius>
+            <radius>75</radius>
           </circle>
         </object_shape>
         <object_visible>yes</object_visible>
         <start_pos>
-          <x>862</x>
-          <y>456</y>
+          <x>480</x>
+          <y>247</y>
         </start_pos>
         <start_vel>
-          <x>1</x>
-          <y>1</y>
+          <x>10</x>
+          <y>10</y>
         </start_vel>
         <start_acc>
           <x>0</x>

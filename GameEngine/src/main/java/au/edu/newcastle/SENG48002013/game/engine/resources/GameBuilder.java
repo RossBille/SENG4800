@@ -38,8 +38,8 @@ public class GameBuilder {
         game.setSize(size);
         //Create players
         Vector2d maxMinPlayers = XmlUtils.getVectorValue(gameElement, "PLAYERS");
-        int maxPlayers = (int) maxMinPlayers.x;
-        int minPlayers = (int) maxMinPlayers.y;
+        int maxPlayers = (int) maxMinPlayers.y;
+        int minPlayers = (int) maxMinPlayers.x;
         Player[] players = new Player[maxPlayers];
         for (int i = 0; i < maxPlayers; i++) {
             Player player = new Player(i);

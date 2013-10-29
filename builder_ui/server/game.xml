@@ -1,20 +1,20 @@
 <setup>
-  <game_name>My Game</game_name>
+  <game_name>Pong</game_name>
   <canvas_size>
-    <width>1920</width>
-    <height>1080</height>
+    <width>1140</width>
+    <height>720</height>
   </canvas_size>
   <starting_level>0</starting_level>
   <players>
     <min>1</min>
-    <max>4</max>
+    <max>2</max>
   </players>
   <sprites>
     <sprite>
       <sprite_id>0</sprite_id>
-      <sprite_name>New sprite</sprite_name>
+      <sprite_name>Golf Ball</sprite_name>
       <images>
-        <image>/images/ball.png</image>
+        <image>/images/golf_ball.png</image>
       </images>
       <speed>1</speed>
       <offset>
@@ -23,25 +23,47 @@
       </offset>
       <shape>
         <circle>
-          <radius>20</radius>
+          <radius>75</radius>
         </circle>
       </shape>
     </sprite>
+    <sprite>
+      <sprite_id>1</sprite_id>
+      <sprite_name>Tennis Ball</sprite_name>
+      <images>
+        <image>/images/tennis_ball.png</image>
+      </images>
+      <speed>1</speed>
+      <offset>
+        <x>0</x>
+        <y>0</y>
+      </offset>
+      <shape>
+        <circle>
+          <radius>87.5</radius>
+        </circle>
+      </shape>
+    </sprite>
+    <sprite>
+      <sprite_id>2</sprite_id>
+      <sprite_name>Paddle Vertical</sprite_name>
+      <images>
+        <image>/images/paddle_vertical.png</image>
+      </images>
+      <speed>1</speed>
+      <offset>
+        <x>0</x>
+        <y>0</y>
+      </offset>
+      <shape>
+        <rectangle>
+          <size>
+            <width>50</width>
+            <height>400</height>
+          </size>
+        </rectangle>
+      </shape>
+    </sprite>
   </sprites>
-  <backgrounds>
-    <background>
-      <background_id>0</background_id>
-      <background_name>New background</background_name>
-      <image>/images/grey_noise.jpg</image>
-      <speed>1</speed>
-      <position_type>tiled</position_type>
-    </background>
-    <background>
-      <background_id>1</background_id>
-      <background_name>New background</background_name>
-      <image>/images/geometry.png</image>
-      <speed>1</speed>
-      <position_type>centre</position_type>
-    </background>
-  </backgrounds>
+  <backgrounds></backgrounds>
 </setup>
