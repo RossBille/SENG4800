@@ -3163,8 +3163,8 @@ body {
   display: inline-block;
   float: left;
   display: table;
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   position: relative;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003140}}
@@ -3175,8 +3175,8 @@ body {
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003145}}
 .object-list .object-container .image-container .background {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   background-repeat: repeat;
   border: 1px solid #777;
 }
@@ -3187,7 +3187,7 @@ body {
   position: absolute;
   left: 0;
   right: 0;
-  top: 110px;
+  top: 130px;
   text-align: center;
 }
 
@@ -3200,12 +3200,12 @@ body {
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003171}}
 .object.portrait {
-  max-height: 100px;
+  max-height: 120px;
   width: auto;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003176}}
 .object.landscape {
-  max-width: 100px;
+  max-width: 120px;
   height: auto;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Projects\/Assignments\/SENG4800\/builder_ui\/client\/sass\/_global-styles\.scss}line{font-family:\00003181}}

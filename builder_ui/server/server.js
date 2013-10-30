@@ -23,7 +23,13 @@ wss.on('connection', function(socket) {
     socket.on('message', function(message) {
         console.log("received %s", message);
         var out = JSON.parse(message);
-        var xml = pd.xml(out.data);
+        var xml_pretty = pd.xml(out.data);
+
+        var pattern = /<([\/]*)([a-zA-Z_0-9]+)([^>]*)>/g;
+
+        var xml = xml_pretty.replace(pattern, function(full, before, tag, after) {
+            return "<" + before + tag.toUpperCase() + after + ">";
+        });
 
         fs.writeFile(out.file_name, xml, function(err) {
             if(err) {

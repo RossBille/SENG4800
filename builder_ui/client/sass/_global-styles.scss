@@ -133,8 +133,8 @@ body {
         display: inline-block;
         float: left;
         display: table;
-        width: 100px;
-        height: 100px;
+        width: 120px;
+        height: 120px;
         position: relative;
 
         .image-container {
@@ -143,8 +143,8 @@ body {
             text-align: center;
 
             .background {
-                width: 100px;
-                height: 100px;
+                width: 120px;
+                height: 120px;
                 background-repeat: repeat;
                 border: 1px solid #777;
             }
@@ -156,7 +156,7 @@ body {
             position: absolute;
             left: 0;
             right: 0;
-            top: 110px;
+            top: 130px;
             text-align: center;
         }
     }
@@ -169,12 +169,12 @@ body {
     z-index: 2;
 
     &.portrait {
-        max-height: 100px;
+        max-height: 120px;
         width: auto;
     }
 
     &.landscape {
-        max-width: 100px;
+        max-width: 120px;
         height: auto;
     }
 

@@ -47,13 +47,13 @@ App.factory('GameService', function () {
             setup: {
                 game_name: 'My Game',
                 canvas_size: {
-                    width: 1920,
-                    height: 1080
+                    width: 1140,
+                    height: 720
                 },
                 starting_level: 0,
                 players: {
                     min: 1,
-                    max: 4
+                    max: 2
                 },
                 sprites: {
                     sprite: []

@@ -3,14 +3,14 @@
         {
             "background_id": 0,
             "background_name": "Grey Noise",
-            "image": "/images/grey_noise.jpg",
+            "image": "images/grey_noise.jpg",
             "speed": 1,
             "position_type": "tiled"
         },
         {
             "background_id": 1,
             "background_name": "Geometry",
-            "image": "/images/geometry.png",
+            "image": "images/geometry.png",
             "speed": 1,
             "position_type": "tiled"
         }

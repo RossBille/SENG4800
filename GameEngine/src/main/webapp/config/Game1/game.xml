@@ -1,5 +1,5 @@
 <SETUP>
-  <GAME_NAME>Pong</GAME_NAME>
+  <GAME_NAME>Air Hockey</GAME_NAME>
   <CANVAS_SIZE>
     <WIDTH>1140</WIDTH>
     <HEIGHT>720</HEIGHT>
@@ -12,40 +12,6 @@
   <SPRITES>
     <SPRITE>
       <SPRITE_ID>0</SPRITE_ID>
-      <SPRITE_NAME>Golf Ball</SPRITE_NAME>
-      <IMAGES>
-        <IMAGE>images/golf_ball.png</IMAGE>
-      </IMAGES>
-      <SPEED>1</SPEED>
-      <OFFSET>
-        <X>0</X>
-        <Y>0</Y>
-      </OFFSET>
-      <SHAPE>
-        <CIRCLE>
-          <RADIUS>75</RADIUS>
-        </CIRCLE>
-      </SHAPE>
-    </SPRITE>
-    <SPRITE>
-      <SPRITE_ID>1</SPRITE_ID>
-      <SPRITE_NAME>Tennis Ball</SPRITE_NAME>
-      <IMAGES>
-        <IMAGE>images/tennis_ball.png</IMAGE>
-      </IMAGES>
-      <SPEED>1</SPEED>
-      <OFFSET>
-        <X>0</X>
-        <Y>0</Y>
-      </OFFSET>
-      <SHAPE>
-        <CIRCLE>
-          <RADIUS>87.5</RADIUS>
-        </CIRCLE>
-      </SHAPE>
-    </SPRITE>
-    <SPRITE>
-      <SPRITE_ID>2</SPRITE_ID>
       <SPRITE_NAME>Paddle Vertical</SPRITE_NAME>
       <IMAGES>
         <IMAGE>images/paddle_vertical.png</IMAGE>
@@ -62,6 +28,57 @@
             <HEIGHT>400</HEIGHT>
           </SIZE>
         </RECTANGLE>
+      </SHAPE>
+    </SPRITE>
+    <SPRITE>
+      <SPRITE_ID>1</SPRITE_ID>
+      <SPRITE_NAME>Air Hockey Paddle</SPRITE_NAME>
+      <IMAGES>
+        <IMAGE>images/air_hockey_paddle.png</IMAGE>
+      </IMAGES>
+      <SPEED>1</SPEED>
+      <OFFSET>
+        <X>0</X>
+        <Y>0</Y>
+      </OFFSET>
+      <SHAPE>
+        <CIRCLE>
+          <RADIUS>60</RADIUS>
+        </CIRCLE>
+      </SHAPE>
+    </SPRITE>
+    <SPRITE>
+      <SPRITE_ID>2</SPRITE_ID>
+      <SPRITE_NAME>Air Hockey Puck</SPRITE_NAME>
+      <IMAGES>
+        <IMAGE>images/air_hockey_puck.png</IMAGE>
+      </IMAGES>
+      <SPEED>1</SPEED>
+      <OFFSET>
+        <X>0</X>
+        <Y>0</Y>
+      </OFFSET>
+      <SHAPE>
+        <CIRCLE>
+          <RADIUS>45</RADIUS>
+        </CIRCLE>
+      </SHAPE>
+    </SPRITE>
+    <SPRITE>
+      <SPRITE_ID>3</SPRITE_ID>
+      <SPRITE_NAME>Air Hockey Puck 2</SPRITE_NAME>
+      <IMAGES>
+        <IMAGE>images/air_hockey_puck_green.png</IMAGE>
+      </IMAGES>
+      <SPEED>1</SPEED>
+      <OFFSET>
+        <X>0</X>
+        <Y>0</Y>
+      </OFFSET>
+      <SHAPE>
+        <CIRCLE>
+          <RADIUS>45</RADIUS>
+        </CIRCLE>
       </SHAPE>
     </SPRITE>
   </SPRITES>

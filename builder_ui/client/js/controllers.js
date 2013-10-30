@@ -1027,13 +1027,13 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
 
     $scope.setSpriteFile = function(element) {
         $scope.$apply(function($scope) {
-            $scope.current_sprite.images.image[$scope.sprite_image_index] = '/images/' + element.files[0].name;
+            $scope.current_sprite.images.image[$scope.sprite_image_index] = 'images/' + element.files[0].name;
         });
     };
 
     $scope.setBackgroundFile = function(element) {
         $scope.$apply(function($scope) {
-            $scope.current_background.image = '/images/' + element.files[0].name;
+            $scope.current_background.image = 'images/' + element.files[0].name;
         });
     };
 
@@ -1306,7 +1306,7 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
 
         $scope.sprite_image_index = $scope.current_sprite.images.image.length;
 
-        var new_sprite_image = '/images/image_name.png';
+        var new_sprite_image = 'images/image_name.png';
 
         $scope.current_sprite.images.image.push(new_sprite_image);
     };
@@ -1350,7 +1350,7 @@ function ConfigController($scope, $location, GameService, ListService, CanvasSer
         var new_background = {
             background_id: background_index,
             background_name: 'New background',
-            image: '/images/background_name.png',
+            image: 'images/background_name.png',
             speed: 1,
             position_type: ''
         };

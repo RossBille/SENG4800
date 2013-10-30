@@ -5,7 +5,7 @@
             "sprite_name": "Soccer Ball",
             "images": {
                 "image": [
-                    "/images/ball.png", "/images/golf_ball.png"
+                    "images/ball.png", "images/golf_ball.png"
                 ]
             },
             "speed": 1,
@@ -24,7 +24,7 @@
             "sprite_name": "Golf Ball",
             "images": {
                 "image": [
-                    "/images/golf_ball.png"
+                    "images/golf_ball.png"
                 ]
             },
             "speed": 1,
@@ -43,7 +43,7 @@
             "sprite_name": "Tennis Ball",
             "images": {
                 "image": [
-                    "/images/tennis_ball.png"
+                    "images/tennis_ball.png"
                 ]
             },
             "speed": 1,
@@ -62,7 +62,7 @@
             "sprite_name": "Paddle Vertical",
             "images": {
                 "image": [
-                    "/images/paddle_vertical.png"
+                    "images/paddle_vertical.png"
                 ]
             },
             "speed": 1,
@@ -84,7 +84,7 @@
             "sprite_name": "Paddle Horizontal",
             "images": {
                 "image": [
-                    "/images/paddle_horizontal.png"
+                    "images/paddle_horizontal.png"
                 ]
             },
             "speed": 1,
@@ -98,6 +98,63 @@
                         "width": 400,
                         "height": 60
                     }
+                }
+            }
+        },
+        {
+            "sprite_id": 5,
+            "sprite_name": "Air Hockey Paddle",
+            "images": {
+                "image": [
+                    "images/air_hockey_paddle.png"
+                ]
+            },
+            "speed": 1,
+            "offset": {
+                "x": 0,
+                "y": 0
+            },
+            "shape": {
+                "circle": {
+                    "radius": 60
+                }
+            }
+        },
+        {
+            "sprite_id": 6,
+            "sprite_name": "Air Hockey Puck",
+            "images": {
+                "image": [
+                    "images/air_hockey_puck.png"
+                ]
+            },
+            "speed": 1,
+            "offset": {
+                "x": 0,
+                "y": 0
+            },
+            "shape": {
+                "circle": {
+                    "radius": 45
+                }
+            }
+        },
+        {
+            "sprite_id": 7,
+            "sprite_name": "Air Hockey Puck 2",
+            "images": {
+                "image": [
+                    "images/air_hockey_puck_green.png"
+                ]
+            },
+            "speed": 1,
+            "offset": {
+                "x": 0,
+                "y": 0
+            },
+            "shape": {
+                "circle": {
+                    "radius": 45
                 }
             }
         }
