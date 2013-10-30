@@ -986,8 +986,19 @@ function LevelsController($scope, $location, $compile, CanvasService, GameServic
         console.log('now saving and sending game to server');
 
         var game_levels = {
-            levels: $scope.game.levels
+            levels: {}
         };
+
+        game_levels.levels = jQuery.extend(true, {}, $scope.game.levels);
+
+        angular.forEach(game_levels.levels.level, function(value, key) {
+            angular.forEach(value.objects.object, function(value, key) {
+                if (value.object_shape.circle) {
+                    value.start_pos.x += value.object_shape.circle.radius;
+                    value.start_pos.y += value.object_shape.circle.radius;
+                }
+            });
+        });
 
         var form_data_xml = {
             data: json2xml(game_levels),

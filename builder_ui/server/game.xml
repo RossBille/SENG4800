@@ -82,5 +82,13 @@
       </SHAPE>
     </SPRITE>
   </SPRITES>
-  <BACKGROUNDS></BACKGROUNDS>
+  <BACKGROUNDS>
+    <BACKGROUND>
+      <BACKGROUND_ID>0</BACKGROUND_ID>
+      <BACKGROUND_NAME>Air Hockey</BACKGROUND_NAME>
+      <IMAGE>images/air_hockey_background.png</IMAGE>
+      <SPEED>1</SPEED>
+      <POSITION_TYPE>centre</POSITION_TYPE>
+    </BACKGROUND>
+  </BACKGROUNDS>
 </SETUP>

@@ -13,6 +13,13 @@
             "image": "images/geometry.png",
             "speed": 1,
             "position_type": "tiled"
+        },
+        {
+            "background_id": 2,
+            "background_name": "Air Hockey",
+            "image": "images/air_hockey_background.png",
+            "speed": 1,
+            "position_type": "centre"
         }
     ]
 }
