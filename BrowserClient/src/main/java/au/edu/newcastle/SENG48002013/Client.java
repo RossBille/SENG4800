@@ -40,7 +40,7 @@ public class Client extends HttpServlet
 
     public Client()
     {
-        this.connection= "http://localhost:8080/Input/connect";
+        this.connection= "http://localhost:22501/Input/connect";
         this.instructions = new ArrayList<>();
         this.instructions.add("left");
         this.instructions.add("right");
