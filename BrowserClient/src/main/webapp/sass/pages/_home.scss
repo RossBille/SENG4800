@@ -14,13 +14,29 @@ h1 {
     @include border-radius(50%);
 
     overflow: hidden;
-    height: 450px;
-    width: 450px;
     background: $dpad-background;
     margin: 0 auto;
     padding: 40px;
     border: 5px solid #444;
     margin-top: 50px;
+
+    height: $tablet-width - 20;
+    width: $tablet-width - 20;
+
+    @include respond-to(tablet) {
+        height: $tablet-width - 20;
+        width: $tablet-width - 20;
+    }
+
+    @include respond-to(phone-large) {
+        height: $mobile-landscape-width - 20;
+        width: $mobile-landscape-width - 20;
+    }
+
+    @include respond-to(phone-small) {
+        height: $mobile-portrait-width - 20;
+        width: $mobile-portrait-width - 20;
+    }
 }
 
 .button-row {
@@ -56,6 +72,10 @@ button {
         font-size: 6em;
         margin: 0;
         position: relative;
+
+        @include respond-to(phone-small) {
+            font-size: 4em;
+        }
     }
 
     &:active {
