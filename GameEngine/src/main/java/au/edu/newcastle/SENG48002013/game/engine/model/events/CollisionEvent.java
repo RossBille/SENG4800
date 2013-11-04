@@ -120,28 +120,18 @@ public class CollisionEvent extends BaseEvent {
             if (!allowOverlap) {
                 Vector2d lengthVec = new Vector2d();
                 lengthVec.sub(object2.getNextPos(), object1.getNextPos());
-                //double velLength1 = object1.getVel().length();
-                //double velLength2 = object2.getVel().length();
-                Vector2d vel1 = new Vector2d();
-                Vector2d vel2 = new Vector2d();
-                vel1.sub(object1.getNextPos(), object1.getPos());
-                vel2.sub(object2.getNextPos(), object2.getPos());
-                double velLength1 = vel1.length();
-                double velLength2 = vel2.length();
+                double velLength1 = object1.getVel().length();
+                double velLength2 = object2.getVel().length();
                 double scale1 = velLength1 / (velLength1 + velLength2);
                 double scale2 = velLength2 / (velLength1 + velLength2);
                 double p1x = object1.getNextPos().x;
                 double p2x = object2.getNextPos().x;
                 double p1y = object1.getNextPos().y;
                 double p2y = object2.getNextPos().y;
-                //double v1x = object1.getNextVel().x;
-                //double v2x = object2.getNextVel().x;
-                //double v1y = object1.getNextVel().y;
-                //double v2y = object2.getNextVel().y;
-                double v1x = vel1.x;
-                double v2x = vel2.x;
-                double v1y = vel1.y;
-                double v2y = vel2.y;
+                double v1x = object1.getNextVel().x;
+                double v2x = object2.getNextVel().x;
+                double v1y = object1.getNextVel().y;
+                double v2y = object2.getNextVel().y;
                 if (velLength1 > 0) {
                     v1x /= -velLength1;
                     v1y /= -velLength1;
