@@ -303,8 +303,8 @@ function LevelsController($scope, $location, $compile, CanvasService, GameServic
                     input: {
                         player_id: '',
                         value: {
-                            x: '',
-                            y: ''
+                            x: '0',
+                            y: '0'
                         },
                         type: ''
                     }
