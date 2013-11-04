@@ -218,7 +218,7 @@
                 <OBJECT_ID>1</OBJECT_ID>
                 <VALUE>
                   <X>0</X>
-                  <Y>50</Y>
+                  <Y>10</Y>
                 </VALUE>
                 <COMPONENT>pos</COMPONENT>
                 <TYPE>sub</TYPE>
@@ -247,7 +247,7 @@
                 <OBJECT_ID>1</OBJECT_ID>
                 <VALUE>
                   <X>0</X>
-                  <Y>50</Y>
+                  <Y>10</Y>
                 </VALUE>
                 <COMPONENT>pos</COMPONENT>
                 <TYPE>add</TYPE>
@@ -276,7 +276,7 @@
                 <OBJECT_ID>2</OBJECT_ID>
                 <VALUE>
                   <X>0</X>
-                  <Y>50</Y>
+                  <Y>10</Y>
                 </VALUE>
                 <COMPONENT>pos</COMPONENT>
                 <TYPE>sub</TYPE>
@@ -305,7 +305,7 @@
                 <OBJECT_ID>2</OBJECT_ID>
                 <VALUE>
                   <X>0</X>
-                  <Y>50</Y>
+                  <Y>10</Y>
                 </VALUE>
                 <COMPONENT>pos</COMPONENT>
                 <TYPE>add</TYPE>
