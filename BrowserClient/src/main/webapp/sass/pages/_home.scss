@@ -2,6 +2,107 @@ body {
     color: #fff;
 }
 
-button {
+.container {
+    text-align: center;
+}
 
+h1 {
+    margin-top: 0;
+}
+
+.buttons {
+    @include border-radius(50%);
+
+    overflow: hidden;
+    height: 450px;
+    width: 450px;
+    background: $dpad-background;
+    margin: 0 auto;
+    padding: 40px;
+    border: 5px solid #444;
+    margin-top: 50px;
+}
+
+.button-row {
+    width: 100%;
+    height: 33.33%;
+}
+
+.button-column {
+    width: 33.33%;
+    height: 100%;
+    float: left;
+
+    &.coloured {
+        background: $button-background;
+    }
+}
+
+button {
+    @include transition(box-shadow .2s);
+
+    position: relative;
+    padding: 0;
+    outline: 0;
+    border: none;
+    background: $button-background;
+    width: 100%;
+    height: 100%;
+
+    i {
+        @include transition(color .2s);
+
+        color: $button-colour;
+        font-size: 6em;
+        margin: 0;
+        position: relative;
+    }
+
+    &:active {
+        outline: 0;
+
+        i {
+            color: #000;
+        }
+    }
+
+    &#left {
+        @include border-left-radius($default-border-radius);
+
+        &:active {
+            box-shadow: 5px 0 5px -5px #000 inset;
+        }
+    }
+
+    &#right {
+        @include border-right-radius($default-border-radius);
+
+        &:active {
+            box-shadow: -5px 0 5px -5px #333 inset;
+        }
+    }
+
+    &#up {
+        @include border-top-radius($default-border-radius);
+
+        &:active {
+            box-shadow: 0 5px 5px -5px #333 inset;
+        }
+    }
+
+    &#down {
+        @include border-bottom-radius($default-border-radius);
+
+        &:active {
+            box-shadow: 0 -5px 5px -5px #000 inset;
+        }
+    }
+}
+
+span.success {
+    color: $success-colour;
+}
+
+span.fail {
+    color: $error-colour;
 }
