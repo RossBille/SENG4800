@@ -208,7 +208,7 @@ public class Engine implements ServletContextListener
     public void contextInitialized(ServletContextEvent sce)
     {
         Engine.securityManager = new SecurityManager(10000, "ws://localhost:22501/Input/endpoint", this);
-        Engine.MAX_CLIENTS = 5; 
+        Engine.MAX_CLIENTS = 2; 
         Engine.internalChannel = new InternalChannel("ws://localhost:8080/GameEngine/MessageManager", 
                 "http://localhost:8080/GameEngine/PlayerManager");
         

@@ -4,7 +4,7 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
+    <head><script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SENG4800 - Sample Client</title>
     </head>
@@ -13,45 +13,64 @@
             <h1>SENG4800 - Sample Client</h1>
             <c:choose>
                 <c:when test="${result.error == 'false'}"> <!--   connection request successful -->
+                    <h3>Connection Status: Success</h3>
+                    <button id="up">up</button>
+                    <button id="down">down</button>
                     <script type="text/javascript">
-                        if ("WebSocket" in window) //if web socket is supported in this browser
-                        {
-                            //alert("WebSockets are supported. (Yay!)");
+                        //websocket connection and message handler
+                        if ("WebSocket" in window) {//if web socket is supported in this browser
                             var websocket = new WebSocket("${result.message}");
                             websocket.onmessage = onMessage;
-
-                            function onMessage(evt) //used to post registration token to server
-                            {
+                            //used to post registration token to server
+                            function onMessage(evt) {
                                 var code = "${result.code}";
                                 sendInstruction(code);
                             }
 
-                            function sendInstruction(instruction)
-                            {
+                            function sendInstruction(instruction) {
                                 //alert(instruction);
+                                console.log(instruction);
                                 websocket.send(instruction);
                             }
-                        }
-
-                        else //web sockets are not supported
-                        {
+                        } else {//web sockets are not supported
                             alert("WebSockets are not supported, reverting to 'POST' for data trasmission");
                             //var socketSupport = false;
                         }
                     </script>
-
-                    <h3>Connection Status: Success</h3>
-
-                    <c:forEach items="${instructions}" var="temp">
-
-                        <c:set var="myVar" value="${temp.value}" />
-                        <c:set var="search" value="\"" />
-                        <c:set var="replace" value="&quot" />
-                        <c:set var="escapedString" value="${fn:replace(myVar, search, replace)}"/>
-                        <button onclick="sendInstruction('${escapedString}');">${temp.key}</button>
-
-                    </c:forEach>
                     <script type="text/javascript">
+                        //button related movement
+                        var timeout, up = $('#up');
+                        var down = $('#down');
+                        var left = $('#left');
+                        var right = $('#right');
+                        left.mousedown(function() {
+                            timeout = setInterval(function() {
+                                sendInstruction('{"@class":&quotau.edu.newcastle.seng48002013.instructions.phone.TouchScreen",&quotx1":10.0,&quotx2":0.0,&quoty1":0.0,&quoty2":0.0,&quotos":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36",&quotphoneId":&quot3f9013a2397906107aa1e33797b8",&quotid":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36,3f9013a2397906107aa1e33797b8,1380361765192"}');
+                            }, 100);
+                        });
+                        right.mousedown(function() {
+                            timeout = setInterval(function() {
+                                sendInstruction('{"@class":&quotau.edu.newcastle.seng48002013.instructions.phone.TouchScreen",&quotx1":0.0,&quotx2":10.0,&quoty1":0.0,&quoty2":0.0,&quotos":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36",&quotphoneId":&quot3f9013a2397906107aa1e33797b8",&quotid":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36,3f9013a2397906107aa1e33797b8,1380361765216"}');
+                            }, 100);
+                        });
+                        down.mousedown(function() {
+                            timeout = setInterval(function() {
+                                sendInstruction('{"@class":&quotau.edu.newcastle.seng48002013.instructions.phone.TouchScreen",&quotx1":0.0,&quotx2":0.0,&quoty1":10.0,&quoty2":0.0,&quotos":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36",&quotphoneId":&quot3f9013a2397906107aa1e33797b8",&quotid":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36,3f9013a2397906107aa1e33797b8,1380361765192"}');
+                            }, 100);
+                        });
+                        up.mousedown(function() {
+                            timeout = setInterval(function() {
+                                sendInstruction('{"@class":&quotau.edu.newcastle.seng48002013.instructions.phone.TouchScreen",&quotx1":0.0,&quotx2":0.0,&quoty1":0.0,&quoty2":10.0,&quotos":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36",&quotphoneId":&quot3f9013a2397906107aa1e33797b8",&quotid":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36,3f9013a2397906107aa1e33797b8,1380361765192"}');
+                            }, 100);
+                        });
+                        $(document).mouseup(function() {
+                            clearInterval(timeout);
+                            return false;
+                        });
+
+                    </script>
+                    <script type="text/javascript">
+                        //keystroke related movement
                         document.onkeydown = function() {
                             switch (window.event.keyCode) {
                                 case 37:
@@ -59,14 +78,15 @@
                                     sendInstruction('{"@class":&quotau.edu.newcastle.seng48002013.instructions.phone.TouchScreen",&quotx1":10.0,&quotx2":0.0,&quoty1":0.0,&quoty2":0.0,&quotos":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36",&quotphoneId":&quot3f9013a2397906107aa1e33797b8",&quotid":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36,3f9013a2397906107aa1e33797b8,1380361765192"}');
                                     break;
                                 case 38:
+                                    //aleart('up');
                                     sendInstruction('{"@class":&quotau.edu.newcastle.seng48002013.instructions.phone.TouchScreen",&quotx1":0.0,&quotx2":0.0,&quoty1":0.0,&quoty2":10.0,&quotos":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36",&quotphoneId":&quot3f9013a2397906107aa1e33797b8",&quotid":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36,3f9013a2397906107aa1e33797b8,1380361765192"}');
-
                                     break;
                                 case 39:
                                     //alert('right');
                                     sendInstruction('{"@class":&quotau.edu.newcastle.seng48002013.instructions.phone.TouchScreen",&quotx1":0.0,&quotx2":10.0,&quoty1":0.0,&quoty2":0.0,&quotos":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36",&quotphoneId":&quot3f9013a2397906107aa1e33797b8",&quotid":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36,3f9013a2397906107aa1e33797b8,1380361765216"}');
                                     break;
                                 case 40:
+                                    //aleart('down');
                                     sendInstruction('{"@class":&quotau.edu.newcastle.seng48002013.instructions.phone.TouchScreen",&quotx1":0.0,&quotx2":0.0,&quoty1":10.0,&quoty2":0.0,&quotos":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36",&quotphoneId":&quot3f9013a2397906107aa1e33797b8",&quotid":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36,3f9013a2397906107aa1e33797b8,1380361765192"}');
                                     break;
                             }
