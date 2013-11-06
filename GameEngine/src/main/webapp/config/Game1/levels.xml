@@ -137,6 +137,122 @@
       <EVENT>
         <EVENT_ID>1</EVENT_ID>
         <EVENT_TYPE>
+          <INPUT>
+            <PLAYER_ID>0</PLAYER_ID>
+            <VALUE>
+              <X>0</X>
+              <Y>0</Y>
+            </VALUE>
+            <TYPE>up</TYPE>
+          </INPUT>
+        </EVENT_TYPE>
+        <ACTIONS>
+          <ACTION>
+            <ACTION_ID>0</ACTION_ID>
+            <ACTION_TYPE>
+              <CHANGE_COMPONENT>
+                <OBJECT_ID>1</OBJECT_ID>
+                <VALUE>
+                  <X>0</X>
+                  <Y>10</Y>
+                </VALUE>
+                <COMPONENT>pos</COMPONENT>
+                <TYPE>sub</TYPE>
+              </CHANGE_COMPONENT>
+            </ACTION_TYPE>
+          </ACTION>
+        </ACTIONS>
+      </EVENT>
+      <EVENT>
+        <EVENT_ID>2</EVENT_ID>
+        <EVENT_TYPE>
+          <INPUT>
+            <PLAYER_ID>0</PLAYER_ID>
+            <VALUE>
+              <X>0</X>
+              <Y>0</Y>
+            </VALUE>
+            <TYPE>down</TYPE>
+          </INPUT>
+        </EVENT_TYPE>
+        <ACTIONS>
+          <ACTION>
+            <ACTION_ID>0</ACTION_ID>
+            <ACTION_TYPE>
+              <CHANGE_COMPONENT>
+                <OBJECT_ID>1</OBJECT_ID>
+                <VALUE>
+                  <X>0</X>
+                  <Y>10</Y>
+                </VALUE>
+                <COMPONENT>pos</COMPONENT>
+                <TYPE>add</TYPE>
+              </CHANGE_COMPONENT>
+            </ACTION_TYPE>
+          </ACTION>
+        </ACTIONS>
+      </EVENT>
+      <EVENT>
+        <EVENT_ID>3</EVENT_ID>
+        <EVENT_TYPE>
+          <INPUT>
+            <PLAYER_ID>1</PLAYER_ID>
+            <VALUE>
+              <X>0</X>
+              <Y>0</Y>
+            </VALUE>
+            <TYPE>up</TYPE>
+          </INPUT>
+        </EVENT_TYPE>
+        <ACTIONS>
+          <ACTION>
+            <ACTION_ID>0</ACTION_ID>
+            <ACTION_TYPE>
+              <CHANGE_COMPONENT>
+                <OBJECT_ID>2</OBJECT_ID>
+                <VALUE>
+                  <X>0</X>
+                  <Y>10</Y>
+                </VALUE>
+                <COMPONENT>pos</COMPONENT>
+                <TYPE>sub</TYPE>
+              </CHANGE_COMPONENT>
+            </ACTION_TYPE>
+          </ACTION>
+        </ACTIONS>
+      </EVENT>
+      <EVENT>
+        <EVENT_ID>4</EVENT_ID>
+        <EVENT_TYPE>
+          <INPUT>
+            <PLAYER_ID>1</PLAYER_ID>
+            <VALUE>
+              <X>0</X>
+              <Y>0</Y>
+            </VALUE>
+            <TYPE>down</TYPE>
+          </INPUT>
+        </EVENT_TYPE>
+        <ACTIONS>
+          <ACTION>
+            <ACTION_ID>0</ACTION_ID>
+            <ACTION_TYPE>
+              <CHANGE_COMPONENT>
+                <OBJECT_ID>2</OBJECT_ID>
+                <VALUE>
+                  <X>0</X>
+                  <Y>10</Y>
+                </VALUE>
+                <COMPONENT>pos</COMPONENT>
+                <TYPE>add</TYPE>
+              </CHANGE_COMPONENT>
+            </ACTION_TYPE>
+          </ACTION>
+        </ACTIONS>
+      </EVENT>
+      <EVENT>
+        <EVENT_ID>5</EVENT_ID>
+        <EVENT_TYPE>
           <BOUNDARY>
             <OBJECT_ID>0</OBJECT_ID>
             <LEVEL_ID>0</LEVEL_ID>
@@ -157,7 +273,7 @@
         </ACTIONS>
       </EVENT>
       <EVENT>
-        <EVENT_ID>2</EVENT_ID>
+        <EVENT_ID>6</EVENT_ID>
         <EVENT_TYPE>
           <COLLISION>
             <OBJECT_ID1>0</OBJECT_ID1>
@@ -178,7 +294,7 @@
         </ACTIONS>
       </EVENT>
       <EVENT>
-        <EVENT_ID>3</EVENT_ID>
+        <EVENT_ID>7</EVENT_ID>
         <EVENT_TYPE>
           <COLLISION>
             <OBJECT_ID1>0</OBJECT_ID1>
@@ -194,122 +310,6 @@
                 <OBJECT_ID>0</OBJECT_ID>
                 <SURFACE_OBJECT_ID>2</SURFACE_OBJECT_ID>
               </REFLECT>
-            </ACTION_TYPE>
-          </ACTION>
-        </ACTIONS>
-      </EVENT>
-      <EVENT>
-        <EVENT_ID>4</EVENT_ID>
-        <EVENT_TYPE>
-          <INPUT>
-            <PLAYER_ID>0</PLAYER_ID>
-            <VALUE>
-              <X>0</X>
-              <Y>0</Y>
-            </VALUE>
-            <TYPE>up</TYPE>
-          </INPUT>
-        </EVENT_TYPE>
-        <ACTIONS>
-          <ACTION>
-            <ACTION_ID>0</ACTION_ID>
-            <ACTION_TYPE>
-              <CHANGE_COMPONENT>
-                <OBJECT_ID>1</OBJECT_ID>
-                <VALUE>
-                  <X>0</X>
-                  <Y>10</Y>
-                </VALUE>
-                <COMPONENT>pos</COMPONENT>
-                <TYPE>sub</TYPE>
-              </CHANGE_COMPONENT>
-            </ACTION_TYPE>
-          </ACTION>
-        </ACTIONS>
-      </EVENT>
-      <EVENT>
-        <EVENT_ID>5</EVENT_ID>
-        <EVENT_TYPE>
-          <INPUT>
-            <PLAYER_ID>0</PLAYER_ID>
-            <VALUE>
-              <X>0</X>
-              <Y>0</Y>
-            </VALUE>
-            <TYPE>down</TYPE>
-          </INPUT>
-        </EVENT_TYPE>
-        <ACTIONS>
-          <ACTION>
-            <ACTION_ID>0</ACTION_ID>
-            <ACTION_TYPE>
-              <CHANGE_COMPONENT>
-                <OBJECT_ID>1</OBJECT_ID>
-                <VALUE>
-                  <X>0</X>
-                  <Y>10</Y>
-                </VALUE>
-                <COMPONENT>pos</COMPONENT>
-                <TYPE>add</TYPE>
-              </CHANGE_COMPONENT>
-            </ACTION_TYPE>
-          </ACTION>
-        </ACTIONS>
-      </EVENT>
-      <EVENT>
-        <EVENT_ID>6</EVENT_ID>
-        <EVENT_TYPE>
-          <INPUT>
-            <PLAYER_ID>1</PLAYER_ID>
-            <VALUE>
-              <X>0</X>
-              <Y>0</Y>
-            </VALUE>
-            <TYPE>up</TYPE>
-          </INPUT>
-        </EVENT_TYPE>
-        <ACTIONS>
-          <ACTION>
-            <ACTION_ID>0</ACTION_ID>
-            <ACTION_TYPE>
-              <CHANGE_COMPONENT>
-                <OBJECT_ID>2</OBJECT_ID>
-                <VALUE>
-                  <X>0</X>
-                  <Y>10</Y>
-                </VALUE>
-                <COMPONENT>pos</COMPONENT>
-                <TYPE>sub</TYPE>
-              </CHANGE_COMPONENT>
-            </ACTION_TYPE>
-          </ACTION>
-        </ACTIONS>
-      </EVENT>
-      <EVENT>
-        <EVENT_ID>7</EVENT_ID>
-        <EVENT_TYPE>
-          <INPUT>
-            <PLAYER_ID>1</PLAYER_ID>
-            <VALUE>
-              <X>0</X>
-              <Y>0</Y>
-            </VALUE>
-            <TYPE>down</TYPE>
-          </INPUT>
-        </EVENT_TYPE>
-        <ACTIONS>
-          <ACTION>
-            <ACTION_ID>0</ACTION_ID>
-            <ACTION_TYPE>
-              <CHANGE_COMPONENT>
-                <OBJECT_ID>2</OBJECT_ID>
-                <VALUE>
-                  <X>0</X>
-                  <Y>10</Y>
-                </VALUE>
-                <COMPONENT>pos</COMPONENT>
-                <TYPE>add</TYPE>
-              </CHANGE_COMPONENT>
             </ACTION_TYPE>
           </ACTION>
         </ACTIONS>
@@ -377,6 +377,15 @@
               </CHANGE_SPRITE>
             </ACTION_TYPE>
           </ACTION>
+          <ACTION>
+            <ACTION_ID>0</ACTION_ID>
+            <ACTION_TYPE>
+              <REFLECT>
+                <OBJECT_ID>0</OBJECT_ID>
+                <SURFACE_OBJECT_ID>3</SURFACE_OBJECT_ID>
+              </REFLECT>
+            </ACTION_TYPE>
+          </ACTION>
         </ACTIONS>
       </EVENT>
       <EVENT>
@@ -396,6 +405,15 @@
                 <OBJECT_ID>0</OBJECT_ID>
                 <SPRITE_ID>2</SPRITE_ID>
               </CHANGE_SPRITE>
+            </ACTION_TYPE>
+          </ACTION>
+          <ACTION>
+            <ACTION_ID>0</ACTION_ID>
+            <ACTION_TYPE>
+              <REFLECT>
+                <OBJECT_ID>0</OBJECT_ID>
+                <SURFACE_OBJECT_ID>4</SURFACE_OBJECT_ID>
+              </REFLECT>
             </ACTION_TYPE>
           </ACTION>
         </ACTIONS>
