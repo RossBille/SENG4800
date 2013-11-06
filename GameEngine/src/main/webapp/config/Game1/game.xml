@@ -1,5 +1,5 @@
 <SETUP>
-  <GAME_NAME>Air Hockey</GAME_NAME>
+  <GAME_NAME>My Game</GAME_NAME>
   <CANVAS_SIZE>
     <WIDTH>1140</WIDTH>
     <HEIGHT>720</HEIGHT>
@@ -78,6 +78,43 @@
       <SHAPE>
         <CIRCLE>
           <RADIUS>45</RADIUS>
+        </CIRCLE>
+      </SHAPE>
+    </SPRITE>
+    <SPRITE>
+      <SPRITE_ID>4</SPRITE_ID>
+      <SPRITE_NAME>Background</SPRITE_NAME>
+      <IMAGES>
+        <IMAGE>images/air_hockey_background.png</IMAGE>
+      </IMAGES>
+      <SPEED>1</SPEED>
+      <OFFSET>
+        <X>0</X>
+        <Y>0</Y>
+      </OFFSET>
+      <SHAPE>
+        <RECTANGLE>
+          <SIZE>
+            <WIDTH>1140</WIDTH>
+            <HEIGHT>720</HEIGHT>
+          </SIZE>
+        </RECTANGLE>
+      </SHAPE>
+    </SPRITE>
+    <SPRITE>
+      <SPRITE_ID>5</SPRITE_ID>
+      <SPRITE_NAME>Corner</SPRITE_NAME>
+      <IMAGES>
+        <IMAGE>images/corner.png</IMAGE>
+      </IMAGES>
+      <SPEED>1</SPEED>
+      <OFFSET>
+        <X>0</X>
+        <Y>0</Y>
+      </OFFSET>
+      <SHAPE>
+        <CIRCLE>
+          <RADIUS>20</RADIUS>
         </CIRCLE>
       </SHAPE>
     </SPRITE>
