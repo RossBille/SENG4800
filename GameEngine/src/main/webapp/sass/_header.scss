@@ -31,11 +31,6 @@ header {
 
         a {
             @extend %hide-text;
-
-            background: image-url("logo.png") no-repeat center;
-            width: image-width("logo.png");
-            height: image-height("logo.png");
-
             display: block;
             border: none;
         }
