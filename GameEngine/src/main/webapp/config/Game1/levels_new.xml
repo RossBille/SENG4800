@@ -100,6 +100,58 @@
         </START_ACC>
       </OBJECT>
       <OBJECT>
+        <OBJECT_ID>4</OBJECT_ID>
+        <OBJECT_NAME>Left Goal</OBJECT_NAME>
+        <SPRITE_ID>0</SPRITE_ID>
+        <OBJECT_SHAPE>
+          <RECTANGLE>
+            <SIZE>
+              <WIDTH>25</WIDTH>
+              <HEIGHT>200</HEIGHT>
+            </SIZE>
+          </RECTANGLE>
+        </OBJECT_SHAPE>
+        <OBJECT_VISIBLE>yes</OBJECT_VISIBLE>
+        <START_POS>
+          <X>0</X>
+          <Y>260</Y>
+        </START_POS>
+        <START_VEL>
+          <X>0</X>
+          <Y>0</Y>
+        </START_VEL>
+        <START_ACC>
+          <X>0</X>
+          <Y>0</Y>
+        </START_ACC>
+      </OBJECT>
+      <OBJECT>
+        <OBJECT_ID>5</OBJECT_ID>
+        <OBJECT_NAME>Right Goal</OBJECT_NAME>
+        <SPRITE_ID>0</SPRITE_ID>
+        <OBJECT_SHAPE>
+          <RECTANGLE>
+            <SIZE>
+              <WIDTH>25</WIDTH>
+              <HEIGHT>200</HEIGHT>
+            </SIZE>
+          </RECTANGLE>
+        </OBJECT_SHAPE>
+        <OBJECT_VISIBLE>yes</OBJECT_VISIBLE>
+        <START_POS>
+          <X>1115</X>
+          <Y>260</Y>
+        </START_POS>
+        <START_VEL>
+          <X>0</X>
+          <Y>0</Y>
+        </START_VEL>
+        <START_ACC>
+          <X>0</X>
+          <Y>0</Y>
+        </START_ACC>
+      </OBJECT>
+      <OBJECT>
         <OBJECT_ID>6</OBJECT_ID>
         <OBJECT_NAME>Corner</OBJECT_NAME>
         <SPRITE_ID>5</SPRITE_ID>
@@ -420,6 +472,48 @@
                 <OBJECT_ID>1</OBJECT_ID>
                 <SURFACE_OBJECT_ID>3</SURFACE_OBJECT_ID>
               </REFLECT>
+            </ACTION_TYPE>
+          </ACTION>
+        </ACTIONS>
+      </EVENT>
+      <EVENT>
+        <EVENT_ID>10</EVENT_ID>
+        <EVENT_TYPE>
+          <COLLISION>
+            <OBJECT_ID1>1</OBJECT_ID1>
+            <OBJECT_ID2>4</OBJECT_ID2>
+            <ALLOW_OVERLAP>no</ALLOW_OVERLAP>
+          </COLLISION>
+        </EVENT_TYPE>
+        <ACTIONS>
+          <ACTION>
+            <ACTION_ID>0</ACTION_ID>
+            <ACTION_TYPE>
+              <CHANGE_SPRITE>
+                <OBJECT_ID>1</OBJECT_ID>
+                <SPRITE_ID>3</SPRITE_ID>
+              </CHANGE_SPRITE>
+            </ACTION_TYPE>
+          </ACTION>
+        </ACTIONS>
+      </EVENT>
+      <EVENT>
+        <EVENT_ID>11</EVENT_ID>
+        <EVENT_TYPE>
+          <COLLISION>
+            <OBJECT_ID1>1</OBJECT_ID1>
+            <OBJECT_ID2>5</OBJECT_ID2>
+            <ALLOW_OVERLAP>no</ALLOW_OVERLAP>
+          </COLLISION>
+        </EVENT_TYPE>
+        <ACTIONS>
+          <ACTION>
+            <ACTION_ID>0</ACTION_ID>
+            <ACTION_TYPE>
+              <CHANGE_SPRITE>
+                <OBJECT_ID>1</OBJECT_ID>
+                <SPRITE_ID>2</SPRITE_ID>
+              </CHANGE_SPRITE>
             </ACTION_TYPE>
           </ACTION>
         </ACTIONS>

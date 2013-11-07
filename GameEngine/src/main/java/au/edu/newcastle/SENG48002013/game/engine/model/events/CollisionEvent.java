@@ -120,25 +120,44 @@ public class CollisionEvent extends BaseEvent {
             if (!allowOverlap) {
                 Vector2d lengthVec = new Vector2d();
                 lengthVec.sub(object2.getNextPos(), object1.getNextPos());
-                double velLength1 = object1.getVel().length();
-                double velLength2 = object2.getVel().length();
+                double length = lengthVec.length();
+                Vector2d v1 = new Vector2d();
+                Vector2d v2 = new Vector2d();
+                v1.sub(object1.getNextPos(), object1.getPos());
+                v2.sub(object2.getNextPos(), object2.getPos());
+                double velLength1 = v1.length();
+                double velLength2 = v2.length();
                 double scale1 = velLength1 / (velLength1 + velLength2);
                 double scale2 = velLength2 / (velLength1 + velLength2);
                 double p1x = object1.getNextPos().x;
                 double p2x = object2.getNextPos().x;
                 double p1y = object1.getNextPos().y;
                 double p2y = object2.getNextPos().y;
-                double v1x = object1.getNextVel().x;
-                double v2x = object2.getNextVel().x;
-                double v1y = object1.getNextVel().y;
-                double v2y = object2.getNextVel().y;
-                if (velLength1 > 0) {
-                    v1x /= -velLength1;
-                    v1y /= -velLength1;
+                double v1x, v1y, v2x, v2y;
+                //Check if both zero. Something's gone wrong here, but we'll
+                //handle it safely
+                if(velLength1 == 0 && velLength2 == 0)
+                {
+                    v1x = -lengthVec.x/length;
+                    v1y = -lengthVec.y/length;
+                    v2x = lengthVec.x /length;
+                    v2y = lengthVec.y/length;
                 }
-                if (velLength2 > 0) {
-                    v2x /= -velLength2;
-                    v2y /= -velLength2;
+                //Otherwise, normal behaviour ensues
+                else
+                {
+                    v1x = v1.x;
+                    v2x = v2.x;
+                    v1y = v1.y;
+                    v2y = v2.y;
+                    if (velLength1 > 0) {
+                        v1x /= -velLength1;
+                        v1y /= -velLength1;
+                    }
+                    if (velLength2 > 0) {
+                        v2x /= -velLength2;
+                        v2y /= -velLength2;
+                    }
                 }
                 //Need to solve the equation
                 //((p1x + (v1x*scale1*w)) - (p2x + (v2x*scale2*w)))^2 + 
@@ -159,6 +178,9 @@ public class CollisionEvent extends BaseEvent {
                 } else {
                     w = (root - b) / (2 * a);
                 }
+                //System.out.println("Obj1Pos:" + object1.getPos().x + "," + object1.getPos().y + " Obj1NextPos:" + object1.getNextPos().x + "," + object1.getNextPos().y);
+                //System.out.println("Obj2Pos:" + object2.getPos().x + "," + object2.getPos().y + " Obj2NextPos:" + object2.getNextPos().x + "," + object2.getNextPos().y);
+                //System.out.println("v1x:" + v1x + " v1y:" + v1y + " v2x:" + v2x + " v2y:" + v2y + " scale1:" + scale1 + " scale2:" + scale2 + " w:" + w);
                 object1.getNextPos().x += (v1x) * scale1 * w;
                 object1.getNextPos().y += (v1y) * scale1 * w;
                 object2.getNextPos().x += (v2x) * scale2 * w;
@@ -218,24 +240,24 @@ public class CollisionEvent extends BaseEvent {
                 double scale1 = velLength1 / (velLength1 + velLength2);
                 double scale2 = velLength2 / (velLength1 + velLength2);
                 //Crosses left
-                boolean left = ((object1.getPos().x > object2.getPos().x + object2Size.x
+                boolean left = ((object1.getPos().x >= object2.getPos().x + object2Size.x
                         && object1.getNextPos().x < object2.getNextPos().x + object2Size.x)
-                        || (object1.getPos().x < object2.getPos().x + object2Size.x
+                        || (object1.getPos().x <= object2.getPos().x + object2Size.x
                         && object1.getNextPos().x > object2.getNextPos().x + object2Size.x));
                 //Crosses right
-                boolean right = ((object1.getPos().x + object1Size.x > object2.getPos().x
+                boolean right = ((object1.getPos().x + object1Size.x >= object2.getPos().x
                         && object1.getNextPos().x + object1Size.x < object2.getNextPos().x)
-                        || (object1.getPos().x + object1Size.x < object2.getPos().x
+                        || (object1.getPos().x + object1Size.x <= object2.getPos().x
                         && object1.getNextPos().x + object1Size.x > object2.getNextPos().x));
                 //Crosses top
-                boolean top = ((object1.getPos().y > object2.getPos().y + object2Size.y
+                boolean top = ((object1.getPos().y >= object2.getPos().y + object2Size.y
                         && object1.getNextPos().y < object2.getNextPos().y + object2Size.y)
-                        || (object1.getPos().y < object2.getPos().y + object2Size.y
+                        || (object1.getPos().y <= object2.getPos().y + object2Size.y
                         && object1.getNextPos().y > object2.getNextPos().y + object2Size.y));
                 //Crosses bottom
-                boolean bottom = ((object1.getPos().y + object1Size.y > object2.getPos().y
+                boolean bottom = ((object1.getPos().y + object1Size.y >= object2.getPos().y
                         && object1.getNextPos().y + object1Size.y < object2.getNextPos().y)
-                        || (object1.getPos().y + object1Size.y < object2.getPos().y
+                        || (object1.getPos().y + object1Size.y <= object2.getPos().y
                         && object1.getNextPos().y + object1Size.y > object2.getNextPos().y));
                 double w = -1;
                 if (left) {
@@ -299,66 +321,90 @@ public class CollisionEvent extends BaseEvent {
         boolean right = ((p1x - (p2x + rectSize.x)) * (p1x - (p2x + rectSize.x)) < (radius) * (radius))
                 && (p1y > p2y && p1y < p2y + rectSize.y);
         boolean top = ((p1y - p2y) * (p1y - p2y) < (radius) * (radius))
-                && (p1x > p2x && p1x < p2x + rectSize.y);
+                && (p1x > p2x && p1x < p2x + rectSize.x);
         boolean bottom = ((p1y - (p2y + rectSize.y)) * (p1y - (p2y + rectSize.y)) < (radius) * (radius))
                 && (p1x > p2x && p1x < p2x + rectSize.x);
+        //Top Left
         boolean corner1 = (p1x - p2x) * (p1x - p2x) + (p1y - p2y) * (p1y - p2y) < (radius) * (radius);
+        //Top Right
         boolean corner2 = (p1x - (p2x + rectSize.x)) * (p1x - (p2x + rectSize.x))
                 + (p1y - p2y) * (p1y - p2y) < (radius) * (radius);
+        //Bottom Left
         boolean corner3 = (p1x - p2x) * (p1x - p2x)
                 + (p1y - (p2y + rectSize.y)) * (p1y - (p2y + rectSize.y)) < (radius) * (radius);
+        //Bottom Right
         boolean corner4 = (p1x - (p2x + rectSize.x)) * (p1x - (p2x + rectSize.x))
                 + (p1y - (p2y + rectSize.y)) * (p1y - (p2y + rectSize.y)) < (radius) * (radius);
         if (completeInside || left || right || top || bottom
                 || corner1 || corner2 || corner3 || corner4) {
             intersects = true;
             if (!allowOverlap) {
+                Vector2d lengthVec = new Vector2d();
+                lengthVec.sub(circleObj.getNextPos(), rectObj.getNextPos());
+                double length = lengthVec.length();
                 Vector2d v1 = new Vector2d();
                 v1.sub(circleObj.getNextPos(), circleObj.getPos());
                 Vector2d v2 = new Vector2d();
                 v2.sub(rectObj.getNextPos(), rectObj.getPos());
                 double velLength1 = v1.length();
                 double velLength2 = v2.length();
-//				double velLength1 = object1.getNextVel().length();
-//				double velLength2 = object2.getNextVel().length();
-                double v1x = v1.x;
-                double v1y = v1.y;
-                double v2x = v2.x;
-                double v2y = v2.y;
-//				double v1x = object1.getNextVel().x;
-//				double v1y = object1.getNextVel().y;
-//				double v2x = object2.getNextVel().x;
-//				double v2y = object2.getNextVel().y;
-                if (velLength1 > 0) {
-                    v1x /= -velLength1;
-                    v1y /= -velLength1;
+                double v1x, v1y, v2x, v2y;
+                double p1xOld, p1yOld, p2xOld, p2yOld;
+                //Check if both zero. Something's gone wrong here, but we'll
+                //handle it safely
+                if(velLength1 == 0 && velLength2 == 0)
+                {
+                    v1x = -lengthVec.x/length;
+                    v1y = -lengthVec.y/length;
+                    v2x = lengthVec.x /length;
+                    v2y = lengthVec.y/length;
+                    p1xOld = p1x + v1x;
+                    p2xOld = p2x + v2x;
+                    p1yOld = p1y + v1y;
+                    p2yOld = p2y + v2y;
                 }
-                if (velLength2 > 0) {
-                    v2x /= -velLength2;
-                    v2y /= -velLength2;
+                //Otherwise, normal behaviour ensues
+                else
+                {
+                    v1x = v1.x;
+                    v2x = v2.x;
+                    v1y = v1.y;
+                    v2y = v2.y;
+                    if (velLength1 > 0) {
+                        v1x /= -velLength1;
+                        v1y /= -velLength1;
+                    }
+                    if (velLength2 > 0) {
+                        v2x /= -velLength2;
+                        v2y /= -velLength2;
+                    }
+                    p1xOld = circleObj.getPos().x;
+                    p2xOld = rectObj.getPos().x;
+                    p1yOld = circleObj.getPos().y;
+                    p2yOld = rectObj.getPos().y;
                 }
                 double scale1 = velLength1 / (velLength1 + velLength2);
                 double scale2 = velLength2 / (velLength1 + velLength2);
-                //Crosses left
-                boolean crossLeft = ((circleObj.getPos().x - radius > rectObj.getPos().x + rectSize.x
-                        && circleObj.getNextPos().x - radius < rectObj.getNextPos().x + rectSize.x)
-                        || (circleObj.getPos().x - radius < rectObj.getPos().x + rectSize.x
-                        && circleObj.getNextPos().x - radius > rectObj.getNextPos().x + rectSize.x));
-                //Crosses right
-                boolean crossRight = ((circleObj.getPos().x + radius > rectObj.getPos().x
-                        && circleObj.getNextPos().x + radius < rectObj.getNextPos().x)
-                        || (circleObj.getPos().x + radius < rectObj.getPos().x
-                        && circleObj.getNextPos().x + radius > rectObj.getNextPos().x));
-                //Crosses top
-                boolean crossTop = ((circleObj.getPos().y - radius > rectObj.getPos().y + rectSize.y
-                        && circleObj.getNextPos().y - radius < rectObj.getNextPos().y + rectSize.y)
-                        || (circleObj.getPos().y - radius < rectObj.getPos().y + rectSize.y
-                        && circleObj.getNextPos().y - radius > rectObj.getNextPos().y + rectSize.y));
-                //Crosses bottom
-                boolean crossBottom = ((circleObj.getPos().y + radius > rectObj.getPos().y
-                        && circleObj.getNextPos().y + radius < rectObj.getNextPos().y)
-                        || (circleObj.getPos().y + radius < rectObj.getPos().y
-                        && circleObj.getNextPos().y + radius > rectObj.getNextPos().y));
+                //Circle crosses left of rectangle
+                boolean crossLeft = ((p1xOld - radius >= p2xOld + rectSize.x
+                        && p1x - radius < p2x + rectSize.x)
+                        || (p1xOld - radius <= p2xOld + rectSize.x
+                        && p1x - radius > p2x + rectSize.x));
+                //Circle crosses right of rectangle
+                boolean crossRight = ((p1xOld + radius >= p2xOld
+                        && p1x + radius < p2x)
+                        || (p1xOld + radius <= p2xOld
+                        && p1x + radius > p2x));
+                //Circle crosses top of rectangle
+                boolean crossTop = ((p1yOld - radius >= p2yOld + rectSize.y
+                        && p1y - radius < p2y + rectSize.y)
+                        || (p1yOld - radius <= p2yOld + rectSize.y
+                        && p1y - radius > p2y + rectSize.y));
+                //Circle crosses bottom of rectangle
+                boolean crossBottom = ((p1yOld + radius >= p2yOld
+                        && p1y + radius < p2y)
+                        || (p1yOld + radius <= p2yOld
+                        && p1y + radius > p2y));
                 double w = -1;
                 //crossCorner = false;
                 if (crossLeft) {
@@ -388,6 +434,7 @@ public class CollisionEvent extends BaseEvent {
                         w = temp;
                     }
                 }
+
                 //Top Right corner of Rectangle
                 if ((p1x - (p2x + rectSize.x)) * (p1x - (p2x + rectSize.x)) + (p1y - p2y) * (p1y - p2y) < (radius) * (radius)) {
                     double temp = -1;
@@ -453,8 +500,6 @@ public class CollisionEvent extends BaseEvent {
                         w = temp;
                     }
                 }
-
-                System.out.println("W:" + w);
                 circleObj.getNextPos().x += (v1x) * scale1 * w;
                 circleObj.getNextPos().y += (v1y) * scale1 * w;
                 rectObj.getNextPos().x += (v2x) * scale2 * w;

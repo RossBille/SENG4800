@@ -48,15 +48,17 @@ public class EventFactory {
         // CHANGED: added support for XML reading ACTIONS, then ACTION from that nodelist
         NodeList actionsNodes = eventElement.getElementsByTagName("ACTIONS");
         Element actionsElement = (Element) actionsNodes.item(0);
-        NodeList actionNodes = actionsElement.getElementsByTagName("ACTION");
-        if (actionNodes != null && actionNodes.getLength() > 0) {
-            for (int i = 0; i < actionNodes.getLength(); i++) {
-                Element actionElement = (Element) actionNodes.item(i);
-                IAction action = (ActionFactory.buildAction(actionElement));
-                event.addAction(action);
+        if(actionsElement != null)
+        {
+            NodeList actionNodes = actionsElement.getElementsByTagName("ACTION");
+            if (actionNodes != null && actionNodes.getLength() > 0) {
+                for (int i = 0; i < actionNodes.getLength(); i++) {
+                    Element actionElement = (Element) actionNodes.item(i);
+                    IAction action = (ActionFactory.buildAction(actionElement));
+                    event.addAction(action);
+                }
             }
         }
-
         //Add event to game resources
         GameResources.addEvent(event);
         return event;

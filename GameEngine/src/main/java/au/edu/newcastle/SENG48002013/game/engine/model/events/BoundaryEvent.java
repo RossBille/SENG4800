@@ -170,6 +170,50 @@ public class BoundaryEvent extends BaseEvent {
                     }
                 }
             }
+            //Check corners
+            if (edge == Edge.ALL)
+            {
+                Vector2d topLeft = new Vector2d(0, 0);
+                Vector2d topRight = new Vector2d(levelDimensions.x, 0);
+                Vector2d bottomLeft = new Vector2d(0, levelDimensions.y);
+                Vector2d bottomRight = levelDimensions;
+                Vector2d difference = new Vector2d();
+                double radius = ((Circle)gameObject.getShape()).getRadius();
+                double radiusSqr = radius*radius;
+                //Top Left
+                difference.sub(gameObject.getNextPos(), topLeft);
+                if(difference.lengthSquared() <= radiusSqr)
+                {
+                    gameObject.setNextPos(new Vector2d(radius, radius));
+                }
+                else
+                {
+                    //Top Right
+                    difference.sub(gameObject.getNextPos(), topRight);
+                    if(difference.lengthSquared() <= radiusSqr)
+                    {
+                        gameObject.setNextPos(new Vector2d(levelDimensions.x - radius, radius));
+                    }
+                    else
+                    {
+                        //Bottom Left
+                        difference.sub(gameObject.getNextPos(), bottomLeft);
+                        if(difference.lengthSquared() <= radiusSqr)
+                        {
+                            gameObject.setNextPos(new Vector2d(radius, levelDimensions.y - radius));
+                        }
+                        else
+                        {
+                            //Bottom Right
+                            difference.sub(gameObject.getNextPos(), bottomRight);
+                            if(difference.lengthSquared() <= radiusSqr)
+                            {
+                                gameObject.setNextPos(new Vector2d(levelDimensions.x - radius, levelDimensions.y - radius));
+                            }
+                        }
+                    }
+                }
+            }
         } //If circle shape
         else if (gameObject.getShape() instanceof Circle) {
             double radius = ((Circle) gameObject.getShape()).getRadius();
