@@ -40,7 +40,7 @@ app.Helper = (function() {
             }
 
             while (objects.length > 0) {
-                var object = objects.pop();
+                var object = objects.shift();
                 var img = this.getImage(object);
                 this.context.drawImage(img, img.setAtX, img.setAtY)
             }

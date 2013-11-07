@@ -31,6 +31,32 @@
         </START_ACC>
       </OBJECT>
       <OBJECT>
+        <OBJECT_ID>10</OBJECT_ID>
+        <OBJECT_NAME>Divider</OBJECT_NAME>
+        <SPRITE_ID>6</SPRITE_ID>
+        <OBJECT_SHAPE>
+          <RECTANGLE>
+            <SIZE>
+              <WIDTH>2</WIDTH>
+              <HEIGHT>720</HEIGHT>
+            </SIZE>
+          </RECTANGLE>
+        </OBJECT_SHAPE>
+        <OBJECT_VISIBLE>yes</OBJECT_VISIBLE>
+        <START_POS>
+          <X>569</X>
+          <Y>0</Y>
+        </START_POS>
+        <START_VEL>
+          <X>0</X>
+          <Y>0</Y>
+        </START_VEL>
+        <START_ACC>
+          <X>0</X>
+          <Y>0</Y>
+        </START_ACC>
+      </OBJECT>
+      <OBJECT>
         <OBJECT_ID>1</OBJECT_ID>
         <OBJECT_NAME>Puck</OBJECT_NAME>
         <SPRITE_ID>3</SPRITE_ID>
@@ -100,6 +126,58 @@
         </START_ACC>
       </OBJECT>
       <OBJECT>
+        <OBJECT_ID>4</OBJECT_ID>
+        <OBJECT_NAME>Left Goal</OBJECT_NAME>
+        <SPRITE_ID>0</SPRITE_ID>
+        <OBJECT_SHAPE>
+          <RECTANGLE>
+            <SIZE>
+              <WIDTH>25</WIDTH>
+              <HEIGHT>200</HEIGHT>
+            </SIZE>
+          </RECTANGLE>
+        </OBJECT_SHAPE>
+        <OBJECT_VISIBLE>yes</OBJECT_VISIBLE>
+        <START_POS>
+          <X>0</X>
+          <Y>260</Y>
+        </START_POS>
+        <START_VEL>
+          <X>0</X>
+          <Y>0</Y>
+        </START_VEL>
+        <START_ACC>
+          <X>0</X>
+          <Y>0</Y>
+        </START_ACC>
+      </OBJECT>
+      <OBJECT>
+        <OBJECT_ID>5</OBJECT_ID>
+        <OBJECT_NAME>Right Goal</OBJECT_NAME>
+        <SPRITE_ID>0</SPRITE_ID>
+        <OBJECT_SHAPE>
+          <RECTANGLE>
+            <SIZE>
+              <WIDTH>25</WIDTH>
+              <HEIGHT>200</HEIGHT>
+            </SIZE>
+          </RECTANGLE>
+        </OBJECT_SHAPE>
+        <OBJECT_VISIBLE>yes</OBJECT_VISIBLE>
+        <START_POS>
+          <X>1115</X>
+          <Y>260</Y>
+        </START_POS>
+        <START_VEL>
+          <X>0</X>
+          <Y>0</Y>
+        </START_VEL>
+        <START_ACC>
+          <X>0</X>
+          <Y>0</Y>
+        </START_ACC>
+      </OBJECT>
+      <OBJECT>
         <OBJECT_ID>6</OBJECT_ID>
         <OBJECT_NAME>Corner</OBJECT_NAME>
         <SPRITE_ID>5</SPRITE_ID>
@@ -140,7 +218,7 @@
           <X>0</X>
           <Y>0</Y>
         </START_VEL>
-        <START_ACC>
+          <START_ACC>
           <X>0</X>
           <Y>0</Y>
         </START_ACC>
@@ -191,6 +269,7 @@
           <Y>0</Y>
         </START_ACC>
       </OBJECT>
+      
     </OBJECTS>
     <EVENTS>
       <EVENT>
@@ -319,6 +398,122 @@
       <EVENT>
         <EVENT_ID>5</EVENT_ID>
         <EVENT_TYPE>
+          <INPUT>
+            <PLAYER_ID>0</PLAYER_ID>
+            <VALUE>
+              <X>0</X>
+              <Y>0</Y>
+            </VALUE>
+            <TYPE>left</TYPE>
+          </INPUT>
+        </EVENT_TYPE>
+        <ACTIONS>
+          <ACTION>
+            <ACTION_ID>0</ACTION_ID>
+            <ACTION_TYPE>
+              <CHANGE_COMPONENT>
+                <OBJECT_ID>2</OBJECT_ID>
+                <VALUE>
+                  <X>10</X>
+                  <Y>0</Y>
+                </VALUE>
+                <COMPONENT>pos</COMPONENT>
+                <TYPE>sub</TYPE>
+              </CHANGE_COMPONENT>
+            </ACTION_TYPE>
+          </ACTION>
+        </ACTIONS>
+      </EVENT>
+      <EVENT>
+        <EVENT_ID>6</EVENT_ID>
+        <EVENT_TYPE>
+          <INPUT>
+            <PLAYER_ID>0</PLAYER_ID>
+            <VALUE>
+              <X>0</X>
+              <Y>0</Y>
+            </VALUE>
+            <TYPE>right</TYPE>
+          </INPUT>
+        </EVENT_TYPE>
+        <ACTIONS>
+          <ACTION>
+            <ACTION_ID>0</ACTION_ID>
+            <ACTION_TYPE>
+              <CHANGE_COMPONENT>
+                <OBJECT_ID>2</OBJECT_ID>
+                <VALUE>
+                  <X>10</X>
+                  <Y>0</Y>
+                </VALUE>
+                <COMPONENT>pos</COMPONENT>
+                <TYPE>add</TYPE>
+              </CHANGE_COMPONENT>
+            </ACTION_TYPE>
+          </ACTION>
+        </ACTIONS>
+      </EVENT>
+      <EVENT>
+        <EVENT_ID>7</EVENT_ID>
+        <EVENT_TYPE>
+          <INPUT>
+            <PLAYER_ID>1</PLAYER_ID>
+            <VALUE>
+              <X>0</X>
+              <Y>0</Y>
+            </VALUE>
+            <TYPE>left</TYPE>
+          </INPUT>
+        </EVENT_TYPE>
+        <ACTIONS>
+          <ACTION>
+            <ACTION_ID>0</ACTION_ID>
+            <ACTION_TYPE>
+              <CHANGE_COMPONENT>
+                <OBJECT_ID>3</OBJECT_ID>
+                <VALUE>
+                  <X>10</X>
+                  <Y>0</Y>
+                </VALUE>
+                <COMPONENT>pos</COMPONENT>
+                <TYPE>sub</TYPE>
+              </CHANGE_COMPONENT>
+            </ACTION_TYPE>
+          </ACTION>
+        </ACTIONS>
+      </EVENT>
+      <EVENT>
+        <EVENT_ID>8</EVENT_ID>
+        <EVENT_TYPE>
+          <INPUT>
+            <PLAYER_ID>1</PLAYER_ID>
+            <VALUE>
+              <X>0</X>
+              <Y>0</Y>
+            </VALUE>
+            <TYPE>right</TYPE>
+          </INPUT>
+        </EVENT_TYPE>
+        <ACTIONS>
+          <ACTION>
+            <ACTION_ID>0</ACTION_ID>
+            <ACTION_TYPE>
+              <CHANGE_COMPONENT>
+                <OBJECT_ID>3</OBJECT_ID>
+                <VALUE>
+                  <X>10</X>
+                  <Y>0</Y>
+                </VALUE>
+                <COMPONENT>pos</COMPONENT>
+                <TYPE>add</TYPE>
+              </CHANGE_COMPONENT>
+            </ACTION_TYPE>
+          </ACTION>
+        </ACTIONS>
+      </EVENT>
+      <EVENT>
+        <EVENT_ID>9</EVENT_ID>
+        <EVENT_TYPE>
           <BOUNDARY>
             <OBJECT_ID>1</OBJECT_ID>
             <LEVEL_ID>0</LEVEL_ID>
@@ -339,7 +534,7 @@
         </ACTIONS>
       </EVENT>
       <EVENT>
-        <EVENT_ID>6</EVENT_ID>
+        <EVENT_ID>10</EVENT_ID>
         <EVENT_TYPE>
           <BOUNDARY>
             <OBJECT_ID>2</OBJECT_ID>
@@ -361,7 +556,7 @@
         </ACTIONS>
       </EVENT>
       <EVENT>
-        <EVENT_ID>7</EVENT_ID>
+        <EVENT_ID>11</EVENT_ID>
         <EVENT_TYPE>
           <BOUNDARY>
             <OBJECT_ID>3</OBJECT_ID>
@@ -383,7 +578,7 @@
         </ACTIONS>
       </EVENT>
       <EVENT>
-        <EVENT_ID>8</EVENT_ID>
+        <EVENT_ID>12</EVENT_ID>
         <EVENT_TYPE>
           <COLLISION>
             <OBJECT_ID1>1</OBJECT_ID1>
@@ -404,7 +599,7 @@
         </ACTIONS>
       </EVENT>
       <EVENT>
-        <EVENT_ID>9</EVENT_ID>
+        <EVENT_ID>13</EVENT_ID>
         <EVENT_TYPE>
           <COLLISION>
             <OBJECT_ID1>1</OBJECT_ID1>
@@ -425,7 +620,49 @@
         </ACTIONS>
       </EVENT>
       <EVENT>
-        <EVENT_ID>12</EVENT_ID>
+        <EVENT_ID>14</EVENT_ID>
+        <EVENT_TYPE>
+          <COLLISION>
+            <OBJECT_ID1>1</OBJECT_ID1>
+            <OBJECT_ID2>4</OBJECT_ID2>
+            <ALLOW_OVERLAP>yes</ALLOW_OVERLAP>
+          </COLLISION>
+        </EVENT_TYPE>
+        <ACTIONS>
+          <ACTION>
+            <ACTION_ID>0</ACTION_ID>
+            <ACTION_TYPE>
+              <CHANGE_SPRITE>
+                <OBJECT_ID>1</OBJECT_ID>
+                <SPRITE_ID>3</SPRITE_ID>
+              </CHANGE_SPRITE>
+            </ACTION_TYPE>
+          </ACTION>
+        </ACTIONS>
+      </EVENT>
+      <EVENT>
+        <EVENT_ID>15</EVENT_ID>
+        <EVENT_TYPE>
+          <COLLISION>
+            <OBJECT_ID1>1</OBJECT_ID1>
+            <OBJECT_ID2>5</OBJECT_ID2>
+            <ALLOW_OVERLAP>yes</ALLOW_OVERLAP>
+          </COLLISION>
+        </EVENT_TYPE>
+        <ACTIONS>
+          <ACTION>
+            <ACTION_ID>0</ACTION_ID>
+            <ACTION_TYPE>
+              <CHANGE_SPRITE>
+                <OBJECT_ID>1</OBJECT_ID>
+                <SPRITE_ID>2</SPRITE_ID>
+              </CHANGE_SPRITE>
+            </ACTION_TYPE>
+          </ACTION>
+        </ACTIONS>
+      </EVENT>
+      <EVENT>
+        <EVENT_ID>16</EVENT_ID>
         <EVENT_TYPE>
           <COLLISION>
             <OBJECT_ID1>1</OBJECT_ID1>
@@ -446,7 +683,7 @@
         </ACTIONS>
       </EVENT>
       <EVENT>
-        <EVENT_ID>13</EVENT_ID>
+        <EVENT_ID>17</EVENT_ID>
         <EVENT_TYPE>
           <COLLISION>
             <OBJECT_ID1>1</OBJECT_ID1>
@@ -467,7 +704,7 @@
         </ACTIONS>
       </EVENT>
       <EVENT>
-        <EVENT_ID>14</EVENT_ID>
+        <EVENT_ID>18</EVENT_ID>
         <EVENT_TYPE>
           <COLLISION>
             <OBJECT_ID1>1</OBJECT_ID1>
@@ -488,7 +725,7 @@
         </ACTIONS>
       </EVENT>
       <EVENT>
-        <EVENT_ID>15</EVENT_ID>
+        <EVENT_ID>19</EVENT_ID>
         <EVENT_TYPE>
           <COLLISION>
             <OBJECT_ID1>1</OBJECT_ID1>
@@ -507,6 +744,26 @@
             </ACTION_TYPE>
           </ACTION>
         </ACTIONS>
+      </EVENT>
+      <EVENT>
+        <EVENT_ID>20</EVENT_ID>
+        <EVENT_TYPE>
+          <COLLISION>
+            <OBJECT_ID1>2</OBJECT_ID1>
+            <OBJECT_ID2>10</OBJECT_ID2>
+            <ALLOW_OVERLAP>no</ALLOW_OVERLAP>
+          </COLLISION>
+        </EVENT_TYPE>
+      </EVENT>
+      <EVENT>
+        <EVENT_ID>21</EVENT_ID>
+        <EVENT_TYPE>
+          <COLLISION>
+            <OBJECT_ID1>3</OBJECT_ID1>
+            <OBJECT_ID2>10</OBJECT_ID2>
+            <ALLOW_OVERLAP>no</ALLOW_OVERLAP>
+          </COLLISION>
+        </EVENT_TYPE>
       </EVENT>
     </EVENTS>
   </LEVEL>
