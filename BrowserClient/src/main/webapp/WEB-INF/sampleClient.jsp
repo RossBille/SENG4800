@@ -4,8 +4,10 @@
 
 <!DOCTYPE html>
 <html>
-    <head><script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <head><script src="js/jquery.min.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport"/>
+        <meta name="viewport" content="width=device-width"/>
         <title>SENG4800 - Sample Client</title>
         <link rel="stylesheet" href="css/styles.css"/>
     </head>
@@ -73,24 +75,28 @@
                             var $up = $('#up'), $down = $('#down'), $left = $('#left'), $right = $('#right');
 
                             $left.mousedown(function() {
+                                clearInterval(timeout);
                                 timeout = setInterval(function() {
                                     sendInstruction('{"@class":&quotau.edu.newcastle.seng48002013.instructions.phone.TouchScreen",&quotx1":10.0,&quotx2":0.0,&quoty1":0.0,&quoty2":0.0,&quotos":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36",&quotphoneId":&quot3f9013a2397906107aa1e33797b8",&quotid":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36,3f9013a2397906107aa1e33797b8,1380361765192"}');
                                 }, interval);
                             });
 
                             $right.mousedown(function() {
+                                clearInterval(timeout);
                                 timeout = setInterval(function() {
                                     sendInstruction('{"@class":&quotau.edu.newcastle.seng48002013.instructions.phone.TouchScreen",&quotx1":0.0,&quotx2":10.0,&quoty1":0.0,&quoty2":0.0,&quotos":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36",&quotphoneId":&quot3f9013a2397906107aa1e33797b8",&quotid":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36,3f9013a2397906107aa1e33797b8,1380361765216"}');
                                 }, interval);
                             });
 
                             $down.mousedown(function() {
+                                clearInterval(timeout);
                                 timeout = setInterval(function() {
                                     sendInstruction('{"@class":&quotau.edu.newcastle.seng48002013.instructions.phone.TouchScreen",&quotx1":0.0,&quotx2":0.0,&quoty1":10.0,&quoty2":0.0,&quotos":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36",&quotphoneId":&quot3f9013a2397906107aa1e33797b8",&quotid":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36,3f9013a2397906107aa1e33797b8,1380361765192"}');
                                 }, interval);
                             });
 
                             $up.mousedown(function() {
+                                clearInterval(timeout);
                                 timeout = setInterval(function() {
                                     sendInstruction('{"@class":&quotau.edu.newcastle.seng48002013.instructions.phone.TouchScreen",&quotx1":0.0,&quotx2":0.0,&quoty1":0.0,&quoty2":10.0,&quotos":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36",&quotphoneId":&quot3f9013a2397906107aa1e33797b8",&quotid":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36,3f9013a2397906107aa1e33797b8,1380361765192"}');
                                 }, interval);
@@ -99,6 +105,38 @@
                             $(document).mouseup(function() {
                                 clearInterval(timeout);
                                 return false;
+                            });
+                            
+                            //touchscreen
+                            $(document).ready(function(){
+                                $left.on('touchstart', function(){
+                                    clearInterval(timeout);
+                                    timeout = setInterval(function() {
+                                        sendInstruction('{"@class":&quotau.edu.newcastle.seng48002013.instructions.phone.TouchScreen",&quotx1":10.0,&quotx2":0.0,&quoty1":0.0,&quoty2":0.0,&quotos":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36",&quotphoneId":&quot3f9013a2397906107aa1e33797b8",&quotid":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36,3f9013a2397906107aa1e33797b8,1380361765192"}');
+                                    }, interval);
+                                });
+                                $right.on('touchstart', function(){
+                                    clearInterval(timeout);
+                                    timeout = setInterval(function() {
+                                        sendInstruction('{"@class":&quotau.edu.newcastle.seng48002013.instructions.phone.TouchScreen",&quotx1":0.0,&quotx2":10.0,&quoty1":0.0,&quoty2":0.0,&quotos":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36",&quotphoneId":&quot3f9013a2397906107aa1e33797b8",&quotid":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36,3f9013a2397906107aa1e33797b8,1380361765216"}');
+                                    }, interval);
+                                });
+                                $up.on('touchstart', function(){
+                                    clearInterval(timeout);
+                                    timeout = setInterval(function() {
+                                        sendInstruction('{"@class":&quotau.edu.newcastle.seng48002013.instructions.phone.TouchScreen",&quotx1":0.0,&quotx2":0.0,&quoty1":0.0,&quoty2":10.0,&quotos":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36",&quotphoneId":&quot3f9013a2397906107aa1e33797b8",&quotid":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36,3f9013a2397906107aa1e33797b8,1380361765192"}');
+                                    }, interval);
+                                });
+                                $down.on('touchstart', function(){
+                                    clearInterval(timeout);
+                                    timeout = setInterval(function() {
+                                        sendInstruction('{"@class":&quotau.edu.newcastle.seng48002013.instructions.phone.TouchScreen",&quotx1":0.0,&quotx2":0.0,&quoty1":10.0,&quoty2":0.0,&quotos":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36",&quotphoneId":&quot3f9013a2397906107aa1e33797b8",&quotid":&quotMozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36,3f9013a2397906107aa1e33797b8,1380361765192"}');
+                                    }, interval);
+                                });
+                                $(document).on('touchend', function(){
+                                    clearInterval(timeout);
+                                    return false;
+                                });
                             });
 
                         </script>
