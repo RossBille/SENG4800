@@ -3,9 +3,9 @@ var app = app || {};
 
 app.Main = (function() {
     /* Our initialisation will go here */
-    $.getJSON('http://localhost:8080/GameEngine/setup?callback=?', function(response) {
-        var json = response;
-    });
+//    $.getJSON('http://localhost:8080/GameEngine/setup?callback=?', function(response) {
+//        var json = response;
+//    });
 
     /* Our websocket */
     var webSocket = new app.Websocket('ws://localhost:8080/GameEngine/output');

@@ -118,6 +118,26 @@
         </CIRCLE>
       </SHAPE>
     </SPRITE>
+    <SPRITE>
+      <SPRITE_ID>6</SPRITE_ID>
+      <SPRITE_NAME>Divider</SPRITE_NAME>
+      <IMAGES>
+        <IMAGE>images/divider.png</IMAGE>
+      </IMAGES>
+      <SPEED>1</SPEED>
+      <OFFSET>
+        <X>0</X>
+        <Y>0</Y>
+      </OFFSET>
+      <SHAPE>
+        <RECTANGLE>
+          <SIZE>
+            <WIDTH>2</WIDTH>
+            <HEIGHT>720</HEIGHT>
+          </SIZE>
+        </RECTANGLE>
+      </SHAPE>
+    </SPRITE>
   </SPRITES>
   <BACKGROUNDS>
     <BACKGROUND>
