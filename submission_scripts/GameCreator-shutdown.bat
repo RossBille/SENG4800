@@ -1,0 +1,3 @@
+echo Stopping GameCreator...
+.\tomcat-GameCreator\bin\shutdown.bat
+echo GameCreator Stopped
