@@ -60,7 +60,6 @@
 
                                 function sendInstruction(instruction) {
                                     //alert(instruction);
-                                    console.log(instruction);
                                     websocket.send(instruction);
                                 }
                             } else {//web sockets are not supported
